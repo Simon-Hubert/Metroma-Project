@@ -1,10 +1,13 @@
 using System;
+using Shapes;
 using UnityEngine;
 
 namespace Metroma
 {
-    public class RenderTextureManager : MonoBehaviour
-    {
+    public class RenderTextureManager : MonoBehaviour {
+        
+
+
         [Serializable]
         private struct RenderTarget
         {
