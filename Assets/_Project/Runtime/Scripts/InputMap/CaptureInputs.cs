@@ -44,20 +44,17 @@ namespace Metroma.Inputs
         private float _moveAFK;
         private bool _action;
         private float _actionAFK;
-
-        private void OnAwake()
-        {
-            _inputAction = new MetromaActions();
-        }
         
         private void OnEnable()
         {
+            _inputAction = new MetromaActions();
+            
             _inputAction.Gameplay.Enable();
             
             _inputAction.Gameplay.Move.performed += ctx => _move = ctx.ReadValue<Vector2>();
             _inputAction.Gameplay.Move.canceled += ctx => _move = Vector2.zero;
             
-            _inputAction.Gameplay.Action.performed += ctx => _action = ctx.ReadValue<bool>();
+            _inputAction.Gameplay.Action.performed += ctx => _action = true;
             _inputAction.Gameplay.Action.canceled += ctx => _action = false;
         }
         private void OnDisable()

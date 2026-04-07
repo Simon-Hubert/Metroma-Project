@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace Metroma
 {
-    struct MiniGameTransitionData
+    [Serializable]
+    public struct MiniGameTransitionData
     {
         public Camera Camera;
         public Material Material;
@@ -20,8 +21,9 @@ namespace Metroma
         private static readonly int ZTest = Shader.PropertyToID("_ZTest");
         private static readonly int Transition = Shader.PropertyToID("_Transition");
         private bool _isTransitioning;
+        public event Action OnTransitionEnded;
         
-        bool TryTransition(MiniGameTransitionData data) {
+        public bool TryTransition(MiniGameTransitionData data) {
             if (_isTransitioning) return false;
             CameraHelpers.ApplyConfiguration(data.Camera, data.View.GetConfiguration());
             if (data.IsIn) StartCoroutine(TransiInCoroutine(data));
@@ -41,6 +43,7 @@ namespace Metroma
             }
             data.Material.SetFloat(Transition, 0);
             _isTransitioning = false;
+            OnTransitionEnded?.Invoke();
         }
         
         IEnumerator TransiOutCoroutine(MiniGameTransitionData data) {
@@ -55,16 +58,15 @@ namespace Metroma
             data.Material.SetFloat(Transition, 1);
             DeactivateZTest(data.Material);
             _isTransitioning = false;
+            OnTransitionEnded?.Invoke();
         }
         
-        
-        
         void ActivateZTest(Material mat) {
-            mat.SetInt(ZTest, 4);
+            mat.SetInt(ZTest, 8);
         }
         
         void DeactivateZTest(Material mat) {
-            mat.SetInt(ZTest, 8);
+            mat.SetInt(ZTest, 4);
         }
     }
 }

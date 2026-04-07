@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Threading;
 using UnityEngine;
 
 namespace Metroma
@@ -8,6 +11,36 @@ namespace Metroma
             cam.transform.rotation = config.GetRotation();
             cam.transform.position = config.GetPosition();
             cam.fieldOfView = config.Fov;
+        }
+
+        public static CameraConfiguration Lerp(CameraConfiguration from, CameraConfiguration to, float p) {
+            return from * (1-p) + p * to;
+        }
+
+        public static void TransitionViewToView(Camera cam, AView from, AView to, float duration) {
+            _ = ViewToViewTransition(cam, from, to, duration);
+        }
+
+        private static async Awaitable ViewToViewTransition(Camera cam, AView from, AView to, float duration) {
+            try {
+                CameraConfiguration fromConfig = from.GetConfiguration();
+                CameraConfiguration toConfig = to.GetConfiguration();
+                ApplyConfiguration(cam, fromConfig);
+                float t = 0;
+                while (t < duration) {
+                    t += Time.deltaTime;
+                    float p = t / duration;
+                    ApplyConfiguration(cam, Lerp(fromConfig, toConfig, p));
+                    await Awaitable.NextFrameAsync();
+                }
+                ApplyConfiguration(cam, toConfig);
+            }
+            catch (OperationCanceledException oce) {
+
+            }
+            finally {
+                
+            }
         }
     }
 }
