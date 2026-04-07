@@ -9,7 +9,7 @@ namespace Metroma
     public struct MiniGameTransitionData
     {
         public Camera Camera;
-        public Material Material;
+        public AdMaterial Material;
         public AView View;
         public float DurationIn;
         public float DurationOut;
@@ -33,15 +33,15 @@ namespace Metroma
         
         IEnumerator TransiInCoroutine(MiniGameTransitionData data) {
             _isTransitioning = true;
-            ActivateZTest(data.Material);
+            ActivateZTest(data.Material.Material);
             float t = 0f;
             while (t < data.DurationIn) {
                 float p = t / data.DurationIn;
-                data.Material.SetFloat(Transition, 1-p);
+                data.Material.Material.SetFloat(Transition, 1-p);
                 t += Time.deltaTime;
                 yield return null;
             }
-            data.Material.SetFloat(Transition, 0);
+            data.Material.Material.SetFloat(Transition, 0);
             _isTransitioning = false;
             OnTransitionEnded?.Invoke();
         }
@@ -51,12 +51,12 @@ namespace Metroma
             float t = 0f;
             while (t < data.DurationOut) {
                 float p = t / data.DurationOut;
-                data.Material.SetFloat(Transition, p);
+                data.Material.Material.SetFloat(Transition, p);
                 t += Time.deltaTime;
                 yield return null;
             }
-            data.Material.SetFloat(Transition, 1);
-            DeactivateZTest(data.Material);
+            data.Material.Material.SetFloat(Transition, 1);
+            DeactivateZTest(data.Material.Material);
             _isTransitioning = false;
             OnTransitionEnded?.Invoke();
         }

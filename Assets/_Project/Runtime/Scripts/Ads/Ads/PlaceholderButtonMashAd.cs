@@ -23,10 +23,6 @@ namespace Metroma
             }
         }
         
-        private void Start() {
-            StartAd();
-        }
-        
         public override void StartAd() {
             if (!controllables[0]) {
                 Debug.Log("il y a pas de controllable");

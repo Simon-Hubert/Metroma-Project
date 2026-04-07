@@ -12,15 +12,22 @@ namespace Metroma
         [SerializeField] private Camera _miniGameCam;
         [SerializeField] private AView _defaultView;
         [SerializeField] private AView _targetView;
+        [SerializeField] private AdBase _ad;
 
-        private void Start() {
+        private void StartMiniGame() {
+            _data.IsIn = true;
             _transManager.TryTransition(_data);
-            _transManager.OnTransitionEnded += Next;
+            CameraHelpers.TransitionViewToView(_miniGameCam, _defaultView, _targetView, 2.5f);
+            _ad.StartAd();
+            _ad.OnAdEnded += OnAdEnded;
+        }
+
+        private void OnAdEnded() {
+            _ad.OnAdEnded -= OnAdEnded;
+            _data.IsIn = false;
+            _transManager.TryTransition(_data);
+            CameraHelpers.TransitionViewToView(_miniGameCam, _targetView, _defaultView, 2.5f);
         }
         
-        private void Next(){
-            CameraHelpers.TransitionViewToView(_miniGameCam, _defaultView, _targetView, 2.5f);
-            _transManager.OnTransitionEnded -= Next;
-        }
     }
 }
