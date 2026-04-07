@@ -302,7 +302,7 @@ namespace Metroma.Inputs
                 {
                     ""name"": """",
                     ""id"": ""420073eb-f28a-4510-a52f-13263dd11032"",
-                    ""path"": ""<Keyboard>/anyKey"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&mouse"",

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
-using AYellowpaper.SerializedCollections;
 using Metroma.Inputs;
 
 namespace Metroma
@@ -12,7 +11,7 @@ namespace Metroma
         public static InputManager instance;
         
         [SerializeField] private CaptureInputs _captureInputs;
-        [SerializedDictionary, ReadOnly] private Dictionary<string, Controllable> _controllables;
+        [SerializeField, ReadOnly] private List<Controllable> _controllables;
 
         private void Awake() {
             if (instance != null) {
@@ -42,39 +41,38 @@ namespace Metroma
         /// <param name="controllable">IControllable to add</param>
         /// <param name="key">If null, empty, not set or already existing, will be random.</param>
         /// <returns>Key assigned to controllable. Returns empty string in case of error</returns>
-        public string AddControllable(Controllable controllable, string key = "") {
+        public bool AddControllable(Controllable controllable, bool activeState = false) {
             if (_controllables == null) {
-                _controllables = new Dictionary<string, Controllable>();
+                _controllables = new List<Controllable>();
             }
             
             // Error proof
             if (controllable == null) {
                 Debug.LogError("Cannot add controllable : IControllable is null.");
-                return "";
+                return false;
             }
 
-            int secure = 0;
-            while (string.IsNullOrEmpty(key) || _controllables.ContainsKey(key) || secure >= 1000) {
-                key = Random.Range(0, 1000).ToString();
-                secure++;
-            }
-
-            controllable.IsActive = false;
-            _controllables.Add(key, controllable);
-            return key;
-        }
-
-        public void RemoveControllable(string key) {
-            if (_controllables == null) return;
-            
-            _controllables.Remove(key);
-        }
-        public void RemoveControllables(string[] keys) {
-            if (_controllables == null) return;
-            
-            foreach (string key in keys)
+            if (_controllables.Contains(controllable))
             {
-                RemoveControllable(key);
+                Debug.LogWarning("Cannot add controllable : " + controllable.name + " is already referenced.");
+                return true;
+            }
+
+            controllable.IsActive = activeState; // false by default
+            _controllables.Add(controllable);
+            return true;
+        }
+
+        public void RemoveControllable(Controllable toRemove) {
+            if (_controllables == null) return;
+            
+            _controllables.Remove(toRemove);
+        }
+        public void RemoveControllables(Controllable[] toRemove) {
+            if (_controllables == null) return;
+
+            foreach (Controllable controllable in toRemove) {
+                _controllables.Remove(controllable);
             }
         }
         
@@ -82,11 +80,11 @@ namespace Metroma
         /// Will clean the dictionnary of any remaining null IControllable. Call it once in a while.
         /// </summary>
         public void PurgeControllables() {
-            foreach (string k in _controllables.Keys)
+            for (int i = 0; i < _controllables.Count; i++)
             {
-                if (_controllables[k] == null)
+                if (_controllables[i] == null)
                 {
-                    RemoveControllable(k);
+                    _controllables.RemoveAt(i);
                 }
             }
         }
@@ -97,7 +95,7 @@ namespace Metroma
 
             GameplayInputsData inputs = _captureInputs.GetGameplayInputsData();
             
-            foreach (Controllable controllable in _controllables.Values)
+            foreach (Controllable controllable in _controllables)
             {
                 if (controllable != null && controllable.IsActive) {
                     controllable.Inputs = inputs;

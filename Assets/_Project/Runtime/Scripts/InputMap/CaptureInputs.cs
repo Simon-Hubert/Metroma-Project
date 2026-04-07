@@ -57,7 +57,7 @@ namespace Metroma.Inputs
             _inputAction.Gameplay.Move.performed += ctx => _move = ctx.ReadValue<Vector2>();
             _inputAction.Gameplay.Move.canceled += ctx => _move = Vector2.zero;
             
-            _inputAction.Gameplay.Action.performed += ctx => _action = ctx.ReadValue<bool>();
+            _inputAction.Gameplay.Action.performed += ctx => _action = true;
             _inputAction.Gameplay.Action.canceled += ctx => _action = false;
         }
         private void OnDisable()
