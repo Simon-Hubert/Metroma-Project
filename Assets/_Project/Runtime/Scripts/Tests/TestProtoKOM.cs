@@ -14,6 +14,10 @@ namespace Metroma
         [SerializeField] private AView _targetView;
         [SerializeField] private AdBase _ad;
 
+        private void Start() {
+            StartMiniGame();
+        }
+
         private void StartMiniGame() {
             _data.IsIn = true;
             _transManager.TryTransition(_data);
