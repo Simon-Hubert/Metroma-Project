@@ -5,11 +5,12 @@ namespace Metroma
 {
     public class FreeRoamControllable : Controllable
     {
-        [SerializeField] private float _accelerationTime = 0.5f;
-        [SerializeField] private float _decelerationTime = 1.5f;
+        [SerializeField] protected float _accelerationTime = 0.5f;
+        [SerializeField] protected float _decelerationTime = 1.5f;
 
+        [SerializeField] protected float _maxSpeed = 100.0f;
         [Tooltip("0 is no rotation speed")]
-        [SerializeField] private float _angleSpeed = 0f;
+        [SerializeField] protected float _angleSpeed = 0f;
         
         protected void FixedUpdate()
         {
