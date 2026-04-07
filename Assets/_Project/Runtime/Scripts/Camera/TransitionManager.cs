@@ -23,8 +23,7 @@ namespace Metroma
         
         bool TryTransition(MiniGameTransitionData data) {
             if (_isTransitioning) return false;
-            ApplyConfiguration(data.Camera, data.View.GetConfiguration());
-            //Placer la camera et ensuite faire la suite
+            CameraHelpers.ApplyConfiguration(data.Camera, data.View.GetConfiguration());
             if (data.IsIn) StartCoroutine(TransiInCoroutine(data));
             else StartCoroutine(TransiOutCoroutine(data));
             return true;
@@ -58,12 +57,7 @@ namespace Metroma
             _isTransitioning = false;
         }
         
-        //TODO methode a passer en static dans les camera helpers
-        private void ApplyConfiguration(Camera cam, CameraConfiguration config) {
-            cam.transform.rotation = config.GetRotation();
-            cam.transform.position = config.GetPosition();
-            cam.fieldOfView = config.Fov;
-        }
+        
         
         void ActivateZTest(Material mat) {
             mat.SetInt(ZTest, 4);
