@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using Metroma.Inputs;
 using UnityEngine.Events;
+using NaughtyAttributes;
 
 namespace Metroma
 {
@@ -11,8 +12,7 @@ namespace Metroma
     /// </summary>
     public class Controllable : MonoBehaviour
     {
-        private bool _isActive;
-
+        [SerializeField, ReadOnly] private bool _isActive;
         /// <summary>
         /// Whether the Controllable captures inputs or not
         /// </summary>
@@ -23,7 +23,7 @@ namespace Metroma
                 _isActive = value;
                 
                 if (!_isActive) {
-                    _inputs = new GameplayInputsData();
+                    inputs = new GameplayInputsData();
                 }
                 else {
                     // Check for AFK
@@ -31,30 +31,59 @@ namespace Metroma
             }
         }
         
-        protected GameplayInputsData _lastInputs;
-        protected GameplayInputsData _inputs;
+        protected GameplayInputsData lastInputs;
+        protected GameplayInputsData inputs;
 
         public GameplayInputsData Inputs {
-            get => _inputs;
+            get => inputs;
             set
             {
-                _lastInputs = _inputs;
-                _inputs = value;
+                lastInputs = inputs;
+                inputs = value;
                 
-                if (_lastInputs.move == Vector2.zero && Inputs.move != Vector2.zero) OnMoveStart?.Invoke();
-                else if (_lastInputs.move != Vector2.zero && Inputs.move == Vector2.zero) OnMoveEnd?.Invoke();
+                if (lastInputs.move == Vector2.zero && Inputs.move != Vector2.zero) {
+                    OnMoveStartUnity?.Invoke();
+                    OnMoveStart?.Invoke();
+                } // Move Start
+                else if (lastInputs.move != Vector2.zero && Inputs.move == Vector2.zero) {
+                    OnMoveEndUnity?.Invoke();
+                    OnMoveEnd?.Invoke();
+                } // Move End
             
-                if (_lastInputs.action == false && Inputs.action == true) OnActionStart?.Invoke();
-                else if (_lastInputs.action == true && Inputs.action == false) OnActionEnd?.Invoke();
+                if (lastInputs.action == false && Inputs.action == true) {
+                    OnActionStartUnity?.Invoke();
+                    OnActionStart?.Invoke();
+                } // Action Start
+                else if (lastInputs.action == true && Inputs.action == false) {
+                    OnActionEndUnity?.Invoke();
+                    OnActionEnd?.Invoke();
+                }  // Action End
             }
         }
         
         public Transform GetTransform { get => transform; }
         
-        public UnityEvent OnMoveStart;
-        public UnityEvent OnMoveEnd;
+        /// <summary>
+        /// Do not register both event on the same callback, this may cause a double call.
+        /// </summary>
+        #region Events
+        public UnityEvent OnMoveStartUnity;
+        public event Action OnMoveStart;
+        public UnityEvent OnMoveEndUnity;
+        public event Action OnMoveEnd;
 
-        public UnityEvent OnActionStart;
-        public UnityEvent OnActionEnd;
+        
+        public UnityEvent OnActionStartUnity;
+        public event Action OnActionStart;
+        public UnityEvent OnActionEndUnity;
+        public event Action OnActionEnd;
+        #endregion
+
+        [Button]
+        private void AddControllable()
+        {
+            
+        }
+        
     }
 }
