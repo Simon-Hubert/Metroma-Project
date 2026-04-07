@@ -22,6 +22,7 @@ Shader "Custom/AdLit" {
 		_Transition("Transition", Range(0.0,1.0)) = 0.5
 		_FormatX("FormatX", Float) = 16
 		_FormatY("FormatY", Float) = 9
+		_Noise("Noise", 2D) = "white" {}
 		[Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("ZTest", Float) = 4 //“LessEqual”
 	}
 	SubShader {
@@ -44,9 +45,9 @@ Shader "Custom/AdLit" {
 		float4 _SpecColor;
 		float _Cutoff;
 		float _Smoothness;
-		float _Transition;
 		float _FormatX;
 		float _FormatY;
+		float _Transition;
 		CBUFFER_END
 		ENDHLSL
 
@@ -62,6 +63,8 @@ Shader "Custom/AdLit" {
 			BlendOp Add
 
 			HLSLPROGRAM
+			
+			
 			#pragma vertex LitPassVertex
 			#pragma fragment LitPassFragment
 
@@ -323,21 +326,29 @@ Shader "Custom/AdLit" {
 				return lighting;
 			}
 			
+			TEXTURE2D(_Noise);
+			SAMPLER(sampler_Noise);
+			
 			// Fragment Shader
 			half4 LitPassFragment(Varyings IN) : SV_Target {
+				half3 noise = SAMPLE_TEXTURE2D(_Noise, sampler_Noise, IN.uv)*2-0.5;
 				SurfaceData surfaceData;
 				InitalizeSurfaceData(IN, surfaceData);
 				InputData inputData;
 				InitializeInputData(IN, surfaceData.normalTS, inputData);
-				half4 color = half4(LightLoop(surfaceData, inputData),1);
+				half4 color = lerp(half4(surfaceData.albedo,1), half4(LightLoop(surfaceData, inputData),1),_Transition);
 				color.rgb = MixFog(color.rgb, inputData.fogCoord);
 				
-				float width = _FormatX/2/15;
-				float height = _FormatY/15;
+				float width = lerp(1,_FormatX/2/15,_Transition);
+				float height = lerp(1,_FormatY/15,_Transition);
 				
-				float mask = 1 - step(0, sdBox(IN.uv * 2 - 1, float2(width,height)));
-				color.a = lerp(mask, 1, _Transition);
+				float pingpong = abs(2*_Transition-1);
+				float step = lerp(0.2, 0, pingpong);
+				float noisestr = lerp(noise,0, pingpong);
 				
+				float mask = smoothstep( -step, step, sdBox((IN.uv * 2 - 1) + noisestr*0.2, float2(width,height)));
+				mask = 1-mask;
+				color.a = mask;
 				return color;
 			}
 			ENDHLSL	
