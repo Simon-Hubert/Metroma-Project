@@ -7,103 +7,331 @@ namespace Metroma
 {
     public class PlatformerControllable : Controllable
     {
+        [Serializable]
+        protected enum MoveState
+        {
+            NONE = 0,
+            ACCELERATING = 1,
+            DECELERATING = 2,
+            TURNING_AROUND = 3
+        }
+
+        protected enum JumpType 
+        {
+            AtActionStart = 0,
+            AtActionEnd = 1,
+            AtActionDynamic = 2
+        }
+        
         [Header("Essentials")]
-        [SerializeField] protected Rigidbody rb2D;
+        [SerializeField] protected Rigidbody2D rb2D;
         
         [Header("Movement")]
         [SerializeField, Min(0)] protected float accelerationTime = 0.5f;
-        [SerializeField] protected AnimationCurve accelerationCurve;
+        [SerializeField]         protected AnimationCurve accelerationCurve;
         [SerializeField, Min(0)] protected float decelerationTime = 1.5f;
-        [SerializeField] protected AnimationCurve decelerationCurve;
-        [SerializeField, Min(0)] protected float returnTime = 0.5f;
-        [SerializeField] protected AnimationCurve returnCurve;
-        protected float accelerationValue = 0.0f;
-        protected float directionValue = 0.0f; // 1.0f = go right
+        [SerializeField]         protected AnimationCurve decelerationCurve;
+        [Space(7)]
+        [SerializeField, Min(0)] protected float turnAroundStartTime = 0.25f;
+        [SerializeField]         protected AnimationCurve turnAroundStartCurve;
+        [SerializeField, Min(0)] protected float turnAroundEndTime = 0.5f;
+        [SerializeField]         protected AnimationCurve turnAroundEndCurve;
+        
+        [SerializeField, ReadOnly] float accelerationValue = 0.0f;
         protected Coroutine lerpCoroutine;
+        [SerializeField, ReadOnly] protected MoveState moveState = MoveState.NONE;
+        
+        protected int currentDir = 0;
+        protected float dirLerp = 0.0f; // 1.0f = go right // -1.0f = go left //
+        protected int GetInputDir {
+            get {
+                if (Inputs.move.x != 0.0f) return (int)Mathf.Sign(Inputs.move.x);
+                else return 0;
+            }
+        }
+        
+        private float lastXPosition = 0;
+        
         [Space(7)]
         [SerializeField] protected float maxSpeed = 100.0f;
+
+        [SerializeField] private float stoppedTolerance = 0.01f;
         
         [Header("Ground Detection")]
         [SerializeField] protected Vector2 groundDetectionOffset = Vector2.zero;
         [SerializeField, Min(0)] protected float groundDetectionSize = 1.0f;
+        
+        [SerializeField] protected float isntGroundedMoveFactor = 0.5f;
+        [SerializeField, Min(0)] protected float coyoteTime = 0.2f;
+        [Space(7)]
         [SerializeField, ReadOnly] protected bool isGrounded = false;
+        private Coroutine coyoteTimeCoroutine;
+        
+        [Header("Jump")]
+        [SerializeField] protected bool canJump = true;
+        [SerializeField] protected JumpType jumpType = JumpType.AtActionStart;
+        [SerializeField, Min(0)] protected float dynamicJumpDelay = 0.3f;
+        private float currentDynamicDelay = 0.0f;
+        [Space(7)]
+        [SerializeField] protected float jumpingForce = 10.0f;
+        [SerializeField] protected float delayBeforeJump = 0f;
+        [SerializeField] protected float delayAfterJump = 0.5f;
+        [Space(7)]
+        [SerializeField, ReadOnly] protected bool isJumping = false;
+        protected Coroutine jumpCoroutine;
+        protected Coroutine dynamicJumpCoroutine;
 
+        protected void OnValidate() {
+            if (!rb2D) {
+                TryGetComponent<Rigidbody2D>(out rb2D);
+            }
+        }
 
-        protected void OnEnable()
-        {
+        protected void OnEnable() {
             OnMoveStart += MoveStartLerp;
             OnMoveEnd += MoveEndLerp;
+
+            switch (jumpType)
+            {
+                case JumpType.AtActionEnd :
+                    OnActionEnd += Jumping;
+                    break;
+                case JumpType.AtActionDynamic:
+                    OnActionStart += DynamicJump;
+                    OnActionEnd += Jumping;
+                    break;
+                case JumpType.AtActionStart:
+                    OnActionStart += Jumping;
+                    break;
+            }
         }
         protected void OnDisable() {
             OnMoveStart -= MoveStartLerp;
             OnMoveEnd -= MoveEndLerp;
+            
+            switch (jumpType)
+            {
+                case JumpType.AtActionEnd :
+                    OnActionEnd -= Jumping;
+                    break;
+                case JumpType.AtActionDynamic:
+                    OnActionStart -= DynamicJump;
+                    OnActionEnd -= Jumping;
+                    break;
+                case JumpType.AtActionStart:
+                    OnActionStart -= Jumping;
+                    break;
+            }
         }
 
-        protected void FixedUpdate() {
-            
-            
-            rb2D.AddForce(Vector3.right * (directionValue * accelerationValue * maxSpeed), ForceMode.Acceleration);
-        }
-
-        private void DirectionCheck()
+        protected void Start()
         {
-            if (accelerationValue == 0.0f) {
-                directionValue = 0.0f;
+            lastXPosition = transform.position.x;
+            
+#if UNITY_EDITOR
+            Editor_AddControllable();
+#endif
+        }
+        
+        protected override void FixedUpdate() {
+            base.FixedUpdate();
+            
+            DirectionCheck();
+            GroundCheck();
+            
+            rb2D.linearVelocity = (Vector2.up * rb2D.linearVelocity.y) + Vector2.right * (currentDir * accelerationValue * maxSpeed);
+            
+            WallCheck();
+        }
+
+        private void DirectionCheck() {
+            if (GetInputDir == 0 && (moveState == MoveState.ACCELERATING || (moveState == MoveState.NONE && accelerationValue != 0.0f))) {
+                MoveEndLerp();
             }
-            else if ((Inputs.move.x != 0 && directionValue == 0) || Mathf.Sign(Inputs.move.x) == Mathf.Sign(directionValue)) {
-                if (Inputs.move.x < 0) directionValue = -1.0f;
-                else directionValue = 1.0f;
+            
+            if (accelerationValue == 0.0f && currentDir != GetInputDir && GetInputDir != 0) {
+                currentDir *= -1;
+                
+                if (lerpCoroutine != null) StopCoroutine(lerpCoroutine);
+                lerpCoroutine = StartCoroutine(MoveAccelerationLerpCoroutine(turnAroundEndTime, turnAroundEndCurve));
             }
-            else if (Mathf.Sign(Inputs.move.x) != Mathf.Sign(directionValue)) {
-                //TODO
+            else if (moveState == MoveState.NONE && accelerationValue == 0.0f && currentDir != 0) currentDir = 0;
+            
+            if (accelerationValue != 0.0f && currentDir != GetInputDir && GetInputDir != 0 && currentDir != 0 && moveState != MoveState.TURNING_AROUND) {
+                moveState = MoveState.TURNING_AROUND;
+                if (lerpCoroutine != null) StopCoroutine(lerpCoroutine);
+                lerpCoroutine = StartCoroutine(MoveDecelerationLerpCoroutine(turnAroundStartTime, turnAroundStartCurve));
             }
+            else if (accelerationValue != 0.0f && (currentDir == GetInputDir || currentDir == 0) && GetInputDir != 0 && moveState != MoveState.ACCELERATING) {
+                if (lerpCoroutine != null) StopCoroutine(lerpCoroutine);
+                lerpCoroutine = StartCoroutine(MoveAccelerationLerpCoroutine(accelerationTime, accelerationCurve));
+            }
+        }
+        private void WallCheck() {
+            if ((GetInputDir == 0 || GetInputDir != currentDir) && 
+                lastXPosition + stoppedTolerance >= transform.position.x && lastXPosition - stoppedTolerance <= transform.position.x) {
+                accelerationValue = 0.0f;
+                if (lerpCoroutine != null) StopCoroutine(lerpCoroutine);
+            }
+
+            lastXPosition = transform.position.x;
+        }
+        private void GroundCheck()
+        {
+            RaycastHit2D hitL = Physics2D.Raycast((Vector2)transform.position + groundDetectionOffset * new Vector2(1 * (transform.lossyScale.x / 2), 1), Vector2.down, groundDetectionSize);
+            RaycastHit2D hitR = Physics2D.Raycast((Vector2)transform.position + groundDetectionOffset * new Vector2(-1 * (transform.lossyScale.x / 2), 1), Vector2.down, groundDetectionSize);
+
+            Debug.DrawLine((Vector2)transform.position + groundDetectionOffset * new Vector2(1 * (transform.lossyScale.x / 2), 1), 
+                           (Vector2)transform.position + groundDetectionOffset * new Vector2(1 * (transform.lossyScale.x / 2), 1) + Vector2.down * groundDetectionSize,
+                              Color.red, 2f);
+            Debug.DrawLine((Vector2)transform.position + groundDetectionOffset * new Vector2(-1 * (transform.lossyScale.x / 2), 1), 
+                           (Vector2)transform.position + groundDetectionOffset * new Vector2(-1 * (transform.lossyScale.x / 2), 1) + Vector2.down * groundDetectionSize,
+                              Color.red, 2f);
+            
+            if (hitL || hitR) {
+                Debug.Log("grounded");
+                isGrounded = true;
+                if (coyoteTimeCoroutine != null) {
+                    StopCoroutine(coyoteTimeCoroutine);
+                    coyoteTimeCoroutine = null;
+                }
+            }
+            else {
+                if (isGrounded && coyoteTimeCoroutine == null)
+                {
+                    Debug.Log("coyote");
+                    coyoteTimeCoroutine = StartCoroutine(CoyoteCoroutine());
+                }
+            }
+        }
+        private IEnumerator CoyoteCoroutine()
+        {
+            if (coyoteTime != 0f) yield return new WaitForSeconds(coyoteTime);
+            
+            isGrounded = false;
+            yield break;
         }
 
         private void MoveStartLerp() {
+            if (Inputs.move.x == 0.0f) return;
+            
+            if (currentDir == 0) currentDir = GetInputDir;
+            
             if (lerpCoroutine != null) StopCoroutine(lerpCoroutine);
-            lerpCoroutine = StartCoroutine(MoveStartLerpCoroutine(accelerationTime, accelerationCurve));
+            lerpCoroutine = StartCoroutine(MoveAccelerationLerpCoroutine(accelerationTime, accelerationCurve));
         }
-        private IEnumerator MoveStartLerpCoroutine(float duration, AnimationCurve curve) {
-            if (duration > 0f || accelerationValue < 1f)
-            {
+        private IEnumerator MoveAccelerationLerpCoroutine(float duration, AnimationCurve curve) {
+            moveState = MoveState.ACCELERATING;
+            
+            if (duration > 0f && accelerationValue < 1f) {
+                // Debug.Log("Start Accelerating");
+                
                 float offset = accelerationValue;
                 float ratio = 1 - offset;
 
                 float lerp = 0.0f;
-                while (lerp < 1.0f)
-                {
+                while (lerp < 1.0f) {
                     yield return new WaitForFixedUpdate();
                 
-                    lerp += Time.fixedDeltaTime / (duration * ratio);
+                    lerp += Time.fixedDeltaTime / (duration * ratio) * (isGrounded ? 1.0f : isntGroundedMoveFactor);
                     accelerationValue = curve.Evaluate(offset + (lerp * ratio));
                 }
+                
+                // Debug.Log("Stop Accelerating");
             }
             
+            moveState = MoveState.NONE;
             accelerationValue = 1f;
             yield break;
         }
         
         private void MoveEndLerp() {
+            if (currentDir == 0) currentDir = GetInputDir;
+            
             if (lerpCoroutine != null) StopCoroutine(lerpCoroutine);
-            lerpCoroutine = StartCoroutine(MoveEndLerpCoroutine(decelerationTime, decelerationCurve));
+            lerpCoroutine = StartCoroutine(MoveDecelerationLerpCoroutine(decelerationTime, decelerationCurve));
         }
-        private IEnumerator MoveEndLerpCoroutine(float duration, AnimationCurve curve) {
-            if (duration > 0f || accelerationValue > 0f)
-            {
+        private IEnumerator MoveDecelerationLerpCoroutine(float duration, AnimationCurve curve) {
+            if (moveState != MoveState.TURNING_AROUND) moveState = MoveState.DECELERATING;
+
+            
+            if (duration > 0f && accelerationValue > 0f) {
+                // Debug.Log("Start Decelerating");
+                
                 float ratio = accelerationValue;
 
                 float lerp = 1.0f;
-                while (lerp > 0.0f)
-                {
+                while (lerp > 0.0f) {
                     yield return new WaitForFixedUpdate();
                 
-                    lerp -= Time.fixedDeltaTime / (duration * ratio);
+                    lerp -= Time.fixedDeltaTime / (duration * ratio) * (isGrounded ? 1.0f : isntGroundedMoveFactor);
                     accelerationValue = curve.Evaluate(lerp * ratio);
                 }
+                
+                // Debug.Log("Stop Decelerating");
             }
             
+            moveState = MoveState.NONE;
             accelerationValue = 0f;
+            
             yield break;
         }
-    }
+
+        protected void DynamicJump()
+        {
+            if (dynamicJumpCoroutine != null) {
+                StopCoroutine(dynamicJumpCoroutine);
+                dynamicJumpCoroutine = null;
+            }
+            dynamicJumpCoroutine = StartCoroutine(DynamicCoroutine());
+        }
+        private IEnumerator DynamicCoroutine() {
+            currentDynamicDelay = 0f;
+            while (currentDynamicDelay < dynamicJumpDelay) {
+                currentDynamicDelay += Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+            currentDynamicDelay = dynamicJumpDelay;
+            
+            Jumping();
+            yield break;
+        }
+        private void Jumping() {
+            if (!canJump ||
+                !isGrounded || isJumping) return;
+            
+            switch (jumpType)
+            {
+                case JumpType.AtActionDynamic:
+                    jumpCoroutine = StartCoroutine(JumpCoroutine(jumpingForce * (currentDynamicDelay / dynamicJumpDelay)));
+                    break;
+                default:
+                    jumpCoroutine = StartCoroutine(JumpCoroutine(jumpingForce));
+                    break;
+            }
+        }
+        private IEnumerator JumpCoroutine(float jumpForce) {
+            if (delayBeforeJump > 0f) {
+                yield return new WaitForSeconds(delayBeforeJump);
+
+                if (!isGrounded || isJumping) yield break;
+            }
+            
+            isJumping = true;
+            rb2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+            float secureTimer = 1.0f;
+            while (isGrounded && secureTimer > 0) {
+                yield return new WaitForFixedUpdate();
+                secureTimer -= Time.fixedDeltaTime;
+            }
+            while (!isGrounded || coyoteTimeCoroutine != null) {
+                yield return new WaitForFixedUpdate();
+            }
+            
+            yield return new WaitForSeconds(delayAfterJump);
+            isJumping = false;
+            yield break;
+        }
+    } 
 }

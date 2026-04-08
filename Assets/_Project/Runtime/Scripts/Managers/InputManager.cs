@@ -18,7 +18,9 @@ namespace Metroma
                 Destroy(gameObject);
                 return;
             }
+            
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Start() {
