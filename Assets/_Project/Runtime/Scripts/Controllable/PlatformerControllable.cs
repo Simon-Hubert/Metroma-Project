@@ -17,8 +17,8 @@ namespace Metroma
         [SerializeField] protected AnimationCurve decelerationCurve;
         [SerializeField, Min(0)] protected float returnTime = 0.5f;
         [SerializeField] protected AnimationCurve returnCurve;
-        protected float accelerationLerp = 0.0f;
         protected float accelerationValue = 0.0f;
+        protected float directionValue = 0.0f; // 1.0f = go right
         protected Coroutine lerpCoroutine;
         [Space(7)]
         [SerializeField] protected float maxSpeed = 100.0f;
@@ -41,6 +41,22 @@ namespace Metroma
 
         protected void FixedUpdate() {
             
+            
+            rb2D.AddForce(Vector3.right * (directionValue * accelerationValue * maxSpeed), ForceMode.Acceleration);
+        }
+
+        private void DirectionCheck()
+        {
+            if (accelerationValue == 0.0f) {
+                directionValue = 0.0f;
+            }
+            else if ((Inputs.move.x != 0 && directionValue == 0) || Mathf.Sign(Inputs.move.x) == Mathf.Sign(directionValue)) {
+                if (Inputs.move.x < 0) directionValue = -1.0f;
+                else directionValue = 1.0f;
+            }
+            else if (Mathf.Sign(Inputs.move.x) != Mathf.Sign(directionValue)) {
+                //TODO
+            }
         }
 
         private void MoveStartLerp() {
@@ -48,18 +64,22 @@ namespace Metroma
             lerpCoroutine = StartCoroutine(MoveStartLerpCoroutine(accelerationTime, accelerationCurve));
         }
         private IEnumerator MoveStartLerpCoroutine(float duration, AnimationCurve curve) {
-            if (duration == 0f)
+            if (duration > 0f || accelerationValue < 1f)
             {
-                accelerationValue = 1f;
-                yield break;
-            }
-            
-            
-            while ()
-            {
+                float offset = accelerationValue;
+                float ratio = 1 - offset;
+
+                float lerp = 0.0f;
+                while (lerp < 1.0f)
+                {
+                    yield return new WaitForFixedUpdate();
                 
+                    lerp += Time.fixedDeltaTime / (duration * ratio);
+                    accelerationValue = curve.Evaluate(offset + (lerp * ratio));
+                }
             }
             
+            accelerationValue = 1f;
             yield break;
         }
         
@@ -68,12 +88,21 @@ namespace Metroma
             lerpCoroutine = StartCoroutine(MoveEndLerpCoroutine(decelerationTime, decelerationCurve));
         }
         private IEnumerator MoveEndLerpCoroutine(float duration, AnimationCurve curve) {
-            if (duration == 0f)
+            if (duration > 0f || accelerationValue > 0f)
             {
-                accelerationValue = 0f;
-                yield break;
+                float ratio = accelerationValue;
+
+                float lerp = 1.0f;
+                while (lerp > 0.0f)
+                {
+                    yield return new WaitForFixedUpdate();
+                
+                    lerp -= Time.fixedDeltaTime / (duration * ratio);
+                    accelerationValue = curve.Evaluate(lerp * ratio);
+                }
             }
             
+            accelerationValue = 0f;
             yield break;
         }
     }
