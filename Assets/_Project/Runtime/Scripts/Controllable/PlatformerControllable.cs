@@ -86,9 +86,7 @@ namespace Metroma
         #endregion
 
         protected void OnValidate() {
-            if (!rb2D) {
-                TryGetComponent<Rigidbody2D>(out rb2D);
-            }
+            if (!rb2D) TryGetComponent<Rigidbody2D>(out rb2D);
         }
 
         protected void OnEnable() {
@@ -140,7 +138,7 @@ namespace Metroma
         protected override void FixedUpdate() {
             base.FixedUpdate();
             
-            DirectionCheck();
+            MoveStateCheck();
             GroundCheck();
             
             rb2D.linearVelocity = (Vector2.up * rb2D.linearVelocity.y) + Vector2.right * (currentDir * accelerationValue * maxSpeed);
@@ -149,7 +147,7 @@ namespace Metroma
         }
 
         #region Update Checks
-        private void DirectionCheck() {
+        private void MoveStateCheck() {
             if (GetInputDir == 0 && (moveState == MoveState.ACCELERATING || (moveState == MoveState.NONE && accelerationValue != 0.0f))) {
                 MoveEndLerp();
             }
