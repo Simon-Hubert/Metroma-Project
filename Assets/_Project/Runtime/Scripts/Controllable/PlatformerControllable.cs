@@ -15,8 +15,7 @@ namespace Metroma
             DECELERATING = 2,
             TURNING_AROUND = 3
         }
-
-        protected enum JumpType 
+        public enum JumpType 
         {
             AtActionStart = 0,
             AtActionEnd = 1,
@@ -26,6 +25,7 @@ namespace Metroma
         [Header("Essentials")]
         [SerializeField] protected Rigidbody2D rb2D;
         
+        #region Movement
         [Header("Movement")]
         [SerializeField, Min(0)] protected float accelerationTime = 0.5f;
         [SerializeField]         protected AnimationCurve accelerationCurve;
@@ -40,6 +40,7 @@ namespace Metroma
         [SerializeField, ReadOnly] float accelerationValue = 0.0f;
         protected Coroutine lerpCoroutine;
         [SerializeField, ReadOnly] protected MoveState moveState = MoveState.NONE;
+        #endregion
         
         protected int currentDir = 0;
         protected float dirLerp = 0.0f; // 1.0f = go right // -1.0f = go left //
@@ -49,7 +50,6 @@ namespace Metroma
                 else return 0;
             }
         }
-        
         private float lastXPosition = 0;
         
         [Space(7)]
@@ -57,6 +57,7 @@ namespace Metroma
 
         [SerializeField] private float stoppedTolerance = 0.01f;
         
+        #region Ground Detection
         [Header("Ground Detection")]
         [SerializeField] protected Vector2 groundDetectionOffset = Vector2.zero;
         [SerializeField, Min(0)] protected float groundDetectionSize = 1.0f;
@@ -66,7 +67,9 @@ namespace Metroma
         [Space(7)]
         [SerializeField, ReadOnly] protected bool isGrounded = false;
         private Coroutine coyoteTimeCoroutine;
+        #endregion
         
+        #region Jump
         [Header("Jump")]
         [SerializeField] protected bool canJump = true;
         [SerializeField] protected JumpType jumpType = JumpType.AtActionStart;
@@ -80,6 +83,7 @@ namespace Metroma
         [SerializeField, ReadOnly] protected bool isJumping = false;
         protected Coroutine jumpCoroutine;
         protected Coroutine dynamicJumpCoroutine;
+        #endregion
 
         protected void OnValidate() {
             if (!rb2D) {
@@ -144,6 +148,7 @@ namespace Metroma
             WallCheck();
         }
 
+        #region Update Checks
         private void DirectionCheck() {
             if (GetInputDir == 0 && (moveState == MoveState.ACCELERATING || (moveState == MoveState.NONE && accelerationValue != 0.0f))) {
                 MoveEndLerp();
@@ -181,12 +186,14 @@ namespace Metroma
             RaycastHit2D hitL = Physics2D.Raycast((Vector2)transform.position + groundDetectionOffset * new Vector2(1 * (transform.lossyScale.x / 2), 1), Vector2.down, groundDetectionSize);
             RaycastHit2D hitR = Physics2D.Raycast((Vector2)transform.position + groundDetectionOffset * new Vector2(-1 * (transform.lossyScale.x / 2), 1), Vector2.down, groundDetectionSize);
 
-            Debug.DrawLine((Vector2)transform.position + groundDetectionOffset * new Vector2(1 * (transform.lossyScale.x / 2), 1), 
-                           (Vector2)transform.position + groundDetectionOffset * new Vector2(1 * (transform.lossyScale.x / 2), 1) + Vector2.down * groundDetectionSize,
-                              Color.red, 2f);
-            Debug.DrawLine((Vector2)transform.position + groundDetectionOffset * new Vector2(-1 * (transform.lossyScale.x / 2), 1), 
-                           (Vector2)transform.position + groundDetectionOffset * new Vector2(-1 * (transform.lossyScale.x / 2), 1) + Vector2.down * groundDetectionSize,
-                              Color.red, 2f);
+            Debug.DrawLine(
+                (Vector2)transform.position + groundDetectionOffset * new Vector2(1 * (transform.lossyScale.x / 2), 1), 
+                (Vector2)transform.position + groundDetectionOffset * new Vector2(1 * (transform.lossyScale.x / 2), 1) + Vector2.down * groundDetectionSize,
+                Color.red, 2f);
+            Debug.DrawLine(
+                (Vector2)transform.position + groundDetectionOffset * new Vector2(-1 * (transform.lossyScale.x / 2), 1),
+                (Vector2)transform.position + groundDetectionOffset * new Vector2(-1 * (transform.lossyScale.x / 2), 1) + Vector2.down * groundDetectionSize,
+                Color.red, 2f);
             
             if (hitL || hitR) {
                 Debug.Log("grounded");
@@ -211,7 +218,9 @@ namespace Metroma
             isGrounded = false;
             yield break;
         }
+        #endregion
 
+        #region Move Methods
         private void MoveStartLerp() {
             if (Inputs.move.x == 0.0f) return;
             
@@ -276,7 +285,9 @@ namespace Metroma
             
             yield break;
         }
+        #endregion
 
+        #region Jump Methods
         protected void DynamicJump()
         {
             if (dynamicJumpCoroutine != null) {
@@ -333,5 +344,6 @@ namespace Metroma
             isJumping = false;
             yield break;
         }
+        #endregion
     } 
 }
