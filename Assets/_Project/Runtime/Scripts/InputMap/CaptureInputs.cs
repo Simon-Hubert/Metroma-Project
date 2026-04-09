@@ -1,4 +1,5 @@
 using System;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ namespace Metroma.Inputs
         /// Move input value clamped between -1 & 1
         /// </summary>
         public Vector2 move { get; }
+
         /// <summary>
         /// Time since the move input was used
         /// </summary>
@@ -40,15 +42,15 @@ namespace Metroma.Inputs
     {
         private MetromaActions _inputAction;
 
-        private Vector2 _move;
-        private float _moveAFK;
-        private bool _action;
-        private float _actionAFK;
+        [SerializeField, ReadOnly] private Vector2 _move;
+        [SerializeField, ReadOnly] private float _moveAFK;
+        [Space(7)]
+        [SerializeField, ReadOnly] private bool _action;
+        [SerializeField, ReadOnly] private float _actionAFK;
         
         private void OnEnable()
         {
             _inputAction = new MetromaActions();
-            
             _inputAction.Gameplay.Enable();
             
             _inputAction.Gameplay.Move.performed += ctx => _move = ctx.ReadValue<Vector2>();

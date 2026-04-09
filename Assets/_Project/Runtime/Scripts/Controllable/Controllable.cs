@@ -23,7 +23,7 @@ namespace Metroma
                 _isActive = value;
                 
                 if (!_isActive) {
-                    inputs = new GameplayInputsData();
+                    inputs = new GameplayInputsData(Vector2.zero, 0.0f, false, 0.0f);
                 }
                 else {
                     // Check for AFK
@@ -67,23 +67,43 @@ namespace Metroma
         /// Do not register both event on the same callback, this may cause a double call.
         /// </summary>
         #region Events
-        public UnityEvent OnMoveStartUnity;
+        [Foldout("Events")] public UnityEvent OnMoveStartUnity;
         public event Action OnMoveStart;
-        public UnityEvent OnMoveEndUnity;
+        [Foldout("Events")] public UnityEvent OnMoveEndUnity;
         public event Action OnMoveEnd;
 
-        
-        public UnityEvent OnActionStartUnity;
+        [Foldout("Events")] public UnityEvent OnActionStartUnity;
         public event Action OnActionStart;
-        public UnityEvent OnActionEndUnity;
+        [Foldout("Events")] public UnityEvent OnActionEndUnity;
         public event Action OnActionEnd;
         #endregion
 
-        [Button]
-        private void AddControllable()
-        {
-            
+        protected virtual void Update() {
+
+        }
+        protected virtual void FixedUpdate() {
+
+        }
+        protected virtual void LateUpdate() {
+
         }
         
+        #if UNITY_EDITOR
+        [Button]
+        protected void Editor_SwitchActiveState()
+        {
+            IsActive = !IsActive;
+        }
+        [Button]
+        protected void Editor_AddControllable()
+        {
+            InputManager.instance.AddControllable(this, true);
+        }
+        [Button]
+        protected void Editor_RemoveControllable()
+        {
+            InputManager.instance.RemoveControllable(this);
+        }
+        #endif
     }
 }
