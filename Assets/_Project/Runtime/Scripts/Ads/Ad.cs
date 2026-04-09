@@ -3,10 +3,9 @@ using UnityEngine;
 
 namespace Metroma
 {
-
-    public abstract class AdBase : MonoBehaviour
+    public class Ad : MonoBehaviour
     {
-        [SerializeField] protected Controllable[] controllables;
+        [SerializeField] private ConditionalEvent _winCondition;
         
         public event Action OnAdStarted;
         public event Action OnAdEnded;
