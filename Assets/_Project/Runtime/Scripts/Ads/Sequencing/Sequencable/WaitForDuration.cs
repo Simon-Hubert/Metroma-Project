@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Metroma
 {
-    public class WaitForSeconds : Sequencable
+    public class WaitForDuration : Sequencable
     {
         [SerializeField] private float _duration;
         

@@ -2,14 +2,15 @@ using UnityEngine;
 
 namespace Metroma
 {
-    public class ActivateGameObject : Sequencable
+    public class ActivateBehaviour : Sequencable
     {
-        [SerializeField] private MonoBehaviour _object;
+        [SerializeField] private GameObject _object;
         [SerializeField] private bool _active;
 
 
         public override async Awaitable ExecuteAsync() {
-            _object.enabled = _active;
+            _object.SetActive(_active);
+            Debug.Log($"Set {_object} to {_active}");
         }
     }
 }

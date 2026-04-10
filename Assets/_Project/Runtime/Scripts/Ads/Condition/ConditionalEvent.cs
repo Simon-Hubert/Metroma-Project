@@ -21,6 +21,7 @@ namespace Metroma
         public void Evaluate() {
             if (_condition.Evaluate()) {
                 OnValidated?.Invoke();
+                Debug.Log($"{name} validated !");
             }
         }
     }

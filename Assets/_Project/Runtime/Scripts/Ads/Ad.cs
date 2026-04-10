@@ -1,4 +1,5 @@
 using System;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Metroma
@@ -9,8 +10,10 @@ namespace Metroma
         
         public event Action OnAdStarted;
         public event Action OnAdEnded;
-
+        
+        [Button]
         public virtual void StartAd() {
+            Debug.Log($"{name} started !");
             OnAdStarted?.Invoke();
         }
         protected virtual void OnAdEnd() {

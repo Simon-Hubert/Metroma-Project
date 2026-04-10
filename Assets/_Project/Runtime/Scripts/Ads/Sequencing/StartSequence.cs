@@ -6,7 +6,7 @@ namespace Metroma
     {
         [SerializeField] private Ad _ad;
 
-        private void Start() {
+        private void Awake() {
             _ad.OnAdStarted += () => ExecuteAsync();
         }
     }

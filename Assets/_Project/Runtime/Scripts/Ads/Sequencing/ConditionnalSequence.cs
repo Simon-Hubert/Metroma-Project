@@ -5,9 +5,14 @@ namespace Metroma
     public class ConditionnalSequence : Sequence
     {
         [SerializeField] private ConditionalEvent _conditionalEvent;
+    
+        private void Awake() {
+            _conditionalEvent.OnValidated += Execution;
+        }
 
-        private void Start() {
-            _conditionalEvent.OnValidated += () => ExecuteAsync();
+        private void Execution() {
+            Debug.Log($"{name} started");
+            ExecuteAsync();
         }
     }
 }

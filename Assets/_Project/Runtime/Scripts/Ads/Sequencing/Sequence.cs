@@ -26,6 +26,7 @@ namespace Metroma
         public override async Awaitable ExecuteAsync() {
             try {
                 foreach (Sequencable element in _sequence) {
+                    Debug.Log($"{element.name} executing !");
                     await element.ExecuteAsync();
                 }
             }
