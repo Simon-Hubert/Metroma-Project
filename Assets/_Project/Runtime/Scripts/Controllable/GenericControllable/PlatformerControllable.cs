@@ -129,7 +129,9 @@ namespace Metroma
             }
         }
 
-        protected void Start() {
+        protected override void Start() {
+            base.Start();
+            
             // Error proof
             if (!rb2D) {
                 if (TryGetComponent<Rigidbody2D>(out rb2D)) {
@@ -138,10 +140,6 @@ namespace Metroma
             }
             
             lastXPosition = transform.position.x;
-            
-#if UNITY_EDITOR
-            Editor_AddControllable();
-#endif
         }
         
         protected override void FixedUpdate() {

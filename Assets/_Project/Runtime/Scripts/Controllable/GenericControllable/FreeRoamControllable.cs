@@ -27,6 +27,7 @@ namespace Metroma
         [SerializeField]         protected AnimationCurve decelerationCurve;
         [Space(7)]
         [SerializeField] protected bool keepLastInputAsDirection;
+        private Vector2 lastInputMove;
         [SerializeField] protected float maxSpeed = 10.0f;
         #endregion
         
@@ -64,7 +65,9 @@ namespace Metroma
             OnMoveEnd -= MoveEndLerp;
         }
 
-        protected void Start() {
+        protected override void Start() {
+            base.Start();
+            
             // Error proof
             if (!rb2D) {
                 if (TryGetComponent<Rigidbody2D>(out rb2D)) {
@@ -73,10 +76,6 @@ namespace Metroma
             }
 
             moveDirection = Vector2.up;
-            
-            #if UNITY_EDITOR
-            Editor_AddControllable();
-            #endif
         }
 
         protected override void FixedUpdate() {
@@ -97,14 +96,17 @@ namespace Metroma
         #region Update Checks
 
         protected void DirectionCheck() {
-            if (Inputs.move != Vector2.zero)
+            if (Inputs.move != Vector2.zero || keepLastInputAsDirection)
             {
+                if (Inputs.move != Vector2.zero)
+                    lastInputMove = Inputs.move;
+                
                 if (rotationSpeed <= 0) {
-                    moveDirection = Inputs.move;
+                    moveDirection = lastInputMove;
                 }
                 else
                 {
-                    float angleDisplace = Mathf.Clamp(Vector2.SignedAngle(moveDirection, Inputs.move),
+                    float angleDisplace = Mathf.Clamp(Vector2.SignedAngle(moveDirection, lastInputMove),
                                               -rotationSpeed * Time.fixedDeltaTime,
                                               rotationSpeed * Time.fixedDeltaTime)
                                           * smoothRotation ;
