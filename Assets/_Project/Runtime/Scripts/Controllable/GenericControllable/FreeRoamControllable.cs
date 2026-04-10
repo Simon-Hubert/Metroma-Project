@@ -17,8 +17,9 @@ namespace Metroma
         
         [Header("Essentials")]
         [SerializeField] protected Rigidbody2D rb2D;
-        
+
         [Header("Movement")]
+        [SerializeField] protected bool constantSpeed = false;
         [SerializeField, Min(0)] protected float accelerationTime = 0.5f;
         [SerializeField]         protected AnimationCurve accelerationCurve;
         [SerializeField, Min(0)] protected float decelerationTime = 1.5f;
@@ -46,12 +47,16 @@ namespace Metroma
         }
         
         protected void OnEnable() {
-            OnMoveStart += MoveStartLerp;
-            OnMoveEnd += MoveEndLerp;
+            if (!constantSpeed) {
+                OnMoveStart += MoveStartLerp;
+                OnMoveEnd += MoveEndLerp;
+            }
         }
         protected void OnDisable() {
-            OnMoveStart -= MoveStartLerp;
-            OnMoveEnd -= MoveEndLerp;
+            if (!constantSpeed) {
+                OnMoveStart -= MoveStartLerp;
+                OnMoveEnd -= MoveEndLerp;
+            }
         }
 
         protected void Start() {
@@ -76,8 +81,13 @@ namespace Metroma
 
             DirectionCheck();
             OrientationCheck();
-            
-            rb2D.linearVelocity = moveDirection * (accelerationValue * maxSpeed);
+
+            if (constantSpeed) {
+                rb2D.linearVelocity = moveDirection * maxSpeed;
+            }
+            else {
+                rb2D.linearVelocity = moveDirection * (accelerationValue * maxSpeed);
+            }
         }
         
         #region Update Checks
@@ -98,8 +108,8 @@ namespace Metroma
                     float angleCurrent = Vector2.SignedAngle(Vector2.up, moveDirection);
                     
                     moveDirection = new Vector2(
-                        - 1 * Mathf.Sin(Mathf.Deg2Rad * angleDisplace + angleCurrent),
-                        1 * Mathf.Cos(Mathf.Deg2Rad * angleDisplace + angleCurrent)
+                        - 1 * Mathf.Sin(Mathf.Deg2Rad * (angleDisplace + angleCurrent)),
+                        1 * Mathf.Cos(Mathf.Deg2Rad * (angleDisplace + angleCurrent))
                         );
                 }
             }
