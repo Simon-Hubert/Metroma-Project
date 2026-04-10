@@ -54,8 +54,7 @@ namespace Metroma
             if (_isMoving)
             {
                 if (_winCond.Evaluate(this) && !_won) {
-                    controllables[0].OnMoveStart -= Move;//bullshit pour stop les inputs sans forcément invoke l'event qui notifie que la pub est finie
-                    controllables[0].OnMoveEnd -= StopMove;//bullshit pour stop les inputs sans forcément invoke l'event qui notifie que la pub est finie
+                    OnAdEnd();
                     _won = true;
                     UnityOnAdEnd?.Invoke();
                 }

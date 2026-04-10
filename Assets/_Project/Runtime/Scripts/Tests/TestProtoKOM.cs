@@ -45,10 +45,13 @@ namespace Metroma
             CameraHelpers.TransitionViewToView(_miniGameCam, _adsViews[_viewIndex], _defaultView, 2.5f);
         }
 
-        public void NextAd()
+        public void NextAd(bool nextView)
         {
-            _viewIndex++;
-            CameraHelpers.TransitionViewToView(_miniGameCam, _adsViews[_viewIndex - 1], _adsViews[_viewIndex], 2.5f);
+            if (nextView &&_viewIndex < _adsViews.Count - 1)
+            {
+                _viewIndex++;
+                CameraHelpers.TransitionViewToView(_miniGameCam, _adsViews[_viewIndex - 1], _adsViews[_viewIndex], 3.5f);
+            }
             _adsManager.NextAd();
         }
         
