@@ -16,7 +16,7 @@ namespace Metroma
         /// <summary>
         /// Whether the Controllable captures inputs or not
         /// </summary>
-        public bool IsActive
+        public virtual bool IsActive
         {
             get => _isActive;
             set {

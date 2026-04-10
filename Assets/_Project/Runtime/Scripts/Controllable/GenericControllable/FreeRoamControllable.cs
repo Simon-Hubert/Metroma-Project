@@ -18,24 +18,32 @@ namespace Metroma
         [Header("Essentials")]
         [SerializeField] protected Rigidbody2D rb2D;
 
+        #region Movement
         [Header("Movement")]
-        [SerializeField] protected bool constantSpeed = false;
+        [SerializeField] public bool constantSpeed = false;
         [SerializeField, Min(0)] protected float accelerationTime = 0.5f;
         [SerializeField]         protected AnimationCurve accelerationCurve;
-        [SerializeField, Min(0)] protected float decelerationTime = 1.5f;
+        [SerializeField, Min(0)] protected float decelerationTime = 1f;
         [SerializeField]         protected AnimationCurve decelerationCurve;
-
+        [Space(7)]
+        [SerializeField] protected bool keepLastInputAsDirection;
         [SerializeField] protected float maxSpeed = 10.0f;
-
-        [Header("Rotation")
+        #endregion
+        
+        #region Rotation
+        [Header("Rotation")]
+        [Tooltip("Placebo pour Ferdinand, qu'il pleure pas")]
         [SerializeField] private bool TêteQuiSerpente;
         [Tooltip("0 = no rotation speed")]
         [SerializeField, Min(0)] protected float rotationSpeed = 0f;
         [SerializeField, Range(0, 1)] protected float smoothRotation = 0.9f;
-        [FormerlySerializedAs("aimDirection")] [SerializeField, ReadOnly] protected Vector2 moveDirection = Vector2.up;
-        
+        [SerializeField, ReadOnly] protected Vector2 moveDirection = Vector2.up;
+        public Vector2 GetDirection { get => moveDirection; }
+        #endregion
+
         [Space(7)]
-        [SerializeField, ReadOnly] float accelerationValue = 0.0f;
+        [SerializeField] protected bool rotateControllable = true;
+        [SerializeField, ReadOnly] protected float accelerationValue = 0.0f;
         protected Coroutine lerpCoroutine;
         [SerializeField, ReadOnly] protected MoveState moveState = MoveState.NONE;
         
@@ -48,16 +56,12 @@ namespace Metroma
         }
         
         protected void OnEnable() {
-            if (!constantSpeed) {
-                OnMoveStart += MoveStartLerp;
-                OnMoveEnd += MoveEndLerp;
-            }
+            OnMoveStart += MoveStartLerp;
+            OnMoveEnd += MoveEndLerp;
         }
         protected void OnDisable() {
-            if (!constantSpeed) {
-                OnMoveStart -= MoveStartLerp;
-                OnMoveEnd -= MoveEndLerp;
-            }
+            OnMoveStart -= MoveStartLerp;
+            OnMoveEnd -= MoveEndLerp;
         }
 
         protected void Start() {
@@ -85,14 +89,9 @@ namespace Metroma
             }
 
             DirectionCheck();
-            OrientationCheck();
-
-            if (constantSpeed) {
-                rb2D.linearVelocity = moveDirection * maxSpeed;
-            }
-            else {
-                rb2D.linearVelocity = moveDirection * (accelerationValue * maxSpeed);
-            }
+            if (rotateControllable) OrientationCheck();
+            
+            rb2D.linearVelocity = moveDirection * (accelerationValue * maxSpeed);
         }
         
         #region Update Checks
@@ -120,8 +119,7 @@ namespace Metroma
             }
         }
 
-        protected void OrientationCheck()
-        {
+        protected void OrientationCheck() {
             float angle = Vector2.SignedAngle(Vector2.up, moveDirection);
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
@@ -156,6 +154,8 @@ namespace Metroma
             yield break;
         }
         private void MoveEndLerp() {
+            if (constantSpeed) return;
+            
             if (lerpCoroutine != null) StopCoroutine(lerpCoroutine);
             lerpCoroutine = StartCoroutine(MoveDecelerationLerpCoroutine(decelerationTime, decelerationCurve));
         }
