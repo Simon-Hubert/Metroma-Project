@@ -27,7 +27,8 @@ namespace Metroma
 
         [SerializeField] protected float maxSpeed = 10.0f;
 
-        [Header("Rotation")]
+        [Header("Rotation")
+        [SerializeField] private bool TêteQuiSerpente;
         [Tooltip("0 = no rotation speed")]
         [SerializeField, Min(0)] protected float rotationSpeed = 0f;
         [SerializeField, Range(0, 1)] protected float smoothRotation = 0.9f;
@@ -68,6 +69,10 @@ namespace Metroma
             }
 
             moveDirection = Vector2.up;
+            
+            #if UNITY_EDITOR
+            Editor_AddControllable();
+            #endif
         }
 
         protected override void FixedUpdate() {
