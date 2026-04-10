@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59ddd5232b5eb6948bae1d67241d39ff, type: 3}
-  m_Name: TestHapticProfile
-  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Modifiers.CameraHapticProfile
+  m_Name: Haptic_Heartbeat
+  m_EditorClassIdentifier: 
   intensityCurve:
     serializedVersion: 2
     m_Curve:
@@ -20,7 +20,7 @@ MonoBehaviour:
       value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -29,16 +29,16 @@ MonoBehaviour:
       value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  lowFreqMultiplier: 2
-  highFreqMultiplier: 2
-  duration: 3
-  usePattern: 0
-  pulseCount: 4
-  pulseInterval: 0.5
+  lowFreqMultiplier: 1.5
+  highFreqMultiplier: 0.2
+  duration: 1.5
+  usePattern: 1
+  pulseCount: 2
+  pulseInterval: 0.2

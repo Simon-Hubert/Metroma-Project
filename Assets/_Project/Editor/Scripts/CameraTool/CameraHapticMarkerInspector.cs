@@ -25,7 +25,14 @@ namespace Metroma.CameraTool.Editor
             _lowFreq = serializedObject.FindProperty("lowFreq");
             _highFreq = serializedObject.FindProperty("highFreq");
             _duration = serializedObject.FindProperty("duration");
+            _usePattern = serializedObject.FindProperty("usePattern");
+            _pulseCount = serializedObject.FindProperty("pulseCount");
+            _pulseInterval = serializedObject.FindProperty("pulseInterval");
         }
+
+        private SerializedProperty _usePattern;
+        private SerializedProperty _pulseCount;
+        private SerializedProperty _pulseInterval;
 
         public override void OnInspectorGUI()
         {
@@ -52,9 +59,31 @@ namespace Metroma.CameraTool.Editor
                 DrawSubHeader("🎮  DIRECT HAPTIC SETTINGS");
                 
                 EditorGUI.indentLevel++;
-                EditorGUILayout.PropertyField(_duration);
+                
+                if (_usePattern.boolValue)
+                {
+                    float dur = _pulseInterval.floatValue * (_pulseCount.intValue + 1);
+                    GUI.enabled = false;
+                    EditorGUILayout.TextField("Duration (Auto)", $"{dur:F2}s");
+                    GUI.enabled = true;
+                }
+                else
+                {
+                    EditorGUILayout.PropertyField(_duration);
+                }
+
                 EditorGUILayout.PropertyField(_intensityCurve);
                 
+                EditorGUILayout.Space(8);
+                EditorGUILayout.PropertyField(_usePattern, new GUIContent("USE PULSE PATTERN"));
+                if (_usePattern.boolValue)
+                {
+                    EditorGUI.indentLevel++;
+                    EditorGUILayout.PropertyField(_pulseCount);
+                    EditorGUILayout.PropertyField(_pulseInterval);
+                    EditorGUI.indentLevel--;
+                }
+
                 EditorGUILayout.Space(8);
                 DrawHapticSliders();
                 EditorGUI.indentLevel--;
@@ -132,7 +161,8 @@ namespace Metroma.CameraTool.Editor
                     if (profile != null)
                         CameraModifiers.DoHaptic(Camera.main, profile);
                     else
-                        CameraModifiers.DoHaptic(Camera.main, _intensityCurve.animationCurveValue, _lowFreq.floatValue, _highFreq.floatValue, _duration.floatValue);
+                        CameraModifiers.DoHaptic(Camera.main, _intensityCurve.animationCurveValue, _lowFreq.floatValue, _highFreq.floatValue, _duration.floatValue, 
+                            _usePattern.boolValue, _pulseCount.intValue, _pulseInterval.floatValue);
                 }
             }
 

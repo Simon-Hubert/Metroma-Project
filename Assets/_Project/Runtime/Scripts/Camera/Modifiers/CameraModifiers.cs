@@ -60,21 +60,20 @@ namespace Metroma.CameraTool.Modifiers
         // Gamepad Haptics
         // ══════════════════════════════════════════════════════════════
 
-        /// <summary> Triggers a standalone gamepad vibration effect. </summary>
-        public static void DoHaptic(this Camera camera, AnimationCurve curve, float lowFreq, float highFreq, float duration)
+        /// <summary> Triggers a standalone gamepad vibration effect with pattern support. </summary>
+        public static void DoHaptic(this Camera camera, AnimationCurve curve, float lowFreq, float highFreq, float duration, bool usePattern = false, int pulseCount = 1, float pulseInterval = 0.15f)
         {
             var h = GetOrAddModifierHandler(camera);
             if (h != null)
-                h.AddHaptic(curve, lowFreq, highFreq, duration);
+                h.AddHaptic(curve, lowFreq, highFreq, duration, usePattern, pulseCount, pulseInterval);
         }
 
         /// <summary> Triggers a gamepad vibration using settings from a profile. </summary>
         public static void DoHaptic(this Camera camera, CameraHapticProfile profile)
         {
-            if (profile == null)
-                return;
-            
-            DoHaptic(camera, profile.intensityCurve, profile.lowFreqMultiplier, profile.highFreqMultiplier, profile.duration);
+            var h = GetOrAddModifierHandler(camera);
+            if (h != null && profile != null)
+                h.AddHaptic(profile);
         }
 
         // ══════════════════════════════════════════════════════════════
@@ -150,21 +149,12 @@ namespace Metroma.CameraTool.Modifiers
                 h.AddRotationOffset(localEulerAngles, mainDuration, mainCurve, returnDuration, returnCurve, invertReturn);
         }
 
-        /// <summary> Activates a continuous organic "Hand-held" breathing effect on the camera. </summary>
-        public static void SetHandheld(this Camera camera, bool active, float amplitude = 1f, float frequency = 1f)
+        /// <summary> Activates a continuous organic "Hand-held" breathing effect using a profile. </summary>
+        public static void SetHandheld(this Camera camera, bool active, CameraHandheldProfile profile)
         {
             var h = GetOrAddModifierHandler(camera);
             if (h != null)
-                h.SetHandheld(active, amplitude, frequency);
-        }
-
-        /// <summary> Sets handheld effect using a profile. </summary>
-        public static void SetHandheld(this Camera camera, bool active, CameraHandheldProfile profile)
-        {
-            if (profile == null)
-                return;
-                
-            SetHandheld(camera, active, profile.intensity, profile.speed);
+                h.SetHandheld(active, profile);
         }
 
         /// <summary> Adds a temporary continuous roll wave (Z-axis Sine) to the camera (Drunk/Poison Wobble). </summary>

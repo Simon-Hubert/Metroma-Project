@@ -23,7 +23,7 @@ namespace Metroma.CameraTool.Modifiers
         private struct RotOffsetData { public Vector3 euler; public float mainDuration, returnDuration, time; public AnimationCurve mainCurve, returnCurve; public bool invertReturn, active; }
         private struct WobbleData { public float amplitude, frequency, duration, time; public bool active; }
         private struct TempLookAtData { public Transform target; public float duration, time; public AnimationCurve curve; public bool active; }
-        private struct HapticData { public AnimationCurve curve; public float lowFreq, highFreq, duration, time; public bool active; }
+        private struct HapticData { public CameraHapticProfile profile; public AnimationCurve curve; public float lowFreq, highFreq, duration, time; public bool usePattern; public int pulseCount; public float pulseInterval; public bool active; }
 
         // ── Pools (Array-based, zero alloc) ──
         private ShakeData[] _shakes = new ShakeData[4];
@@ -35,7 +35,12 @@ namespace Metroma.CameraTool.Modifiers
         private TempLookAtData _tempLookAt;
 
         private bool _handheldActive;
-        private float _handheldAmp, _handheldFreq;
+        private CameraHandheldProfile _handheldProfile;
+        private float _handheldTime;
+        private float _handheldWeight;
+        private Vector3 _handheldNoisePosStart, _handheldNoiseRotStart;
+        private Vector3 _smoothHandheldPos, _smoothHandheldRot;
+        private Vector3 _handheldVelPos, _handheldVelRot;
 
         // ── FOV Transitions ──
         private bool _fovActive;
@@ -90,16 +95,34 @@ namespace Metroma.CameraTool.Modifiers
                         time = 0f, 
                         active = true 
                     };
+
                     return;
                 }
         }
 
-        public void AddHaptic(AnimationCurve curve, float lowFreq, float highFreq, float duration)
+        public void AddHaptic(CameraHapticProfile profile)
         {
             for (int i = 0; i < _haptics.Length; i++)
                 if (!_haptics[i].active)
                 {
-                    _haptics[i] = new HapticData { curve = curve, lowFreq = lowFreq, highFreq = highFreq, duration = duration, time = 0f, active = true };
+                    float dur = profile.usePattern ? (profile.pulseInterval * (profile.pulseCount + 1)) : profile.duration;
+                    _haptics[i] = new HapticData { profile = profile, duration = dur, time = 0f, active = true };
+                    return;
+                }
+        }
+
+        public void AddHaptic(AnimationCurve curve, float lowFreq, float highFreq, float duration, bool usePattern = false, int pulseCount = 1, float pulseInterval = 0.15f)
+        {
+            for (int i = 0; i < _haptics.Length; i++)
+                if (!_haptics[i].active)
+                {
+                    _haptics[i] = new HapticData 
+                    { 
+                        curve = curve, lowFreq = lowFreq, highFreq = highFreq, duration = duration, 
+                        usePattern = usePattern, pulseCount = pulseCount, pulseInterval = pulseInterval,
+                        time = 0f, active = true 
+                    };
+
                     return;
                 }
         }
@@ -131,6 +154,7 @@ namespace Metroma.CameraTool.Modifiers
                         invertReturn = invertReturn,
                         active = true 
                     };
+
                     return;
                 }
             }
@@ -158,6 +182,7 @@ namespace Metroma.CameraTool.Modifiers
                         invertReturn = invertReturn,
                         active = true 
                     };
+
                     return;
                 }
             }
@@ -168,11 +193,37 @@ namespace Metroma.CameraTool.Modifiers
             AddRotationOffset(euler, duration, curve, 0.25f, AnimationCurve.Linear(0, 1, 1, 0), false);
         }
 
-        public void SetHandheld(bool active, float amplitude = 1f, float frequency = 1f)
+        public void SetHandheld(bool active, CameraHandheldProfile profile = null)
         {
             _handheldActive = active;
-            _handheldAmp = amplitude;
-            _handheldFreq = frequency;
+            _handheldProfile = profile;
+            
+            if (active && _handheldProfile != null)
+            {
+                _handheldTime = 0f;
+                SampleHandheldNoise(0, out _handheldNoisePosStart, out _handheldNoiseRotStart);
+            }
+        }
+
+        private void SampleHandheldNoise(float time, out Vector3 pos, out Vector3 rot)
+        {
+            if (_handheldProfile == null)
+            {
+                pos = rot = Vector3.zero;
+                return;
+            }
+
+            pos = new Vector3(
+                (Mathf.PerlinNoise(time, 0) - 0.5f) * 2f * _handheldProfile.positionIntensity.x,
+                (Mathf.PerlinNoise(0, time) - 0.5f) * 2f * _handheldProfile.positionIntensity.y,
+                (Mathf.PerlinNoise(time, time) - 0.5f) * 2f * _handheldProfile.positionIntensity.z
+            );
+
+            rot = new Vector3(
+                (Mathf.PerlinNoise(time + 10, 0) - 0.5f) * 2f * _handheldProfile.rotationIntensity.x,
+                (Mathf.PerlinNoise(0, time + 10) - 0.5f) * 2f * _handheldProfile.rotationIntensity.y,
+                (Mathf.PerlinNoise(time + 10, time + 10) - 0.5f) * 2f * _handheldProfile.rotationIntensity.z
+            );
         }
 
         public void AddWobble(float amplitude, float frequency, float duration)
@@ -282,16 +333,10 @@ namespace Metroma.CameraTool.Modifiers
             Vector3 basePos = transform.position;
             Quaternion baseRot = transform.rotation;
 
-            bool movedExternally = (basePos - _lastWorldPos).sqrMagnitude > 0.0001f || Quaternion.Angle(baseRot, _lastWorldRot) > 0.1f;
-            
-            if (!movedExternally && !_dollyActive)
+            if (_appliedLocalPos != Vector3.zero || _appliedLocalRot != Quaternion.identity)
             {
-                basePos = transform.TransformPoint(-_appliedLocalPos);
+                basePos = transform.position - (transform.rotation * _appliedLocalPos);
                 baseRot = transform.rotation * Quaternion.Inverse(_appliedLocalRot);
-            }
-            else if (_dollyActive)
-            {
-                basePos = _dollyStartPos;
             }
 
             if (_tempLookAt.active && _tempLookAt.target != null)
@@ -307,38 +352,52 @@ namespace Metroma.CameraTool.Modifiers
                     baseRot = Quaternion.Slerp(baseRot, targetRot, weight);
                 }
 
-                if (_tempLookAt.time >= _tempLookAt.duration) _tempLookAt.active = false;
+                if (_tempLookAt.time >= _tempLookAt.duration)
+                    _tempLookAt.active = false;
             }
 
             Vector3 locPos = Vector3.zero;
             Vector3 locRot = Vector3.zero;
 
-            // Handheld Breathing
-            if (_handheldActive)
+            // Handheld Profile (6D Noise with Damping/Inertia)
+            _handheldWeight = Mathf.MoveTowards(_handheldWeight, (_handheldActive && _handheldProfile != null) ? 1f : 0f, dt * 2.5f); 
+
+            Vector3 targetLocPos = Vector3.zero;
+            Vector3 targetLocRot = Vector3.zero;
+
+            if (_handheldWeight > 0.001f && _handheldProfile != null)
             {
-                float sx = Time.time * _handheldFreq;
-                float sy = Time.time * _handheldFreq + 100f;
+                _handheldTime += dt * _handheldProfile.roughness;
+                float breath = _handheldProfile.breathCurve.Evaluate((Time.time * _handheldProfile.breathSpeed) % 1.0f);
+                float influence = _handheldProfile.influence * breath * _handheldWeight;
+
+                SampleHandheldNoise(_handheldTime, out Vector3 nPos, out Vector3 nRot);
                 
-                locRot += new Vector3(
-                     (Mathf.PerlinNoise(sx, 0f) - 0.5f) * 2f,
-                     (Mathf.PerlinNoise(0f, sy) - 0.5f) * 2f, 0f
-                ) * _handheldAmp;
-                
-                locPos += new Vector3(
-                    (Mathf.PerlinNoise(sx, sy) - 0.5f) * 2f,
-                    (Mathf.PerlinNoise(sy, sx) - 0.5f) * 2f, 0f
-                ) * (_handheldAmp * 0.1f);
+                targetLocPos = (nPos - _handheldNoisePosStart) * influence;
+                targetLocRot = (nRot - _handheldNoiseRotStart) * influence;
             }
+
+            // Apply Physical Smoothing (Juiciness)
+            float smoothTime = (_handheldProfile != null) ? _handheldProfile.damping : 0.2f;
+            _smoothHandheldPos = Vector3.SmoothDamp(_smoothHandheldPos, targetLocPos, ref _handheldVelPos, smoothTime, Mathf.Infinity, dt);
+            _smoothHandheldRot = Vector3.SmoothDamp(_smoothHandheldRot, targetLocRot, ref _handheldVelRot, smoothTime, Mathf.Infinity, dt);
+
+            locPos += _smoothHandheldPos;
+            locRot += _smoothHandheldRot;
 
             // Wobbles (Z axis sine)
             for (int i = 0; i < _wobbles.Length; i++)
             {
                 ref WobbleData w = ref _wobbles[i];
-                if (!w.active) continue;
+                if (!w.active)
+                    continue;
+
                 w.time += dt;
                 float fade = 1f - Mathf.Clamp01(w.time / w.duration);
                 locRot += new Vector3(0, 0, Mathf.Sin(w.time * w.frequency * Mathf.PI * 2f) * w.amplitude * fade);
-                if (w.time >= w.duration) w.active = false;
+                
+                if (w.time >= w.duration)
+                    w.active = false;
             }
 
             // Shakes
@@ -348,7 +407,8 @@ namespace Metroma.CameraTool.Modifiers
             for (int i = 0; i < _shakes.Length; i++)
             {
                 ref ShakeData s = ref _shakes[i];
-                if (!s.active) continue;
+                if (!s.active)
+                    continue;
 
                 s.time += dt;
                 float tNormal = Mathf.Clamp01(s.time / s.duration);
@@ -363,8 +423,13 @@ namespace Metroma.CameraTool.Modifiers
                 
                 if (s.syncHaptics)
                 {
-                    hapticLow = Mathf.Max(hapticLow, frameIntensity * 0.8f);
-                    hapticHigh = Mathf.Max(hapticHigh, frameIntensity);
+                    // Smart blending: Roughness [0.1 to 4.0]
+                    float r = Mathf.Clamp(s.roughness, 0.1f, 4.0f);
+                    float lowBias = Mathf.Clamp01(1.5f - r * 0.5f); // 1.0 at roughness 1, 0.0 at roughness 3
+                    float highBias = Mathf.Clamp01(r * 0.3f);       // 0.3 at roughness 1, 1.0 at roughness 3+
+                    
+                    hapticLow = Mathf.Max(hapticLow, frameIntensity * lowBias);
+                    hapticHigh = Mathf.Max(hapticHigh, frameIntensity * highBias);
                 }
                 
                 locPos += new Vector3(
@@ -380,16 +445,53 @@ namespace Metroma.CameraTool.Modifiers
             for (int i = 0; i < _haptics.Length; i++)
             {
                 ref HapticData h = ref _haptics[i];
-                if (!h.active) continue;
+                if (!h.active)
+                    continue;
 
                 h.time += dt;
                 float tNormal = Mathf.Clamp01(h.time / h.duration);
+                bool pUsePattern = h.usePattern;
+                int pCount = h.pulseCount;
+                float pInterval = h.pulseInterval;
                 float intensity = h.curve != null ? h.curve.Evaluate(tNormal) : (1f - tNormal);
+                float low = h.lowFreq;
+                float high = h.highFreq;
 
-                hapticLow = Mathf.Max(hapticLow, intensity * h.lowFreq);
-                hapticHigh = Mathf.Max(hapticHigh, intensity * h.highFreq);
+                if (h.profile != null)
+                {
+                    intensity = h.profile.intensityCurve.Evaluate(tNormal);
+                    low = h.profile.lowFreqMultiplier;
+                    high = h.profile.highFreqMultiplier;
+                    pUsePattern = h.profile.usePattern;
+                    pCount = h.profile.pulseCount;
+                    pInterval = h.profile.pulseInterval;
+                }
 
-                if (h.time >= h.duration) h.active = false;
+                if (pUsePattern)
+                {
+                    // Pulse Pattern logic: pulseCount pulses followed by a gap
+                    float patternTime = pInterval * (pCount + 1);
+                    float localPatternTime = h.time % patternTime;
+                    int pulseIndex = Mathf.FloorToInt(localPatternTime / pInterval);
+                    
+                    if (pulseIndex >= pCount)
+                    {
+                        intensity = 0f;
+                    }
+                    else
+                    {
+                        // Sharp pulse envelope
+                        float pulseT = (localPatternTime % pInterval) / pInterval;
+                        if (pulseT > 0.6f)
+                            intensity = 0f;
+                    }
+                }
+
+                hapticLow = Mathf.Max(hapticLow, intensity * low);
+                hapticHigh = Mathf.Max(hapticHigh, intensity * high);
+
+                if (h.time >= h.duration)
+                    h.active = false;
             }
 
             if (enableGamepadHaptics && Application.isPlaying)
@@ -401,7 +503,8 @@ namespace Metroma.CameraTool.Modifiers
             for (int i = 0; i < _impacts.Length; i++)
             {
                 ref ImpactData d = ref _impacts[i];
-                if (!d.active) continue;
+                if (!d.active)
+                    continue;
 
                 d.time += dt;
                 float t = Mathf.Clamp01(d.time / d.duration);
@@ -471,7 +574,8 @@ namespace Metroma.CameraTool.Modifiers
                     float lastMainWeight = r.mainCurve != null ? r.mainCurve.Evaluate(1f) : 1f;
                     float returnFactor = r.returnCurve != null ? r.returnCurve.Evaluate(t) : (1f - t);
                     
-                    if (r.invertReturn) returnFactor = 1f - returnFactor;
+                    if (r.invertReturn)
+                        returnFactor = 1f - returnFactor;
                     
                     weight = lastMainWeight * returnFactor;
                 }

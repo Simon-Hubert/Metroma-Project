@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7437486239383905146
+--- !u!114 &-5831079082513025108
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,40 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da4426d264d5a874ebb7955f6fbfaa43, type: 3}
-  m_Name: "Camera/\U0001F4A5 Camera Shake"
-  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraShakeMarker
-  m_Time: 0.7333333333333333
-  profile: {fileID: 11400000, guid: 6605f0f7784b9d34d9eab5af2d58815d, type: 2}
-  intensity: 20
-  duration: 0.5
-  roughness: 1
-  fadeOut: 1
-  intensityCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  syncHaptics: 1
+  m_Script: {fileID: 11500000, guid: 55bf4880fd12bdf49ae5346cb1682d87, type: 3}
+  m_Name: "Camera/\U0001F3A5 Handheld Mode"
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraHandheldMarker
+  m_Time: 1
+  profile: {fileID: 11400000, guid: dc112b0a9856e8e4ca613b7793c6f668, type: 2}
+  deactivate: 0
 --- !u!114 &-5627479951308333278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,6 +105,9 @@ MonoBehaviour:
   lowFreq: 1
   highFreq: 1
   duration: 5
+  usePattern: 0
+  pulseCount: 1
+  pulseInterval: 0.15
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,5 +221,5 @@ MonoBehaviour:
     m_DisplayName: "Node 0 \u2192 1"
   m_Markers:
     m_Objects:
-    - {fileID: -7437486239383905146}
     - {fileID: -365699644684406675}
+    - {fileID: -5831079082513025108}

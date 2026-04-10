@@ -22,5 +22,17 @@ namespace Metroma.CameraTool.Modifiers
         [Tooltip("Duration of the haptic effect in seconds.")]
         [Min(0.01f)]
         public float duration = 0.5f;
+
+        [Header("Patterns (Heartbeat, Pulses)")]
+        [Tooltip("If enabled, the haptic effect will pulse instead of being a continuous vibration.")]
+        public bool usePattern = false;
+
+        [Tooltip("Number of pulses in the pattern (e.g., 2 for a heartbeat).")]
+        [Range(1, 4)]
+        public int pulseCount = 1;
+
+        [Tooltip("Time between pulses in a pattern.")]
+        [Range(0.05f, 0.5f)]
+        public float pulseInterval = 0.15f;
     }
 }

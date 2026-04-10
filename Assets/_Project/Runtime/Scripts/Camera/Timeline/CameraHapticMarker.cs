@@ -32,9 +32,17 @@ namespace Metroma.CameraTool.Timeline
         [Min(0.01f)]
         [SerializeField] private float duration = 0.5f;
 
+        [Header("Manual Patterns")]
+        [SerializeField] private bool usePattern = false;
+        [Range(1, 4)]
+        [SerializeField] private int pulseCount = 1;
+        [Range(0.05f, 0.5f)]
+        [SerializeField] private float pulseInterval = 0.15f;
+
         public override void Execute(CameraTool tool)
         {
-            if (tool == null || tool.TargetCamera == null) return;
+            if (tool == null || tool.TargetCamera == null)
+                return;
 
             if (profile != null)
             {
@@ -42,7 +50,8 @@ namespace Metroma.CameraTool.Timeline
             }
             else
             {
-                CameraModifiers.DoHaptic(tool.TargetCamera, intensityCurve, lowFreq, highFreq, duration);
+                float finalDuration = usePattern ? (pulseInterval * (pulseCount + 1)) : duration;
+                CameraModifiers.DoHaptic(tool.TargetCamera, intensityCurve, lowFreq, highFreq, finalDuration, usePattern, pulseCount, pulseInterval);
             }
         }
     }
