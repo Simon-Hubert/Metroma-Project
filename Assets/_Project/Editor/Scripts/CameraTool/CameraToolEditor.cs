@@ -23,19 +23,21 @@ namespace Metroma.CameraTool.Editor
         private SerializedProperty _splineProgress;
         private SerializedProperty _lookAtWeight;
         private SerializedProperty _chapters;
-        private int _selectedChapterIndex = 0;
         private SerializedProperty _onChapterStart;
         private SerializedProperty _onChapterEnd;
 
+        // --- Persistence Properties ---
+        private SerializedProperty _selectedChapterIndex;
+        private SerializedProperty _foldReferences;
+        private SerializedProperty _foldChapters;
+        private SerializedProperty _foldSegments;
+        private SerializedProperty _foldAnimation;
+        private SerializedProperty _foldEvents;
+        private SerializedProperty _foldViewport;
+        private SerializedProperty _foldHaptics;
+        private SerializedProperty _foldDebug;
+
         // ── Editor State ─────────────────────────────────────────────
-        private bool _foldReferences = false;
-        private bool _foldAnimation = false;
-        private bool _foldSegments = false;
-        private bool _foldChapters = false;
-        private bool _foldEvents = false;
-        private bool _foldViewport = false;
-        private bool _foldHaptics = false;
-        private bool _foldDebug = false;
         private bool _isCameraLocked;
 
         private bool _showHud;
@@ -77,6 +79,17 @@ namespace Metroma.CameraTool.Editor
             _chapters = serializedObject.FindProperty("chapters");
             _onChapterStart = serializedObject.FindProperty("onChapterStart");
             _onChapterEnd = serializedObject.FindProperty("onChapterEnd");
+
+            // --- UI Persistence ---
+            _selectedChapterIndex = serializedObject.FindProperty("selectedChapterIndex");
+            _foldReferences = serializedObject.FindProperty("foldReferences");
+            _foldChapters = serializedObject.FindProperty("foldChapters");
+            _foldSegments = serializedObject.FindProperty("foldSegments");
+            _foldAnimation = serializedObject.FindProperty("foldAnimation");
+            _foldEvents = serializedObject.FindProperty("foldEvents");
+            _foldViewport = serializedObject.FindProperty("foldViewport");
+            _foldHaptics = serializedObject.FindProperty("foldHaptics");
+            _foldDebug = serializedObject.FindProperty("foldDebug");
 
             SceneView.duringSceneGui += SyncSceneView;
         }
@@ -141,8 +154,8 @@ namespace Metroma.CameraTool.Editor
 
         private void DrawRigSetup()
         {
-            _foldReferences = DrawSectionHeader("📐  Rig Setup", _foldReferences);
-            if (_foldReferences)
+            _foldReferences.boolValue = DrawSectionHeader("📐  Rig Setup", _foldReferences.boolValue);
+            if (_foldReferences.boolValue)
             {
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(_splineRails, new GUIContent("Spline Rails"), true);
@@ -154,8 +167,8 @@ namespace Metroma.CameraTool.Editor
 
         private void DrawChapterWorkflow(CameraTool tool)
         {
-            _foldChapters = DrawSectionHeader("🎞  Chapters & Sequences", _foldChapters);
-            if (_foldChapters)
+            _foldChapters.boolValue = DrawSectionHeader("🎞  Chapters & Sequences", _foldChapters.boolValue);
+            if (_foldChapters.boolValue)
             {
                 DrawChaptersSection(tool);
                 DrawEventsSection();
@@ -164,8 +177,8 @@ namespace Metroma.CameraTool.Editor
 
         private void DrawSegmentsSection(CameraTool tool, float currentProgress)
         {
-            _foldSegments = DrawSectionHeader("⏱  Pacing & Segments", _foldSegments);
-            if (_foldSegments)
+            _foldSegments.boolValue = DrawSectionHeader("⏱  Pacing & Segments", _foldSegments.boolValue);
+            if (_foldSegments.boolValue)
             {
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(_splineProgress, new GUIContent("Manual Scrub"));
@@ -178,8 +191,8 @@ namespace Metroma.CameraTool.Editor
 
         private void DrawLookAtAndFX(CameraTool tool)
         {
-            _foldAnimation = DrawSectionHeader("🎯  Targets & Effects", _foldAnimation);
-            if (_foldAnimation)
+            _foldAnimation.boolValue = DrawSectionHeader("🎯  Targets & Effects", _foldAnimation.boolValue);
+            if (_foldAnimation.boolValue)
             {
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(_lookAtTarget, new GUIContent("Default LookAt"));
@@ -194,8 +207,8 @@ namespace Metroma.CameraTool.Editor
 
         private void DrawHUDSection()
         {
-            _foldViewport = DrawSectionHeader("👁  Editor Viewport", _foldViewport);
-            if (_foldViewport)
+            _foldViewport.boolValue = DrawSectionHeader("👁  Editor Viewport", _foldViewport.boolValue);
+            if (_foldViewport.boolValue)
             {
                 DrawViewportSection();
             }
@@ -203,8 +216,8 @@ namespace Metroma.CameraTool.Editor
 
         private void DrawUtilitiesSection(CameraTool tool)
         {
-            _foldDebug = DrawSectionHeader("🛠  Utilities", _foldDebug);
-            if (_foldDebug)
+            _foldDebug.boolValue = DrawSectionHeader("🛠  Utilities", _foldDebug.boolValue);
+            if (_foldDebug.boolValue)
             {
                 DrawQuickActions(tool);
                 DrawDebugSection(tool);
@@ -246,7 +259,7 @@ namespace Metroma.CameraTool.Editor
                 if (EditorUtility.DisplayDialog("Clear Chapters", "Delete all?", "Yes", "No"))
                 {
                     _chapters.arraySize = 0;
-                    _selectedChapterIndex = 0;
+                    _selectedChapterIndex.intValue = 0;
                 }
             }
             EditorGUILayout.Space(12);
@@ -262,7 +275,7 @@ namespace Metroma.CameraTool.Editor
                 SerializedProperty colorProp = chapterProp.FindPropertyRelative("debugColor");
                 SerializedProperty isExpanded = chapterProp.FindPropertyRelative("isExpanded");
 
-                bool isSelected = (_selectedChapterIndex == i);
+                bool isSelected = (_selectedChapterIndex.intValue == i);
 
                 // --- Chapter Item Container ---
                 EditorGUILayout.BeginVertical();
@@ -283,7 +296,7 @@ namespace Metroma.CameraTool.Editor
                 // Actions
                 if (GUILayout.Button(isSelected ? "● FOCUSED" : "🎯 FOCUS", isSelected ? EditorStyles.miniButtonMid : EditorStyles.miniButton, GUILayout.Width(85), GUILayout.Height(20)))
                 {
-                    _selectedChapterIndex = i;
+                    _selectedChapterIndex.intValue = i;
                     if (timelineProp.objectReferenceValue is TimelineAsset asset && tool.EditorDirector != null)
                     {
                         Undo.RecordObject(tool.EditorDirector, "Focus Chapter");
@@ -305,6 +318,7 @@ namespace Metroma.CameraTool.Editor
                 if (GUILayout.Button("✕", EditorStyles.miniLabel, GUILayout.Width(20), GUILayout.Height(20)))
                 {
                     _chapters.DeleteArrayElementAtIndex(i);
+                    _selectedChapterIndex.intValue = Mathf.Clamp(_selectedChapterIndex.intValue, 0, _chapters.arraySize - 1);
                     EditorGUILayout.EndHorizontal();
                     EditorGUILayout.EndVertical();
                     break;
@@ -350,8 +364,8 @@ namespace Metroma.CameraTool.Editor
         {
             if (_chapters.arraySize == 0) return;
 
-            _selectedChapterIndex = Mathf.Clamp(_selectedChapterIndex, 0, _chapters.arraySize - 1);
-            SerializedProperty chapter = _chapters.GetArrayElementAtIndex(_selectedChapterIndex);
+            _selectedChapterIndex.intValue = Mathf.Clamp(_selectedChapterIndex.intValue, 0, _chapters.arraySize - 1);
+            SerializedProperty chapter = _chapters.GetArrayElementAtIndex(_selectedChapterIndex.intValue);
             SerializedProperty segmentsProp = chapter.FindPropertyRelative("segments");
 
             EditorGUILayout.BeginHorizontal();
@@ -360,7 +374,7 @@ namespace Metroma.CameraTool.Editor
             EditorGUILayout.LabelField($"ACTIVE: {chapter.FindPropertyRelative("name").stringValue.ToUpper()}", EditorStyles.miniLabel);
             GUI.enabled = true;
             GUILayout.FlexibleSpace();
-            if (GUILayout.Button("⟳ SYNC RAIL NODES", EditorStyles.miniButton, GUILayout.Width(130))) tool.EditorSyncSegments(_selectedChapterIndex);
+            if (GUILayout.Button("⟳ SYNC RAIL NODES", EditorStyles.miniButton, GUILayout.Width(130))) tool.EditorSyncSegments(_selectedChapterIndex.intValue);
             EditorGUILayout.Space(12);
             EditorGUILayout.EndHorizontal();
 
@@ -398,7 +412,7 @@ namespace Metroma.CameraTool.Editor
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.Space(40);
             if (GUILayout.Button("🎬  GENERATE TIMELINE CLIPS", GUILayout.Height(30)))
-                GenerateTimelineClips(tool, _selectedChapterIndex);
+                GenerateTimelineClips(tool, _selectedChapterIndex.intValue);
             EditorGUILayout.Space(40);
             EditorGUILayout.EndHorizontal();
         }
@@ -487,8 +501,8 @@ namespace Metroma.CameraTool.Editor
 
         private void DrawHapticsSection(CameraTool tool)
         {
-            _foldHaptics = DrawSectionHeader("🎮  Gamepad Haptics", _foldHaptics);
-            if (!_foldHaptics) return;
+            _foldHaptics.boolValue = DrawSectionHeader("🎮  Gamepad Haptics", _foldHaptics.boolValue);
+            if (!_foldHaptics.boolValue) return;
 
             if (tool.EditorCamera == null) return;
             var h = tool.EditorCamera.GetComponent<CameraModifierHandler>();
@@ -547,8 +561,8 @@ namespace Metroma.CameraTool.Editor
 
         private void DrawEventsSection()
         {
-            _foldEvents = DrawSectionHeader("🔔  Lifecycle Events", _foldEvents);
-            if (!_foldEvents) return;
+            _foldEvents.boolValue = DrawSectionHeader("🔔  Lifecycle Events", _foldEvents.boolValue);
+            if (!_foldEvents.boolValue) return;
 
             EditorGUI.indentLevel++;
             EditorGUILayout.PropertyField(_onChapterStart);
@@ -653,7 +667,7 @@ namespace Metroma.CameraTool.Editor
                 }
 
                 string cleanName = chapterProp.FindPropertyRelative("name").stringValue.Replace(" ", "_");
-                string path = $"{folder}/TL_Cam_{cleanName}.playable";
+                string path = $"{folder}/TL-{cleanName}.playable";
                 path = AssetDatabase.GenerateUniqueAssetPath(path);
 
                 timeline = ScriptableObject.CreateInstance<TimelineAsset>();
@@ -750,7 +764,7 @@ namespace Metroma.CameraTool.Editor
 
         private void StartPreview(CameraTool tool)
         {
-            var chapter = _chapters.GetArrayElementAtIndex(_selectedChapterIndex);
+            var chapter = _chapters.GetArrayElementAtIndex(_selectedChapterIndex.intValue);
             var segs = chapter.FindPropertyRelative("segments");
             if (segs.arraySize == 0) return;
             _previewSegStarts = new float[segs.arraySize];

@@ -119,162 +119,22 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &4038746
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4038747}
-  - component: {fileID: 4038748}
-  m_Layer: 0
-  m_Name: Rail.1-Chapter1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4038747
+--- !u!4 &4038747 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 9210485219293242081, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
+  m_PrefabInstance: {fileID: 1595966917090290224}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038746}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1640012424}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4038748
+--- !u!114 &4038748 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8482421716012335880, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
+  m_PrefabInstance: {fileID: 1595966917090290224}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038746}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Dreamteck.Splines::Dreamteck.Splines.SplineComputer
-  editorDrawPivot: 1
-  editorPathColor: {r: 1, g: 1, b: 1, a: 1}
-  editorAlwaysDraw: 0
-  editorDrawThickness: 0
-  editorBillboardThickness: 1
-  isNewlyCreated: 0
-  editorUpdateMode: 0
-  multithreaded: 0
-  updateMode: 0
-  triggerGroups: []
-  _spline:
-    points:
-    - _type: 0
-      position: {x: -51.98616, y: 26, z: 65.024796}
-      color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: 0, y: 1, z: 0}
-      size: 1
-      tangent: {x: -51.98616, y: 26, z: 65.024796}
-      tangent2: {x: -51.98616, y: 26, z: 65.024796}
-    - _type: 0
-      position: {x: 21.542486, y: 26, z: 68.15599}
-      color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: 0, y: 1, z: 0}
-      size: 1
-      tangent: {x: 21.542486, y: 26, z: 68.15599}
-      tangent2: {x: 21.542486, y: 26, z: 68.15599}
-    type: 0
-    linearAverageDirection: 1
-    customValueInterpolation:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    customNormalInterpolation:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    sampleRate: 10
-    closed: 0
-    _knotParametrization: 0
-  _originalSamplePercents: []
-  _is2D: 0
-  hasSamples: 1
-  _optimizeAngleThreshold: 0.5
-  _space: 1
-  _sampleMode: 0
-  _subscribers: []
-  _rawSamples:
-  - position: {x: -51.98616, y: 26, z: 65.024796}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.9990945, y: 0, z: 0.042546134}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 0
-  - position: {x: -43.81631, y: 26, z: 65.3727}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.9990945, y: 0, z: 0.042546164}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 0.1111111111111111
-  - position: {x: -35.64646, y: 26, z: 65.72062}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.9990945, y: 0, z: 0.04254608}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 0.2222222222222222
-  - position: {x: -27.476612, y: 26, z: 66.06853}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.9990945, y: 0, z: 0.04254614}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 0.3333333333333333
-  - position: {x: -19.30676, y: 26, z: 66.416435}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.9990945, y: 0, z: 0.04254607}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 0.4444444444444444
-  - position: {x: -11.136912, y: 26, z: 66.76435}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.9990945, y: 0, z: 0.042546008}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 0.5555555555555556
-  - position: {x: -2.967064, y: 26, z: 67.11226}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.9990945, y: 0, z: 0.04254614}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 0.6666666666666666
-  - position: {x: 5.202784, y: 26, z: 67.460175}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.9990945, y: 0, z: 0.042546038}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 0.7777777777777778
-  - position: {x: 13.372637, y: 26, z: 67.80809}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.9990945, y: 0, z: 0.042546198}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 0.8888888888888888
-  - position: {x: 21.542486, y: 26, z: 68.15599}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.9990945, y: 0, z: 0.042546134}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 1
-  _nodes: []
 --- !u!1001 &104786165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -879,6 +739,7 @@ GameObject:
   - component: {fileID: 1114130016}
   - component: {fileID: 1114130015}
   - component: {fileID: 1114130018}
+  - component: {fileID: 1114130019}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -954,7 +815,7 @@ Transform:
   m_GameObject: {fileID: 1114130014}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.69190097, z: 0, w: 0.7219925}
-  m_LocalPosition: {x: 21.542486, y: 26, z: 68.15599}
+  m_LocalPosition: {x: 21.542395, y: 26, z: 68.15598}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1004,6 +865,21 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1114130019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114130014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ba71c8f93e89d4cb7e19648b285dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Modifiers.CameraModifierHandler
+  enableGamepadHaptics: 1
+  hapticMultiplier: 0.5
+  useUnscaledTime: 1
 --- !u!1 &1308518421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,7 +1737,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 0d8fbe606e712ae42acc54507dcc87fb, type: 2}
     - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].key
@@ -1876,6 +1752,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -1248282423252703618, guid: f891da07dd81e0e4081f480eea5e91bf, type: 2}
     - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].key
+      value: 
+      objectReference: {fileID: -1436906873548814857, guid: 4ee495760f299f444a6d33e6947c605e, type: 2}
+    - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].value
       value: 
       objectReference: {fileID: 261369989779890808}
@@ -1887,14 +1767,34 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[2].value
       value: 
       objectReference: {fileID: 261369989779890808}
+    - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].value
+      value: 
+      objectReference: {fileID: 261369989779890808}
     - target: {fileID: 8064602958363773810, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: m_Name
       value: CameraTool
       objectReference: {fileID: 0}
     - target: {fileID: 9037001815660585622, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: foldHaptics
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037001815660585622, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: foldChapters
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037001815660585622, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: foldSegments
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037001815660585622, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: targetCamera
       value: 
       objectReference: {fileID: 1114130016}
+    - target: {fileID: 9037001815660585622, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: foldAnimation
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9037001815660585622, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: splineProgress
       value: 0
@@ -1902,6 +1802,10 @@ PrefabInstance:
     - target: {fileID: 9037001815660585622, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037001815660585622, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: selectedChapterIndex
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9037001815660585622, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: splineRails.Array.size
@@ -1934,7 +1838,7 @@ PrefabInstance:
     - target: {fileID: 9037001815660585622, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[2].timeline
       value: 
-      objectReference: {fileID: 11400000, guid: f891da07dd81e0e4081f480eea5e91bf, type: 2}
+      objectReference: {fileID: 11400000, guid: 4ee495760f299f444a6d33e6947c605e, type: 2}
     - target: {fileID: 9037001815660585622, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[2].isExpanded
       value: 1
@@ -2078,6 +1982,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a53ab4872d59324d87072ac943953c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.CameraTool
+--- !u!1001 &1595966917090290224
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1640012424}
+    m_Modifications:
+    - target: {fileID: 3816579731101950591, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
+      propertyPath: m_Name
+      value: Rail.1-Chapter1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210485219293242081, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210485219293242081, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210485219293242081, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210485219293242081, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210485219293242081, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210485219293242081, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210485219293242081, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210485219293242081, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210485219293242081, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210485219293242081, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3cdf54cb80c3f6f48b098f3ec07f13dd, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

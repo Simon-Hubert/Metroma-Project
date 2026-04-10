@@ -72,6 +72,19 @@ namespace Metroma.CameraTool
         [Tooltip("Blend between spline rotation (0) and LookAt rotation (1).")]
         [SerializeField] private float lookAtWeight = 1f;
 
+        // --- Persistence (Editor Only) ---
+#pragma warning disable 0414
+        [SerializeField, HideInInspector] private int selectedChapterIndex = 0;
+        [SerializeField, HideInInspector] private bool foldReferences = true;
+        [SerializeField, HideInInspector] private bool foldChapters = true;
+        [SerializeField, HideInInspector] private bool foldSegments = true;
+        [SerializeField, HideInInspector] private bool foldAnimation = true;
+        [SerializeField, HideInInspector] private bool foldEvents = false;
+        [SerializeField, HideInInspector] private bool foldViewport = false;
+        [SerializeField, HideInInspector] private bool foldHaptics = false;
+        [SerializeField, HideInInspector] private bool foldDebug = false;
+#pragma warning restore 0414
+
         #endregion
 
         
@@ -84,7 +97,6 @@ namespace Metroma.CameraTool
         private int[] _chainSegCounts;
         private int _chainTotalSegments;
 
-        private bool _singleRailMode;
         private int _activeRailIndex;
 
         private Transform _lookAtTarget;
@@ -517,13 +529,13 @@ namespace Metroma.CameraTool
 
         public void SwitchToRail(int idx)
         {
-            _singleRailMode = true; _activeRailIndex = idx;
+            _activeRailIndex = idx;
         }
-        
-
+ 
+        /// <summary> Resets to chained rail mode, evaluating all splines. </summary>
         public void ResetToChainMode()
         {
-            _singleRailMode = false;
+            _activeRailIndex = 0;
         }
 
         /// <summary> Handles a LookAt switch triggered by a Timeline marker. </summary>

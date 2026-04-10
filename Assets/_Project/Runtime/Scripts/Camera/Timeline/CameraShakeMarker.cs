@@ -12,7 +12,6 @@ namespace Metroma.CameraTool.Timeline
     /// </summary>
     [Serializable]
     [DisplayName("Camera/💥 Camera Shake")]
-    [CustomStyle("CameraShakeMarker")]
     public class CameraShakeMarker : CameraMarkerBase
     {
         [Tooltip("Optional preset profile. If assigned, intensity and roughness below are ignored.")]
@@ -33,6 +32,12 @@ namespace Metroma.CameraTool.Timeline
         [Tooltip("Fade out the shake at the end of the duration.")]
         [SerializeField] private bool fadeOut = true;
 
+        [Tooltip("Optional curve to scale intensity over time.")]
+        [SerializeField] private AnimationCurve intensityCurve = AnimationCurve.Constant(0, 1, 1);
+
+        [Tooltip("Synchronize camera shake with gamepad haptic feedback.")]
+        [SerializeField] private bool syncHaptics = true;
+
         public float Intensity => intensity;
         public float Duration => duration;
         public float Roughness => roughness;
@@ -40,16 +45,15 @@ namespace Metroma.CameraTool.Timeline
 
         public override void Execute(CameraTool tool)
         {
-            if (tool.TargetCamera != null)
+            if (tool == null || tool.TargetCamera == null) return;
+
+            if (profile != null)
             {
-                if (profile != null)
-                {
-                    CameraModifiers.DoShake(tool.TargetCamera, profile, duration);
-                }
-                else
-                {
-                    CameraModifiers.DoShake(tool.TargetCamera, intensity, duration, roughness, fadeOut);
-                }
+                CameraModifiers.DoShake(tool.TargetCamera, profile, duration);
+            }
+            else
+            {
+                CameraModifiers.DoShake(tool.TargetCamera, intensity, duration, roughness, fadeOut, intensityCurve, syncHaptics);
             }
         }
     }

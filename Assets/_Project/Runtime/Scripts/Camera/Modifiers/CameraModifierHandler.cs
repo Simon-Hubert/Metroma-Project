@@ -11,18 +11,19 @@ namespace Metroma.CameraTool.Modifiers
 
         [Header("Haptics")]
         public bool enableGamepadHaptics = true;
-        [Range(0f, 2.0f)] public float hapticMultiplier = 0.5f;
+        [Range(0f, 5.0f)] public float hapticMultiplier = 1.0f;
 
         [Tooltip("If true, all effects (shakes, etc.) run at full speed even if the game is slowed down via Time.timeScale.")]
         public bool useUnscaledTime = true;
 
         // ── Effect Data Structures ──
-        private struct ShakeData { public float intensity, duration, roughness, time; public bool fadeOut, active; }
+        private struct ShakeData { public float intensity, duration, roughness, time; public AnimationCurve curve; public bool fadeOut, syncHaptics, active; }
         private struct ImpactData { public Vector3 direction; public float intensity, duration, time; public bool active; }
         private struct PosOffsetData { public Vector3 offset; public float mainDuration, returnDuration, time; public AnimationCurve mainCurve, returnCurve; public bool invertReturn, active; }
         private struct RotOffsetData { public Vector3 euler; public float mainDuration, returnDuration, time; public AnimationCurve mainCurve, returnCurve; public bool invertReturn, active; }
         private struct WobbleData { public float amplitude, frequency, duration, time; public bool active; }
         private struct TempLookAtData { public Transform target; public float duration, time; public AnimationCurve curve; public bool active; }
+        private struct HapticData { public AnimationCurve curve; public float lowFreq, highFreq, duration, time; public bool active; }
 
         // ── Pools (Array-based, zero alloc) ──
         private ShakeData[] _shakes = new ShakeData[4];
@@ -30,6 +31,7 @@ namespace Metroma.CameraTool.Modifiers
         private PosOffsetData[] _posOffsets = new PosOffsetData[4];
         private RotOffsetData[] _rotOffsets = new RotOffsetData[4];
         private WobbleData[] _wobbles = new WobbleData[2];
+        private HapticData[] _haptics = new HapticData[4];
         private TempLookAtData _tempLookAt;
 
         private bool _handheldActive;
@@ -73,12 +75,31 @@ namespace Metroma.CameraTool.Modifiers
         // API (Transform & FOV)
         // ══════════════════════════════════════════════════════════════
 
-        public void AddShake(float intensity, float duration, float roughness, bool fadeOut)
+        public void AddShake(float intensity, float duration, float roughness, bool fadeOut, AnimationCurve curve = null, bool syncHaptics = true)
         {
             for (int i = 0; i < _shakes.Length; i++)
                 if (!_shakes[i].active)
                 {
-                    _shakes[i] = new ShakeData { intensity = intensity, duration = duration, roughness = roughness, fadeOut = fadeOut, time = 0f, active = true };
+                    _shakes[i] = new ShakeData { 
+                        intensity = intensity, 
+                        duration = duration, 
+                        roughness = roughness, 
+                        fadeOut = fadeOut, 
+                        curve = curve,
+                        syncHaptics = syncHaptics,
+                        time = 0f, 
+                        active = true 
+                    };
+                    return;
+                }
+        }
+
+        public void AddHaptic(AnimationCurve curve, float lowFreq, float highFreq, float duration)
+        {
+            for (int i = 0; i < _haptics.Length; i++)
+                if (!_haptics[i].active)
+                {
+                    _haptics[i] = new HapticData { curve = curve, lowFreq = lowFreq, highFreq = highFreq, duration = duration, time = 0f, active = true };
                     return;
                 }
         }
@@ -217,6 +238,9 @@ namespace Metroma.CameraTool.Modifiers
             
             for (int i = 0; i < _wobbles.Length; i++)
                 _wobbles[i].active = false;
+
+            for (int i = 0; i < _haptics.Length; i++)
+                _haptics[i].active = false;
             
             _fovActive = _fovPulseActive = _dollyActive = _tempLookAt.active = _clearing = _handheldActive = false;
             
@@ -318,18 +342,30 @@ namespace Metroma.CameraTool.Modifiers
             }
 
             // Shakes
-            float totalIntensity = 0f;
+            float hapticLow = 0f;
+            float hapticHigh = 0f;
+
             for (int i = 0; i < _shakes.Length; i++)
             {
                 ref ShakeData s = ref _shakes[i];
                 if (!s.active) continue;
 
                 s.time += dt;
-                float fade = s.fadeOut ? (1f - Mathf.Clamp01(s.time / s.duration)) : 1f;
-                float seed = Time.time * s.roughness * 10f + i * 100f;
+                float tNormal = Mathf.Clamp01(s.time / s.duration);
+                float fade = s.fadeOut ? (1f - tNormal) : 1f;
+                
+                // Curve scaling
+                if (s.curve != null)
+                    fade *= s.curve.Evaluate(tNormal);
 
+                float seed = Time.time * s.roughness * 10f + i * 100f;
                 float frameIntensity = s.intensity * fade;
-                totalIntensity += frameIntensity;
+                
+                if (s.syncHaptics)
+                {
+                    hapticLow = Mathf.Max(hapticLow, frameIntensity * 0.8f);
+                    hapticHigh = Mathf.Max(hapticHigh, frameIntensity);
+                }
                 
                 locPos += new Vector3(
                     (Mathf.PerlinNoise(seed, 0f) - 0.5f) * 2f,
@@ -340,9 +376,25 @@ namespace Metroma.CameraTool.Modifiers
                 if (s.time >= s.duration) s.active = false;
             }
 
+            // Dedicated Haptics
+            for (int i = 0; i < _haptics.Length; i++)
+            {
+                ref HapticData h = ref _haptics[i];
+                if (!h.active) continue;
+
+                h.time += dt;
+                float tNormal = Mathf.Clamp01(h.time / h.duration);
+                float intensity = h.curve != null ? h.curve.Evaluate(tNormal) : (1f - tNormal);
+
+                hapticLow = Mathf.Max(hapticLow, intensity * h.lowFreq);
+                hapticHigh = Mathf.Max(hapticHigh, intensity * h.highFreq);
+
+                if (h.time >= h.duration) h.active = false;
+            }
+
             if (enableGamepadHaptics && Application.isPlaying)
             {
-                UpdateHaptics(totalIntensity);
+                UpdateHaptics(hapticLow, hapticHigh);
             }
 
             // Impacts
@@ -492,14 +544,13 @@ namespace Metroma.CameraTool.Modifiers
             }
         }
 
-        private void UpdateHaptics(float intensity)
+        private void UpdateHaptics(float low, float high)
         {
             var gamepad = Gamepad.current;
             if (gamepad == null)
                 return;
             
-            float motorLevel = Mathf.Clamp01(intensity * hapticMultiplier);
-            gamepad.SetMotorSpeeds(motorLevel * 0.8f, motorLevel); // Balanced low/high freq
+            gamepad.SetMotorSpeeds(Mathf.Clamp01(low * hapticMultiplier), Mathf.Clamp01(high * hapticMultiplier));
         }
 
         private void StopHaptics()

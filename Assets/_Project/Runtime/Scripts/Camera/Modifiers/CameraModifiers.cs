@@ -10,11 +10,11 @@ namespace Metroma.CameraTool.Modifiers
         // ══════════════════════════════════════════════════════════════
 
         /// <summary> Applies a continuous Perlin-noise shake to the camera. </summary>
-        public static void DoShake(this Camera camera, float intensity, float duration, float roughness = 1f, bool fadeOut = true)
+        public static void DoShake(this Camera camera, float intensity, float duration, float roughness = 1f, bool fadeOut = true, AnimationCurve curve = null, bool syncHaptics = true)
         {
             var h = GetOrAddModifierHandler(camera);
             if (h != null)
-                h.AddShake(intensity, duration, roughness, fadeOut);
+                h.AddShake(intensity, duration, roughness, fadeOut, curve, syncHaptics);
         }
 
         /// <summary> Applies a shake using settings from a profile. </summary>
@@ -22,8 +22,8 @@ namespace Metroma.CameraTool.Modifiers
         {
             if (profile == null)
                 return;
-
-            DoShake(camera, profile.intensity, duration, profile.roughness, profile.fadeOut);
+ 
+            DoShake(camera, profile.intensity, duration, profile.roughness, profile.fadeOut, profile.intensityCurve, profile.syncHaptics);
         }
 
         /// <summary> Applies a shake that scales down based on distance from the source. </summary>
@@ -54,6 +54,27 @@ namespace Metroma.CameraTool.Modifiers
             var h = GetOrAddModifierHandler(camera);
             if (h != null)
                 h.AddImpact(direction, intensity, duration);
+        }
+
+        // ══════════════════════════════════════════════════════════════
+        // Gamepad Haptics
+        // ══════════════════════════════════════════════════════════════
+
+        /// <summary> Triggers a standalone gamepad vibration effect. </summary>
+        public static void DoHaptic(this Camera camera, AnimationCurve curve, float lowFreq, float highFreq, float duration)
+        {
+            var h = GetOrAddModifierHandler(camera);
+            if (h != null)
+                h.AddHaptic(curve, lowFreq, highFreq, duration);
+        }
+
+        /// <summary> Triggers a gamepad vibration using settings from a profile. </summary>
+        public static void DoHaptic(this Camera camera, CameraHapticProfile profile)
+        {
+            if (profile == null)
+                return;
+            
+            DoHaptic(camera, profile.intensityCurve, profile.lowFreqMultiplier, profile.highFreqMultiplier, profile.duration);
         }
 
         // ══════════════════════════════════════════════════════════════
