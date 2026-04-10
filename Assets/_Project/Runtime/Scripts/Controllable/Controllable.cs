@@ -65,6 +65,7 @@ namespace Metroma
         
         /// <summary>
         /// Do not register both event on the same callback, this may cause a double call.
+        /// TODO : Rework this ascpect to not implement public events in this class on refacto. Callback functions could be a solution
         /// </summary>
         #region Events
         [Foldout("Events")] public UnityEvent OnMoveStartUnity;

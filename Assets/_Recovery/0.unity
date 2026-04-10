@@ -1236,8 +1236,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360449365}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -30}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1302,7 +1302,6 @@ GameObject:
   - component: {fileID: 1479889893}
   - component: {fileID: 1479889892}
   - component: {fileID: 1479889898}
-  - component: {fileID: 1479889899}
   m_Layer: 0
   m_Name: TestFreeroamController
   m_TagString: Untagged
@@ -1344,7 +1343,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.5, y: 0.5}
   m_Radius: 0.5
 --- !u!23 &1479889893
 MeshRenderer:
@@ -1432,9 +1431,9 @@ MonoBehaviour:
   stencilReadMask: 255
   stencilWriteMask: 255
   colorMode: 0
-  a: {x: -0.5, y: 0, z: 0}
-  b: {x: 0, y: 1, z: 0}
-  c: {x: 0.5, y: 0, z: 0}
+  a: {x: 0, y: 0, z: 0}
+  b: {x: 0.5, y: 1, z: 0}
+  c: {x: 1, y: 0, z: 0}
   border: 0
   thickness: 0.5
   thicknessSpace: 0
@@ -1492,7 +1491,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   rb2D: {fileID: 1479889898}
-  constantSpeed: 0
   accelerationTime: 0.5
   accelerationCurve:
     serializedVersion: 2
@@ -1544,8 +1542,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxSpeed: 10
-  rotationSpeed: 360
-  smoothRotation: 1
+  angleSpeed: 0
   moveDirection: {x: 0, y: 0}
   accelerationValue: 0
   moveState: 0
@@ -1575,47 +1572,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &1479889899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1479889891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33eaddeec8c1ad45ab8c203e413bebb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  useCullingMasks: 0
-  _sectionLenght: 0.2
-  _sectionNumber: 150
-  thick: 1
-  curvy:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: -1
-      outSlope: -1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -4.952378
-      outSlope: -4.952378
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.037500024
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_Constraints: 0
 --- !u!1 &1554950354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,11 +1902,11 @@ MonoBehaviour:
   coyoteTime: 0.2
   isGrounded: 0
   canJump: 1
-  jumpType: 2
+  jumpType: 0
   dynamicJumpDelay: 0.15
   jumpingForce: 10
   delayBeforeJump: 0
-  delayAfterJump: 0.1
+  delayAfterJump: 0.5
   isJumping: 0
 --- !u!4 &1897930410
 Transform:

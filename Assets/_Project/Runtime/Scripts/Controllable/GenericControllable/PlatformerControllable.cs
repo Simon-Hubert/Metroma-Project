@@ -72,6 +72,7 @@ namespace Metroma
         #region Jump
         [Header("Jump")]
         [SerializeField] protected bool canJump = true;
+        [Tooltip("Set before starting the game")]
         [SerializeField] protected JumpType jumpType = JumpType.AtActionStart;
         [SerializeField, Min(0)] protected float dynamicJumpDelay = 0.3f;
         private float currentDynamicDelay = 0.0f;
@@ -87,7 +88,9 @@ namespace Metroma
 
         protected void OnValidate() {
             if (!rb2D) {
-                TryGetComponent<Rigidbody2D>(out rb2D);
+                if (TryGetComponent<Rigidbody2D>(out rb2D)) {
+                    Debug.LogError($"{name} : Missing RigidBody2D");
+                }
             }
         }
 
@@ -95,8 +98,7 @@ namespace Metroma
             OnMoveStart += MoveStartLerp;
             OnMoveEnd += MoveEndLerp;
 
-            switch (jumpType)
-            {
+            switch (jumpType) {
                 case JumpType.AtActionEnd :
                     OnActionEnd += Jumping;
                     break;
@@ -113,8 +115,7 @@ namespace Metroma
             OnMoveStart -= MoveStartLerp;
             OnMoveEnd -= MoveEndLerp;
             
-            switch (jumpType)
-            {
+            switch (jumpType) {
                 case JumpType.AtActionEnd :
                     OnActionEnd -= Jumping;
                     break;
@@ -128,8 +129,14 @@ namespace Metroma
             }
         }
 
-        protected void Start()
-        {
+        protected void Start() {
+            // Error proof
+            if (!rb2D) {
+                if (TryGetComponent<Rigidbody2D>(out rb2D)) {
+                    Debug.LogError($"{name} : Missing RigidBody2D");
+                }
+            }
+            
             lastXPosition = transform.position.x;
             
 #if UNITY_EDITOR
@@ -139,8 +146,14 @@ namespace Metroma
         
         protected override void FixedUpdate() {
             base.FixedUpdate();
+
+            // Error proof
+            if (!rb2D)
+            {
+                
+            }
             
-            DirectionCheck();
+            MoveStateCheck();
             GroundCheck();
             
             rb2D.linearVelocity = (Vector2.up * rb2D.linearVelocity.y) + Vector2.right * (currentDir * accelerationValue * maxSpeed);
@@ -149,7 +162,7 @@ namespace Metroma
         }
 
         #region Update Checks
-        private void DirectionCheck() {
+        private void MoveStateCheck() {
             if (GetInputDir == 0 && (moveState == MoveState.ACCELERATING || (moveState == MoveState.NONE && accelerationValue != 0.0f))) {
                 MoveEndLerp();
             }
@@ -186,6 +199,7 @@ namespace Metroma
             RaycastHit2D hitL = Physics2D.Raycast((Vector2)transform.position + groundDetectionOffset * new Vector2(1 * (transform.lossyScale.x / 2), 1), Vector2.down, groundDetectionSize);
             RaycastHit2D hitR = Physics2D.Raycast((Vector2)transform.position + groundDetectionOffset * new Vector2(-1 * (transform.lossyScale.x / 2), 1), Vector2.down, groundDetectionSize);
 
+#if UNITY_EDITOR
             Debug.DrawLine(
                 (Vector2)transform.position + groundDetectionOffset * new Vector2(1 * (transform.lossyScale.x / 2), 1), 
                 (Vector2)transform.position + groundDetectionOffset * new Vector2(1 * (transform.lossyScale.x / 2), 1) + Vector2.down * groundDetectionSize,
@@ -194,6 +208,7 @@ namespace Metroma
                 (Vector2)transform.position + groundDetectionOffset * new Vector2(-1 * (transform.lossyScale.x / 2), 1),
                 (Vector2)transform.position + groundDetectionOffset * new Vector2(-1 * (transform.lossyScale.x / 2), 1) + Vector2.down * groundDetectionSize,
                 Color.red, 2f);
+#endif
             
             if (hitL || hitR) {
                 Debug.Log("grounded");
@@ -345,5 +360,7 @@ namespace Metroma
             yield break;
         }
         #endregion
+        
+        
     } 
 }
