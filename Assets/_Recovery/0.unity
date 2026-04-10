@@ -1236,8 +1236,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360449365}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -30}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1343,7 +1343,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.5, y: 0.5}
   m_Radius: 0.5
 --- !u!23 &1479889893
 MeshRenderer:
@@ -1431,9 +1431,9 @@ MonoBehaviour:
   stencilReadMask: 255
   stencilWriteMask: 255
   colorMode: 0
-  a: {x: -0.5, y: 0, z: 0}
-  b: {x: 0, y: 1, z: 0}
-  c: {x: 0.5, y: 0, z: 0}
+  a: {x: 0, y: 0, z: 0}
+  b: {x: 0.5, y: 1, z: 0}
+  c: {x: 1, y: 0, z: 0}
   border: 0
   thickness: 0.5
   thicknessSpace: 0
@@ -1542,12 +1542,10 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxSpeed: 10
-  rotationSpeed: 1280
-  smoothRotation: 1
+  angleSpeed: 0
   moveDirection: {x: 0, y: 0}
   accelerationValue: 0
   moveState: 0
-  viewAngle: 0
 --- !u!50 &1479889898
 Rigidbody2D:
   serializedVersion: 5
@@ -1574,7 +1572,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!1 &1554950354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,11 +1902,11 @@ MonoBehaviour:
   coyoteTime: 0.2
   isGrounded: 0
   canJump: 1
-  jumpType: 2
+  jumpType: 0
   dynamicJumpDelay: 0.15
   jumpingForce: 10
   delayBeforeJump: 0
-  delayAfterJump: 0.1
+  delayAfterJump: 0.5
   isJumping: 0
 --- !u!4 &1897930410
 Transform:
