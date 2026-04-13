@@ -62,15 +62,18 @@ namespace Metroma
         public override void DrawShapes(Camera cam) {
             using (Draw.Command(cam)) {
                 PolylinePath path = new PolylinePath();
+                PolylinePath path2 = new PolylinePath();
 
                 foreach (int point in GetPoints()) {
                     float p = (float)ArrayDistance(point, _iterator) / _sectionNumber;
                     float dist = Vector3.Distance(_parts[point].Position, transform.position);
                     Vector3 pos = _parts[point].Position + (Vector3)_parts[point].Normal * Mathf.Sin(0.2f * 2*Mathf.PI * _parts[point].Position.x) * Mathf.Sin(0.2f * 2*Mathf.PI * (_parts[point].Position.y+1)) * serpentThick * serpenty.Evaluate(p);
                     path.AddPoint(pos, curvy.Evaluate(p) * thick);
+                    path2.AddPoint(pos, curvy.Evaluate(p) * thick * 0.15f, Color.red);
                 }
 
                 Draw.Polyline(path, false, 1f, PolylineJoins.Round);
+                Draw.Polyline(path2, false, 1f, PolylineJoins.Round);
             }
         }
 
