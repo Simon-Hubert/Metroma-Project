@@ -1478,6 +1478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bda746703ca68f4998f852dbd94ebf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.FreeRoamControllable
+  activeAtStart: 1
   _isActive: 0
   OnMoveStartUnity:
     m_PersistentCalls:
@@ -1543,10 +1544,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  keepLastInputAsDirection: 0
   maxSpeed: 10
-  rotationSpeed: 360
+  "T\xEAteQuiSerpente": 0
+  rotationSpeed: 90
   smoothRotation: 1
   moveDirection: {x: 0, y: 0}
+  rotateControllable: 1
   accelerationValue: 0
   moveState: 0
 --- !u!50 &1479889898
@@ -1821,6 +1825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1ce5b783b560a438fe24536e28d1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.PlatformerControllable
+  activeAtStart: 1
   _isActive: 0
   OnMoveStartUnity:
     m_PersistentCalls:

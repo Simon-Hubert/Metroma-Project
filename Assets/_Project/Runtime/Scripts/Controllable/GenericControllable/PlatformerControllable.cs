@@ -129,7 +129,9 @@ namespace Metroma
             }
         }
 
-        protected void Start() {
+        protected override void Start() {
+            base.Start();
+            
             // Error proof
             if (!rb2D) {
                 if (TryGetComponent<Rigidbody2D>(out rb2D)) {
@@ -138,19 +140,15 @@ namespace Metroma
             }
             
             lastXPosition = transform.position.x;
-            
-#if UNITY_EDITOR
-            Editor_AddControllable();
-#endif
         }
         
         protected override void FixedUpdate() {
             base.FixedUpdate();
 
             // Error proof
-            if (!rb2D)
-            {
-                
+            if (!rb2D) {
+                Debug.LogError($"{name} : Missing RigidBody2D");
+                return;
             }
             
             MoveStateCheck();
@@ -360,7 +358,5 @@ namespace Metroma
             yield break;
         }
         #endregion
-        
-        
     } 
 }
