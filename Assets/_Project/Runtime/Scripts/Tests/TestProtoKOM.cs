@@ -14,6 +14,7 @@ namespace Metroma
         [SerializeField] private AdsManagerKOM _adsManager;
         [SerializeField] private Camera _miniGameCam;
         [SerializeField] private AView _defaultView;
+        [SerializeField] private AView _endView;
         [SerializeField] private List<AView> _adsViews;
 
         private int _viewIndex = 0;
@@ -36,13 +37,14 @@ namespace Metroma
             _transManager.TryTransition(_data);
             CameraHelpers.TransitionViewToView(_miniGameCam, _defaultView, _adsViews[_viewIndex], 2.5f);
             _adsManager.StartAd();
+            _adsManager.LastAd.OnAdEnded += OnAdEnded;
         }
 
         private void OnAdEnded() {
             _adsManager.CurrentAd.OnAdEnded -= OnAdEnded;
             _data.IsIn = false;
             _transManager.TryTransition(_data);
-            CameraHelpers.TransitionViewToView(_miniGameCam, _adsViews[_viewIndex], _defaultView, 2.5f);
+            CameraHelpers.TransitionViewToView(_miniGameCam, _adsViews[_viewIndex], _endView, 2.5f);
         }
 
         public void NextAd(bool nextView)
