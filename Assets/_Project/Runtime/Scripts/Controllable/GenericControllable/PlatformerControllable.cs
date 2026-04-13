@@ -146,9 +146,9 @@ namespace Metroma
             base.FixedUpdate();
 
             // Error proof
-            if (!rb2D)
-            {
-                
+            if (!rb2D) {
+                Debug.LogError($"{name} : Missing RigidBody2D");
+                return;
             }
             
             MoveStateCheck();
@@ -358,7 +358,5 @@ namespace Metroma
             yield break;
         }
         #endregion
-        
-        
     } 
 }

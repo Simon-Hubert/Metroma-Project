@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using NaughtyAttributes;
+using NUnit.Framework;
 using UnityEngine.Serialization;
 
 namespace Metroma
@@ -37,7 +38,7 @@ namespace Metroma
         [SerializeField] private bool TêteQuiSerpente;
         [Tooltip("0 = no rotation speed")]
         [SerializeField, Min(0)] protected float rotationSpeed = 0f;
-        [SerializeField, Range(0, 1)] protected float smoothRotation = 0.9f;
+        [SerializeField, UnityEngine.Range(0, 1)] protected float smoothRotation = 0.9f;
         [SerializeField, ReadOnly] protected Vector2 moveDirection = Vector2.up;
         public Vector2 GetDirection { get => moveDirection; }
         #endregion
@@ -63,6 +64,10 @@ namespace Metroma
         protected void OnDisable() {
             OnMoveStart -= MoveStartLerp;
             OnMoveEnd -= MoveEndLerp;
+
+            if (rb2D) {
+                rb2D.linearVelocity = Vector2.zero;
+            }
         }
 
         protected override void Start() {
@@ -87,6 +92,8 @@ namespace Metroma
                 return;
             }
 
+            DesactiveCheck();
+            
             DirectionCheck();
             if (rotateControllable) OrientationCheck();
             
@@ -126,11 +133,18 @@ namespace Metroma
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
+        protected void DesactiveCheck() {
+            if (!IsActive && moveState != MoveState.DECELERATING && accelerationValue != 0) {
+                if (lerpCoroutine != null) StopCoroutine(lerpCoroutine);
+                lerpCoroutine = StartCoroutine(MoveDecelerationLerpCoroutine(decelerationTime, decelerationCurve));
+            }
+        }
+        
         #endregion
         
         #region Move Methods
         private void MoveStartLerp() {
-            if (Inputs.move == Vector2.zero) return;
+            if (Inputs.move == Vector2.zero && !constantSpeed) return;
             
             if (lerpCoroutine != null) StopCoroutine(lerpCoroutine);
             lerpCoroutine = StartCoroutine(MoveAccelerationLerpCoroutine(accelerationTime, accelerationCurve));
