@@ -6,18 +6,18 @@ namespace Metroma
 {
     public class CollisionCondition : AdCondition
     {
-        [SerializeField] private Rigidbody _body;
+        [SerializeField] private Rigidbody2D _body;
         private bool _isColliding;
         [SerializeField] private UnityEvent _onCollision;
         
-        private void OnTriggerEnter(Collider other) {
+        private void OnTriggerEnter2D(Collider2D other) {
             if (other.attachedRigidbody == _body) {
                 _isColliding = true;
                 _onCollision?.Invoke();
             }
         }
         
-        private void OnTriggerExit(Collider other) {
+        private void OnTriggerExit2D(Collider2D other) {
             if (other.attachedRigidbody == _body) {
                 _isColliding = false;
             }

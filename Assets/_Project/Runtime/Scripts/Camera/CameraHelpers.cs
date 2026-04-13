@@ -18,10 +18,10 @@ namespace Metroma
         }
 
         public static void TransitionViewToView(Camera cam, AView from, AView to, float duration) {
-            _ = ViewToViewTransition(cam, from, to, duration);
+            _ = ViewToViewTransitionAsync(cam, from, to, duration);
         }
 
-        private static async Awaitable ViewToViewTransition(Camera cam, AView from, AView to, float duration) {
+        public static async Awaitable ViewToViewTransitionAsync(Camera cam, AView from, AView to, float duration) {
             try {
                 CameraConfiguration fromConfig = from.GetConfiguration();
                 CameraConfiguration toConfig = to.GetConfiguration();

@@ -13,24 +13,32 @@ namespace Metroma
         [SerializeField, Min(1)] private int _sectionNumber = 50;
         [SerializeField] private float thick = 1f;
         [SerializeField] private AnimationCurve curvy;
+        [SerializeField] private float serpentThick = 1f;
+        [SerializeField] private AnimationCurve serpenty;
+
+        private struct Point
+        {
+            public Vector3 Position;
+            public Vector2 Normal;
+        }
 
         private Vector2 _lastPos;
-        private Vector3[] _parts;
+        private Point[] _parts;
         private int _iterator = 0;
 
         private void OnValidate() {
-            _parts = new Vector3[_sectionNumber];
+            _parts = new Point[_sectionNumber];
             for (int i = 0; i < _sectionNumber; i++) {
-                _parts[i] = transform.position;
+                _parts[i].Position = transform.position;
             }
             _iterator = 0;
         }
 
         private void Start() {
             
-            _parts = new Vector3[_sectionNumber];
+            _parts = new Point[_sectionNumber];
             for (int i = 0; i < _sectionNumber; i++) {
-                _parts[i] = transform.position;
+                _parts[i].Position = transform.position;
             }
             _iterator = 0;
             
@@ -41,8 +49,10 @@ namespace Metroma
         IEnumerator UpdateParts() {
             while (true) {
                 if (Vector2.Distance(_lastPos, transform.position) >= _sectionLenght) {
+                    Vector2 dir = _lastPos - (Vector2)transform.position;
                     _lastPos = transform.position;
-                    _parts[_iterator] = transform.position;
+                    _parts[_iterator].Position = transform.position;
+                    _parts[_iterator].Normal = new Vector2(-dir.y, dir.x).normalized;
                     _iterator = Iterate(_iterator);
                 }
                 yield return new WaitForEndOfFrame();
@@ -53,9 +63,11 @@ namespace Metroma
             using (Draw.Command(cam)) {
                 PolylinePath path = new PolylinePath();
 
-                foreach (int point in GetPoints())
-                {
-                    path.AddPoint(_parts[point], curvy.Evaluate((float)ArrayDistance(point, _iterator) / _sectionNumber) * thick);
+                foreach (int point in GetPoints()) {
+                    float p = (float)ArrayDistance(point, _iterator) / _sectionNumber;
+                    float dist = Vector3.Distance(_parts[point].Position, transform.position);
+                    Vector3 pos = _parts[point].Position + (Vector3)_parts[point].Normal * Mathf.Sin(0.2f * 2*Mathf.PI * _parts[point].Position.x) * Mathf.Sin(0.2f * 2*Mathf.PI * (_parts[point].Position.y+1)) * serpentThick * serpenty.Evaluate(p);
+                    path.AddPoint(pos, curvy.Evaluate(p) * thick);
                 }
 
                 Draw.Polyline(path, false, 1f, PolylineJoins.Round);

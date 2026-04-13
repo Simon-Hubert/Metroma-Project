@@ -15,8 +15,10 @@ namespace Metroma
         public virtual void StartAd() {
             Debug.Log($"{name} started !");
             OnAdStarted?.Invoke();
+            _winCondition.OnValidated += OnAdEnd;
         }
         protected virtual void OnAdEnd() {
+            Debug.Log($"{name} Ended !");
             OnAdEnded?.Invoke();
         }
     }

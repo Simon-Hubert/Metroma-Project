@@ -14,6 +14,8 @@ namespace Metroma
             ACCELERATING = 1,
             DECELERATING = 2
         }
+
+        [SerializeField] private InputManager _inputManager;
         
         [Header("Essentials")]
         [SerializeField] protected Rigidbody2D rb2D;
@@ -27,7 +29,7 @@ namespace Metroma
 
         [SerializeField] protected float maxSpeed = 10.0f;
 
-        [Header("Rotation")
+        [Header("Rotation")]
         [SerializeField] private bool TêteQuiSerpente;
         [Tooltip("0 = no rotation speed")]
         [SerializeField, Min(0)] protected float rotationSpeed = 0f;
@@ -67,12 +69,8 @@ namespace Metroma
                     Debug.LogError($"{name} : Missing RigidBody2D");
                 }
             }
-
+            _inputManager.AddControllable(this);
             moveDirection = Vector2.up;
-            
-            #if UNITY_EDITOR
-            Editor_AddControllable();
-            #endif
         }
 
         protected override void FixedUpdate() {

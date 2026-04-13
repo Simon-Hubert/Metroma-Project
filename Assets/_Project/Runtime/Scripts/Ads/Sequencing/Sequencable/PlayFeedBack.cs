@@ -8,6 +8,7 @@ namespace Metroma
     public class PlayFeedBack : Sequencable
     {
         [SerializeField, HideInInspector] private MMF_Player _feedbacks;
+        [SerializeField] private bool _waitForEnd;
 
         private void Reset() {
             _feedbacks = GetComponent<MMF_Player>();
@@ -17,8 +18,13 @@ namespace Metroma
             if (!_feedbacks) {
                 Debug.Log("FeedBacks not connected");
             }
-            _feedbacks.PlayFeedbacks();
-            //await _feedbacks.PlayFeedbacksTask(transform.position);
+
+            if (_waitForEnd) {
+                await _feedbacks.PlayFeedbacksTask(transform.position);
+            }
+            else {
+                _feedbacks.PlayFeedbacks();
+            }
         }
     }
 }
