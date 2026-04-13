@@ -13,7 +13,7 @@ namespace Metroma
     public class Controllable : MonoBehaviour
     {
 #if UNITY_EDITOR
-        [SerializeField] private bool activeAtStart = true;
+        [SerializeField] private bool activeAtStart = false;
 #endif
         [SerializeField, ReadOnly] private bool _isActive;
         /// <summary>
@@ -81,7 +81,7 @@ namespace Metroma
         [Foldout("Events")] public UnityEvent OnActionEndUnity;
         public event Action OnActionEnd;
         #endregion
-
+        
         protected virtual void Start() {
 #if UNITY_EDITOR
             if (activeAtStart) Editor_AddControllable();
