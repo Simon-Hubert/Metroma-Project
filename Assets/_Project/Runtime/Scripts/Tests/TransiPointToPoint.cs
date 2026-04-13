@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Metroma
 {
@@ -11,6 +12,7 @@ namespace Metroma
         [SerializeField] private float _rotationSpeed = 10f;
         [SerializeField] private float _deltaMinDist = 0.1f;
         [SerializeField] private bool _disableGameobject = false;
+        [SerializeField] private UnityEvent _onArrived;
         private bool _canMove = false;
         private bool _disabled = false;
         
@@ -24,10 +26,12 @@ namespace Metroma
                 _toMove.position += new Vector3(_speed * Time.deltaTime, 0, 0);
                 _toMove.eulerAngles += new Vector3(0, 0, -_rotationSpeed * Time.deltaTime);
             }
-            else if (_disableGameobject && !_disabled && Vector3.Distance(_toMove.position, _target.position) <= _deltaMinDist)
+            else if (!_disabled && Vector3.Distance(_toMove.position, _target.position) <= _deltaMinDist)
             {
-                _toMove.gameObject.SetActive(false);
+                if(_disableGameobject) _toMove.gameObject.SetActive(false);
                 _disabled = true;
+                _canMove = false;
+                _onArrived?.Invoke();
             }
         }
 
