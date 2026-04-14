@@ -9,8 +9,10 @@ namespace Metroma
         private readonly WinCond _winCond = new WinCond();
         [SerializeField] private int _tapNumber;
         private int _amount;
+        private bool _won = false;
 
         [SerializeField] private UnityEvent<int> _buttonPressed;
+        [SerializeField] private UnityEvent UnityOnAdEnd;
         public event Action<int> OnButtonPressed;
 
         public int Amount => _amount;
@@ -47,9 +49,14 @@ namespace Metroma
             _amount++;
             _buttonPressed?.Invoke(_amount);
             OnButtonPressed?.Invoke(_amount);
-            if (_winCond.Evaluate(this)) {
-                OnAdEnd();
+            if (_winCond.Evaluate(this) && !_won) {
+                //OnAdEnd();
+                controllables[0].OnActionStart -= ButtonPressed;
+                _won = true;
+                UnityOnAdEnd?.Invoke();
             }
         }
+
+        public void End() => OnAdEnd(); //bullshit pour unity event (m'en branle)
     }
 }
