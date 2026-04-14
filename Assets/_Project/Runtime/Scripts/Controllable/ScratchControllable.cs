@@ -18,6 +18,7 @@ namespace Metroma
         private bool _init;
 
         [SerializeField] private UnityEvent _onScratch;
+        public event Action OnScratch;
         
         private void OnEnable() {
             OnMoveStart += MoveStarted;
@@ -45,14 +46,16 @@ namespace Metroma
         private IEnumerator MoveRoutine() {
             while (true) {
                 yield return null;
+                if (!IsActive) continue;
                 float dir = Mathf.Sign(Vector2.Dot(Inputs.move, Vector2.left));
                 float lastTravelled = _travelled;
                 _travelled = Mathf.Clamp(_travelled + _speed * Time.deltaTime * dir, -_distance, _distance);
                 float dist = Mathf.Abs(_travelled - lastTravelled);
                 _totalDistance += dist;
-                if (dist > Mathf.Epsilon) _onScratch?.Invoke();
-                
-                
+                if (dist > Mathf.Epsilon) {
+                    _onScratch?.Invoke();
+                    OnScratch?.Invoke();
+                }
                 transform.position = _origin + _travelled * Vector3.left;
             }
         }

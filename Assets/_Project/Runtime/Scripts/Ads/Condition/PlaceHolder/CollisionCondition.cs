@@ -8,18 +8,27 @@ namespace Metroma
     {
         [SerializeField] private Rigidbody2D _body;
         private bool _isColliding;
-        [SerializeField] private UnityEvent _onCollision;
+        [SerializeField] private AdCollider _collider;
+
+        private void OnEnable() {
+            _collider.OnCollisionEnter += OnColliderEnter;
+            _collider.OnCollisionExit += OnColliderExit;
+        }
         
-        private void OnTriggerEnter2D(Collider2D other) {
+        private void OnDisable() {
+            _collider.OnCollisionEnter -= OnColliderEnter;
+            _collider.OnCollisionExit -= OnColliderExit;
+        }
+        
+        private void OnColliderExit(Collider2D other) {
             if (other.attachedRigidbody == _body) {
-                _isColliding = true;
-                _onCollision?.Invoke();
+                _isColliding = false;
             }
         }
         
-        private void OnTriggerExit2D(Collider2D other) {
+        private void OnColliderEnter(Collider2D other) {
             if (other.attachedRigidbody == _body) {
-                _isColliding = false;
+                _isColliding = true;
             }
         }
 

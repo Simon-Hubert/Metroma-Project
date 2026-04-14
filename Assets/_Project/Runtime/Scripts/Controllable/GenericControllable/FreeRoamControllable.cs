@@ -48,6 +48,7 @@ namespace Metroma
         [SerializeField, ReadOnly] protected float accelerationValue = 0.0f;
         protected Coroutine lerpCoroutine;
         [SerializeField, ReadOnly] protected MoveState moveState = MoveState.NONE;
+        [SerializeField] private InputManager _inputManager;
         
         protected void OnValidate() {
             if (!rb2D) {
@@ -60,6 +61,7 @@ namespace Metroma
         protected void OnEnable() {
             OnMoveStart += MoveStartLerp;
             OnMoveEnd += MoveEndLerp;
+            _inputManager.AddControllable(this);
         }
         protected void OnDisable() {
             OnMoveStart -= MoveStartLerp;
