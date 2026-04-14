@@ -28,6 +28,7 @@ namespace Metroma
                 foreach (Sequencable element in _sequence) {
                     Debug.Log($"{element.name} executing !");
                     await element.ExecuteAsync();
+                    
                 }
             }
             catch (OperationCanceledException oce) {
