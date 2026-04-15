@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,11 +39,10 @@ namespace Metroma
 
         /// <summary>
         /// Will add the given controllable to the InputManagers's list for it to be used.
-        /// The controllable value IsActive will be set at false once added.
         /// </summary>
-        /// <param name="controllable">IControllable to add</param>
-        /// <param name="key">If null, empty, not set or already existing, will be random.</param>
-        /// <returns>Key assigned to controllable. Returns empty string in case of error</returns>
+        /// <param name="controllable"><see cref="Controllable"/> to add.</param>
+        /// <param name="activeState">false by default. If the <see cref="Controllable"/> should be active when added.</param>
+        /// <returns>true if the action is successful. false if there is an error, or <see cref="Controllable"/> is already set.</returns>
         public bool AddControllable(Controllable controllable, bool activeState = false) {
             if (_controllables == null) {
                 _controllables = new List<Controllable>();
@@ -54,11 +54,12 @@ namespace Metroma
                 return false;
             }
 
-            if (_controllables.Contains(controllable))
-            {
+            if (_controllables.Contains(controllable)) {
                 Debug.LogWarning("Cannot add controllable : " + controllable.name + " is already referenced.");
-                return true;
+                return false;
             }
+            
+
 
             controllable.IsActive = activeState; // false by default
             _controllables.Add(controllable);
@@ -82,10 +83,8 @@ namespace Metroma
         /// Will clean the dictionnary of any remaining null IControllable. Call it once in a while.
         /// </summary>
         public void PurgeControllables() {
-            for (int i = 0; i < _controllables.Count; i++)
-            {
-                if (_controllables[i] == null)
-                {
+            for (int i = 0; i < _controllables.Count; i++) {
+                if (_controllables[i] == null) {
                     _controllables.RemoveAt(i);
                 }
             }
@@ -97,8 +96,7 @@ namespace Metroma
 
             GameplayInputsData inputs = _captureInputs.GetGameplayInputsData();
             
-            foreach (Controllable controllable in _controllables)
-            {
+            foreach (Controllable controllable in _controllables) {
                 if (controllable != null && controllable.IsActive) {
                     controllable.Inputs = inputs;
                 }

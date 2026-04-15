@@ -97,6 +97,51 @@ namespace Metroma
         protected virtual void LateUpdate() {
 
         }
+
+        #region Inputs Callback
+
+        public void BindCallbacks(CaptureInputs _captureInputs)
+        {
+            CallBack callBack = InputMoveStart;
+            _captureInputs.list.Add(callBack);
+        }
+        
+        #region Inputs Event
+        protected virtual void InputMoveStart()
+        {
+            
+        }
+        protected virtual void InputMoveEnd()
+        {
+            
+        }
+        #endregion
+        #endregion
+
+        #region Sub/Unsub
+        /// <summary>
+        /// Subscribes this <see cref="Controllable"/> to receive Inputs.
+        /// </summary>
+        /// <returns>true if <see cref="Controllable"/> is successfully subscribed. false if it fails to subscribe, or is already subscribed.</returns>
+        public bool SubscribeInputs() {
+            return SubscribeInputs(false);
+        }
+        /// <summary>
+        /// Subscribes this <see cref="Controllable"/> to receive Inputs.
+        /// <param name="activeAtStart">Whether this <see cref="Controllable"/> should be active when Subscribed.</param>
+        /// </summary>
+        /// <returns>true if <see cref="Controllable"/> is successfully subscribed. false if it fails to subscribe, or is already subscribed.</returns>
+        public bool SubscribeInputs(bool activeAtStart) {
+            return InputManager.instance.AddControllable(this, activeAtStart);
+        }
+
+        /// <summary>
+        /// Unsubscribe this <see cref="Controllable"/> to stop receiving Inputs.
+        /// </summary>
+        public void UnsubscribeInputs() {
+            InputManager.instance.RemoveControllable(this);
+        }
+        #endregion
         
         #if UNITY_EDITOR
         [Button]
@@ -107,12 +152,12 @@ namespace Metroma
         [Button]
         protected void Editor_AddControllable()
         {
-            InputManager.instance.AddControllable(this, true);
+            SubscribeInputs(true);
         }
         [Button]
         protected void Editor_RemoveControllable()
         {
-            InputManager.instance.RemoveControllable(this);
+            UnsubscribeInputs();
         }
         #endif
     }

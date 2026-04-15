@@ -99,7 +99,7 @@ namespace Metroma.Inputs
                     ""type"": ""Value"",
                     ""id"": ""46df05b5-f99d-4153-8ae7-44a590e75b18"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""NormalizeVector2"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
