@@ -59,6 +59,7 @@ namespace Metroma.CameraTool.Editor
             {
                 EditorGUILayout.PropertyField(_duration);
             }
+            
             EditorGUI.indentLevel--;
             EditorGUILayout.EndVertical();
 

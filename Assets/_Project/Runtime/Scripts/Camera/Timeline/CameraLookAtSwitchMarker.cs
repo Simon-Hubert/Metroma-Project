@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Playables;
 using UnityEngine.Timeline;
+
 
 namespace Metroma.CameraTool.Timeline
 {

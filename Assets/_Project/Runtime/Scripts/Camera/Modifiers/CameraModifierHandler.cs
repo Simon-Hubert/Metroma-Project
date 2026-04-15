@@ -333,7 +333,11 @@ namespace Metroma.CameraTool.Modifiers
             Vector3 basePos = transform.position;
             Quaternion baseRot = transform.rotation;
 
-            if (_appliedLocalPos != Vector3.zero || _appliedLocalRot != Quaternion.identity)
+            bool isDrivenByTool = CameraTool.Active != null && CameraTool.Active.IsControlActive;
+
+            // If we are NOT driven by the tool (released), we must revert the previous local offset 
+            // to find the "floating" world base.
+            if (!isDrivenByTool && (_appliedLocalPos != Vector3.zero || _appliedLocalRot != Quaternion.identity))
             {
                 basePos = transform.position - (transform.rotation * _appliedLocalPos);
                 baseRot = transform.rotation * Quaternion.Inverse(_appliedLocalRot);

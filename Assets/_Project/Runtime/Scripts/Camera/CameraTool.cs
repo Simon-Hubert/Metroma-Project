@@ -64,6 +64,12 @@ namespace Metroma.CameraTool
         public event Action<CameraMarkerBase> OnMarkerEventHit;
 
         [Foldout("Animation Settings")]
+        [Tooltip("If unchecked, the tool releases control and stops overwriting the camera transform.")]
+        [SerializeField] private bool autoHandleCamera = true;
+        
+        public bool IsControlActive => autoHandleCamera;
+
+        [Foldout("Animation Settings")]
         [Range(0f, 1f)]
         [SerializeField] private float splineProgress;
 
@@ -151,7 +157,7 @@ namespace Metroma.CameraTool
 
         private void LateUpdate()
         {
-            if (!_isInitialized)
+            if (!_isInitialized || !autoHandleCamera)
                 return;
 
             UpdateEffectsTimers();
@@ -531,6 +537,41 @@ namespace Metroma.CameraTool
         {
             _activeRailIndex = idx;
         }
+
+        /// <summary> Toggles whether this tool should actively control the target camera. </summary>
+        public void SetControlActive(bool active)
+        {
+            autoHandleCamera = active;
+        }
+
+        /// <summary> Snaps the camera instantly to a scene reference. </summary>
+        public void SnapToTransform(Transform target, bool matchFOV = true)
+        {
+            if (target == null || targetCamera == null) return;
+            
+            _cameraTransform.SetPositionAndRotation(target.position, target.rotation);
+            if (matchFOV && target.TryGetComponent<UnityEngine.Camera>(out var otherCam))
+                targetCamera.fieldOfView = otherCam.fieldOfView;
+
+            // Update state so we stay here
+            _targetPose = new CameraPose { position = target.position, rotation = target.rotation, fov = targetCamera.fieldOfView };
+            State = CameraState.StaticPose;
+        }
+
+        /// <summary> Blends the camera from its current position to a scene reference. </summary>
+        public void TransitionToTransform(Transform target, float duration, AnimationCurve curve = null)
+        {
+            if (target == null) return;
+
+            CameraPose p = new CameraPose
+            {
+                position = target.position,
+                rotation = target.rotation,
+                fov = target.TryGetComponent<UnityEngine.Camera>(out var otherCam) ? otherCam.fieldOfView : targetCamera.fieldOfView
+            };
+
+            TransitionToPose(p, duration, curve);
+        }
  
         /// <summary> Resets to chained rail mode, evaluating all splines. </summary>
         public void ResetToChainMode()
@@ -620,7 +661,9 @@ namespace Metroma.CameraTool
         public List<Transform> EditorLookAtTargets => lookAtTargets;
         public List<CameraSplineSegment> EditorSegments(int chapterIndex) 
         {
-            if (chapterIndex < 0 || chapterIndex >= chapters.Count) return null;
+            if (chapterIndex < 0 || chapterIndex >= chapters.Count)
+                return null;
+            
             return chapters[chapterIndex].segments;
         }
 

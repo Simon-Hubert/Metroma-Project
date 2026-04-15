@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Timeline;
 using Metroma.CameraTool.Modifiers;
 
+
 namespace Metroma.CameraTool.Timeline
 {
     [Serializable]
@@ -30,9 +31,13 @@ namespace Metroma.CameraTool.Timeline
             if (tool.TargetCamera != null)
             {
                 if (profile != null)
+                {
                     CameraModifiers.DoDollyZoom(tool.TargetCamera, pushDistance, targetFOV, duration, profile);
+                }
                 else
+                {
                     CameraModifiers.DoDollyZoom(tool.TargetCamera, pushDistance, targetFOV, duration, curve);
+                }
             }
         }
     }

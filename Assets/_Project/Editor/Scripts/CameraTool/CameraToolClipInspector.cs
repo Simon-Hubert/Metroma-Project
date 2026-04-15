@@ -74,9 +74,9 @@ namespace Metroma.CameraTool.Editor
             GUI.Label(headerRect, "  🎬  Camera Spline Clip", _headerStyle);
         }
 
-        // ══════════════════════════════════════════════════════════════
+        // ════════════════════
         // Progress Section
-        // ══════════════════════════════════════════════════════════════
+        // ════════════════════
 
         private void DrawProgressSection()
         {
@@ -222,9 +222,8 @@ namespace Metroma.CameraTool.Editor
 
         private static void PreviewAtProgress(float progress)
         {
-            // Find the CameraTool in the scene
-            CameraTool tool = Object.FindFirstObjectByType<CameraTool>();
-            if (tool == null)
+            CameraTool tool = FindFirstObjectByType<CameraTool>();
+            if (!tool)
             {
                 Debug.LogWarning("[CameraToolClip] No CameraTool found in scene for preview.");
                 return;
@@ -233,9 +232,8 @@ namespace Metroma.CameraTool.Editor
             tool.EditorEvaluateAt(progress);
             SceneView.RepaintAll();
 
-            // Focus scene view on the evaluated position
             SceneView sv = SceneView.lastActiveSceneView;
-            if (sv != null)
+            if (sv)
             {
                 Dreamteck.Splines.SplineSample sample = tool.EditorSampleAt(progress);
                 sv.LookAt(sample.position, Quaternion.LookRotation(sample.forward, sample.up), 5f);
@@ -249,7 +247,8 @@ namespace Metroma.CameraTool.Editor
 
         private static void InitStyles()
         {
-            if (_headerStyle != null) return;
+            if (_headerStyle != null)
+                return;
 
             _headerStyle = new GUIStyle(EditorStyles.boldLabel)
             {
