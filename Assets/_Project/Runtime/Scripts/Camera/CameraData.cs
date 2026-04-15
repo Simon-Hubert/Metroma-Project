@@ -13,6 +13,7 @@ namespace Metroma.CameraTool
         public Quaternion rotation;
         public float fov;
         public float distance;
+        public int railIdx;
 
         public static CameraPose Identity => new CameraPose
         {

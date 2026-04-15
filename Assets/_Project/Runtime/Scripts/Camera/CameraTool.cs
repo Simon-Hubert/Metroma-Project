@@ -118,6 +118,7 @@ namespace Metroma.CameraTool
         private Vector3 _transitionLookAtPoint;
         private float _rotationSmoothness;
         private float _rotationReturnTimer;
+        private int _lastEvaluatedRailIndex = -1;
 
         private CameraState _state = CameraState.FollowRail;
         private CameraChapter _activeChapter;
@@ -177,7 +178,7 @@ namespace Metroma.CameraTool
 
             if (_isDrivenByTimeline)
             {
-                if (State == CameraState.Transitioning || State == CameraState.ReturningToRail)
+                if (State == CameraState.Transitioning || State == CameraState.ReturningToRail || _rotationReturnTimer > 0)
                 {
                     ApplyCameraPose(_timelinePose);
                 }
@@ -596,6 +597,14 @@ namespace Metroma.CameraTool
                 }
             }
 
+            // ── Intra-Chapter Rail-to-Rail Smoothing (Mixer Version) ──
+            // Detect if the Mixer just jumped to a different rail.
+            if (_lastEvaluatedRailIndex != -1 && _lastEvaluatedRailIndex != railIdx && Application.isPlaying)
+            {
+                _rotationReturnTimer = 0.5f;
+            }
+            _lastEvaluatedRailIndex = railIdx;
+
             SplineSample sample = splineRails[railIdx].Evaluate(finalT);
             return new CameraPose
             {
@@ -717,6 +726,16 @@ namespace Metroma.CameraTool
                     int localSeg = absoluteSegmentIndex - running;
                     float tStart = (float)localSeg / count;
                     float tEnd = (float)(localSeg + 1) / count;
+
+                    // ── Intra-Chapter Rail-to-Rail Smoothing ──
+                    // Detect if we just jumped to a different rail within the same chapter.
+                    // If we did, we trigger the common smoothing buffer to ensure a glide instead of a snap.
+                    if (_lastEvaluatedRailIndex != -1 && _lastEvaluatedRailIndex != r && Application.isPlaying)
+                    {
+                        _rotationReturnTimer = 0.5f;
+                    }
+                    _lastEvaluatedRailIndex = r;
+
                     return _chainRails[r].Evaluate(Mathf.Lerp(tStart, tEnd, localT));
                 }
                 running += count;
@@ -838,8 +857,18 @@ namespace Metroma.CameraTool
             
             _activeRailIndex = chapter.startRailIndex;
             _activeChapter = chapter;
+            selectedChapterIndex = index;
+            _lastEvaluatedRailIndex = -1;
 
-            // ── 3. Initialize Transition Logic ──
+            // ── 3. Initialize Universal Smoothing Parameters ──
+            // We set these unconditionally so intra-chapter rail smoothing functions correctly
+            // even if the chapter start itself was instant.
+            _transitionLookAtMode = lookAtMode;
+            _transitionLookAtTarget = lookAtTarget;
+            _rotationSmoothness = rotationSmoothness;
+            _rotationReturnTimer = 0;
+
+            // ── 4. Initialize Transition Logic ──
             if (blendDuration > 0.01f)
             {
                 splineProgress = 0;
@@ -849,11 +878,6 @@ namespace Metroma.CameraTool
                 playableDirector.time = 0;
                 playableDirector.Evaluate();
                 
-                _transitionLookAtMode = lookAtMode;
-                _transitionLookAtTarget = lookAtTarget;
-                _rotationSmoothness = rotationSmoothness;
-                _rotationReturnTimer = 0;
-
                 if (lookAtMode == TransitionLookAtMode.ChapterStart)
                 {
                     _transitionLookAtPoint = _timelinePose.position;
@@ -895,7 +919,8 @@ namespace Metroma.CameraTool
 
         private void BindTimelineEntries(TimelineAsset asset)
         {
-            if (asset == null || playableDirector == null) return;
+            if (asset == null || playableDirector == null)
+                return;
 
             foreach (var track in asset.GetOutputTracks())
             {

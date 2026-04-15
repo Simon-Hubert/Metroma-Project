@@ -1,36 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7331605735638180645
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bdb6a7afaa2ce94b9251ae2b4cfad5a, type: 3}
-  m_Name: "Camera/\u23ED Next Chapter"
-  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraNextChapterMarker
-  m_Time: 6
-  nextChapterName: TestCameraTimeline 2
-  blendDuration: 5
---- !u!114 &-5831079082513025108
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bf4880fd12bdf49ae5346cb1682d87, type: 3}
-  m_Name: "Camera/\U0001F3A5 Handheld Mode"
-  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraHandheldMarker
-  m_Time: 1
-  profile: {fileID: 11400000, guid: dc112b0a9856e8e4ca613b7793c6f668, type: 2}
-  deactivate: 0
---- !u!114 &-3262800720718288160
+--- !u!114 &-8411829749052352355
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,7 +15,7 @@ MonoBehaviour:
   template:
     railIndex: 1
     chapterIndex: 0
-    startProgress: 0.8333333
+    startProgress: 0.5
     endProgress: 1
     easingCurve:
       serializedVersion: 2
@@ -72,7 +42,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     lookAtWeight: 1
---- !u!114 &-365699644684406675
+--- !u!114 &-7331605735638180645
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,72 +51,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b01412f1c8f64343a25a30ec3435a27, type: 3}
-  m_Name: "Camera/\U0001F3AE Gamepad Haptic"
-  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraHapticMarker
-  m_Time: 2
-  profile: {fileID: 11400000, guid: 6a287b0934ddf9c4a9fe8bd4dac858a4, type: 2}
-  intensityCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.50000304
-      value: 0.99619293
-      inSlope: -0.010376658
-      outSlope: -0.010376658
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.73333174
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  lowFreq: 1
-  highFreq: 1
-  duration: 5
-  usePattern: 0
-  pulseCount: 1
-  pulseInterval: 0.15
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
-  m_Name: TestCameraTimeline 1
-  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.TimelineAsset
-  m_Version: 0
-  m_Tracks:
-  - {fileID: 8395023584946261708}
-  m_FixedDuration: 0
-  m_EditorSettings:
-    m_Framerate: 60
-    m_ScenePreview: 1
-  m_DurationMode: 0
-  m_MarkerTrack: {fileID: 0}
---- !u!114 &574561968949377707
+  m_Script: {fileID: 11500000, guid: 2bdb6a7afaa2ce94b9251ae2b4cfad5a, type: 3}
+  m_Name: "Camera/\u23ED Next Chapter"
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraNextChapterMarker
+  m_Time: 10
+  nextChapterName: TestCameraTimeline 2
+  blendDuration: 5
+  lookAtMode: 1
+  lookAtTarget: {fileID: 0}
+  cameraSmoothSpeed: 2
+--- !u!114 &-2849525626819602242
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,7 +76,7 @@ MonoBehaviour:
     railIndex: 0
     chapterIndex: 0
     startProgress: 0
-    endProgress: 0.8333333
+    endProgress: 0.5
     easingCurve:
       serializedVersion: 2
       m_Curve:
@@ -188,6 +102,27 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     lookAtWeight: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
+  m_Name: TestCameraTimeline 1
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.TimelineAsset
+  m_Version: 0
+  m_Tracks:
+  - {fileID: 8395023584946261708}
+  m_FixedDuration: 0
+  m_EditorSettings:
+    m_Framerate: 60
+    m_ScenePreview: 1
+  m_DurationMode: 0
+  m_MarkerTrack: {fileID: 0}
 --- !u!114 &8395023584946261708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,7 +147,7 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 0
     m_ClipIn: 0
-    m_Asset: {fileID: 574561968949377707}
+    m_Asset: {fileID: -2849525626819602242}
     m_Duration: 5
     m_TimeScale: 1
     m_ParentTrack: {fileID: 8395023584946261708}
@@ -281,8 +216,8 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 5
     m_ClipIn: 0
-    m_Asset: {fileID: -3262800720718288160}
-    m_Duration: 1
+    m_Asset: {fileID: -8411829749052352355}
+    m_Duration: 5
     m_TimeScale: 1
     m_ParentTrack: {fileID: 8395023584946261708}
     m_EaseInDuration: 0
@@ -349,6 +284,4 @@ MonoBehaviour:
     m_DisplayName: Rail 1 Sequence
   m_Markers:
     m_Objects:
-    - {fileID: -365699644684406675}
-    - {fileID: -5831079082513025108}
     - {fileID: -7331605735638180645}
