@@ -190,7 +190,20 @@ namespace Metroma.CameraTool.Editor
             if (_foldSegments.boolValue)
             {
                 EditorGUI.indentLevel++;
+                
+                EditorGUI.BeginChangeCheck();
                 EditorGUILayout.PropertyField(_splineProgress, new GUIContent("Manual Scrub"));
+                if (EditorGUI.EndChangeCheck())
+                {
+                    serializedObject.ApplyModifiedProperties();
+                    if (tool.EditorDirector != null)
+                    {
+                        Undo.RecordObject(tool.EditorDirector, "Manual Scrub");
+                        tool.EditorDirector.time = _splineProgress.floatValue * tool.EditorDirector.duration;
+                        tool.EditorDirector.Evaluate();
+                    }
+                }
+                
                 EditorGUI.indentLevel--;
                 
                 EditorGUILayout.Space(8);
@@ -262,8 +275,19 @@ namespace Metroma.CameraTool.Editor
         {
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.Space(12);
-            if (GUILayout.Button("⟳  SCAN PROJECT", GUILayout.Height(26))) AutoScanChapters(tool);
-            if (GUILayout.Button("🗑  CLEAR", GUILayout.Width(80), GUILayout.Height(26)))
+            if (GUILayout.Button("⟳  SCAN", GUILayout.Height(26))) 
+                AutoScanChapters(tool);
+            
+            GUI.backgroundColor = CyanAccent;
+            if (GUILayout.Button("⚡ AUTO-DISTRIBUTE", GUILayout.Height(26)))
+            {
+                Undo.RecordObject(tool, "Auto Calculate Rail Counts");
+                tool.AutoCalculateRailCounts();
+                EditorUtility.SetDirty(tool);
+            }
+            GUI.backgroundColor = Color.white;
+
+            if (GUILayout.Button("🗑  CLEAR", GUILayout.Width(70), GUILayout.Height(26)))
             {
                 if (EditorUtility.DisplayDialog("Clear Chapters", "Delete all?", "Yes", "No"))
                 {
@@ -347,10 +371,24 @@ namespace Metroma.CameraTool.Editor
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.Space(30);
                     EditorGUILayout.BeginVertical();
+                    EditorGUI.BeginChangeCheck();
                     EditorGUILayout.PropertyField(nameProp);
                     EditorGUILayout.PropertyField(timelineProp);
-                    EditorGUILayout.PropertyField(railIdxProp);
+                    EditorGUILayout.PropertyField(railIdxProp, new GUIContent("Start Rail Index"));
+                    
+                    GUI.enabled = false;
+                    EditorGUILayout.PropertyField(chapterProp.FindPropertyRelative("railCount"), new GUIContent("Rail Count (Auto)"));
+                    GUI.enabled = true;
+                    
                     EditorGUILayout.PropertyField(colorProp, new GUIContent("Debug Color"));
+                    
+                    if (EditorGUI.EndChangeCheck())
+                    {
+                        serializedObject.ApplyModifiedProperties();
+                        tool.AutoCalculateRailCounts();
+                        EditorUtility.SetDirty(tool);
+                    }
+                    
                     EditorGUILayout.Space(8);
                     EditorGUILayout.EndVertical();
                     EditorGUILayout.EndHorizontal();
@@ -684,6 +722,7 @@ namespace Metroma.CameraTool.Editor
             _statusBadStyle = new GUIStyle(EditorStyles.miniLabel) { fontSize = 10, fontStyle = FontStyle.Bold, normal = { textColor = BadColor } };
         }
 
+
         // ── Logic ─────────────────────────────────────────────────────
 
         private void AutoScanChapters(CameraTool tool)
@@ -742,7 +781,6 @@ namespace Metroma.CameraTool.Editor
                 
                 Debug.Log($"<color=#1ebfff><b>[CameraTool]</b></color> Generated new Timeline: {path}");
             }
-
             if (!timeline)
                 return;
 
@@ -773,31 +811,90 @@ namespace Metroma.CameraTool.Editor
             }
 
             var segs = tool.EditorSegments(index);
-            double currentTime = 0;
-
-            for (int i = 0; i < segs.Count; i++)
+            if (segs.Count == 0)
             {
+                return;
+            }
+
+            // Calculate total MOVE chapter duration to correctly map spline progress (0-1)
+            float totalMoveDur = 0f;
+            foreach (var s in segs)
+            {
+                totalMoveDur += s.duration;
+            }
+
+            int startRailIdx = tool.EditorChapter(index).startRailIndex;
+            int railLimit = Mathf.Min(startRailIdx + tool.EditorChapter(index).railCount, tool.EditorRailCount);
+            
+            // --- Generation: ONE CLIP PER RAIL ---
+            double clipTimelineStart = 0;
+            float accumulatedMoveDur = 0f;
+
+            for (int r = startRailIdx; r < railLimit; r++)
+            {
+                int segmentsInThisRail = tool.EditorSegmentCountInRail(r);
+                if (segmentsInThisRail <= 0)
+                {
+                    continue;
+                }
+
                 TimelineClip clip = track.CreateDefaultClip();
-                clip.displayName = segs[i].label;
-                clip.start = currentTime;
-                clip.duration = segs[i].duration;
+                clip.displayName = $"Rail {r} Sequence";
+                clip.start = clipTimelineStart;
+
+                // 1. Duration on Timeline (includes waits)
+                float railTimelineDuration = 0;
+                // 2. Duration for Spline Progress (move only)
+                float railMoveDuration = 0;
+
+                int segStartIdx = 0;
+                // Important: find where this rail starts in the chapter's flat segment list
+                for (int prev = startRailIdx; prev < r; prev++)
+                {
+                    segStartIdx += tool.EditorSegmentCountInRail(prev);
+                }
+
+                for (int s = 0; s < segmentsInThisRail; s++)
+                {
+                    if (segStartIdx + s < segs.Count)
+                    {
+                        var seg = segs[segStartIdx + s];
+                        railTimelineDuration += seg.duration + seg.waitAtEnd;
+                        railMoveDuration += seg.duration;
+                    }
+                }
+
+                clip.duration = railTimelineDuration;
 
                 CameraToolClip asset = clip.asset as CameraToolClip;
                 if (asset)
                 {
-                    asset.name = $"Segment_{i}_{segs[i].label}";
+                    asset.name = $"Rail_{r}_Sequence_Clip";
                     
                     if (!EditorUtility.IsPersistent(asset))
                     {
                         AssetDatabase.AddObjectToAsset(asset, timeline);
                     }
 
-                    asset.Template.startProgress = (float)i / segs.Count;
-                    asset.Template.endProgress = (float)(i + 1) / segs.Count;
-                    asset.Template.easingCurve = new AnimationCurve(segs[i].easing.keys);
+                    // Map progress relative to the Chapter using MOVE durations
+                    asset.Template.railIndex = r;
+                    asset.Template.chapterIndex = index;
+
+                    if (totalMoveDur > 0)
+                    {
+                        asset.Template.startProgress = accumulatedMoveDur / totalMoveDur;
+                        asset.Template.endProgress = (accumulatedMoveDur + railMoveDuration) / totalMoveDur;
+                    }
+                    else
+                    {
+                        asset.Template.startProgress = 0;
+                        asset.Template.endProgress = 1;
+                    }
+                    asset.Template.easingCurve = AnimationCurve.Linear(0, 0, 1, 1);
                 }
 
-                currentTime += segs[i].duration + segs[i].waitAtEnd;
+                clipTimelineStart += railTimelineDuration;
+                accumulatedMoveDur += railMoveDuration;
             }
 
             // ── 4. Automatic binding to Director ──
@@ -868,6 +965,7 @@ namespace Metroma.CameraTool.Editor
             float elapsed = (float)(EditorApplication.timeSinceStartup - _previewStartTime);
             if (elapsed >= _previewTotalDuration)
             {
+                ((CameraTool)target).EditorEvaluateAt(1f);
                 StopPreview();
                 return;
             }

@@ -12,6 +12,12 @@ namespace Metroma.CameraTool.Timeline
     [Serializable]
     public class CameraToolBehaviour : PlayableBehaviour
     {
+        [Tooltip("If >= 0, progress (0-1) is mapped to this specific rail index. If -1, it maps to the chapter sequence specified below.")]
+        public int railIndex = -1;
+
+        [Tooltip("The chapter context for this clip. Used when railIndex is -1.")]
+        public int chapterIndex = -1;
+
         [Range(0f, 1f)]
         public float startProgress;
 
