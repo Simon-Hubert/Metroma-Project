@@ -41,14 +41,15 @@ namespace Metroma.CameraTool.Editor
 
         private static float GetScale(Vector3 position) => HandleUtility.GetHandleSize(position);
 
-        // ══════════════════════════════════════════════════════════════
+        // ═══════════════════════════
         // Per-Segment Colored Path
-        // ══════════════════════════════════════════════════════════════
+        // ═══════════════════════════
 
         private static void DrawSegmentedSplinePath(CameraTool tool, List<SplineComputer> rails)
         {
             int totalSegments = tool.EditorTotalSegmentCount;
-            if (totalSegments == 0) return;
+            if (totalSegments == 0)
+                return;
 
             Color mainColor = Color.cyan;
             int globalSegIndex = 0;
@@ -56,7 +57,8 @@ namespace Metroma.CameraTool.Editor
             for (int r = 0; r < rails.Count; r++)
             {
                 SplineComputer spline = rails[r];
-                if (spline == null) continue;
+                if (spline == null)
+                    continue;
 
                 int nodeCount = spline.pointCount;
                 int splineSegments = Mathf.Max(0, nodeCount - 1);
@@ -108,9 +110,9 @@ namespace Metroma.CameraTool.Editor
             }
         }
 
-        // ══════════════════════════════════════════════════════════════
+        // ═════════════════════
         // Progress & Camera
-        // ══════════════════════════════════════════════════════════════
+        // ═════════════════════
 
         private static void DrawProgressPoint(CameraTool tool)
         {
@@ -121,15 +123,17 @@ namespace Metroma.CameraTool.Editor
             Gizmos.DrawSphere(sample.position, SPHERE_RADIUS * s);
 
             Gizmos.color = DirectionColor;
-            Vector3 end = sample.position + (Vector3)sample.forward * (DIRECTION_ARROW_LENGTH * s);
+            Vector3 end = sample.position + sample.forward * (DIRECTION_ARROW_LENGTH * s);
+            
             Gizmos.DrawLine(sample.position, end);
             Gizmos.DrawSphere(end, (SPHERE_RADIUS * 0.5f) * s);
         }
 
         private static void DrawCameraFrustum(CameraTool tool)
         {
-            UnityEngine.Camera cam = tool.EditorCamera;
-            if (cam == null) return;
+            Camera cam = tool.EditorCamera;
+            if (cam == null)
+                return;
 
             SplineSample sample = tool.EditorSampleAt(tool.SplineProgress);
 
@@ -139,17 +143,19 @@ namespace Metroma.CameraTool.Editor
             Gizmos.DrawFrustum(
                 Vector3.zero,
                 cam.fieldOfView,
-                5f * GetScale(sample.position), // Fixed visual length scaled by distance
+                5f * GetScale(sample.position),
                 cam.nearClipPlane,
                 cam.aspect
             );
+            
             Gizmos.matrix = oldMatrix;
         }
 
         private static void DrawLookAtLine(CameraTool tool)
         {
             Transform lookAt = tool.EditorLookAtTarget;
-            if (lookAt == null) return;
+            if (lookAt == null)
+                return;
 
             SplineSample sample = tool.EditorSampleAt(tool.SplineProgress);
             float s = GetScale(lookAt.position);

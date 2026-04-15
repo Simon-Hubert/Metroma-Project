@@ -154,15 +154,19 @@ namespace Metroma.CameraTool.Editor
 
             if (GUILayout.Button(Application.isPlaying ? "🎮  TEST VIBRATION" : "⏸  PLAY MODE REQUIRED TO TEST", GUILayout.Height(32)))
             {
-                CameraHapticMarker marker = (CameraHapticMarker)target;
-                if (Camera.main != null)
+                if (Camera.main)
                 {
                     var profile = (CameraHapticProfile)_profile.objectReferenceValue;
-                    if (profile != null)
+                    if (profile)
+                    {
                         CameraModifiers.DoHaptic(Camera.main, profile);
+                    }
                     else
-                        CameraModifiers.DoHaptic(Camera.main, _intensityCurve.animationCurveValue, _lowFreq.floatValue, _highFreq.floatValue, _duration.floatValue, 
+                    {
+                        CameraModifiers.DoHaptic(Camera.main, _intensityCurve.animationCurveValue, _lowFreq.floatValue,
+                            _highFreq.floatValue, _duration.floatValue,
                             _usePattern.boolValue, _pulseCount.intValue, _pulseInterval.floatValue);
+                    }
                 }
             }
 

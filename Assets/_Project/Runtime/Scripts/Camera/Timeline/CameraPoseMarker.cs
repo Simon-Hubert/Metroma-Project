@@ -22,7 +22,8 @@ namespace Metroma.CameraTool.Timeline
 
         public override void Execute(CameraTool tool)
         {
-            if (tool == null) return;
+            if (tool == null)
+                return;
 
             CameraPose target = new CameraPose
             {

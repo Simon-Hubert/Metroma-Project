@@ -70,12 +70,17 @@ namespace Metroma.CameraTool.Editor
 
             if (GUILayout.Button(btnLabel, GUILayout.Height(32)))
             {
-                if (Camera.main != null)
+                if (Camera.main)
                 {
                     if (_deactivate.boolValue)
+                    {
                         CameraModifiers.SetHandheld(Camera.main, false, null);
+                    }
                     else if (_profile.objectReferenceValue != null)
-                        CameraModifiers.SetHandheld(Camera.main, true, (CameraHandheldProfile)_profile.objectReferenceValue);
+                    {
+                        CameraModifiers.SetHandheld(Camera.main, true,
+                            (CameraHandheldProfile)_profile.objectReferenceValue);
+                    }
                 }
             }
 

@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Timeline;
 using Metroma.CameraTool.Modifiers;
+
 
 namespace Metroma.CameraTool.Timeline
 {
@@ -21,7 +21,8 @@ namespace Metroma.CameraTool.Timeline
 
         public override void Execute(CameraTool tool)
         {
-            if (tool == null || tool.TargetCamera == null) return;
+            if (tool == null || tool.TargetCamera == null)
+                return;
 
             if (deactivate)
             {

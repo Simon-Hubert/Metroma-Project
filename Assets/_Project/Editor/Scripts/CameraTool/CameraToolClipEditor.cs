@@ -50,7 +50,6 @@ namespace Metroma.CameraTool.Editor
                 float start = templateProp.FindPropertyRelative("startProgress").floatValue;
                 float end = templateProp.FindPropertyRelative("endProgress").floatValue;
 
-                // Dynamic highlight color based on progress range
                 float midProgress = (start + end) * 0.5f;
                 options.highlightColor = Color.Lerp(
                     new Color(0.15f, 0.45f, 0.9f),

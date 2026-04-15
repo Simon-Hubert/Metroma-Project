@@ -101,16 +101,21 @@ namespace Metroma.CameraTool.Editor
             if (GUILayout.Button(Application.isPlaying ? "▶  TEST SHAKE & VIBRATION" : "⏸  PLAY MODE REQUIRED TO TEST", GUILayout.Height(32)))
             {
                 CameraShakeMarker marker = (CameraShakeMarker)target;
-                if (Camera.main != null)
+                if (Camera.main)
                 {
-                    // Call the modifiers directly to be safe and avoid tool dependency in editor
                     if (marker.Intensity > 0)
                     {
                         var profile = (CameraShakeProfile)_profile.objectReferenceValue;
-                        if (profile != null)
+                        if (profile)
+                        {
                             CameraModifiers.DoShake(Camera.main, profile, marker.Duration);
+                        }
                         else
-                            CameraModifiers.DoShake(Camera.main, _intensity.floatValue, _duration.floatValue, _roughness.floatValue, _fadeOut.boolValue, _intensityCurve.animationCurveValue, _syncHaptics.boolValue);
+                        {
+                            CameraModifiers.DoShake(Camera.main, _intensity.floatValue, _duration.floatValue,
+                                _roughness.floatValue, _fadeOut.boolValue, _intensityCurve.animationCurveValue,
+                                _syncHaptics.boolValue);
+                        }
                     }
                 }
             }
