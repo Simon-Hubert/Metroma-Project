@@ -1,3 +1,4 @@
+using System;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -15,10 +16,11 @@ namespace Metroma
         [SerializeField] private AView _defaultView2;
         [SerializeField] private AView _targetView2;
         [SerializeField] private Ad _ad;
-        
+
+        public event Action OnEnded;
         
         [Button]
-        private void StartMiniGame() {
+        public void StartMiniGame() {
             _data.IsIn = true;
             _transManager.TryTransition(_data);
             CameraHelpers.TransitionViewToView(_miniGameCam, _defaultView, _targetView, 2.5f);
@@ -31,6 +33,7 @@ namespace Metroma
             _data.IsIn = false;
             _transManager.TryTransition(_data);
             CameraHelpers.TransitionViewToView(_miniGameCam, _defaultView2, _targetView2, 2.5f);
+            OnEnded?.Invoke();
         }
 
     }

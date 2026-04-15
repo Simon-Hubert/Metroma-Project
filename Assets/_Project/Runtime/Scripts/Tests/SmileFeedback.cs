@@ -18,6 +18,10 @@ namespace Metroma
             _scratchControllable.OnScratch -= UpdateVisual;
         }
 
+        private void Start() {
+            _sr.color = _gradient.Evaluate(0);
+        }
+
         private void UpdateVisual() {
             _sr.color = _gradient.Evaluate(_scratchControllable.TotalDistance / _scratchCondition.Target);
         }
