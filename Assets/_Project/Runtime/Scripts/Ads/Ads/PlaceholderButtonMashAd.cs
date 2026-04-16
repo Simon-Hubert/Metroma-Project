@@ -50,7 +50,7 @@ namespace Metroma
             _buttonPressed?.Invoke(_amount);
             OnButtonPressed?.Invoke(_amount);
             if (_winCond.Evaluate(this) && !_won) {
-                //OnAdEnd();
+                OnAdEnd();
                 controllables[0].OnActionStart -= ButtonPressed;
                 _won = true;
                 UnityOnAdEnd?.Invoke();

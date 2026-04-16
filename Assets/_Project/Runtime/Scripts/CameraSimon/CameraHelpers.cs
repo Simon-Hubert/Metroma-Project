@@ -14,7 +14,11 @@ namespace Metroma
         }
 
         public static CameraConfiguration Lerp(CameraConfiguration from, CameraConfiguration to, float p) {
-            return from * (1-p) + p * to;
+            float toYaw = from.Yaw + Mathf.DeltaAngle(from.Yaw, to.Yaw);
+            CameraConfiguration result = from * (1 - p) + p * to;
+            toYaw = from.Yaw * (1 - p) + p * toYaw;
+            result.Yaw = toYaw;
+            return result;
         }
 
         public static void TransitionViewToView(Camera cam, AView from, AView to, float duration) {
@@ -23,6 +27,7 @@ namespace Metroma
 
         public static async Awaitable TransitionToViewAsync(Camera cam, AView to, float duration) {
             CameraConfiguration toConfig = to.GetConfiguration();
+            toConfig.Yaw = Mathf.DeltaAngle(0, toConfig.Yaw);
             CameraConfiguration fromConfig = new CameraConfiguration()
             {
                 Distance = 0,
