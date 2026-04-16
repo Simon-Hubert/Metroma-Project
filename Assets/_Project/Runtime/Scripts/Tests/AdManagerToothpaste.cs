@@ -20,18 +20,22 @@ namespace Metroma
         public event Action OnEnded;
         
         [Button]
-        public void StartMiniGame() {
+        public async Awaitable StartMiniGame() {
             _data.IsIn = true;
-            _transManager.TryTransition(_data);
+            await _transManager.TryTransitionAsync(_data);
             CameraHelpers.TransitionViewToView(_miniGameCam, _defaultView, _targetView, 2.5f);
             _ad.StartAd();
             _ad.OnAdEnded += OnAdEnded;
         }
 
         private void OnAdEnded() {
+            _ = OnAdEndedAsync();
+        }
+        
+        private async Awaitable OnAdEndedAsync() {
             _ad.OnAdEnded -= OnAdEnded;
             _data.IsIn = false;
-            _transManager.TryTransition(_data);
+            await _transManager.TryTransitionAsync(_data);
             CameraHelpers.TransitionViewToView(_miniGameCam, _defaultView2, _targetView2, 2.5f);
             OnEnded?.Invoke();
         }

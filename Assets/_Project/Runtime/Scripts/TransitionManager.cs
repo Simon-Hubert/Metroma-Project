@@ -31,6 +31,13 @@ namespace Metroma
             return true;
         }
         
+        public async Awaitable TryTransitionAsync(MiniGameTransitionData data) {
+            if (_isTransitioning) return;
+            await CameraHelpers.TransitionToViewAsync(data.Camera, data.View, 0.5f);
+            if (data.IsIn) StartCoroutine(TransiInCoroutine(data));
+            else StartCoroutine(TransiOutCoroutine(data));
+        }
+        
         IEnumerator TransiInCoroutine(MiniGameTransitionData data) {
             _isTransitioning = true;
             ActivateZTest(data.Material.Material);

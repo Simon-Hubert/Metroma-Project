@@ -21,6 +21,28 @@ namespace Metroma
             _ = ViewToViewTransitionAsync(cam, from, to, duration);
         }
 
+        public static async Awaitable TransitionToViewAsync(Camera cam, AView to, float duration) {
+            CameraConfiguration toConfig = to.GetConfiguration();
+            CameraConfiguration fromConfig = new CameraConfiguration()
+            {
+                Distance = 0,
+                Fov = cam.fieldOfView,
+                Pitch = Mathf.DeltaAngle(0,cam.transform.rotation.eulerAngles.x),
+                Yaw = Mathf.DeltaAngle(0,cam.transform.rotation.eulerAngles.y),
+                Roll = Mathf.DeltaAngle(0,cam.transform.rotation.eulerAngles.z),
+                Pivot = cam.transform.position,
+            };
+            ApplyConfiguration(cam, fromConfig);
+            float t = 0;
+            while (t < duration) {
+                t += Time.deltaTime;
+                float p = t / duration;
+                ApplyConfiguration(cam, Lerp(fromConfig, toConfig, p));
+                await Awaitable.NextFrameAsync();
+            }
+            ApplyConfiguration(cam, toConfig);
+        }
+
         public static async Awaitable ViewToViewTransitionAsync(Camera cam, AView from, AView to, float duration) {
             try {
                 CameraConfiguration fromConfig = from.GetConfiguration();
