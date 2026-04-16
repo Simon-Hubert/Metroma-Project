@@ -109,6 +109,16 @@ namespace Metroma.CameraTool
         private Transform _lookAtFrom;
         private float _lookAtLerp;
         private float _lookAtDuration;
+        private bool _isDrivenByTimeline;
+        private CameraPose _timelinePose;
+        private bool _playOnTransitionArrival;
+        
+        private TransitionLookAtMode _transitionLookAtMode;
+        private Transform _transitionLookAtTarget;
+        private Vector3 _transitionLookAtPoint;
+        private float _rotationSmoothness;
+        private float _rotationReturnTimer;
+        private int _lastEvaluatedRailIndex = -1;
 
         private CameraState _state = CameraState.FollowRail;
         private CameraChapter _activeChapter;
@@ -158,14 +168,28 @@ namespace Metroma.CameraTool
         private void LateUpdate()
         {
             if (!_isInitialized || !autoHandleCamera)
+            {
                 return;
+            }
 
             UpdateEffectsTimers();
             UpdateTransitionState();
+            UpdateRotationReturn();
 
-            CameraPose railPose = SampleRailPose();
-
-            ApplyCameraPose(railPose);
+            if (_isDrivenByTimeline)
+            {
+                if (State == CameraState.Transitioning || State == CameraState.ReturningToRail || _rotationReturnTimer > 0)
+                {
+                    ApplyCameraPose(_timelinePose);
+                }
+            }
+            else
+            {
+                CameraPose railPose = SampleRailPose();
+                ApplyCameraPose(railPose);
+            }
+            
+            _isDrivenByTimeline = false;
         }
         #endregion
 
@@ -234,7 +258,9 @@ namespace Metroma.CameraTool
         private void UpdateTransitionState()
         {
             if (State != CameraState.Transitioning && State != CameraState.ReturningToRail)
+            {
                 return;
+            }
 
             _transitionTime += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(_transitionTime / _transitionDuration);
@@ -243,6 +269,18 @@ namespace Metroma.CameraTool
             if (t >= 1f)
             {
                 HandleTransitionArrival();
+            }
+        }
+
+        private void UpdateRotationReturn()
+        {
+            if (_rotationReturnTimer > 0)
+            {
+                _rotationReturnTimer -= Time.unscaledDeltaTime;
+                if (_rotationReturnTimer < 0)
+                {
+                    _rotationReturnTimer = 0;
+                }
             }
         }
 
@@ -268,12 +306,19 @@ namespace Metroma.CameraTool
             }
             else if (State == CameraState.ReturningToRail)
             {
+                _rotationReturnTimer = 2.0f; 
                 State = CameraState.FollowRail;
                 
+                if (_playOnTransitionArrival && playableDirector)
+                {
+                    playableDirector.Play();
+                    _playOnTransitionArrival = false;
+                }
+
                 if (_activeChapter != null)
                 {
                     OnChapterActive?.Invoke(_activeChapter);
-                    _activeChapter = null; // Consume
+                    _activeChapter = null;
                 }
             }
 
@@ -299,7 +344,9 @@ namespace Metroma.CameraTool
             {
                 Vector3 targetPos = currentTarget.position;
                 if (_lookAtLerp < 1f && _lookAtFrom)
+                {
                     targetPos = Vector3.Lerp(_lookAtFrom.position, currentTarget.position, Mathf.SmoothStep(0, 1, _lookAtLerp));
+                }
 
                 Vector3 direction = targetPos - pose.position;
                 if (direction.sqrMagnitude > 0.001f)
@@ -332,35 +379,132 @@ namespace Metroma.CameraTool
                     break;
             }
 
-            _cameraTransform.SetPositionAndRotation(finalPose.position, finalPose.rotation);
-            targetCamera.fieldOfView = finalPose.fov;
+            // ── 1. Calculate the final IDEAL rotation ──
+            if (State == CameraState.ReturningToRail && _transitionLookAtMode != TransitionLookAtMode.TimelineDefault)
+            {
+                Vector3 targetPoint = Vector3.zero;
+                bool hasPoint = false;
 
+                if (_transitionLookAtMode == TransitionLookAtMode.SpecificGameObject)
+                {
+                    if (_transitionLookAtTarget != null)
+                    {
+                        targetPoint = _transitionLookAtTarget.position;
+                        hasPoint = true;
+                    }
+                }
+                else
+                {
+                    targetPoint = _transitionLookAtPoint;
+                    hasPoint = true;
+                }
+
+                if (hasPoint)
+                {
+                    Vector3 lookDir = (targetPoint - finalPose.position).normalized;
+                    if (lookDir.sqrMagnitude > 0.001f)
+                    {
+                        finalPose.rotation = Quaternion.LookRotation(lookDir);
+                    }
+                }
+            }
+
+            // ── 2. Calculate the final IDEAL position (including distance offset) ──
             if (finalPose.distance != 0)
-                _cameraTransform.position -= _cameraTransform.forward * finalPose.distance;
+            {
+                finalPose.position -= (finalPose.rotation * Vector3.forward) * finalPose.distance;
+            }
+
+            // ── 3. Unified Global Smoothing (Glide vs TP) ──
+            if (State == CameraState.ReturningToRail || _rotationReturnTimer > 0)
+            {
+                float t = _rotationSmoothness * Time.unscaledDeltaTime;
+                
+                _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, finalPose.position, t);
+                _cameraTransform.rotation = Quaternion.Slerp(_cameraTransform.rotation, finalPose.rotation, t);
+            }
+            else
+            {
+                _cameraTransform.SetPositionAndRotation(finalPose.position, finalPose.rotation);
+            }
+
+            targetCamera.fieldOfView = finalPose.fov;
         }
 
         private SplineSample EvaluateChainAt(float globalProgress)
         {
             if (_chainRails == null || _chainRails.Length == 0)
+            {
                 return default;
+            }
 
-            // Use chapter-specific segments if available
+            int startIdx = (_activeChapter != null) ? _activeChapter.startRailIndex : 0;
+            int count = (_activeChapter != null) ? _activeChapter.railCount : _chainRails.Length;
+
             List<CameraSplineSegment> activeSegments = (_activeChapter != null) ? _activeChapter.segments : null;
 
             if (activeSegments != null && activeSegments.Count > 0)
             {
-                return EvaluateWithSegments(globalProgress, activeSegments);
+                return EvaluateWithSegments(globalProgress, activeSegments, startIdx, count);
             }
 
-            // Fallback: Equal distribution (legacy/default mode)
-            return EvaluateLinear(globalProgress);
+            return EvaluateLinear(globalProgress, startIdx, count);
+        }
+        #endregion
+
+        #region Evaluation Engine
+        /// <summary> Synchronizes the internal cache for a chapter's durations to optimize frame-by-frame evaluation. </summary>
+        private void EnsureChapterCache(int chapterIdx)
+        {
+            if (chapters == null || chapterIdx < 0 || chapterIdx >= chapters.Count)
+            {
+                return;
+            }
+
+            var chapter = chapters[chapterIdx];
+            if (chapter.cachedTotalMoveDuration >= 0f && chapter.cachedRailDurations != null && chapter.cachedRailDurations.Length == chapter.railCount)
+            {
+                return;
+            }
+
+            chapter.cachedTotalMoveDuration = 0f;
+            chapter.cachedRailDurations = new float[chapter.railCount];
+            chapter.cachedRailSegmentStarts = new int[chapter.railCount];
+
+            int segGlobalIdx = 0;
+            
+            for (int r = 0; r < chapter.railCount; r++)
+            {
+                chapter.cachedRailSegmentStarts[r] = segGlobalIdx;
+                int railIdx = chapter.startRailIndex + r;
+                int sCount = EditorSegmentCountInRail(railIdx);
+                float railDur = 0f;
+
+                for (int s = 0; s < sCount; s++)
+                {
+                    if (segGlobalIdx < chapter.segments.Count)
+                    {
+                        railDur += chapter.segments[segGlobalIdx++].duration;
+                    }
+                }
+
+                chapter.cachedRailDurations[r] = railDur;
+                chapter.cachedTotalMoveDuration += railDur;
+            }
         }
 
-        private SplineSample EvaluateWithSegments(float globalProgress, List<CameraSplineSegment> activeSegments)
+        private SplineSample EvaluateWithSegments(float globalProgress, List<CameraSplineSegment> activeSegments, int railStartIdx, int railCount)
         {
             float totalDuration = 0;
-            foreach (var s in activeSegments) totalDuration += s.duration;
-            if (totalDuration <= 0) return EvaluateLinear(globalProgress);
+            foreach (var s in activeSegments)
+            {
+                totalDuration += s.duration;
+            }
+
+            if (totalDuration <= 0)
+            {
+                return EvaluateLinear(globalProgress, railStartIdx, railCount);
+            }
 
             float targetTime = globalProgress * totalDuration;
             float accumulatedTime = 0;
@@ -373,41 +517,230 @@ namespace Metroma.CameraTool
                     float localT = Mathf.Clamp01((targetTime - accumulatedTime) / seg.duration);
                     float easedT = seg.easing != null ? seg.easing.Evaluate(localT) : localT;
                     
-                    // Map absolute segment index 'i' to specific rail and local rail progress
-                    return EvaluateAbsSegment(i, easedT);
+                    return EvaluateAbsSegment(i, easedT, railStartIdx, railCount);
                 }
                 accumulatedTime += seg.duration;
             }
 
-            return _chainRails[_chainRails.Length - 1].Evaluate(1f);
+            return _chainRails[Mathf.Min(railStartIdx + railCount - 1, _chainRails.Length - 1)].Evaluate(1f);
         }
 
-        private SplineSample EvaluateLinear(float globalProgress)
+        private SplineSample EvaluateLinear(float globalProgress, int railStartIdx, int railCount)
         {
-            if (_chainTotalSegments == 0) return _chainRails[0].Evaluate(globalProgress);
-            float segWidth = 1f / _chainTotalSegments;
-            int targetSeg = Mathf.Clamp((int)(globalProgress / segWidth), 0, _chainTotalSegments - 1);
+            int totalSegs = 0;
+            int endIdx = Mathf.Min(railStartIdx + railCount, _chainRails.Length);
+
+            for (int r = railStartIdx; r < endIdx; r++)
+            {
+                totalSegs += _chainSegCounts[r];
+            }
+
+            if (totalSegs == 0)
+            {
+                return _chainRails[Mathf.Clamp(railStartIdx, 0, _chainRails.Length - 1)].Evaluate(globalProgress);
+            }
+
+            float segWidth = 1f / totalSegs;
+            int targetSeg = Mathf.Clamp((int)(globalProgress / segWidth), 0, totalSegs - 1);
             float segLocalT = Mathf.Clamp01((globalProgress - targetSeg * segWidth) / segWidth);
-            return EvaluateAbsSegment(targetSeg, segLocalT);
+            return EvaluateAbsSegment(targetSeg, segLocalT, railStartIdx, railCount);
         }
 
-        private SplineSample EvaluateAbsSegment(int absoluteSegmentIndex, float localT)
+        /// <summary> Evaluates progress (0-1) on a specific rail. Used for Modular Clips. </summary>
+        public SplineSample EvaluateRailLocal(int railIdx, float localT)
+        {
+            if (railIdx < 0 || railIdx >= _chainRails.Length)
+            {
+                return default;
+            }
+
+            return _chainRails[railIdx].Evaluate(localT);
+        }
+
+        /// <summary> Statelessly evaluates a camera pose on a specific rail. </summary>
+        public CameraPose GetPoseOnRail(int railIdx, float localT, int chapterIdx = -1)
+        {
+            if (splineRails == null || railIdx < 0 || railIdx >= splineRails.Count || !splineRails[railIdx])
+            {
+                return default;
+            }
+
+            float finalT = localT;
+
+            if (chapterIdx >= 0 && chapterIdx < chapters.Count)
+            {
+                EnsureChapterCache(chapterIdx);
+                var chapter = chapters[chapterIdx];
+                int relativeRail = railIdx - chapter.startRailIndex;
+
+                if (relativeRail >= 0 && relativeRail < chapter.railCount && chapter.cachedRailDurations[relativeRail] > 0)
+                {
+                    float railTotalDur = chapter.cachedRailDurations[relativeRail];
+                    float targetTime = localT * railTotalDur;
+                    float accum = 0;
+                    
+                    int segStart = chapter.cachedRailSegmentStarts[relativeRail];
+                    int segCount = EditorSegmentCountInRail(railIdx);
+
+                    for (int s = 0; s < segCount; s++)
+                    {
+                        var seg = chapter.segments[segStart + s];
+                        if (targetTime <= accum + seg.duration || s == segCount - 1)
+                        {
+                            float sLocal = Mathf.Clamp01((targetTime - accum) / seg.duration);
+                            float easedS = seg.easing != null ? seg.easing.Evaluate(sLocal) : sLocal;
+                            finalT = ((float)s + easedS) / segCount;
+                            break;
+                        }
+                        accum += seg.duration;
+                    }
+                }
+            }
+
+            // ── Intra-Chapter Rail-to-Rail Smoothing (Mixer Version) ──
+            // Detect if the Mixer just jumped to a different rail.
+            if (_lastEvaluatedRailIndex != -1 && _lastEvaluatedRailIndex != railIdx && Application.isPlaying)
+            {
+                _rotationReturnTimer = 0.5f;
+            }
+            _lastEvaluatedRailIndex = railIdx;
+
+            SplineSample sample = splineRails[railIdx].Evaluate(finalT);
+            return new CameraPose
+            {
+                position = sample.position,
+                rotation = sample.rotation,
+                fov = targetCamera ? targetCamera.fieldOfView : 60f,
+                distance = 0f
+            };
+        }
+
+        /// <summary> Statelessly evaluates a camera pose within a chapter's bounded rail range. </summary>
+        public CameraPose GetPoseOnChapter(int chapterIdx, float progress)
+        {
+            if (chapterIdx < 0 || chapterIdx >= chapters.Count)
+            {
+                return default;
+            }
+
+            RebuildChainCache();
+            SplineSample sample = EvaluateWithSegments(Mathf.Clamp01(progress), chapters[chapterIdx].segments, chapters[chapterIdx].startRailIndex, chapters[chapterIdx].railCount);
+            return new CameraPose
+            {
+                position = sample.position,
+                rotation = sample.rotation,
+                fov = targetCamera ? targetCamera.fieldOfView : 60f,
+                distance = 0f
+            };
+        }
+
+        /// <summary> Converts a local rail progress to a global chapter progress (0-1). </summary>
+        public float GetGlobalProgressFromRail(int railIdx, float localT, int chapterIdx)
+        {
+            if (chapterIdx < 0 || chapterIdx >= chapters.Count)
+            {
+                return 0f;
+            }
+
+            EnsureChapterCache(chapterIdx);
+            var chapter = chapters[chapterIdx];
+            int relativeRail = railIdx - chapter.startRailIndex;
+
+            if (relativeRail < 0 || relativeRail >= chapter.railCount || chapter.cachedTotalMoveDuration <= 0)
+            {
+                return 0f;
+            }
+
+            float accum = 0;
+            for (int r = 0; r < relativeRail; r++)
+            {
+                accum += chapter.cachedRailDurations[r];
+            }
+
+            return (accum + localT * chapter.cachedRailDurations[relativeRail]) / chapter.cachedTotalMoveDuration;
+        }
+
+        /// <summary> Directly applies a pose and look-at weight to the camera, overriding internal state evaluation. </summary>
+        public void ApplyTimelinePose(CameraPose pose, float weight)
+        {
+            if (!targetCamera)
+            {
+                return;
+            }
+
+            _isDrivenByTimeline = true;
+            _timelinePose = ApplyLookAt(pose, weight);
+
+            if (State == CameraState.Transitioning || State == CameraState.ReturningToRail || _rotationReturnTimer > 0)
+            {
+                return;
+            }
+            
+            targetCamera.transform.SetPositionAndRotation(_timelinePose.position, _timelinePose.rotation);
+            targetCamera.fieldOfView = _timelinePose.fov;
+
+            if (_timelinePose.distance != 0)
+            {
+                targetCamera.transform.position -= targetCamera.transform.forward * _timelinePose.distance;
+            }
+
+#if UNITY_EDITOR
+            // Force SceneView updates in Editor during Timeline scrubbing
+            if (!Application.isPlaying)
+            {
+                UnityEditor.EditorUtility.SetDirty(targetCamera.transform);
+                UnityEditor.SceneView.RepaintAll();
+            }
+#endif
+        }
+
+        public CameraPose ApplyLookAt(CameraPose basePose, float weight)
+        {
+            if (weight < 0.001f || !_lookAtTarget)
+            {
+                return basePose;
+            }
+
+            Vector3 direction = (_lookAtTarget.position - basePose.position).normalized;
+            if (direction.sqrMagnitude < 0.001f)
+            {
+                return basePose;
+            }
+
+            Quaternion lookRot = Quaternion.LookRotation(direction);
+            basePose.rotation = Quaternion.Slerp(basePose.rotation, lookRot, weight);
+            
+            return basePose;
+        }
+
+        private SplineSample EvaluateAbsSegment(int absoluteSegmentIndex, float localT, int railStartIdx, int railCount)
         {
             int running = 0;
-            for (int r = 0; r < _chainRails.Length; r++)
+            int endIdx = Mathf.Min(railStartIdx + railCount, _chainRails.Length);
+
+            for (int r = railStartIdx; r < endIdx; r++)
             {
                 int count = _chainSegCounts[r];
                 if (absoluteSegmentIndex < running + count)
                 {
-                    int localSegIdx = absoluteSegmentIndex - running;
-                    float start = (float)localSegIdx / count;
-                    float end = (float)(localSegIdx + 1) / count;
-                    float progress = Mathf.Lerp(start, end, localT);
-                    return _chainRails[r].Evaluate(Mathf.Clamp01(progress));
+                    int localSeg = absoluteSegmentIndex - running;
+                    float tStart = (float)localSeg / count;
+                    float tEnd = (float)(localSeg + 1) / count;
+
+                    // ── Intra-Chapter Rail-to-Rail Smoothing ──
+                    // Detect if we just jumped to a different rail within the same chapter.
+                    // If we did, we trigger the common smoothing buffer to ensure a glide instead of a snap.
+                    if (_lastEvaluatedRailIndex != -1 && _lastEvaluatedRailIndex != r && Application.isPlaying)
+                    {
+                        _rotationReturnTimer = 0.5f;
+                    }
+                    _lastEvaluatedRailIndex = r;
+
+                    return _chainRails[r].Evaluate(Mathf.Lerp(tStart, tEnd, localT));
                 }
                 running += count;
             }
-            return _chainRails[_chainRails.Length - 1].Evaluate(1f);
+            return default;
         }
         #endregion
 
@@ -417,6 +750,11 @@ namespace Metroma.CameraTool
         /// <summary> Smoothly transitions the camera away from the rail to a fixed pose. </summary>
         public void TransitionToPose(CameraPose target, float duration, AnimationCurve curve = null, DirectorAction action = DirectorAction.None)
         {
+            if (!_cameraTransform)
+            {
+                CacheReferences();
+            }
+
             _startPose = new CameraPose
             {
                 position = _cameraTransform.position,
@@ -451,7 +789,14 @@ namespace Metroma.CameraTool
         public void ReturnToRail(float duration, AnimationCurve curve = null)
         {
             if (State == CameraState.FollowRail)
+            {
                 return;
+            }
+
+            if (!_cameraTransform)
+            {
+                CacheReferences();
+            }
 
             _startPose = new CameraPose
             {
@@ -473,9 +818,8 @@ namespace Metroma.CameraTool
             State = CameraState.ReturningToRail;
         }
 
-        /// <summary> Plays a specific chapter with automated rail capture and smooth transition. </summary>
         /// <summary> Plays a specific chapter by swapping the Master Director's asset and re-binding tracks. </summary>
-        public void PlayChapter(int index, float blendDuration = 1.5f)
+        public void PlayChapter(int index, float blendDuration = 1.5f, TransitionLookAtMode lookAtMode = TransitionLookAtMode.TimelineDefault, Transform lookAtTarget = null, float rotationSmoothness = 5.0f)
         {
             if (index < 0 || index >= chapters.Count)
                 return;
@@ -487,33 +831,96 @@ namespace Metroma.CameraTool
             if (_activeChapter != null) 
                 onChapterEnd?.Invoke(_activeChapter);
 
-            // Stop current
-            if (playableDirector.state == PlayState.Playing)
-                playableDirector.Stop();
+            // ── 1. Capture the REAL current camera pose BEFORE any changes ──
+            if (!_cameraTransform)
+            {
+                CacheReferences();
+            }
 
-            // Swap Asset
+            CameraPose currentPose = new CameraPose
+            {
+                position = _cameraTransform.position,
+                rotation = _cameraTransform.rotation,
+                fov = targetCamera.fieldOfView,
+                distance = 0f
+            };
+
+            // ── 2. Swap Asset and Re-bind ──
+            if (playableDirector.state == PlayState.Playing)
+            {
+                playableDirector.Stop();
+            }
+
             playableDirector.playableAsset = chapter.timeline;
-            
-            // Re-bind Tracks
             BindTimelineEntries(chapter.timeline);
+            playableDirector.extrapolationMode = DirectorWrapMode.Hold;
             
             _activeRailIndex = chapter.startRailIndex;
-            playableDirector.time = 0;
-            playableDirector.Evaluate();
-            
             _activeChapter = chapter;
-            CameraPose targetPose = SampleRailPose();
+            selectedChapterIndex = index;
+            _lastEvaluatedRailIndex = -1;
+
+            // ── 3. Initialize Universal Smoothing Parameters ──
+            // We set these unconditionally so intra-chapter rail smoothing functions correctly
+            // even if the chapter start itself was instant.
+            _transitionLookAtMode = lookAtMode;
+            _transitionLookAtTarget = lookAtTarget;
+            _rotationSmoothness = rotationSmoothness;
+            _rotationReturnTimer = 0;
+
+            // ── 4. Initialize Transition Logic ──
+            if (blendDuration > 0.01f)
+            {
+                splineProgress = 0;
+                
+                _timelinePose = SampleRailPose();
+
+                playableDirector.time = 0;
+                playableDirector.Evaluate();
+                
+                if (lookAtMode == TransitionLookAtMode.ChapterStart)
+                {
+                    _transitionLookAtPoint = _timelinePose.position;
+                }
+                else if (lookAtMode == TransitionLookAtMode.ChapterEnd)
+                {
+                    float oldProgress = splineProgress;
+                    splineProgress = 1f;
+                    _transitionLookAtPoint = SampleRailPose().position;
+                    splineProgress = oldProgress;
+                }
+
+                _startPose = currentPose;
+                _transitionDuration = blendDuration;
+                _transitionCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+                _transitionTime = 0f;
+                _playOnTransitionArrival = true;
+
+                State = CameraState.ReturningToRail;
+                _cameraTransform.SetPositionAndRotation(_startPose.position, _startPose.rotation);
+            }
+            else
+            {
+                splineProgress = 0;
+                playableDirector.time = 0;
+                playableDirector.Evaluate();
+                _playOnTransitionArrival = false;
+                State = CameraState.FollowRail;
+            }
 
             OnChapterStarted?.Invoke(chapter);
             onChapterStart?.Invoke(chapter);
 
-            playableDirector.Play();
-            TransitionToPose(targetPose, blendDuration, AnimationCurve.EaseInOut(0, 0, 1, 1));
+            if (!_playOnTransitionArrival)
+            {
+                playableDirector.Play();
+            }
         }
 
         private void BindTimelineEntries(TimelineAsset asset)
         {
-            if (asset == null || playableDirector == null) return;
+            if (asset == null || playableDirector == null)
+                return;
 
             foreach (var track in asset.GetOutputTracks())
             {
@@ -525,12 +932,14 @@ namespace Metroma.CameraTool
             }
         }
 
-        public void PlayChapter(string chapterName, float blendDuration = 1.5f)
+        public void PlayChapter(string chapterName, float blendDuration = 1.5f, TransitionLookAtMode lookAtMode = TransitionLookAtMode.TimelineDefault, Transform lookAtTarget = null, float rotationSmoothness = 5.0f)
         {
             int idx = chapters.FindIndex(c => c.name.Equals(chapterName, StringComparison.OrdinalIgnoreCase));
             
             if (idx >= 0)
-                PlayChapter(idx, blendDuration);
+            {
+                PlayChapter(idx, blendDuration, lookAtMode, lookAtTarget, rotationSmoothness);
+            }
         }
 
         public void SwitchToRail(int idx)
@@ -547,13 +956,20 @@ namespace Metroma.CameraTool
         /// <summary> Snaps the camera instantly to a scene reference. </summary>
         public void SnapToTransform(Transform target, bool matchFOV = true)
         {
-            if (target == null || targetCamera == null) return;
+            if (target == null || targetCamera == null)
+            {
+                return;
+            }
             
+            if (!_cameraTransform)
+            {
+                CacheReferences();
+            }
+
             _cameraTransform.SetPositionAndRotation(target.position, target.rotation);
             if (matchFOV && target.TryGetComponent<UnityEngine.Camera>(out var otherCam))
                 targetCamera.fieldOfView = otherCam.fieldOfView;
 
-            // Update state so we stay here
             _targetPose = new CameraPose { position = target.position, rotation = target.rotation, fov = targetCamera.fieldOfView };
             State = CameraState.StaticPose;
         }
@@ -651,7 +1067,6 @@ namespace Metroma.CameraTool
         #endregion
 
 #if UNITY_EDITOR
-        
         // ── Editor-only API ──────────────────────────────────────────
 
         public List<SplineComputer> EditorSplineRails => splineRails;
@@ -659,12 +1074,15 @@ namespace Metroma.CameraTool
         public PlayableDirector EditorDirector => playableDirector;
         public Transform EditorLookAtTarget => lookAtTarget;
         public List<Transform> EditorLookAtTargets => lookAtTargets;
-        public List<CameraSplineSegment> EditorSegments(int chapterIndex) 
+
+        public int EditorChaptersCount()
         {
-            if (chapterIndex < 0 || chapterIndex >= chapters.Count)
-                return null;
-            
-            return chapters[chapterIndex].segments;
+            return chapters.Count;
+        }
+
+        public CameraChapter EditorChapter(int index)
+        {
+            return (index >= 0 && index < chapters.Count) ? chapters[index] : null;
         }
 
         public int EditorRailCount
@@ -672,35 +1090,35 @@ namespace Metroma.CameraTool
             get
             {
                 if (splineRails == null)
+                {
                     return 0;
+                }
                 
                 int count = 0;
                 foreach (var r in splineRails)
                 {
-                    if (r != null) 
+                    if (r != null)
+                    {
                         count++;
+                    }
                 }
-                
                 return count;
             }
         }
 
-        public int EditorPointCount
+        public int EditorSegmentCountInRail(int railIdx)
         {
-            get
+            if (splineRails == null || railIdx < 0 || railIdx >= splineRails.Count)
             {
-                if (splineRails == null)
-                    return 0;
-                
-                int total = 0;
-                foreach (var r in splineRails)
-                {
-                    if (r)
-                        total += r.pointCount;
-                }
-                
-                return total;
+                return 0;
             }
+
+            return splineRails[railIdx] ? Mathf.Max(0, splineRails[railIdx].pointCount - 1) : 0;
+        }
+
+        public List<CameraSplineSegment> EditorSegments(int chapterIndex)
+        {
+            return (chapterIndex >= 0 && chapterIndex < chapters.Count) ? chapters[chapterIndex].segments : new List<CameraSplineSegment>();
         }
 
         public int EditorTotalSegmentCount
@@ -708,15 +1126,18 @@ namespace Metroma.CameraTool
             get
             {
                 if (splineRails == null)
+                {
                     return 0;
+                }
                 
                 int total = 0;
                 foreach (var r in splineRails)
                 {
                     if (r)
+                    {
                         total += Mathf.Max(0, r.pointCount - 1);
+                    }
                 }
-                
                 return total;
             }
         }
@@ -724,7 +1145,9 @@ namespace Metroma.CameraTool
         public SplineSample EditorSampleAt(float progress)
         {
             if (!HasValidRails())
+            {
                 return new SplineSample();
+            }
             
             RebuildChainCache();
             return EvaluateChainAt(Mathf.Clamp01(progress));
@@ -733,7 +1156,9 @@ namespace Metroma.CameraTool
         public void EditorEvaluateAt(float progress)
         {
             if (!HasValidRails() || !targetCamera)
+            {
                 return;
+            }
             
             splineProgress = progress;
             RebuildChainCache();
@@ -744,12 +1169,26 @@ namespace Metroma.CameraTool
         public void EditorSyncSegments(int chapterIndex)
         {
             if (splineRails == null || chapterIndex < 0 || chapterIndex >= chapters.Count)
+            {
                 return;
+            }
 
             var chapter = chapters[chapterIndex];
             var activeSegments = chapter.segments;
+            int startRailIdx = chapter.startRailIndex;
+            int count = chapter.railCount;
             
-            int total = EditorTotalSegmentCount;
+            int total = 0;
+            int endIdx = Mathf.Min(startRailIdx + count, splineRails.Count);
+
+            for (int i = startRailIdx; i < endIdx; i++)
+            {
+                if (splineRails[i])
+                {
+                    total += Mathf.Max(0, splineRails[i].pointCount - 1);
+                }
+            }
+
             while (activeSegments.Count > total)
             {
                 activeSegments.RemoveAt(activeSegments.Count - 1);
@@ -759,26 +1198,71 @@ namespace Metroma.CameraTool
             {
                 activeSegments.Add(new CameraSplineSegment
                 {
-                    duration = 1f, easing = AnimationCurve.EaseInOut(0, 0, 1, 1)
+                    duration = 1f, 
+                    easing = AnimationCurve.EaseInOut(0, 0, 1, 1)
                 });
             }
             
-            int idx = 0;
-            for (int r = 0; r < splineRails.Count; r++)
+            int segIdx = 0;
+            for (int r = startRailIdx; r < endIdx; r++)
             {
                 if (!splineRails[r])
+                {
                     continue;
+                }
                 
                 string prefix = splineRails.Count > 1 ? $"R{r} " : "";
                 for (int n = 0; n < splineRails[r].pointCount - 1; n++) 
                 {
-                    if (idx < activeSegments.Count)
-                        activeSegments[idx++].label = $"{prefix}Node {n} → {n + 1}";
+                    if (segIdx < activeSegments.Count)
+                    {
+                        activeSegments[segIdx++].label = $"{prefix}Node {n} → {n + 1}";
+                    }
                 }
             }
         }
-        public int EditorChaptersCount() => chapters.Count;
-        public TimelineAsset EditorGetTimeline(int index) => (index >= 0 && index < chapters.Count) ? chapters[index].timeline : null;
+
+        public void AutoCalculateRailCounts()
+        {
+            if (chapters == null || chapters.Count == 0 || splineRails == null)
+            {
+                return;
+            }
+
+            var sortedChapters = new List<CameraChapter>(chapters);
+            sortedChapters.Sort((a, b) => a.startRailIndex.CompareTo(b.startRailIndex));
+
+            for (int i = 0; i < sortedChapters.Count; i++)
+            {
+                var current = sortedChapters[i];
+                
+                if (i < sortedChapters.Count - 1)
+                {
+                    var next = sortedChapters[i + 1];
+                    current.railCount = Mathf.Max(1, next.startRailIndex - current.startRailIndex);
+                }
+                else
+                {
+                    current.railCount = Mathf.Max(1, splineRails.Count - current.startRailIndex);
+                }
+            }
+        }
+
+        public TimelineAsset EditorGetTimeline(int index)
+        {
+            return (index >= 0 && index < chapters.Count) ? chapters[index].timeline : null;
+        }
+
+        /// <summary> Synchronizes the internal visual state with the Timeline Mixer output. </summary>
+        public void EditorReportVisualState(int chapterIdx, float progress)
+        {
+            if (chapterIdx >= 0 && chapterIdx < chapters.Count)
+            {
+                _activeChapter = chapters[chapterIdx];
+            }
+            
+            splineProgress = progress;
+        }
 #endif
     }
 }

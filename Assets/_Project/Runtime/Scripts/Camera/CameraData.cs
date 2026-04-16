@@ -13,6 +13,15 @@ namespace Metroma.CameraTool
         public Quaternion rotation;
         public float fov;
         public float distance;
+        public int railIdx;
+
+        public static CameraPose Identity => new CameraPose
+        {
+            position = Vector3.zero,
+            rotation = Quaternion.identity,
+            fov = 60f,
+            distance = 0f
+        };
 
         public static CameraPose Lerp(CameraPose a, CameraPose b, float t)
         {
@@ -35,6 +44,9 @@ namespace Metroma.CameraTool
         
         [Tooltip("The rail index where this chapter starts its journey.")]
         public int startRailIndex = 0;
+
+        [Tooltip("Number of rails this chapter controls starting from the Start Rail Index.")]
+        public int railCount = 1;
         
         [Tooltip("Custom color for this chapter's gizmos.")]
         public Color debugColor = Color.cyan;
@@ -44,6 +56,15 @@ namespace Metroma.CameraTool
 
         /// <summary> List of pacing segments specific to this chapter. </summary>
         public List<CameraSplineSegment> segments = new List<CameraSplineSegment>();
+
+        [System.NonSerialized]
+        public float cachedTotalMoveDuration = -1f;
+
+        [System.NonSerialized]
+        public float[] cachedRailDurations;
+
+        [System.NonSerialized]
+        public int[] cachedRailSegmentStarts;
     }
 
     /// <summary> Current state of the camera controller. </summary>
@@ -61,5 +82,14 @@ namespace Metroma.CameraTool
         None,   // Keep playing (or keep paused if already paused)
         Pause,  // Pause at current frame
         Stop    // Stop and unload (recommended for chapter changes)
+    }
+
+    /// <summary> Target for camera rotation during a chapter transition. </summary>
+    public enum TransitionLookAtMode
+    {
+        TimelineDefault,    // Use the rotation calculated by the Timeline rail at t=0
+        ChapterStart,       // Look exactly at the first node of the chapter
+        ChapterEnd,         // Look at the last node of the chapter
+        SpecificGameObject  // Look at a provided Transform target
     }
 }
