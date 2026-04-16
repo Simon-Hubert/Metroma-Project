@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Metroma
 {
-    public class AdBase
+    public class AdBase : MonoBehaviour
     {
         [SerializeField] private ConditionalEvent _winCond;
 
