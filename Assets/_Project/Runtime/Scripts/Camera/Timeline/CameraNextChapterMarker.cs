@@ -39,7 +39,7 @@ namespace Metroma.CameraTool.Timeline
 
             if (lookAtMode == TransitionLookAtMode.ChapterStart || lookAtMode == TransitionLookAtMode.ChapterEnd)
             {
-                if (rig.Rails != null && nextChapter.startRailIndex < rig.Rails.EditorRails.Count)
+                if (Application.isPlaying && rig.Rails != null && nextChapter.startRailIndex < rig.Rails.EditorRails.Count)
                 {
                     var spline = rig.Rails.EditorRails[nextChapter.startRailIndex];
                     if (spline != null)

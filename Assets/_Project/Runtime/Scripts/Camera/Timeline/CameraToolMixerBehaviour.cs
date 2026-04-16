@@ -58,9 +58,26 @@ namespace Metroma.CameraTool.Timeline
                 float duration = (float)behaviour.clipDuration;
                 if (duration <= 0) duration = (float)inputPlayable.GetDuration();
                 
-                float normalizedTime = duration > 0 ? Mathf.Clamp01((float)(clipLocalTime / duration)) : 0f;
-                float easedTime = (behaviour.easingCurve != null) ? behaviour.easingCurve.Evaluate(normalizedTime) : normalizedTime;
+                // --- PADDING LOGIC (Option A: Interstitial Transitions) ---
+                float normalizedTime = 0f;
+                float localTime = (float)clipLocalTime;
+                float dur = duration;
 
+                if (localTime < behaviour.startPadding)
+                {
+                    normalizedTime = 0f;
+                }
+                else if (localTime > (dur - behaviour.endPadding))
+                {
+                    normalizedTime = 1f;
+                }
+                else
+                {
+                    float activeDuration = dur - behaviour.startPadding - behaviour.endPadding;
+                    normalizedTime = activeDuration > 0 ? Mathf.Clamp01((localTime - behaviour.startPadding) / activeDuration) : 1f;
+                }
+                
+                float easedTime = (behaviour.easingCurve != null) ? behaviour.easingCurve.Evaluate(normalizedTime) : normalizedTime;
                 float clipGlobalProgress = Mathf.Lerp(behaviour.startProgress, behaviour.endProgress, easedTime);
 
                 CameraPose sample;

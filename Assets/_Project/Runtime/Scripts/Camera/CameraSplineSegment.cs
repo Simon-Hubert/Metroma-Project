@@ -20,5 +20,11 @@ namespace Metroma.CameraTool
         [Tooltip("Wait time (seconds) at the destination node before moving to the next segment.")]
         [Min(0f)]
         public float waitAtEnd;
+
+        [Header("Junction Override")]
+        [Tooltip("Settings used if this segment is a junction to the next rail.")]
+        public JunctionSettings junctionOverride = JunctionSettings.Default;
+
+        [HideInInspector] public bool isExpanded;
     }
 }

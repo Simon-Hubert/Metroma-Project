@@ -138,13 +138,6 @@ namespace Metroma.CameraTool.Modules
 
             onChapterStart?.Invoke(chapter);
             _rig.Internal_NotifyChapterStarted(chapter);
-
-            // Synchronize rail junction blending settings
-            if (_rig.Rails)
-            {
-                _rig.Rails.JunctionBlendDistance = chapter.junctionBlendDistance;
-                _rig.Rails.JunctionSmoothness = chapter.junctionSmoothness;
-            }
         }
 
         public void PlayChapter(string InChapterName, float InBlendDuration = 1.5f, float InSmoothReturn = 5f)
@@ -158,6 +151,10 @@ namespace Metroma.CameraTool.Modules
 
         public void OnNotify(Playable origin, INotification notification, object context)
         {
+            // Early return if not playing to prevent markers from executing logic in the Editor (e.g., during clip generation)
+            if (!Application.isPlaying)
+                return;
+
             if (_rig == null)
                 _rig = GetComponent<CameraRig>();
             

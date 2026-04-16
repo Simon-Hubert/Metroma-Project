@@ -65,16 +65,6 @@ namespace Metroma.CameraTool
         [Tooltip("Custom color for this chapter's gizmos.")]
         public Color debugColor = Color.cyan;
 
-        [Tooltip("Distance (in units/meters) to blend between this rail and the next one in the chapter.")]
-        public float junctionBlendDistance = 1.0f;
-
-        [Tooltip("How lazy/smooth the transition between rails is. Higher = softer movement.")]
-        [Range(1f, 10f)]
-        public float junctionSmoothness = 5.0f;
-
-        [Tooltip("Timeline ONLY: Duration in seconds to overlap/blend between rails.")]
-        public float junctionDuration = 1.0f;
-
         [HideInInspector] public bool isExpanded = true;
 
         /// <summary> List of pacing segments specific to this chapter. </summary>
@@ -117,6 +107,23 @@ namespace Metroma.CameraTool
         None,
         Pause,
         Stop
+    }
+
+    /// <summary> Local override settings for a rail junction. </summary>
+    [System.Serializable]
+    public struct JunctionSettings
+    {
+        [Tooltip("Timeline ONLY: Duration in seconds to overlap/blend between this rail and the next one.")]
+        public float duration;
+
+        [Tooltip("Distance (in meters) to blend between rails when in manual/non-timeline mode.")]
+        public float blendDistance;
+
+        [Tooltip("How lazy/smooth the transition is. Higher = softer cinematic movement (e.g., 5-8). 1 = Linear.")]
+        [Range(1f, 10f)]
+        public float smoothness;
+
+        public static JunctionSettings Default => new JunctionSettings { duration = 1.0f, blendDistance = 1.0f, smoothness = 5.0f };
     }
 
     /// <summary> Target for camera rotation during a chapter transition. </summary>

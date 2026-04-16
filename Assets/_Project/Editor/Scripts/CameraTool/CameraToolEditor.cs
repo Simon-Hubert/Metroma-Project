@@ -44,9 +44,6 @@ namespace Metroma.CameraTool.Editor
         private SerializedProperty _chapters;
         private SerializedProperty _onChapterStart;
         private SerializedProperty _onChapterEnd;
-        private SerializedProperty _junctionBlendDistance;
-        private SerializedProperty _junctionSmoothness;
-        private SerializedProperty _junctionDuration;
 
         private bool _isCameraLocked;
         private bool _showHud;
@@ -119,8 +116,6 @@ namespace Metroma.CameraTool.Editor
                 _globalProgress = _railSerialized.FindProperty("globalProgress");
                 _lookAtWeight = _railSerialized.FindProperty("lookAtWeight");
                 _defaultFOV = _railSerialized.FindProperty("defaultFOV");
-                _junctionBlendDistance = _railSerialized.FindProperty("junctionBlendDistance");
-                _junctionSmoothness = _railSerialized.FindProperty("junctionSmoothness");
             }
 
             var sequenceModule = rig.Sequences;
@@ -131,7 +126,6 @@ namespace Metroma.CameraTool.Editor
                 _playableDirector = _sequenceSerialized.FindProperty("playableDirector");
                 _onChapterStart = _sequenceSerialized.FindProperty("onChapterStart");
                 _onChapterEnd = _sequenceSerialized.FindProperty("onChapterEnd");
-                _junctionDuration = _sequenceSerialized.FindProperty("junctionDuration");
             }
         }
 
@@ -222,12 +216,6 @@ namespace Metroma.CameraTool.Editor
             EditorGUILayout.PropertyField(_autoHandleTransform, new GUIContent("Internal Control", "Uncheck to release camera handle."));
             if (_playableDirector != null)
                 EditorGUILayout.PropertyField(_playableDirector, new GUIContent("Master Director"));
-
-            if (_junctionBlendDistance != null)
-                EditorGUILayout.PropertyField(_junctionBlendDistance, new GUIContent("Junction Blend (m)"));
-            
-            if (_junctionSmoothness != null)
-                EditorGUILayout.PropertyField(_junctionSmoothness, new GUIContent("Junction Smoothness"));
 
             EditorGUI.indentLevel--;
         }
@@ -390,9 +378,6 @@ namespace Metroma.CameraTool.Editor
                 SerializedProperty timelineProp = chapterProp.FindPropertyRelative("timeline");
                 SerializedProperty railIdxProp = chapterProp.FindPropertyRelative("startRailIndex");
                 SerializedProperty railCountProp = chapterProp.FindPropertyRelative("railCount");
-                SerializedProperty junctionProp = chapterProp.FindPropertyRelative("junctionBlendDistance");
-                SerializedProperty smoothProp = chapterProp.FindPropertyRelative("junctionSmoothness");
-                SerializedProperty durationProp = chapterProp.FindPropertyRelative("junctionDuration");
                 SerializedProperty isExpanded = chapterProp.FindPropertyRelative("isExpanded");
 
                 bool isSelected = (_selectedChapterIndex.intValue == i);
@@ -479,10 +464,6 @@ namespace Metroma.CameraTool.Editor
                     EditorGUILayout.PropertyField(railCountProp, new GUIContent("Rail Count (Calculated)"));
                     GUI.enabled = true;
                     
-                    EditorGUILayout.PropertyField(junctionProp, new GUIContent("Junction Blend (m)"));
-                    EditorGUILayout.PropertyField(smoothProp, new GUIContent("Junction Smoothness"));
-                    EditorGUILayout.PropertyField(durationProp, new GUIContent("Junction Duration (s)"));
-
                     EditorGUILayout.Space(12);
                     EditorGUILayout.EndVertical();
                     EditorGUILayout.Space(12);
@@ -543,38 +524,75 @@ namespace Metroma.CameraTool.Editor
                     // Logic to find which rail this segment belongs to
                     // This is slightly complex because segments are nodes.
                     // But we can check the Rail Indices from the EditorRails
-                    int totalPointsAcc = 0;
+                    int segmentsAcc = 0;
                     int currentRailIdx = -1;
                     int prevRailIdx = -1;
 
-                    for (int r = 0; r < rig.Rails.EditorRails.Count; r++)
+                    int startRail = chapter.FindPropertyRelative("startRailIndex").intValue;
+                    int railCountInChapter = chapter.FindPropertyRelative("railCount").intValue;
+
+                    for (int r = startRail; r < startRail + railCountInChapter; r++)
                     {
+                        if (r >= rig.Rails.EditorRails.Count) break;
                         var rail = rig.Rails.EditorRails[r];
                         if (!rail) continue;
                         
-                        int points = rail.pointCount;
-                        if (i >= totalPointsAcc && i < totalPointsAcc + points)
+                        int railSegs = Mathf.Max(0, rail.pointCount - 1);
+                        
+                        if (i >= segmentsAcc && i < segmentsAcc + railSegs)
                         {
                             currentRailIdx = r;
                         }
-                        if ((i-1) >= totalPointsAcc && (i-1) < totalPointsAcc + points)
+                        if ((i-1) >= segmentsAcc && (i-1) < segmentsAcc + railSegs)
                         {
                             prevRailIdx = r;
                         }
-                        totalPointsAcc += points;
+                        segmentsAcc += railSegs;
                     }
 
                     if (currentRailIdx != prevRailIdx && currentRailIdx != -1 && prevRailIdx != -1)
                     {
-                        EditorGUILayout.Space(4);
-                        var rect = EditorGUILayout.BeginHorizontal();
-                        EditorGUI.DrawRect(new Rect(rect.x + 12, rect.y, rect.width - 24, 20), new Color(1, 0.6f, 0.1f, 0.15f));
-                        GUILayout.FlexibleSpace();
-                        var junctionStyle = new GUIStyle(EditorStyles.miniLabel) { fontStyle = FontStyle.Bold, normal = { textColor = new Color(1, 0.6f, 0.1f) } };
-                        GUILayout.Label($"▲ RAIL JUNCTION BLEND : {chapter.FindPropertyRelative("junctionDuration").floatValue:F1}s", junctionStyle);
-                        GUILayout.FlexibleSpace();
-                        EditorGUILayout.EndHorizontal();
+                        var junctionSegIdx = i - 1;
+                        var junctionSegProp = segmentsProp.GetArrayElementAtIndex(junctionSegIdx);
+                        var overrideProp = junctionSegProp.FindPropertyRelative("junctionOverride");
+                        var isExp = junctionSegProp.FindPropertyRelative("isExpanded");
+
                         EditorGUILayout.Space(6);
+                        
+                        // Panel Background
+                        var rect = EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+                        EditorGUI.DrawRect(new Rect(rect.x, rect.y, rect.width, 24), new Color(1, 0.6f, 0.1f, 0.15f));
+                        
+                        // Header
+                        EditorGUILayout.BeginHorizontal();
+                        GUILayout.Space(4);
+                        var junctionStyle = new GUIStyle(EditorStyles.miniLabel) { fontStyle = FontStyle.Bold, normal = { textColor = new Color(1, 0.6f, 0.1f) } };
+                        GUILayout.Label($"▲ RAIL JUNCTION BLEND (Local Override)", junctionStyle);
+                        GUILayout.FlexibleSpace();
+                        
+                        if (GUILayout.Button(isExp.boolValue ? "▼" : "◀", EditorStyles.miniLabel, GUILayout.Width(20)))
+                        {
+                            isExp.boolValue = !isExp.boolValue;
+                        }
+                        
+                        EditorGUILayout.EndHorizontal();
+
+                        if (isExp.boolValue)
+                        {
+                            EditorGUI.indentLevel++;
+                            var durProp = overrideProp.FindPropertyRelative("duration");
+                            var distProp = overrideProp.FindPropertyRelative("blendDistance");
+                            var smoothProp = overrideProp.FindPropertyRelative("smoothness");
+
+                            EditorGUILayout.PropertyField(durProp, new GUIContent("Duration (s)", durProp.tooltip));
+                            EditorGUILayout.PropertyField(distProp, new GUIContent("Blend Distance (m)", distProp.tooltip));
+                            EditorGUILayout.PropertyField(smoothProp, new GUIContent("Smoothness", smoothProp.tooltip));
+                            EditorGUI.indentLevel--;
+                            EditorGUILayout.Space(4);
+                        }
+
+                        EditorGUILayout.EndVertical();
+                        EditorGUILayout.Space(8);
                     }
                 }
 
@@ -754,24 +772,27 @@ namespace Metroma.CameraTool.Editor
                 return;
             }
 
-            Undo.RecordObject(timeline, "Generate Camera Timeline");
-            
-            // 1. Find or Create Track
+            // 1. Find or Create Track (Reuse existing object to avoid Editor UI crashes)
             CameraToolTrack track = null;
-            foreach (var t in timeline.GetOutputTracks()) 
+            var tracks = timeline.GetOutputTracks();
+            foreach (var t in tracks) 
             { 
                if (t is CameraToolTrack ct) { track = ct; break; } 
             }
-            if (!track) 
+            
+            if (!track)
             {
+                Undo.RegisterCompleteObjectUndo(timeline, "Create New Camera Track");
                 track = timeline.CreateTrack<CameraToolTrack>(null, "Camera Sequence Track");
             }
+            else
+            {
+                Undo.RegisterCompleteObjectUndo(track, "Clear Existing Clips");
+                var clips = new System.Collections.Generic.List<TimelineClip>(track.GetClips());
+                foreach (var c in clips) track.DeleteClip(c);
+            }
             
-            // 2. Clear existing
-            var existingClips = new List<TimelineClip>(track.GetClips());
-            foreach (var clip in existingClips) track.DeleteClip(clip);
-            
-            // 3. Prep Data
+            // 2. Preparation
             var segs = chapter.segments; 
             float totalMoveDur = 0f; 
             foreach (var s in segs) totalMoveDur += s.duration;
@@ -779,93 +800,107 @@ namespace Metroma.CameraTool.Editor
             int startRailIdx = chapter.startRailIndex; 
             int railLimit = Mathf.Min(startRailIdx + chapter.railCount, rig.Rails.RailCount);
             
-            double clipTimelineStart = 0; 
+            double nominalTimelineCursor = 0; 
             float accumulatedMoveDur = 0f;
             int clipsCreatedCount = 0;
-            float junctionDur = chapter.junctionDuration;
 
-            // 4. Generate Clips
+            // 3. Generate Clips
             for (int r = startRailIdx; r < railLimit; r++) 
             {
                 if (r >= rig.Rails.EditorRails.Count) break;
-                var rail = rig.Rails.EditorRails[r];
-                if (rail == null) continue;
+                var rail = rig.Rails.EditorRails[r]; 
+                if (!rail) continue;
 
                 int segmentsInThisRail = Mathf.Max(0, rail.pointCount - 1);
                 if (segmentsInThisRail <= 0) continue;
 
-                TimelineClip clip = track.CreateDefaultClip(); 
-                clip.displayName = $"Seq #{r:00} ({rail.name})"; 
-                
-                // --- JUNCTION OVERLAP LOGIC ---
-                // If not the first clip, subtract the junction duration from the start
-                if (clipsCreatedCount > 0)
-                {
-                    clip.start = clipTimelineStart - (double)junctionDur;
-                    // Ensure we don't start before 0
-                    if (clip.start < 0) clip.start = 0;
-                }
-                else
-                {
-                    clip.start = 0;
-                }
-                
-                clipsCreatedCount++;
-                float railTimelineDuration = 0; 
-                float railMoveDuration = 0;
-                
                 int currentRailFirstSegmentIdx = 0; 
-                for (int prev = startRailIdx; prev < r; prev++) 
+                for (int p = startRailIdx; p < r; p++) 
                 {
-                    if (prev < rig.Rails.EditorRails.Count && rig.Rails.EditorRails[prev] != null)
-                        currentRailFirstSegmentIdx += Mathf.Max(0, rig.Rails.EditorRails[prev].pointCount - 1);
+                    if (p < rig.Rails.EditorRails.Count && rig.Rails.EditorRails[p] != null)
+                        currentRailFirstSegmentIdx += Mathf.Max(0, rig.Rails.EditorRails[p].pointCount - 1);
                 }
 
+                float railMoveDuration = 0;
                 for (int s = 0; s < segmentsInThisRail; s++) 
                 {
                     int totalSegIdx = currentRailFirstSegmentIdx + s;
-                    if (totalSegIdx < segs.Count) 
+                    if (totalSegIdx < segs.Count)
+                        railMoveDuration += segs[totalSegIdx].duration;
+                }
+
+                float prevJunctionDur = 0;
+                if (clipsCreatedCount > 0)
+                {
+                    prevJunctionDur = JunctionSettings.Default.duration; 
+                    int prevRailLastSegmentIdx = currentRailFirstSegmentIdx - 1;
+                    if (prevRailLastSegmentIdx >= 0 && prevRailLastSegmentIdx < segs.Count)
                     {
-                        var seg = segs[totalSegIdx]; 
-                        railTimelineDuration += seg.duration + seg.waitAtEnd; 
-                        railMoveDuration += seg.duration;
+                        var overrideDur = segs[prevRailLastSegmentIdx].junctionOverride.duration;
+                        if (overrideDur > 0.001f) prevJunctionDur = overrideDur;
                     }
                 }
-                
-                // Duration must be at least junctionDur * 2 or something reasonable
-                clip.duration = railTimelineDuration > 0 ? (double)railTimelineDuration : 1.0; 
-                
-                // We update clipTimelineStart to the REAL end of this clip for the NEXT offset
-                clipTimelineStart = clip.start + clip.duration;
 
-                CameraToolClip asset = clip.asset as CameraToolClip;
-                if (asset) 
+                float nextJunctionDur = 0;
+                int currentRailLastSegmentIdx = currentRailFirstSegmentIdx + segmentsInThisRail - 1;
+                if (r < railLimit - 1 && currentRailLastSegmentIdx < segs.Count)
                 {
-                    asset.Template.railIndex = r; 
-                    asset.Template.chapterIndex = index;
+                    nextJunctionDur = JunctionSettings.Default.duration;
+                    var overrideDur = segs[currentRailLastSegmentIdx].junctionOverride.duration;
+                    if (overrideDur > 0.001f) nextJunctionDur = overrideDur;
+                }
+
+                // --- ROBUST CREATION (On Fresh Track) ---
+                TimelineClip clip = track.CreateClip<CameraToolClip>();
+                clip.displayName = $"Seq #{r:00} ({rail.name})"; 
+                
+                clip.start = nominalTimelineCursor - (double)prevJunctionDur;
+                if (clip.start < 0) clip.start = 0;
+                clip.duration = (double)railMoveDuration + (double)prevJunctionDur + (double)nextJunctionDur;
+
+                clip.blendInDuration = (double)prevJunctionDur;
+                clip.blendOutDuration = (double)nextJunctionDur;
+
+                clipsCreatedCount++;
+                
+                var asset = clip.asset as CameraToolClip;
+                if (asset != null)
+                {
+                    asset.Template.railIndex = r;
+                    asset.Template.chapterIndex = rig.Sequences.Chapters.IndexOf(chapter);
                     asset.Template.clipStartTime = clip.start;
                     asset.Template.clipDuration = clip.duration;
+                    asset.Template.startPadding = prevJunctionDur;
+                    asset.Template.endPadding = nextJunctionDur;
+                    asset.Template.startProgress = accumulatedMoveDur / totalMoveDur;
+                    asset.Template.endProgress = (accumulatedMoveDur + railMoveDuration) / totalMoveDur;
                     
-                    if (totalMoveDur > 0) 
-                    {
-                        asset.Template.startProgress = accumulatedMoveDur / totalMoveDur;
-                        asset.Template.endProgress = (accumulatedMoveDur + railMoveDuration) / totalMoveDur;
-                    }
+                    EditorUtility.SetDirty(asset);
                 }
+
+                nominalTimelineCursor += (double)railMoveDuration + (double)nextJunctionDur;
                 accumulatedMoveDur += railMoveDuration;
             }
 
-            // 5. Binding & Persistence
+            // 4. Persistence & Sync
             if (rig.Sequences.Director) 
             {
-                rig.Sequences.Director.playableAsset = timeline; // Force Sync
+                rig.Sequences.Director.playableAsset = timeline;
                 rig.Sequences.Director.SetGenericBinding(track, rig);
                 EditorUtility.SetDirty(rig.Sequences.Director);
             }
-            
-            EditorUtility.SetDirty(timeline); 
+
+            #if UNITY_EDITOR
+            // 5. THE CRITICAL SYNC: Save to disk FIRST, then import/refresh
+            EditorUtility.SetDirty(timeline);
+            EditorUtility.SetDirty(track);
             AssetDatabase.SaveAssets(); 
-            TimelineEditor.Refresh(RefreshReason.ContentsModified);
+
+            string assetPath = AssetDatabase.GetAssetPath(timeline);
+            AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
+            
+            UnityEditor.Timeline.TimelineEditor.Refresh(UnityEditor.Timeline.RefreshReason.ContentsAddedOrRemoved);
+            #endif
             
             Debug.Log($"<color=#1ebfff><b>[CameraTool]</b></color> SUCCESS: Created {clipsCreatedCount} clips on Timeline '{timeline.name}'");
         }

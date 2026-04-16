@@ -566,7 +566,7 @@ namespace Metroma.CameraTool
         {
             float accum = 0;
             CameraChapter activeChapter = _activeChapter;
-            float blendDist = (activeChapter != null) ? activeChapter.junctionBlendDistance : 1f;
+            float blendDist = 1f; // Legacy default (Chapter settings removed)
             float halfBlend = blendDist * 0.5f;
 
             for (int r = 0; r < railCount; r++)
@@ -744,7 +744,7 @@ namespace Metroma.CameraTool
                         finalT = (float)splineRails[railIdx].Travel(0.0, dist);
                         
                         // ── Symmetrical Junction Blending for Timeline ──
-                        float blendDist = chapter.junctionBlendDistance;
+                        float blendDist = 1f; // Legacy default (Chapter settings removed)
                         float halfBlend = blendDist * 0.5f;
 
                         if (blendDist > 0.001f)
@@ -869,7 +869,7 @@ namespace Metroma.CameraTool
             int running = 0;
             int endIdx = Mathf.Min(railStartIdx + railCount, _chainRails.Length);
             CameraChapter activeChapter = _activeChapter;
-            float blendDist = (activeChapter != null) ? activeChapter.junctionBlendDistance : 1f;
+            float blendDist = 1f; // Legacy default (Chapter settings removed)
             float halfBlend = blendDist * 0.5f;
 
             for (int r = railStartIdx; r < endIdx; r++)

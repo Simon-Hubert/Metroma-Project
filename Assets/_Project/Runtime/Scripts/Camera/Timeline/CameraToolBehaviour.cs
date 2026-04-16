@@ -32,6 +32,12 @@ namespace Metroma.CameraTool.Timeline
         [Tooltip("Blend between spline rotation (0) and LookAt target (1) for this clip.")]
         public float lookAtWeight = 1f;
 
+        [Tooltip("Delay (in seconds) before the rail starts moving. Used to conclude transitions exactly at the first node.")]
+        public float startPadding;
+
+        [Tooltip("Extra time (in seconds) the rail stays static at the end. Used for interstitial transitions.")]
+        public float endPadding;
+
         [HideInInspector]
         public double clipStartTime;
         [HideInInspector]
