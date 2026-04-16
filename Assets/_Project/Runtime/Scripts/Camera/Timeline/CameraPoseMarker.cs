@@ -1,7 +1,8 @@
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using System;
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Timeline;
 
 namespace Metroma.CameraTool.Timeline
 {
@@ -20,9 +21,9 @@ namespace Metroma.CameraTool.Timeline
         public AnimationCurve curve = AnimationCurve.EaseInOut(0, 0, 1, 1);
         public DirectorAction action = DirectorAction.None;
 
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            if (tool == null)
+            if (rig == null)
                 return;
 
             CameraPose target = new CameraPose
@@ -33,7 +34,7 @@ namespace Metroma.CameraTool.Timeline
                 distance = this.distance
             };
 
-            tool.TransitionToPose(target, duration, curve, action);
+            rig.TransitionToPose(target, duration, curve, action);
         }
     }
 }

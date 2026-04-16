@@ -1,21 +1,32 @@
+using System.ComponentModel;
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using UnityEngine.Playables;
-
+using UnityEngine;
 
 namespace Metroma.CameraTool.Timeline
 {
     /// <summary>
     /// Mixer that blends overlapping <see cref="CameraToolClip"/> clips
-    /// and writes the final spline progress + lookAt weight to the bound <see cref="CameraTool"/>.
-    /// Zero-allocation per frame.
+    /// and writes the final pose to the bound <see cref="CameraRig"/>.
+    /// Optimized for robust Editor scrubbing using PlayableDirector.time directly.
     /// </summary>
     public class CameraToolMixerBehaviour : PlayableBehaviour
     {
-        private CameraTool _boundCameraTool;
+        private CameraRig _boundRig;
 
         public override void ProcessFrame(Playable playable, FrameData info, object playerData)
         {
-            _boundCameraTool = playerData as CameraTool;
-            if (_boundCameraTool == null)
+            if (playerData is GameObject go)
+            {
+                _boundRig = go.GetComponent<CameraRig>();
+            }
+            else
+            {
+                _boundRig = playerData as CameraRig;
+            }
+            
+            if (_boundRig == null)
                 return;
 
             int inputCount = playable.GetInputCount();
@@ -26,34 +37,40 @@ namespace Metroma.CameraTool.Timeline
 #if UNITY_EDITOR
             float maxWeight = -1f;
             int dominantChapter = -1;
-            float dominantProgress = 0f;
+            int dominantRail = -1;
+            float dominantLocalProgress = 0f;
+            float dominantGlobalProgress = 0f;
 #endif
 
             for (int i = 0; i < inputCount; i++)
             {
                 float inputWeight = playable.GetInputWeight(i);
                 if (inputWeight <= 0.001f)
-                {
                     continue;
-                }
 
                 ScriptPlayable<CameraToolBehaviour> inputPlayable = (ScriptPlayable<CameraToolBehaviour>)playable.GetInput(i);
                 CameraToolBehaviour behaviour = inputPlayable.GetBehaviour();
 
-                float normalizedTime = (float)(inputPlayable.GetTime() / inputPlayable.GetDuration());
-                float easedTime = behaviour.easingCurve.Evaluate(normalizedTime);
+                // MANUAL TIME EVALUATION (CRITICAL FOR TRANSITIONS & SCRUBBING)
+                double officialTime = _boundRig.Sequences.Director ? _boundRig.Sequences.Director.time : playable.GetTime();
+                double clipLocalTime = officialTime - behaviour.clipStartTime;
+
+                float duration = (float)behaviour.clipDuration;
+                if (duration <= 0) duration = (float)inputPlayable.GetDuration();
+                
+                float normalizedTime = duration > 0 ? Mathf.Clamp01((float)(clipLocalTime / duration)) : 0f;
+                float easedTime = (behaviour.easingCurve != null) ? behaviour.easingCurve.Evaluate(normalizedTime) : normalizedTime;
+
+                float clipGlobalProgress = Mathf.Lerp(behaviour.startProgress, behaviour.endProgress, easedTime);
 
                 CameraPose sample;
                 if (behaviour.railIndex >= 0)
                 {
-                    // 1. RAIL MODE: Evaluate the full 0-1 range of the targeted rail, respecting chapter easing
-                    sample = _boundCameraTool.GetPoseOnRail(behaviour.railIndex, easedTime, behaviour.chapterIndex);
+                    sample = _boundRig.GetPoseOnRail(behaviour.railIndex, easedTime, behaviour.chapterIndex);
                 }
                 else
                 {
-                    // Legacy/Chapter Evaluation (mapped 0-1 within the chapter's range)
-                    float clipProgress = behaviour.startProgress + (behaviour.endProgress - behaviour.startProgress) * easedTime;
-                    sample = _boundCameraTool.GetPoseOnChapter(behaviour.chapterIndex, clipProgress);
+                    sample = _boundRig.Rails.SampleRailLocal(0, clipGlobalProgress);
                 }
 
                 if (totalWeight <= 0f)
@@ -70,22 +87,13 @@ namespace Metroma.CameraTool.Timeline
                 totalWeight += inputWeight;
 
 #if UNITY_EDITOR
-                // In Editor, track the dominant clip to sync visual debugs
                 if (inputWeight > maxWeight)
                 {
                     maxWeight = inputWeight;
                     dominantChapter = behaviour.chapterIndex;
-                    
-                    if (behaviour.railIndex >= 0)
-                    {
-                        // Pass 'easedTime' (0-1 of the rail) to get the Chapter's global 0-1
-                        dominantProgress = _boundCameraTool.GetGlobalProgressFromRail(behaviour.railIndex, easedTime, behaviour.chapterIndex);
-                    }
-                    else
-                    {
-                        // It's a chapter clip, calculate mapped progress
-                        dominantProgress = behaviour.startProgress + (behaviour.endProgress - behaviour.startProgress) * easedTime;
-                    }
+                    dominantRail = behaviour.railIndex;
+                    dominantLocalProgress = easedTime; 
+                    dominantGlobalProgress = clipGlobalProgress;
                 }
 #endif
             }
@@ -93,14 +101,18 @@ namespace Metroma.CameraTool.Timeline
             if (totalWeight > 0.001f)
             {
 #if UNITY_EDITOR
-                // Report visual state for gizmo/dot rendering
-                if (!UnityEngine.Application.isPlaying && dominantChapter >= 0)
+                if (!Application.isPlaying && dominantChapter >= 0)
                 {
-                    _boundCameraTool.EditorReportVisualState(dominantChapter, dominantProgress);
+                    _boundRig.EditorReportVisualState(dominantChapter, dominantRail, dominantLocalProgress);
+
+                    if (_boundRig.Rails != null)
+                    {
+                        _boundRig.Rails.GlobalProgress = dominantGlobalProgress;
+                    }
                 }
 #endif
                 float finalLookAt = blendedLookAtWeight / totalWeight;
-                _boundCameraTool.ApplyTimelinePose(blendedPose, finalLookAt);
+                _boundRig.ApplyTimelineState(blendedPose, finalLookAt);
             }
         }
     }

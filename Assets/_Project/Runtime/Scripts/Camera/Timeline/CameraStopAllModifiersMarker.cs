@@ -1,8 +1,8 @@
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using System;
 using System.ComponentModel;
-using UnityEngine.Timeline;
 using Metroma.CameraTool.Modifiers;
-
 
 namespace Metroma.CameraTool.Timeline
 {
@@ -11,11 +11,11 @@ namespace Metroma.CameraTool.Timeline
     [CustomStyle("CameraStopAllMarker")]
     public class CameraStopAllModifiersMarker : CameraMarkerBase
     {
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            if (tool.TargetCamera != null)
+            if (rig.TargetCamera != null)
             {
-                CameraModifiers.StopAllCameraModifiers(tool.TargetCamera);
+                CameraModifiers.StopAllCameraModifiers(rig.TargetCamera);
             }
         }
     }

@@ -1,33 +1,39 @@
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using System;
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Timeline;
-
 
 namespace Metroma.CameraTool.Timeline
 {
     /// <summary>
-    /// Timeline marker: switches the active rail in the CameraTool's spline chain.
+    /// Timeline marker: switches the active rail in the CameraRig's spline chain.
     /// </summary>
     [Serializable]
     [DisplayName("Camera/🔀 Rail Switch")]
     [CustomStyle("CameraRailSwitchMarker")]
     public class CameraRailSwitchMarker : CameraMarkerBase
     {
-        [Tooltip("Index of the rail to switch to in CameraTool.splineRails.")]
+        [Tooltip("Index of the rail to switch to in the spline list.")]
         [Min(0)]
         [SerializeField] private int railIndex;
 
-        [Tooltip("If true, resets to chain mode instead of switching to a single rail.")]
+        [Tooltip("If true, resets to full chain mode.")]
         [SerializeField] private bool resetToChainMode;
 
         public int RailIndex => railIndex;
         public bool ResetToChainMode => resetToChainMode;
 
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            if (resetToChainMode) tool.ResetToChainMode();
-            else tool.SwitchToRail(railIndex);
+            if (resetToChainMode)
+            {
+                rig.Rails.ResetToChainMode();
+            }
+            else
+            {
+                rig.Rails.SwitchToRail(railIndex);
+            }
         }
     }
 }

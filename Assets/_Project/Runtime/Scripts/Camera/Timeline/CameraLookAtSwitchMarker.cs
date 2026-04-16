@@ -2,20 +2,20 @@ using System;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Timeline;
-
+using Metroma.CameraTool;
 
 namespace Metroma.CameraTool.Timeline
 {
     /// <summary>
     /// Timeline marker: switches the LookAt target to another Transform
-    /// from the CameraTool's lookAtTargets list.
+    /// managed by the RailModule's target list.
     /// </summary>
     [Serializable]
     [DisplayName("Camera/🎯 LookAt Switch")]
     [CustomStyle("CameraLookAtSwitchMarker")]
     public class CameraLookAtSwitchMarker : CameraMarkerBase
     {
-        [Tooltip("Index into CameraTool.lookAtTargets list. -1 = disable LookAt.")]
+        [Tooltip("Index into Rig's lookAtTargets list. -1 = disable LookAt.")]
         [SerializeField] private int targetIndex;
 
         [Tooltip("Transition duration in seconds. 0 = instant.")]
@@ -25,9 +25,12 @@ namespace Metroma.CameraTool.Timeline
         public int TargetIndex => targetIndex;
         public float TransitionDuration => transitionDuration;
 
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            tool.HandleLookAtSwitch(this);
+            if (rig.Rails != null)
+            {
+                rig.Rails.HandleLookAtSwitchByIndex(targetIndex, transitionDuration);
+            }
         }
     }
 }

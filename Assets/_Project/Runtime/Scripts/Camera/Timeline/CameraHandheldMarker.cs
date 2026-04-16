@@ -1,3 +1,5 @@
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using System;
 using System.ComponentModel;
 using UnityEngine;
@@ -19,18 +21,18 @@ namespace Metroma.CameraTool.Timeline
         [Tooltip("If true, this marker deactivates handheld mode instead of activating a profile.")]
         [SerializeField] private bool deactivate = false;
 
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            if (tool == null || tool.TargetCamera == null)
+            if (rig == null || rig.TargetCamera == null)
                 return;
 
             if (deactivate)
             {
-                CameraModifiers.SetHandheld(tool.TargetCamera, false, null);
+                CameraModifiers.SetHandheld(rig.TargetCamera, false, null);
             }
             else if (profile != null)
             {
-                CameraModifiers.SetHandheld(tool.TargetCamera, true, profile);
+                CameraModifiers.SetHandheld(rig.TargetCamera, true, profile);
             }
         }
     }

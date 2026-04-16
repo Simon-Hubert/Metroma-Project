@@ -1,8 +1,9 @@
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using System;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
 
 namespace Metroma.CameraTool.Timeline
@@ -10,7 +11,6 @@ namespace Metroma.CameraTool.Timeline
 
     [Serializable]
     [DisplayName("Camera Event")]
-    [CustomStyle("CameraEventMarker")]
     public class CameraEventMarker : Marker, INotification
     {
         [Tooltip("Event name forwarded to CameraTool.TriggerTimelineEvent().")]

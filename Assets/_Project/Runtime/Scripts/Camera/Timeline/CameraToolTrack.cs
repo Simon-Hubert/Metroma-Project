@@ -1,6 +1,8 @@
+using System.ComponentModel;
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
 
 namespace Metroma.CameraTool.Timeline
@@ -10,7 +12,7 @@ namespace Metroma.CameraTool.Timeline
     /// Accepts <see cref="CameraToolClip"/> clips and <see cref="CameraEventMarker"/> markers.
     /// </summary>
     [TrackColor(0.2f, 0.6f, 1f)]
-    [TrackBindingType(typeof(CameraTool))]
+    [TrackBindingType(typeof(CameraRig))]
     [TrackClipType(typeof(CameraToolClip))]
     public class CameraToolTrack : TrackAsset
     {

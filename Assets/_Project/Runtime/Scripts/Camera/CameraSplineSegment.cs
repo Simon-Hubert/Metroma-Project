@@ -15,7 +15,7 @@ namespace Metroma.CameraTool
         public float duration = 1f;
 
         [Tooltip("Easing curve for camera movement within this segment.")]
-        public AnimationCurve easing = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+        public AnimationCurve easing = AnimationCurve.Linear(0f, 0f, 1f, 1f);
 
         [Tooltip("Wait time (seconds) at the destination node before moving to the next segment.")]
         [Min(0f)]

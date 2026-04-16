@@ -5,15 +5,15 @@ using UnityEngine;
 public class TestAnimCamera : MonoBehaviour
 {
     
-    [SerializeField] private CameraTool cameraTool;
+    [SerializeField] private CameraRig cameraRig;
     
     [SerializeField] private Camera cameraRef;
     
     void Start()
     {
-        if (cameraTool)
+        if (cameraRig)
         {
-            cameraTool.onSplineNotified.AddListener(TestNotif);
+            cameraRig.onSplineNotified.AddListener(TestNotif);
         }
     }
 

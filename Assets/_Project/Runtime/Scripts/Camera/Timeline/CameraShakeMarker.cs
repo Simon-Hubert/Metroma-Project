@@ -1,8 +1,9 @@
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using System;
 using System.ComponentModel;
 using UnityEngine;
 using Metroma.CameraTool.Modifiers;
-
 
 namespace Metroma.CameraTool.Timeline
 {
@@ -42,17 +43,20 @@ namespace Metroma.CameraTool.Timeline
         public float Roughness => roughness;
         public bool FadeOut => fadeOut;
 
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            if (tool == null || tool.TargetCamera == null) return;
+            if (rig == null || rig.TargetCamera == null)
+            {
+                return;
+            }
 
             if (profile != null)
             {
-                CameraModifiers.DoShake(tool.TargetCamera, profile, duration);
+                CameraModifiers.DoShake(rig.TargetCamera, profile, duration);
             }
             else
             {
-                CameraModifiers.DoShake(tool.TargetCamera, intensity, duration, roughness, fadeOut, intensityCurve, syncHaptics);
+                CameraModifiers.DoShake(rig.TargetCamera, intensity, duration, roughness, fadeOut, intensityCurve, syncHaptics);
             }
         }
     }

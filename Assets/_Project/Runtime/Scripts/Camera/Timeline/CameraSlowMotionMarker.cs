@@ -1,7 +1,8 @@
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using System;
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Timeline;
 using Metroma.CameraTool.Modifiers;
 
 
@@ -27,10 +28,10 @@ namespace Metroma.CameraTool.Timeline
             new Keyframe(1, 0)
         );
 
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            if (tool != null)
-                CameraTimeHandler.DoSlowMotion(tool, targetTimeScale, duration, profileCurve);
+            if (rig != null)
+                CameraTimeHandler.DoSlowMotion(rig, targetTimeScale, duration, profileCurve);
         }
     }
 }

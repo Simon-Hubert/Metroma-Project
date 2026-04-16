@@ -1,3 +1,5 @@
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using System;
 using System.ComponentModel;
 using UnityEngine;
@@ -39,19 +41,19 @@ namespace Metroma.CameraTool.Timeline
         [Range(0.05f, 0.5f)]
         [SerializeField] private float pulseInterval = 0.15f;
 
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            if (tool == null || tool.TargetCamera == null)
+            if (rig == null || rig.TargetCamera == null)
                 return;
 
             if (profile != null)
             {
-                CameraModifiers.DoHaptic(tool.TargetCamera, profile);
+                CameraModifiers.DoHaptic(rig.TargetCamera, profile);
             }
             else
             {
                 float finalDuration = usePattern ? (pulseInterval * (pulseCount + 1)) : duration;
-                CameraModifiers.DoHaptic(tool.TargetCamera, intensityCurve, lowFreq, highFreq, finalDuration, usePattern, pulseCount, pulseInterval);
+                CameraModifiers.DoHaptic(rig.TargetCamera, intensityCurve, lowFreq, highFreq, finalDuration, usePattern, pulseCount, pulseInterval);
             }
         }
     }

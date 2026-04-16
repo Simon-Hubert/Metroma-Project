@@ -16,7 +16,7 @@ namespace Metroma.CameraTool.Modifiers
         /// <summary>
         /// Triggers a slow-motion phase using a curve to define the timeScale profile over time.
         /// </summary>
-        /// <param name="host">The MonoBehaviour to run the coroutine on (e.g. CameraTool.Active).</param>
+        /// <param name="host">The MonoBehaviour to run the coroutine on (e.g. CameraRig.Active).</param>
         /// <param name="targetScale">The minimum Time.timeScale reached at curve value 1.0.</param>
         /// <param name="duration">Total length of the effect in real-time seconds.</param>
         /// <param name="profileCurve">Curve where 0.0 = Time.timeScale 1.0, and 1.0 = targetScale.</param>

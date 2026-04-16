@@ -1,7 +1,8 @@
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using System;
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Timeline;
 using Metroma.CameraTool.Modifiers;
 
 
@@ -35,15 +36,15 @@ namespace Metroma.CameraTool.Timeline
         [Tooltip("If true, the returnCurve value will be inverted (1 - value). This allows using standard 0-1 Unity presets for the return phase.")]
         public bool invertReturnCurve = true;
 
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            if (tool.TargetCamera != null)
+            if (rig.TargetCamera != null)
             {
                 if (positionOffset.sqrMagnitude > 0.0001f)
-                    tool.TargetCamera.AddPositionOffset(positionOffset, duration, curve, returnDuration, returnCurve, invertReturnCurve);
+                    rig.TargetCamera.AddPositionOffset(positionOffset, duration, curve, returnDuration, returnCurve, invertReturnCurve);
                 
                 if (rotationOffset.sqrMagnitude > 0.0001f)
-                    tool.TargetCamera.AddRotationOffset(rotationOffset, duration, curve, returnDuration, returnCurve, invertReturnCurve);
+                    rig.TargetCamera.AddRotationOffset(rotationOffset, duration, curve, returnDuration, returnCurve, invertReturnCurve);
             }
         }
     }
