@@ -100,19 +100,23 @@ namespace Metroma
 
         #region Inputs Callback
 
-        public void BindCallbacks(CaptureInputs _captureInputs)
-        {
-            CallBack callBack = InputMoveStart;
-            _captureInputs.list.Add(callBack);
+        public void BindCallbacks(CaptureInputs _captureInputs) {
+            // CallBack callBack = InputMoveStart;
+            // _captureInputs.list.Add(callBack);
         }
         
         #region Inputs Event
-        protected virtual void InputMoveStart()
-        {
+        protected virtual void InputMoveStart() {
             
         }
-        protected virtual void InputMoveEnd()
-        {
+        protected virtual void InputMoveEnd() {
+            
+        }
+
+        protected virtual void InputActionStart() {
+            
+        }
+        protected virtual void InputActionEnd() {
             
         }
         #endregion

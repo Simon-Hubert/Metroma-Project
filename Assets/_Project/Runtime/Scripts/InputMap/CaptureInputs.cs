@@ -42,8 +42,6 @@ namespace Metroma.Inputs
         }
     }
     
-    public delegate void CallBack();
-    
     public class CaptureInputs : MonoBehaviour
     {
         private MetromaActions _inputAction;
@@ -54,8 +52,12 @@ namespace Metroma.Inputs
         [SerializeField, ReadOnly] private bool _action;
         [SerializeField, ReadOnly] private float _actionAFK;
 
-
-        public List<CallBack> list = new List<CallBack>();
+        public event Action OnMoveStart;
+        public event Action OnMoveEnd;
+        
+        public event Action OnActionStart;
+        public event Action OnActionEnd;
+        
         
         private void OnEnable() {
             _inputAction = new MetromaActions();
@@ -76,20 +78,19 @@ namespace Metroma.Inputs
             _actionAFK = _action ? 0.0f : _actionAFK + Time.fixedDeltaTime;
         }
         
-        
         private void OnMove(Vector2 move) {
             Vector2 last = _move;
             _move = move;
             
-            // if (last == Vector2.zero && _move != Vector2.zero) OnMoveStart?.Invoke();
-            // else if (last != Vector2.zero && _move == Vector2.zero) OnMoveEnd?.Invoke();
+            if (last == Vector2.zero && _move != Vector2.zero) OnMoveStart?.Invoke();
+            else if (last != Vector2.zero && _move == Vector2.zero) OnMoveEnd?.Invoke();
         }
         private void OnAction(bool action) {
             bool last = _action;
             _action = action;
             
-            // if (last == false && _action == true) OnActionStart?.Invoke();
-            // else if (last == true && _action == false) OnActionEnd?.Invoke();
+            if (last == false && _action == true) OnActionStart?.Invoke();
+            else if (last == true && _action == false) OnActionEnd?.Invoke();
         }
         
         public GameplayInputsData GetGameplayInputsData() => new GameplayInputsData(_move, _moveAFK, _action, _actionAFK);

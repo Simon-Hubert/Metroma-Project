@@ -4,15 +4,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using Metroma.Inputs;
+using AYellowpaper.SerializedCollections;
 
 namespace Metroma
 {
+    public delegate void InputCallBack();
+
+    public struct ControllableCallBacks {
+        public InputCallBack moveStartCallBack { get; }
+        public InputCallBack moveEndCallBack { get; }
+        public InputCallBack actionStartCallBack { get; }
+        public InputCallBack actionEndCallBack { get; }
+
+        public ControllableCallBacks(InputCallBack moveStart, InputCallBack moveEnd, InputCallBack actionStart, InputCallBack actionEnd)
+        {
+            moveStartCallBack = moveStart;
+            moveEndCallBack = moveEnd;
+            actionStartCallBack = actionStart;
+            actionEndCallBack = actionEnd;
+        } 
+    }
+    
     public class InputManager : MonoBehaviour
     {
         public static InputManager instance;
         
         [SerializeField] private CaptureInputs _captureInputs;
+        
         [SerializeField, ReadOnly] private List<Controllable> _controllables;
+        private Dictionary<Controllable, ControllableCallBacks> _controllablesCallBacks = new Dictionary<Controllable, ControllableCallBacks>();
 
         private void Awake() {
             if (instance != null) {
@@ -43,7 +63,7 @@ namespace Metroma
         /// <param name="controllable"><see cref="Controllable"/> to add.</param>
         /// <param name="activeState">false by default. If the <see cref="Controllable"/> should be active when added.</param>
         /// <returns>true if the action is successful. false if there is an error, or <see cref="Controllable"/> is already set.</returns>
-        public bool AddControllable(Controllable controllable, bool activeState = false) {
+        public bool AddControllable(Controllable controllable, ControllableCallBacks callbacks, bool activeState = false) {
             if (_controllables == null) {
                 _controllables = new List<Controllable>();
             }
@@ -53,13 +73,18 @@ namespace Metroma
                 Debug.LogError("Cannot add controllable : IControllable is null.");
                 return false;
             }
-
             if (_controllables.Contains(controllable)) {
-                Debug.LogWarning("Cannot add controllable : " + controllable.name + " is already referenced.");
+                Debug.LogWarning($"Cannot add controllable : {controllable.name} is already referenced.");
                 return false;
             }
-            
 
+            if (!_controllablesCallBacks.ContainsKey(controllable)) {
+                Debug.LogWarning($"Callbacks Overwrite : {controllable.name} already has associated Callbacks, it will be overwrite.");
+                _controllablesCallBacks[controllable] = callbacks;
+            }
+            else {
+                _controllablesCallBacks.Add(controllable, callbacks);
+            }
 
             controllable.IsActive = activeState; // false by default
             _controllables.Add(controllable);
