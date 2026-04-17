@@ -74,15 +74,15 @@ namespace Metroma
         /// TODO : Rework this ascpect to not implement public events in this class on refacto. Callback functions could be a solution
         /// </summary>
         #region Events
-        [Foldout("Events")] public UnityEvent OnMoveStartUnity;
-        public event Action OnMoveStart;
-        [Foldout("Events")] public UnityEvent OnMoveEndUnity;
-        public event Action OnMoveEnd;
+        [Obsolete("May not be used in the futur"), Foldout("Events")] public UnityEvent OnMoveStartUnity;
+        [Obsolete] public event Action OnMoveStart;
+        [Obsolete("May not be used in the futur"), Foldout("Events")] public UnityEvent OnMoveEndUnity;
+        [Obsolete]public event Action OnMoveEnd;
 
-        [Foldout("Events")] public UnityEvent OnActionStartUnity;
-        public event Action OnActionStart;
-        [Foldout("Events")] public UnityEvent OnActionEndUnity;
-        public event Action OnActionEnd;
+        [Obsolete("May not be used in the futur"), Foldout("Events")] public UnityEvent OnActionStartUnity;
+        [Obsolete]public event Action OnActionStart;
+        [Obsolete("May not be used in the futur"), Foldout("Events")] public UnityEvent OnActionEndUnity;
+        [Obsolete]public event Action OnActionEnd;
         #endregion
 
         protected virtual void OnEnable() {
