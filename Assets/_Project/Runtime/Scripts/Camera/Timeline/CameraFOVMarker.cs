@@ -1,7 +1,8 @@
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using System;
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Timeline;
 using Metroma.CameraTool.Modifiers;
 
 
@@ -12,7 +13,6 @@ namespace Metroma.CameraTool.Timeline
     /// </summary>
     [Serializable]
     [DisplayName("Camera/📐 FOV Change")]
-    [CustomStyle("CameraFOVMarker")]
     public class CameraFOVMarker : CameraMarkerBase
     {
         [Tooltip("Target Field of View value.")]
@@ -30,11 +30,11 @@ namespace Metroma.CameraTool.Timeline
         public float Duration => duration;
         public AnimationCurve Curve => curve;
 
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            if (tool.TargetCamera != null)
+            if (rig.TargetCamera != null)
             {
-                CameraModifiers.DoFOVTransition(tool.TargetCamera, targetFOV, duration, curve);
+                CameraModifiers.DoFOVTransition(rig.TargetCamera, targetFOV, duration, curve);
             }
         }
     }

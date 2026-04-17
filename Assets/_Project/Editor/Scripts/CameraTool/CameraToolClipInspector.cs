@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using Metroma.CameraTool.Timeline;
+using Metroma.CameraTool;
 
 namespace Metroma.CameraTool.Editor
 {
@@ -222,21 +223,22 @@ namespace Metroma.CameraTool.Editor
 
         private static void PreviewAtProgress(float progress)
         {
-            CameraTool tool = FindFirstObjectByType<CameraTool>();
-            if (!tool)
+            CameraRig rig = FindFirstObjectByType<CameraRig>();
+            if (!rig)
             {
-                Debug.LogWarning("[CameraToolClip] No CameraTool found in scene for preview.");
+                Debug.LogWarning("[CameraToolClip] No CameraRig found in scene for preview.");
                 return;
             }
 
-            tool.EditorEvaluateAt(progress);
+            rig.EditorReportVisualState(-1, -1, progress);
             SceneView.RepaintAll();
 
             SceneView sv = SceneView.lastActiveSceneView;
             if (sv)
             {
-                Dreamteck.Splines.SplineSample sample = tool.EditorSampleAt(progress);
-                sv.LookAt(sample.position, Quaternion.LookRotation(sample.forward, sample.up), 5f);
+                CameraPose pose = rig.Rails.CalculateTargetPose();
+                Vector3 forward = pose.rotation * Vector3.forward;
+                sv.LookAt(pose.position, Quaternion.LookRotation(forward, pose.up), 5f);
                 sv.Repaint();
             }
         }

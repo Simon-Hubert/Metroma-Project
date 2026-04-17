@@ -1,9 +1,6 @@
 using System;
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Timeline;
-
-using Metroma.CameraTool;
 
 
 namespace Metroma.CameraTool.Timeline
@@ -14,10 +11,9 @@ namespace Metroma.CameraTool.Timeline
     /// </summary>
     [Serializable]
     [DisplayName("Camera/⏭ Next Chapter")]
-    [CustomStyle("CameraEventMarker")]
     public class CameraNextChapterMarker : CameraMarkerBase
     {
-        [Tooltip("Exact name of the chapter to play (from the CameraTool Chapters list).")]
+        [Tooltip("Exact name of the chapter to play (from the Sequences module Chapters list).")]
         public string nextChapterName;
 
         [Tooltip("Duration of the blend from the current position to the start of the next chapter.")]
@@ -26,18 +22,45 @@ namespace Metroma.CameraTool.Timeline
         [Tooltip("What should the camera look at during the blend (transition)?")]
         public TransitionLookAtMode lookAtMode = TransitionLookAtMode.TimelineDefault;
 
-        [Tooltip("Optional target to look at (only used if mode is SpecificGameObject).")]
-        public Transform lookAtTarget;
 
-        [Tooltip("Speed/Smoothness of the camera movement and rotation during and after the blend (higher is faster/sharper). Prevents teleportation snaps.")]
+        [Tooltip("Speed/Smoothness of the camera movement during and after the blend.")]
         public float cameraSmoothSpeed = 5.0f;
 
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            if (tool != null && !string.IsNullOrEmpty(nextChapterName))
+            if (rig == null || rig.Sequences == null || string.IsNullOrEmpty(nextChapterName))
+                return;
+
+            int chapterIdx = rig.Sequences.Chapters.FindIndex(c => c.name.Equals(nextChapterName, StringComparison.OrdinalIgnoreCase));
+            if (chapterIdx < 0)
+                return;
+
+            CameraChapter nextChapter = rig.Sequences.Chapters[chapterIdx];
+
+            if (lookAtMode == TransitionLookAtMode.ChapterStart || lookAtMode == TransitionLookAtMode.ChapterEnd)
             {
-                tool.PlayChapter(nextChapterName, blendDuration, lookAtMode, lookAtTarget, cameraSmoothSpeed);
+                if (Application.isPlaying && rig.Rails != null && nextChapter.startRailIndex < rig.Rails.EditorRails.Count)
+                {
+                    var spline = rig.Rails.EditorRails[nextChapter.startRailIndex];
+                    if (spline != null)
+                    {
+                        double percent = (lookAtMode == TransitionLookAtMode.ChapterStart) ? 0.05 : 0.95;
+                        var sample = spline.Evaluate(percent);
+            
+                        GameObject tempAnchor = new GameObject($"TempLookAt_{lookAtMode}_{nextChapterName}");
+                        tempAnchor.transform.position = sample.position;
+            
+                        rig.Rails.SetLookAt(tempAnchor.transform, blendDuration);
+                        Destroy(tempAnchor, blendDuration + 0.1f);
+                    }
+                }
             }
+            else if (lookAtMode == TransitionLookAtMode.TimelineDefault)
+            {
+                rig.Rails.SetLookAt(null, blendDuration);
+            }
+            
+            rig.Sequences.PlayChapter(chapterIdx, blendDuration, cameraSmoothSpeed);
         }
     }
 }

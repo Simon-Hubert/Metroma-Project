@@ -1,9 +1,10 @@
-using UnityEngine;
+using System.ComponentModel;
+using Metroma.CameraTool;
 using UnityEngine.Timeline;
+using UnityEngine;
 
 namespace Metroma.CameraTool.Timeline
 {
-    [CustomStyle("CameraControlMarker")]
     public class CameraControlMarker : CameraMarkerBase
     {
         [Tooltip("If checked, the CameraTool will automatically handle the camera. If unchecked, it releases control.")]
@@ -12,25 +13,25 @@ namespace Metroma.CameraTool.Timeline
         [Tooltip("Optional action to perform on the Timeline director when this marker is hit.")]
         public DirectorAction directorAction = DirectorAction.None;
 
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            if (tool == null)
+            if (rig == null)
             {
                 return;
             }
             
-            tool.SetControlActive(activeControl);
+            rig.SetControlActive(activeControl);
 
             // Handle Director Action
-            if (tool.EditorDirector != null)
+            if (rig.EditorDirector != null)
             {
                 if (directorAction == DirectorAction.Pause)
                 {
-                    tool.EditorDirector.Pause();
+                    rig.EditorDirector.Pause();
                 }
                 else if (directorAction == DirectorAction.Stop)
                 {
-                    tool.EditorDirector.Stop();
+                    rig.EditorDirector.Stop();
                 }
             }
         }

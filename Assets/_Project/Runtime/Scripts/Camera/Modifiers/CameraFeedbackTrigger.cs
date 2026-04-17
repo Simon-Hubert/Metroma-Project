@@ -28,10 +28,10 @@ namespace Metroma.CameraTool.Modifiers
         /// </summary>
         public void Trigger()
         {
-            var activeTool = CameraTool.Active;
+            var activeTool = CameraRig.Active;
             if (activeTool == null || activeTool.TargetCamera == null)
             {
-                Debug.LogWarning($"[CameraFeedbackTrigger] No active CameraTool found to receive feedback.", this);
+                Debug.LogWarning($"[CameraFeedbackTrigger] No active CameraRig found to receive feedback.", this);
                 return;
             }
 

@@ -1,7 +1,8 @@
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using System;
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Timeline;
 using Metroma.CameraTool.Modifiers;
 
 
@@ -9,7 +10,6 @@ namespace Metroma.CameraTool.Timeline
 {
     [Serializable]
     [DisplayName("Camera/🎥 Dolly Zoom (Vertigo)")]
-    [CustomStyle("CameraDollyZoomMarker")]
     public class CameraDollyZoomMarker : CameraMarkerBase
     {
         [Tooltip("Optional preset profile. If assigned, the curve below is ignored.")]
@@ -26,17 +26,17 @@ namespace Metroma.CameraTool.Timeline
 
         public AnimationCurve curve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            if (tool.TargetCamera != null)
+            if (rig.TargetCamera != null)
             {
                 if (profile != null)
                 {
-                    CameraModifiers.DoDollyZoom(tool.TargetCamera, pushDistance, targetFOV, duration, profile);
+                    CameraModifiers.DoDollyZoom(rig.TargetCamera, pushDistance, targetFOV, duration, profile);
                 }
                 else
                 {
-                    CameraModifiers.DoDollyZoom(tool.TargetCamera, pushDistance, targetFOV, duration, curve);
+                    CameraModifiers.DoDollyZoom(rig.TargetCamera, pushDistance, targetFOV, duration, curve);
                 }
             }
         }

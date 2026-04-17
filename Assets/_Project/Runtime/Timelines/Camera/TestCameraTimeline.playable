@@ -1,27 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
-  m_Name: TestCameraTimeline
-  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.TimelineAsset
-  m_Version: 0
-  m_Tracks:
-  - {fileID: 8395023584946261708}
-  m_FixedDuration: 0
-  m_EditorSettings:
-    m_Framerate: 60
-    m_ScenePreview: 1
-  m_DurationMode: 0
-  m_MarkerTrack: {fileID: 0}
---- !u!114 &3096566612849488016
+--- !u!114 &-1118397056892769566
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -31,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99c5410f3c6d603428616b7e7424c36e, type: 3}
-  m_Name: Rail_2_Sequence_Clip
+  m_Name: CameraToolClip
   m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraToolClip
   template:
     railIndex: 2
@@ -63,6 +42,31 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     lookAtWeight: 1
+    startPadding: 0
+    endPadding: 0
+    clipStartTime: 0
+    clipDuration: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
+  m_Name: TestCameraTimeline
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.TimelineAsset
+  m_Version: 0
+  m_Tracks:
+  - {fileID: 8395023584946261708}
+  m_FixedDuration: 0
+  m_EditorSettings:
+    m_Framerate: 60
+    m_ScenePreview: 1
+  m_DurationMode: 0
+  m_MarkerTrack: {fileID: 0}
 --- !u!114 &8395023584946261708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,7 +91,7 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 0
     m_ClipIn: 0
-    m_Asset: {fileID: 3096566612849488016}
+    m_Asset: {fileID: -1118397056892769566}
     m_Duration: 1
     m_TimeScale: 1
     m_ParentTrack: {fileID: 8395023584946261708}
@@ -152,6 +156,6 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: Rail 2 Sequence
+    m_DisplayName: Seq #02 (Rail.3-Chapter2)
   m_Markers:
     m_Objects: []

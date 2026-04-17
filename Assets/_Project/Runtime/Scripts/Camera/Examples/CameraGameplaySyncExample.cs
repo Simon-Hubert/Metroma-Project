@@ -1,8 +1,7 @@
 using UnityEngine;
-using System;
-using Metroma.CameraTool;
 using Metroma.CameraTool.Modifiers;
 using Metroma.CameraTool.Timeline;
+
 
 namespace Metroma.CameraTool.Examples
 {
@@ -15,20 +14,20 @@ namespace Metroma.CameraTool.Examples
         private void OnEnable()
         {
             // IMPORTANT: Access the Active instance via the Service Pattern
-            if (CameraTool.Active == null)
+            if (CameraRig.Active == null)
                 return;
 
             // 1. Subscribe to Camera State changes (FollowRail, Transitioning, StaticPose, ReturningToRail)
-            CameraTool.Active.OnStateChanged += HandleStateChanged;
+            CameraRig.Active.OnStateChanged += HandleStateChanged;
 
             // 2. Subscribe to Static Pose arrival (perfect for triggering Minigames or Interaction UI)
-            CameraTool.Active.OnPoseEventReached += HandleMinigameStart;
+            CameraRig.Active.OnPoseEventReached += HandleMinigameStart;
 
             // 3. Subscribe to Chapter transitions (when a new Timeline starts its blend)
-            CameraTool.Active.OnChapterStarted += HandleChapterSwitch;
+            CameraRig.Active.OnChapterStarted += HandleChapterSwitch;
 
             // 4. Subscribe to any Timeline Marker hit
-            CameraTool.Active.OnMarkerEventHit += HandleMarker;
+            CameraRig.Active.OnMarkerEventHit += HandleMarker;
 
             // 5. Subscribe to Slow-Motion state changes
             CameraTimeHandler.OnSlowMoStateChanged += HandleSlowMo;
@@ -36,12 +35,12 @@ namespace Metroma.CameraTool.Examples
 
         private void OnDisable()
         {
-            if (CameraTool.Active != null)
+            if (CameraRig.Active != null)
             {
-                CameraTool.Active.OnStateChanged -= HandleStateChanged;
-                CameraTool.Active.OnPoseEventReached -= HandleMinigameStart;
-                CameraTool.Active.OnChapterStarted -= HandleChapterSwitch;
-                CameraTool.Active.OnMarkerEventHit -= HandleMarker;
+                CameraRig.Active.OnStateChanged -= HandleStateChanged;
+                CameraRig.Active.OnPoseEventReached -= HandleMinigameStart;
+                CameraRig.Active.OnChapterStarted -= HandleChapterSwitch;
+                CameraRig.Active.OnMarkerEventHit -= HandleMarker;
             }
 
             CameraTimeHandler.OnSlowMoStateChanged -= HandleSlowMo;

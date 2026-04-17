@@ -1,7 +1,8 @@
+using Metroma.CameraTool;
+using UnityEngine.Timeline;
 using System;
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Timeline;
 using Metroma.CameraTool.Modifiers;
 
 
@@ -13,17 +14,16 @@ namespace Metroma.CameraTool.Timeline
     /// </summary>
     [Serializable]
     [DisplayName("Camera/🎬 Screen Flash")]
-    [CustomStyle("CameraFlashMarker")]
     public class CameraFlashMarker : CameraMarkerBase
     {
         [SerializeField] private Color flashColor = Color.white;
         [SerializeField] private float duration = 0.5f;
 
-        public override void Execute(CameraTool tool)
+        public override void Execute(CameraRig rig)
         {
-            if (tool.TargetCamera != null)
+            if (rig.TargetCamera != null)
             {
-                CameraModifiers.DoFlash(tool.TargetCamera, flashColor, duration);
+                CameraModifiers.DoFlash(rig.TargetCamera, flashColor, duration);
             }
         }
     }

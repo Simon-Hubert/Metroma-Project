@@ -333,7 +333,7 @@ namespace Metroma.CameraTool.Modifiers
             Vector3 basePos = transform.position;
             Quaternion baseRot = transform.rotation;
 
-            bool isDrivenByTool = CameraTool.Active != null && CameraTool.Active.IsControlActive;
+            bool isDrivenByTool = CameraRig.Active != null && CameraRig.Active.IsControlActive;
 
             // If we are NOT driven by the tool (released), we must revert the previous local offset 
             // to find the "floating" world base.
