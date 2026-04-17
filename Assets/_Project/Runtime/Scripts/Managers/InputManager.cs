@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using NaughtyAttributes;
 using Metroma.Inputs;
@@ -23,6 +24,14 @@ namespace Metroma
             actionStartCallBack = actionStart;
             actionEndCallBack = actionEnd;
         } 
+    }
+
+    public enum InputsCallBackType {
+        NONE = 0,
+        MOVE_START = 1,
+        MOVE_END = 2,
+        ACTION_START = 3,
+        ACTION_END = 4
     }
     
     public class InputManager : MonoBehaviour
@@ -51,17 +60,89 @@ namespace Metroma
                     return;
                 }
             }
+
+            _captureInputs.OnMoveStart += MoveStartCall;
+            _captureInputs.OnMoveEnd += MoveEndCall;
+            _captureInputs.OnActionStart += ActionStartCall;
+            _captureInputs.OnActionEnd += ActionEndCall;
         }
-        
+
+        private void OnDisable() {
+            _captureInputs.OnMoveStart -= MoveStartCall;
+            _captureInputs.OnMoveEnd -= MoveEndCall;
+            _captureInputs.OnActionStart -= ActionStartCall;
+            _captureInputs.OnActionEnd -= ActionEndCall;
+        }
+
         private void Update() {
             SendInputs();
         }
+        
+        /// <summary>
+        /// Updates inputs in every <see cref="Controllable"/> registered and active.
+        /// </summary>
+        private void SendInputs() {
+            if (!_captureInputs || 
+                _controllables == null || _controllables.Count == 0) return;
+
+            GameplayInputsData inputs = _captureInputs.GetGameplayInputsData();
+            
+            foreach (Controllable controllable in _controllables) {
+                if (controllable != null && controllable.IsActive) {
+                    controllable.Inputs = inputs;
+                }
+            }
+        }
+
+        #region OnInputsCall
+        private void MoveStartCall() {
+            SendCallBack(InputsCallBackType.MOVE_START);
+        }
+        private void MoveEndCall() {
+            SendCallBack(InputsCallBackType.MOVE_END);
+        }
+        private void ActionStartCall() {
+            SendCallBack(InputsCallBackType.ACTION_START);
+        }
+        private void ActionEndCall() {
+            SendCallBack(InputsCallBackType.ACTION_END);
+        }
 
         /// <summary>
-        /// Will add the given controllable to the InputManagers's list for it to be used.
+        /// Check and call every CallBack function registered.
+        /// </summary>
+        /// <param name="type">NONE by default</param>
+        private void SendCallBack(InputsCallBackType type = InputsCallBackType.NONE) {
+            foreach (Controllable ctrl in _controllables) {
+                if (ctrl != null && ctrl.IsActive && _controllablesCallBacks.TryGetValue(ctrl, out ControllableCallBacks callBacks)) {
+                    switch (type) {
+                        case InputsCallBackType.MOVE_START :
+                            callBacks.moveStartCallBack();
+                            break;
+                        case InputsCallBackType.MOVE_END :
+                            callBacks.moveEndCallBack();
+                            break;
+                        case InputsCallBackType.ACTION_START :
+                            callBacks.actionStartCallBack();
+                            break;
+                        case InputsCallBackType.ACTION_END :
+                            callBacks.actionEndCallBack();
+                            break;
+                        
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+        #endregion
+        
+        /// <summary>
+        /// Will add the given <see cref="Controllable"/> to the InputManagers's list for it to be used.
         /// </summary>
         /// <param name="controllable"><see cref="Controllable"/> to add.</param>
-        /// <param name="activeState">false by default. If the <see cref="Controllable"/> should be active when added.</param>
+        /// <param name="callbacks"><see cref="ControllableCallBacks"/> of the given <see cref="Controllable"/>.</param>
+        /// <param name="activeState">If the <see cref="Controllable"/> should be active when added, false by default.</param>
         /// <returns>true if the action is successful. false if there is an error, or <see cref="Controllable"/> is already set.</returns>
         public bool AddControllable(Controllable controllable, ControllableCallBacks callbacks, bool activeState = false) {
             if (_controllables == null) {
@@ -78,6 +159,7 @@ namespace Metroma
                 return false;
             }
 
+            // CallBacks
             if (!_controllablesCallBacks.ContainsKey(controllable)) {
                 Debug.LogWarning($"Callbacks Overwrite : {controllable.name} already has associated Callbacks, it will be overwrite.");
                 _controllablesCallBacks[controllable] = callbacks;
@@ -95,35 +177,30 @@ namespace Metroma
             if (_controllables == null) return;
             
             _controllables.Remove(toRemove);
+            _controllablesCallBacks.Remove(toRemove);
         }
         public void RemoveControllables(Controllable[] toRemove) {
             if (_controllables == null) return;
 
             foreach (Controllable controllable in toRemove) {
-                _controllables.Remove(controllable);
+                RemoveControllable(controllable);
             }
         }
         
         /// <summary>
-        /// Will clean the dictionnary of any remaining null IControllable. Call it once in a while.
+        /// Will clean the dictionnary of any remaining null <see cref="Controllable"/>. Call it once in a while.
         /// </summary>
+        [Button]
         public void PurgeControllables() {
             for (int i = 0; i < _controllables.Count; i++) {
-                if (_controllables[i] == null) {
-                    _controllables.RemoveAt(i);
-                }
+                if (_controllables[i] == null) _controllables.RemoveAt(i);
             }
-        }
-
-        private void SendInputs() {
-            if (!_captureInputs || 
-                _controllables == null || _controllables.Count == 0) return;
-
-            GameplayInputsData inputs = _captureInputs.GetGameplayInputsData();
             
-            foreach (Controllable controllable in _controllables) {
-                if (controllable != null && controllable.IsActive) {
-                    controllable.Inputs = inputs;
+            foreach (Controllable ctrl in _controllablesCallBacks.Keys) {
+                if (ctrl == null || !_controllables.Contains(ctrl)) {
+                    if (_controllablesCallBacks.Remove(ctrl)) {
+                        Debug.LogError($"Purge Controllables : Cannot remove callbacks for {ctrl?.name}");
+                    }
                 }
             }
         }

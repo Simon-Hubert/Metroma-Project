@@ -81,7 +81,15 @@ namespace Metroma
         [Foldout("Events")] public UnityEvent OnActionEndUnity;
         public event Action OnActionEnd;
         #endregion
-        
+
+        protected virtual void OnEnable() {
+            IsActive = false;
+        }
+
+        protected virtual void OnDisable() {
+            IsActive = false;
+        }
+
         protected virtual void Start() {
 #if UNITY_EDITOR
             if (activeAtStart) Editor_AddControllable();
@@ -100,26 +108,31 @@ namespace Metroma
 
         #region Inputs Callback
 
-        public void BindCallbacks(CaptureInputs _captureInputs) {
-            // CallBack callBack = InputMoveStart;
-            // _captureInputs.list.Add(callBack);
+        public ControllableCallBacks GetCallbacks {
+            get {
+                InputCallBack moveStart = InputMoveStart;
+                InputCallBack moveEnd = InputMoveEnd;
+                InputCallBack actionStart = InputActionStart;
+                InputCallBack actionEnd = InputActionStart;
+                
+                return new ControllableCallBacks(moveStart, moveEnd, actionStart, actionEnd);
+            }
         }
         
-        #region Inputs Event
         protected virtual void InputMoveStart() {
-            
+            OnMoveStart.Invoke();
         }
         protected virtual void InputMoveEnd() {
-            
+            OnMoveEnd.Invoke();
         }
 
         protected virtual void InputActionStart() {
-            
+            OnActionStart.Invoke();
         }
         protected virtual void InputActionEnd() {
-            
+            OnActionEnd.Invoke();
         }
-        #endregion
+
         #endregion
 
         #region Sub/Unsub
@@ -136,7 +149,7 @@ namespace Metroma
         /// </summary>
         /// <returns>true if <see cref="Controllable"/> is successfully subscribed. false if it fails to subscribe, or is already subscribed.</returns>
         public bool SubscribeInputs(bool activeAtStart) {
-            return InputManager.instance.AddControllable(this, activeAtStart);
+            return InputManager.instance.AddControllable(this, GetCallbacks, activeAtStart);
         }
 
         /// <summary>
@@ -149,18 +162,15 @@ namespace Metroma
         
         #if UNITY_EDITOR
         [Button]
-        protected void Editor_SwitchActiveState()
-        {
+        protected void Editor_SwitchActiveState() {
             IsActive = !IsActive;
         }
         [Button]
-        protected void Editor_AddControllable()
-        {
+        protected void Editor_AddControllable() {
             SubscribeInputs(true);
         }
         [Button]
-        protected void Editor_RemoveControllable()
-        {
+        protected void Editor_RemoveControllable() {
             UnsubscribeInputs();
         }
         #endif

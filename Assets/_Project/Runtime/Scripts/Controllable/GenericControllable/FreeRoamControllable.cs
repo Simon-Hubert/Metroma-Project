@@ -57,11 +57,15 @@ namespace Metroma
             }
         }
         
-        protected void OnEnable() {
+        protected override void OnEnable() {
+            base.OnEnable();
+            
             OnMoveStart += MoveStartLerp;
             OnMoveEnd += MoveEndLerp;
         }
-        protected void OnDisable() {
+        protected override void OnDisable() {
+            base.OnDisable();
+            
             OnMoveStart -= MoveStartLerp;
             OnMoveEnd -= MoveEndLerp;
 
