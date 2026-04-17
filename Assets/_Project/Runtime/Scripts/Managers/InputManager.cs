@@ -113,6 +113,8 @@ namespace Metroma
         /// </summary>
         /// <param name="type">NONE by default</param>
         private void SendCallBack(InputsCallBackType type = InputsCallBackType.NONE) {
+            SendInputs();
+            
             foreach (Controllable ctrl in _controllables) {
                 if (ctrl != null && ctrl.IsActive && _controllablesCallBacks.TryGetValue(ctrl, out ControllableCallBacks callBacks)) {
                     switch (type) {

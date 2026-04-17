@@ -59,15 +59,9 @@ namespace Metroma
         
         protected override void OnEnable() {
             base.OnEnable();
-            
-            OnMoveStart += MoveStartLerp;
-            OnMoveEnd += MoveEndLerp;
         }
         protected override void OnDisable() {
             base.OnDisable();
-            
-            OnMoveStart -= MoveStartLerp;
-            OnMoveEnd -= MoveEndLerp;
 
             if (rb2D) {
                 rb2D.linearVelocity = Vector2.zero;
@@ -198,6 +192,21 @@ namespace Metroma
             accelerationValue = 0f;
             yield break;
         }
+        #endregion
+        
+        #region Inputs Events
+
+        protected override void InputMoveStart() {
+            base.InputMoveStart();
+            
+            MoveStartLerp();
+        }
+        protected override void InputMoveEnd() {
+            base.InputMoveEnd();
+            
+            MoveEndLerp();
+        }
+
         #endregion
     }
 }

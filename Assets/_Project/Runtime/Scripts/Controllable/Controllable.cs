@@ -15,6 +15,9 @@ namespace Metroma
 #if UNITY_EDITOR
         [SerializeField] private bool activeAtStart = false;
 #endif
+        [SerializeField] protected bool showDebugLog = false;
+        
+        [Space(7)]
         [SerializeField, ReadOnly] private bool _isActive;
         /// <summary>
         /// Whether the Controllable captures inputs or not
@@ -113,24 +116,28 @@ namespace Metroma
                 InputCallBack moveStart = InputMoveStart;
                 InputCallBack moveEnd = InputMoveEnd;
                 InputCallBack actionStart = InputActionStart;
-                InputCallBack actionEnd = InputActionStart;
+                InputCallBack actionEnd = InputActionEnd;
                 
                 return new ControllableCallBacks(moveStart, moveEnd, actionStart, actionEnd);
             }
         }
         
         protected virtual void InputMoveStart() {
-            OnMoveStart.Invoke();
+            OnMoveStartUnity.Invoke();
+            if (showDebugLog) Debug.Log($"Controllable {name} : Move Start");
         }
         protected virtual void InputMoveEnd() {
-            OnMoveEnd.Invoke();
+            OnMoveEndUnity.Invoke();
+            if (showDebugLog) Debug.Log($"Controllable {name} : Move End");
         }
 
         protected virtual void InputActionStart() {
-            OnActionStart.Invoke();
+            OnActionStartUnity.Invoke();
+            if (showDebugLog) Debug.Log($"Controllable {name} : Action Start");
         }
         protected virtual void InputActionEnd() {
-            OnActionEnd.Invoke();
+            OnActionEndUnity.Invoke();
+            if (showDebugLog) Debug.Log($"Controllable {name} : Action End");
         }
 
         #endregion

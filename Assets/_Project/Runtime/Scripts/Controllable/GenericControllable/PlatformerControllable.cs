@@ -96,41 +96,9 @@ namespace Metroma
 
         protected override void OnEnable() {
             base.OnEnable();
-            
-            OnMoveStart += MoveStartLerp;
-            OnMoveEnd += MoveEndLerp;
-
-            switch (jumpType) {
-                case JumpType.AtActionEnd :
-                    OnActionEnd += Jumping;
-                    break;
-                case JumpType.AtActionDynamic:
-                    OnActionStart += DynamicJump;
-                    OnActionEnd += Jumping;
-                    break;
-                case JumpType.AtActionStart:
-                    OnActionStart += Jumping;
-                    break;
-            }
         }
         protected override void OnDisable() {
             base.OnDisable();
-            
-            OnMoveStart -= MoveStartLerp;
-            OnMoveEnd -= MoveEndLerp;
-            
-            switch (jumpType) {
-                case JumpType.AtActionEnd :
-                    OnActionEnd -= Jumping;
-                    break;
-                case JumpType.AtActionDynamic:
-                    OnActionStart -= DynamicJump;
-                    OnActionEnd -= Jumping;
-                    break;
-                case JumpType.AtActionStart:
-                    OnActionStart -= Jumping;
-                    break;
-            }
         }
 
         protected override void Start() {
@@ -361,6 +329,42 @@ namespace Metroma
             isJumping = false;
             yield break;
         }
+        #endregion
+        
+        #region Inputs Events
+
+        protected override void InputMoveStart() {
+            base.InputMoveStart();
+            
+            MoveStartLerp();
+        }
+        protected override void InputMoveEnd() {
+            base.InputMoveEnd();
+            
+            MoveEndLerp();
+        }
+
+        protected override void InputActionStart() {
+            switch (jumpType) {
+                case JumpType.AtActionDynamic:
+                    DynamicJump();
+                    break;
+                case JumpType.AtActionStart:
+                    Jumping();
+                    break;
+            }
+        }
+        protected override void InputActionEnd() {
+            switch (jumpType) {
+                case JumpType.AtActionEnd :
+                    Jumping();
+                    break;
+                case JumpType.AtActionDynamic:
+                    Jumping();
+                    break;
+            }
+        }
+        
         #endregion
     } 
 }
