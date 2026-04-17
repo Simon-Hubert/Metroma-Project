@@ -9,7 +9,7 @@ namespace Metroma
         private int _index = 0;
         
         public AdBase CurrentAd => _ads[_index];
-        public AdBase LastAd => _ads[_ads.Count - 1];
+        public AdBase LastAd => _ads[^1];
         
         public void StartAd()
         {

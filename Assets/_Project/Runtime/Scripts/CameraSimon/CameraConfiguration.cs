@@ -35,9 +35,9 @@ public struct CameraConfiguration
     public static CameraConfiguration operator -(CameraConfiguration left, CameraConfiguration right) {
         return new CameraConfiguration()
         {
-            Yaw = left.Yaw - right.Yaw,
-            Pitch = left.Pitch - right.Pitch,
-            Roll = left.Roll - right.Roll,
+            Yaw = Mathf.DeltaAngle(left.Yaw, right.Yaw),
+            Pitch = Mathf.DeltaAngle(left.Pitch, right.Pitch),
+            Roll = Mathf.DeltaAngle(left.Roll, right.Roll),
             Pivot = left.Pivot - right.Pivot,
             Distance = left.Distance - right.Distance,
             Fov = left.Fov - right.Fov

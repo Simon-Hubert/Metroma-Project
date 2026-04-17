@@ -17,22 +17,19 @@ namespace Metroma
         [SerializeField] private AView _endView;
         [SerializeField] private List<AView> _adsViews;
 
+        public event Action OnAdEndedEvent;
+
         private int _viewIndex = 0;
-
-        private void Start() {
-            if(_startAllMinigames) StartAllMiniGames();
-            else StartMiniGame();
-        }
-
-        private void StartMiniGame() {
+        
+        public void StartMiniGame() {
             _data.IsIn = true;
-            _transManager.TryTransition(_data);
-            CameraHelpers.TransitionViewToView(_miniGameCam, _defaultView, _adsViews[_viewIndex], 2.5f);
+            _transManager.TryTransitionAsync(_data);
+            CameraHelpers.TransitionToViewAsync(_miniGameCam, _adsViews[_viewIndex], 2.5f);
             _adsManager.StartAd();
             _adsManager.CurrentAd.OnAdEnded += OnAdEnded;
         }
         
-        private void StartAllMiniGames() {
+        public void StartAllMiniGames() {
             _data.IsIn = true;
             _transManager.TryTransition(_data);
             CameraHelpers.TransitionViewToView(_miniGameCam, _defaultView, _adsViews[_viewIndex], 2.5f);
@@ -45,6 +42,7 @@ namespace Metroma
             _data.IsIn = false;
             _transManager.TryTransition(_data);
             CameraHelpers.TransitionViewToView(_miniGameCam, _adsViews[_viewIndex], _endView, 2.5f);
+            OnAdEndedEvent?.Invoke();
         }
 
         public void NextAd(bool nextView)
