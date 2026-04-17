@@ -854,6 +854,12 @@ namespace Metroma.CameraTool.Editor
                 TimelineClip clip = track.CreateClip<CameraToolClip>();
                 clip.displayName = $"Seq #{r:00} ({rail.name})"; 
                 
+                // Safety: Ensure the asset is actually rooted in the Timeline file
+                if (clip.asset != null && !AssetDatabase.IsSubAsset(clip.asset))
+                {
+                    AssetDatabase.AddObjectToAsset(clip.asset, timeline);
+                }
+                
                 clip.start = nominalTimelineCursor - (double)prevJunctionDur;
                 if (clip.start < 0) clip.start = 0;
                 clip.duration = (double)railMoveDuration + (double)prevJunctionDur + (double)nextJunctionDur;
