@@ -61,6 +61,9 @@ namespace Metroma.CameraTool
 
         [Tooltip("Number of rails this chapter controls starting from the Start Rail Index.")]
         public int railCount = 1;
+
+        [Tooltip("Initial wait time in seconds before the camera starts moving.")]
+        public float waitAtStart = 0f;
         
         [Tooltip("Custom color for this chapter's gizmos.")]
         public Color debugColor = Color.cyan;

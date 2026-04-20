@@ -134,6 +134,12 @@ namespace Metroma.CameraTool
             if (targetCamera == null)
             {
                 targetCamera = UnityEngine.Camera.main;
+                
+                // Editor Fallback: Camera.main might be null in the scene view
+                if (targetCamera == null)
+                {
+                    targetCamera = GetComponentInChildren<UnityEngine.Camera>(true);
+                }
             }
 
             if (targetCamera != null)
@@ -244,6 +250,11 @@ namespace Metroma.CameraTool
         // --- Editor Bridge ---
         public void EditorReportVisualState(int InChapterIdx, int InRailIdx, float InProgress)
         {
+            if (!_isInitialized)
+            {
+                InitializeRig();
+            }
+
             if (InRailIdx >= 0)
             {
                 float globalProgress = (InRailIdx + InProgress) / Mathf.Max(1, Rails.RailCount);

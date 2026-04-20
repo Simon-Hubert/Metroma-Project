@@ -378,6 +378,7 @@ namespace Metroma.CameraTool.Editor
                 SerializedProperty timelineProp = chapterProp.FindPropertyRelative("timeline");
                 SerializedProperty railIdxProp = chapterProp.FindPropertyRelative("startRailIndex");
                 SerializedProperty railCountProp = chapterProp.FindPropertyRelative("railCount");
+                SerializedProperty waitAtStartProp = chapterProp.FindPropertyRelative("waitAtStart");
                 SerializedProperty isExpanded = chapterProp.FindPropertyRelative("isExpanded");
 
                 bool isSelected = (_selectedChapterIndex.intValue == i);
@@ -463,6 +464,8 @@ namespace Metroma.CameraTool.Editor
                     
                     EditorGUILayout.PropertyField(railCountProp, new GUIContent("Rail Count (Calculated)"));
                     GUI.enabled = true;
+                    
+                    EditorGUILayout.PropertyField(waitAtStartProp);
                     
                     EditorGUILayout.Space(12);
                     EditorGUILayout.EndVertical();
@@ -850,19 +853,21 @@ namespace Metroma.CameraTool.Editor
                     if (overrideDur > 0.001f) nextJunctionDur = overrideDur;
                 }
 
+                float waitPadding = (clipsCreatedCount == 0) ? chapter.waitAtStart : 0f;
+
                 // --- ROBUST CREATION (On Fresh Track) ---
                 TimelineClip clip = track.CreateClip<CameraToolClip>();
                 clip.displayName = $"Seq #{r:00} ({rail.name})"; 
                 
                 // Safety: Ensure the asset is actually rooted in the Timeline file
-                if (clip.asset != null && !AssetDatabase.IsSubAsset(clip.asset))
+                if (clip.asset != null && !AssetDatabase.Contains(clip.asset))
                 {
                     AssetDatabase.AddObjectToAsset(clip.asset, timeline);
                 }
                 
                 clip.start = nominalTimelineCursor - (double)prevJunctionDur;
                 if (clip.start < 0) clip.start = 0;
-                clip.duration = (double)railMoveDuration + (double)prevJunctionDur + (double)nextJunctionDur;
+                clip.duration = (double)railMoveDuration + (double)prevJunctionDur + (double)nextJunctionDur + (double)waitPadding;
 
                 clip.blendInDuration = (double)prevJunctionDur;
                 clip.blendOutDuration = (double)nextJunctionDur;
@@ -876,7 +881,7 @@ namespace Metroma.CameraTool.Editor
                     asset.Template.chapterIndex = rig.Sequences.Chapters.IndexOf(chapter);
                     asset.Template.clipStartTime = clip.start;
                     asset.Template.clipDuration = clip.duration;
-                    asset.Template.startPadding = prevJunctionDur;
+                    asset.Template.startPadding = prevJunctionDur + waitPadding;
                     asset.Template.endPadding = nextJunctionDur;
                     asset.Template.startProgress = accumulatedMoveDur / totalMoveDur;
                     asset.Template.endProgress = (accumulatedMoveDur + railMoveDuration) / totalMoveDur;
@@ -884,7 +889,7 @@ namespace Metroma.CameraTool.Editor
                     EditorUtility.SetDirty(asset);
                 }
 
-                nominalTimelineCursor += (double)railMoveDuration + (double)nextJunctionDur;
+                nominalTimelineCursor += (double)railMoveDuration + (double)nextJunctionDur + (double)waitPadding;
                 accumulatedMoveDur += railMoveDuration;
             }
 

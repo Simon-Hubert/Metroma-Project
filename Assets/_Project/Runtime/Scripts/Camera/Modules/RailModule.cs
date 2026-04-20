@@ -101,7 +101,9 @@ namespace Metroma.CameraTool.Modules
         {
             if (!_isInitialized)
             {
-                return CameraPose.Identity;
+                RefreshRailCache();
+                if (_cachedRails == null || _cachedRails.Length == 0)
+                    return CameraPose.Identity;
             }
             
             CameraPose pose = EvaluateAt(globalProgress);
