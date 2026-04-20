@@ -6,11 +6,6 @@ using UnityEngine;
 
 namespace Metroma.CameraTool.Timeline
 {
-    /// <summary>
-    /// Mixer that blends overlapping <see cref="CameraToolClip"/> clips
-    /// and writes the final pose to the bound <see cref="CameraRig"/>.
-    /// Optimized for robust Editor scrubbing using PlayableDirector.time directly.
-    /// </summary>
     public class CameraToolMixerBehaviour : PlayableBehaviour
     {
         private CameraRig _boundRig;
@@ -51,33 +46,26 @@ namespace Metroma.CameraTool.Timeline
                 ScriptPlayable<CameraToolBehaviour> inputPlayable = (ScriptPlayable<CameraToolBehaviour>)playable.GetInput(i);
                 CameraToolBehaviour behaviour = inputPlayable.GetBehaviour();
 
-                // MANUAL TIME EVALUATION (CRITICAL FOR TRANSITIONS & SCRUBBING)
                 double officialTime = _boundRig.Sequences.Director ? _boundRig.Sequences.Director.time : playable.GetTime();
                 double clipLocalTime = officialTime - behaviour.clipStartTime;
 
-                float duration = (float)behaviour.clipDuration;
-                if (duration <= 0) duration = (float)inputPlayable.GetDuration();
-                
-                // --- PADDING LOGIC (Option A: Interstitial Transitions) ---
-                float normalizedTime = 0f;
-                float localTime = (float)clipLocalTime;
-                float dur = duration;
+                double normalizedTime = 0;
+                double activeDuration = (double)behaviour.clipDuration - behaviour.startPadding - behaviour.endPadding;
 
-                if (localTime < behaviour.startPadding)
+                if (clipLocalTime < (double)behaviour.startPadding)
                 {
-                    normalizedTime = 0f;
+                    normalizedTime = 0;
                 }
-                else if (localTime > (dur - behaviour.endPadding))
+                else if (clipLocalTime > (double)behaviour.clipDuration - behaviour.endPadding)
                 {
-                    normalizedTime = 1f;
+                    normalizedTime = 1;
                 }
                 else
                 {
-                    float activeDuration = dur - behaviour.startPadding - behaviour.endPadding;
-                    normalizedTime = activeDuration > 0 ? Mathf.Clamp01((localTime - behaviour.startPadding) / activeDuration) : 1f;
+                    normalizedTime = activeDuration > 0.0001 ? (clipLocalTime - (double)behaviour.startPadding) / activeDuration : 1.0;
                 }
                 
-                float easedTime = (behaviour.easingCurve != null) ? behaviour.easingCurve.Evaluate(normalizedTime) : normalizedTime;
+                float easedTime = (behaviour.easingCurve != null) ? behaviour.easingCurve.Evaluate((float)normalizedTime) : (float)normalizedTime;
                 float clipGlobalProgress = Mathf.Lerp(behaviour.startProgress, behaviour.endProgress, easedTime);
 
                 CameraPose sample;
