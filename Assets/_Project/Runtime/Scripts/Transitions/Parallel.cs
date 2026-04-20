@@ -2,14 +2,12 @@ using UnityEngine;
 
 namespace Metroma
 {
-    public class Parallel : Transition
-    {
+    public class Parallel : ATransition {
         [Header("Transitions to play in parallel")]
-        [SerializeField] private Transition _t1;
-        [SerializeField] private Transition _t2;
+        [SerializeField] private ATransition _t1;
+        [SerializeField] private ATransition _t2;
         
-        public override async Awaitable PlayAsync()
-        {
+        public override async Awaitable PlayAsync() {
             if (_t1 == null && _t2 == null)
                 return;
 

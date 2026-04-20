@@ -8,14 +8,14 @@ namespace Metroma
         
         private AdBase _currentAd;
         
-        public void StartAd(AdBase ad, Transition inTransition, Transition outTransition)
+        public void StartAd(AdBase ad, ATransition inATransition, ATransition outATransition)
         {
             _currentAd = ad;
-            _ = inTransition.PlayAsync();
+            _ = inATransition.PlayAsync();
             
             _currentAd.OnAdEnded += () =>
             {
-                _ = outTransition.PlayAsync();
+                _ = outATransition.PlayAsync();
             };
         }
     }
