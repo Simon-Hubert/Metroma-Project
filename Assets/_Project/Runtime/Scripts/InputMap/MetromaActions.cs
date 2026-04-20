@@ -99,7 +99,7 @@ namespace Metroma.Inputs
                     ""type"": ""Value"",
                     ""id"": ""46df05b5-f99d-4153-8ae7-44a590e75b18"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""NormalizeVector2"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -302,7 +302,7 @@ namespace Metroma.Inputs
                 {
                     ""name"": """",
                     ""id"": ""420073eb-f28a-4510-a52f-13263dd11032"",
-                    ""path"": ""<Keyboard>/anyKey"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&mouse"",
