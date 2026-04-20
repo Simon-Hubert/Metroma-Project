@@ -8,10 +8,12 @@ namespace Metroma
         
         private AdBase _currentAd;
         
-        public void StartAd(AdBase ad, Transition inTransition, Transition outTransition)
+        public async Awaitable StartAd(AdBase ad, Transition inTransition, Transition outTransition)
         {
             _currentAd = ad;
-            _ = inTransition.PlayAsync();
+            await inTransition.PlayAsync();
+            
+            ad.StartAd();
             
             _currentAd.OnAdEnded += () =>
             {

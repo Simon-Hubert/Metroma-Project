@@ -1,0 +1,37 @@
+﻿using System;
+using UnityEngine;
+
+namespace Metroma
+{
+    public class Block : MonoBehaviour
+    {
+        [SerializeField] private Sequence _startSequence;
+        [SerializeField] private Sequence _endSequence;
+        [SerializeField] private ConditionalEvent _endCondition;
+        [SerializeField] private Controllable _controllable;
+
+        public event Action OnBlockEnded;
+
+        public void StartBlock() {
+            Debug.Log($"{name} started !");
+            _endCondition.OnValidated += End;
+            _ = StartAsync();
+        }
+
+        public async Awaitable StartAsync() {
+            await _startSequence.ExecuteAsync();
+            _controllable.SubscribeInputs(true);
+        }
+
+        public void End() {
+            _ = EndAsync();
+        }
+
+        public async Awaitable EndAsync() {
+            _controllable.UnsubscribeInputs();
+            await _endSequence.ExecuteAsync();
+            OnBlockEnded?.Invoke();
+            Debug.Log($"{name} ended !");
+        }
+    }
+}
