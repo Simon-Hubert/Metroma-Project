@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Metroma.Inputs;
 using UnityEngine.Events;
@@ -10,7 +11,7 @@ namespace Metroma
     /// Parent class of every Controllable.
     /// You'll have to Inherit this class in order to modify its behavior.
     /// </summary>
-    public class Controllable : MonoBehaviour
+    public abstract class Controllable : MonoBehaviour
     {
 #if UNITY_EDITOR
         [SerializeField] private bool activeAtStart = false;
@@ -47,23 +48,8 @@ namespace Metroma
                 lastInputs = inputs;
                 inputs = value;
                 
-                if (lastInputs.move == Vector2.zero && Inputs.move != Vector2.zero) {
-                    OnMoveStartUnity?.Invoke();
-                    OnMoveStart?.Invoke();
-                } // Move Start
-                else if (lastInputs.move != Vector2.zero && Inputs.move == Vector2.zero) {
-                    OnMoveEndUnity?.Invoke();
-                    OnMoveEnd?.Invoke();
-                } // Move End
-            
-                if (lastInputs.action == false && Inputs.action == true) {
-                    OnActionStartUnity?.Invoke();
-                    OnActionStart?.Invoke();
-                } // Action Start
-                else if (lastInputs.action == true && Inputs.action == false) {
-                    OnActionEndUnity?.Invoke();
-                    OnActionEnd?.Invoke();
-                }  // Action End
+                if (Inputs.move != Vector2.zero) InputMovePerformed(Inputs.move);
+                if (Inputs.action) InputActionPerformed(Inputs.action);
             }
         }
         
@@ -113,29 +99,35 @@ namespace Metroma
 
         public ControllableCallBacks GetCallbacks {
             get {
-                InputCallBack moveStart = InputMoveStart;
-                InputCallBack moveEnd = InputMoveEnd;
-                InputCallBack actionStart = InputActionStart;
-                InputCallBack actionEnd = InputActionEnd;
+                InputV2CallBack moveStart = InputMoveStart;
+                InputV2CallBack moveEnd = InputMoveEnd;
+                InputBCallBack actionStart = InputActionStart;
+                InputBCallBack actionEnd = InputActionEnd;
                 
                 return new ControllableCallBacks(moveStart, moveEnd, actionStart, actionEnd);
             }
         }
         
-        protected virtual void InputMoveStart() {
+        protected virtual void InputMoveStart(Vector2 _move) {
             OnMoveStartUnity.Invoke();
             if (showDebugLog) Debug.Log($"Controllable {name} : Move Start");
         }
-        protected virtual void InputMoveEnd() {
+        protected virtual void InputMovePerformed(Vector2 _move) {
+            if (showDebugLog) Debug.Log($"Controllable {name} : Move Performed");
+        }
+        protected virtual void InputMoveEnd(Vector2 _move) {
             OnMoveEndUnity.Invoke();
             if (showDebugLog) Debug.Log($"Controllable {name} : Move End");
         }
 
-        protected virtual void InputActionStart() {
+        protected virtual void InputActionStart(bool _action) {
             OnActionStartUnity.Invoke();
             if (showDebugLog) Debug.Log($"Controllable {name} : Action Start");
         }
-        protected virtual void InputActionEnd() {
+        protected virtual void InputActionPerformed(bool _action) {
+            if (showDebugLog) Debug.Log($"Controllable {name} : Move Performed");
+        }
+        protected virtual void InputActionEnd(bool _action) {
             OnActionEndUnity.Invoke();
             if (showDebugLog) Debug.Log($"Controllable {name} : Action End");
         }

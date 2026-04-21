@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using NaughtyAttributes;
 using Metroma.Inputs;
@@ -9,15 +6,16 @@ using AYellowpaper.SerializedCollections;
 
 namespace Metroma
 {
-    public delegate void InputCallBack();
+    public delegate void InputV2CallBack(Vector2 _vector2);
+    public delegate void InputBCallBack(bool _bool);
 
     public struct ControllableCallBacks {
-        public InputCallBack moveStartCallBack { get; }
-        public InputCallBack moveEndCallBack { get; }
-        public InputCallBack actionStartCallBack { get; }
-        public InputCallBack actionEndCallBack { get; }
+        public InputV2CallBack moveStartCallBack { get; }
+        public InputV2CallBack moveEndCallBack { get; }
+        public InputBCallBack actionStartCallBack { get; }
+        public InputBCallBack actionEndCallBack { get; }
 
-        public ControllableCallBacks(InputCallBack moveStart, InputCallBack moveEnd, InputCallBack actionStart, InputCallBack actionEnd)
+        public ControllableCallBacks(InputV2CallBack moveStart, InputV2CallBack moveEnd, InputBCallBack actionStart, InputBCallBack actionEnd)
         {
             moveStartCallBack = moveStart;
             moveEndCallBack = moveEnd;
@@ -41,7 +39,7 @@ namespace Metroma
         [SerializeField] private CaptureInputs _captureInputs;
         
         [SerializeField, ReadOnly] private List<Controllable> _controllables;
-        private Dictionary<Controllable, ControllableCallBacks> _controllablesCallBacks = new Dictionary<Controllable, ControllableCallBacks>();
+        [SerializedDictionary] private Dictionary<Controllable, ControllableCallBacks> _controllablesCallBacks = new Dictionary<Controllable, ControllableCallBacks>();
 
         private void Awake() {
             if (instance != null) {
@@ -75,15 +73,16 @@ namespace Metroma
         }
 
         private void Update() {
+            
             SendInputs();
         }
         
         /// <summary>
         /// Updates inputs in every <see cref="Controllable"/> registered and active.
         /// </summary>
-        private void SendInputs() {
+        private GameplayInputsData SendInputs() {
             if (!_captureInputs || 
-                _controllables == null || _controllables.Count == 0) return;
+                _controllables == null || _controllables.Count == 0) return new GameplayInputsData(Vector2.zero, 0, false, 0);
 
             GameplayInputsData inputs = _captureInputs.GetGameplayInputsData();
             
@@ -92,6 +91,8 @@ namespace Metroma
                     controllable.Inputs = inputs;
                 }
             }
+
+            return inputs;
         }
 
         #region OnInputsCall
@@ -113,22 +114,22 @@ namespace Metroma
         /// </summary>
         /// <param name="type">NONE by default</param>
         private void SendCallBack(InputsCallBackType type = InputsCallBackType.NONE) {
-            SendInputs();
+            GameplayInputsData inputs = SendInputs();
             
             foreach (Controllable ctrl in _controllables) {
                 if (ctrl != null && ctrl.IsActive && _controllablesCallBacks.TryGetValue(ctrl, out ControllableCallBacks callBacks)) {
                     switch (type) {
                         case InputsCallBackType.MOVE_START :
-                            callBacks.moveStartCallBack();
+                            callBacks.moveStartCallBack(inputs.move);
                             break;
                         case InputsCallBackType.MOVE_END :
-                            callBacks.moveEndCallBack();
+                            callBacks.moveEndCallBack(inputs.move);
                             break;
                         case InputsCallBackType.ACTION_START :
-                            callBacks.actionStartCallBack();
+                            callBacks.actionStartCallBack(inputs.action);
                             break;
                         case InputsCallBackType.ACTION_END :
-                            callBacks.actionEndCallBack();
+                            callBacks.actionEndCallBack(inputs.action);
                             break;
                         
                         default:
@@ -162,7 +163,7 @@ namespace Metroma
             }
 
             // CallBacks
-            if (!_controllablesCallBacks.ContainsKey(controllable)) {
+            if (_controllablesCallBacks.ContainsKey(controllable)) {
                 Debug.LogWarning($"Callbacks Overwrite : {controllable.name} already has associated Callbacks, it will be overwrite.");
                 _controllablesCallBacks[controllable] = callbacks;
             }
