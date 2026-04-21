@@ -1,50 +1,54 @@
 using UnityEngine;
 using System;
 using System.Threading;
-using System.Threading.Tasks;
 using NaughtyAttributes;
 
-namespace Metroma
+namespace Metroma.Transitions
 {
     public abstract class ATransition : MonoBehaviour {
         [Header("Transition Params")]
-        [SerializeField] protected float _duration;
-        protected float _currentTime;
-        private CancellationToken _cancellationToken;
+        [SerializeField] protected float duration;
+        protected float currentTime;
+        
+        protected CancellationTokenSource cancelTokenSource;
         
         [SerializeField, ReadOnly] protected bool isPlaying;
         public bool GetIsPlaying { get => isPlaying; }
 
-        public virtual async Awaitable PlayAsync() {
+        public void Play()
+        {
+            cancelTokenSource?.Cancel();
+            cancelTokenSource?.Dispose();
+            cancelTokenSource = new CancellationTokenSource();
+            _ = PlayAsync(cancelTokenSource.Token);
+        }
+        public virtual async Awaitable PlayAsync(CancellationToken cancelToken) {
             if (isPlaying)
                 return;
-
-            _cancellationToken = new CancellationToken();
+            
             isPlaying = true;
-            _currentTime = 0f;
+            currentTime = 0f;
 
-            try
-            {
-                while (_currentTime < _duration) {
-                    _currentTime += Time.deltaTime;
+            try {
+                while (currentTime < duration) {
+                    currentTime += Time.deltaTime;
                     OnUpdate(Time.deltaTime);
-                    await Awaitable.NextFrameAsync();
+                    await Awaitable.NextFrameAsync(cancelToken);
                 }
             }
-            catch
-            {
-                Debug.LogError($"Transition {name} : Task was cancelled");
-                return;
+            catch(OperationCanceledException) {
+                Debug.LogWarning($"Transition : Task was cancelled");
             }
-            finally
-            {
-                _cancellationToken.Dispose();;
-                _cancellationToken = null;
-                
+            finally {
                 isPlaying = false;
             }
         }
 
-        protected virtual void OnUpdate(float delta) => throw new NotImplementedException();
+        protected virtual void OnUpdate(float delta) { }
+
+        private void OnDestroy() {
+            cancelTokenSource?.Cancel();
+            cancelTokenSource?.Dispose();
+        }
     }
 }
