@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Metroma
 {
-    public class PlatformerControllable : Controllable
+    public class PlatformerAControllable : AControllable
     {
         [Serializable]
         protected enum MoveState

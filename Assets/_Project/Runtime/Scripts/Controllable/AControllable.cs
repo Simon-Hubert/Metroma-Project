@@ -11,7 +11,7 @@ namespace Metroma
     /// Parent class of every Controllable.
     /// You'll have to Inherit this class in order to modify its behavior.
     /// </summary>
-    public abstract class Controllable : MonoBehaviour
+    public abstract class AControllable : MonoBehaviour
     {
 #if UNITY_EDITOR
         [SerializeField] private bool activeAtStart = false;
@@ -136,23 +136,23 @@ namespace Metroma
 
         #region Sub/Unsub
         /// <summary>
-        /// Subscribes this <see cref="Controllable"/> to receive Inputs.
+        /// Subscribes this <see cref="AControllable"/> to receive Inputs.
         /// </summary>
-        /// <returns>true if <see cref="Controllable"/> is successfully subscribed. false if it fails to subscribe, or is already subscribed.</returns>
+        /// <returns>true if <see cref="AControllable"/> is successfully subscribed. false if it fails to subscribe, or is already subscribed.</returns>
         public bool SubscribeInputs() {
             return SubscribeInputs(false);
         }
         /// <summary>
-        /// Subscribes this <see cref="Controllable"/> to receive Inputs.
-        /// <param name="activeAtStart">Whether this <see cref="Controllable"/> should be active when Subscribed.</param>
+        /// Subscribes this <see cref="AControllable"/> to receive Inputs.
+        /// <param name="activeAtStart">Whether this <see cref="AControllable"/> should be active when Subscribed.</param>
         /// </summary>
-        /// <returns>true if <see cref="Controllable"/> is successfully subscribed. false if it fails to subscribe, or is already subscribed.</returns>
+        /// <returns>true if <see cref="AControllable"/> is successfully subscribed. false if it fails to subscribe, or is already subscribed.</returns>
         public bool SubscribeInputs(bool activeAtStart) {
             return InputManager.instance.AddControllable(this, GetCallbacks, activeAtStart);
         }
 
         /// <summary>
-        /// Unsubscribe this <see cref="Controllable"/> to stop receiving Inputs.
+        /// Unsubscribe this <see cref="AControllable"/> to stop receiving Inputs.
         /// </summary>
         public void UnsubscribeInputs() {
             InputManager.instance.RemoveControllable(this);

@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 namespace Metroma
 {
-    public class FreeRoamControllable : Controllable
+    public class FreeRoamAControllable : AControllable
     {
         protected enum MoveState
         {
