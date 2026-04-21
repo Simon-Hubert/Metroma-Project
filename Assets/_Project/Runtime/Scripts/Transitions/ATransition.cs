@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
-using Unity.Collections;
+using System.Threading;
+using System.Threading.Tasks;
+using NaughtyAttributes;
 
 namespace Metroma
 {
@@ -8,6 +10,7 @@ namespace Metroma
         [Header("Transition Params")]
         [SerializeField] protected float _duration;
         protected float _currentTime;
+        private CancellationToken _cancellationToken;
         
         [SerializeField, ReadOnly] protected bool isPlaying;
         public bool GetIsPlaying { get => isPlaying; }
@@ -16,16 +19,30 @@ namespace Metroma
             if (isPlaying)
                 return;
 
+            _cancellationToken = new CancellationToken();
             isPlaying = true;
             _currentTime = 0f;
 
-            while (_currentTime < _duration) {
-                _currentTime += Time.deltaTime;
-                OnUpdate(Time.deltaTime);
-                await Awaitable.NextFrameAsync();
+            try
+            {
+                while (_currentTime < _duration) {
+                    _currentTime += Time.deltaTime;
+                    OnUpdate(Time.deltaTime);
+                    await Awaitable.NextFrameAsync();
+                }
             }
-
-            isPlaying = false;
+            catch
+            {
+                Debug.LogError($"Transition {name} : Task was cancelled");
+                return;
+            }
+            finally
+            {
+                _cancellationToken.Dispose();;
+                _cancellationToken = null;
+                
+                isPlaying = false;
+            }
         }
 
         protected virtual void OnUpdate(float delta) => throw new NotImplementedException();

@@ -1,4 +1,5 @@
 using System;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Metroma
@@ -8,7 +9,7 @@ namespace Metroma
         [SerializeField] private Camera _cam1;
         [SerializeField] private Camera _cam2;
         public override async Awaitable PlayAsync() {
-            throw new NotImplementedException(); //TODO IMPLEMENT FUNCTION IN CAMERATRANSITION CLASS
+            
         }
     }
 }
