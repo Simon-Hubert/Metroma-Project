@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 namespace Metroma
 {
-    public class FreeRoamControllable : Controllable
+    public class FreeRoamAControllable : AControllable
     {
         protected enum MoveState
         {
@@ -196,13 +196,13 @@ namespace Metroma
         
         #region Inputs Events
 
-        protected override void InputMoveStart() {
-            base.InputMoveStart();
+        protected override void InputMoveStart(Vector2 _move) {
+            base.InputMoveStart(_move);
             
             MoveStartLerp();
         }
-        protected override void InputMoveEnd() {
-            base.InputMoveEnd();
+        protected override void InputMoveEnd(Vector2 _move) {
+            base.InputMoveEnd(_move);
             
             MoveEndLerp();
         }

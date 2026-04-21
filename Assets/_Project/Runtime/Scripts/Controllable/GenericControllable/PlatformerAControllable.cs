@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Metroma
 {
-    public class PlatformerControllable : Controllable
+    public class PlatformerAControllable : AControllable
     {
         [Serializable]
         protected enum MoveState
@@ -181,7 +181,7 @@ namespace Metroma
 #endif
             
             if (hitL || hitR) {
-                Debug.Log("grounded");
+                if (showDebugLog) Debug.Log("grounded");
                 isGrounded = true;
                 if (coyoteTimeCoroutine != null) {
                     StopCoroutine(coyoteTimeCoroutine);
@@ -191,7 +191,7 @@ namespace Metroma
             else {
                 if (isGrounded && coyoteTimeCoroutine == null)
                 {
-                    Debug.Log("coyote");
+                    if (showDebugLog) Debug.Log("coyote");
                     coyoteTimeCoroutine = StartCoroutine(CoyoteCoroutine());
                 }
             }
@@ -333,18 +333,20 @@ namespace Metroma
         
         #region Inputs Events
 
-        protected override void InputMoveStart() {
-            base.InputMoveStart();
+        protected override void InputMoveStart(Vector2 _move) {
+            base.InputMoveStart(_move);
             
             MoveStartLerp();
         }
-        protected override void InputMoveEnd() {
-            base.InputMoveEnd();
+        protected override void InputMoveEnd(Vector2 _move) {
+            base.InputMoveEnd(_move);
             
             MoveEndLerp();
         }
 
-        protected override void InputActionStart() {
+        protected override void InputActionStart(bool _action) {
+            base.InputActionStart(_action);
+            
             switch (jumpType) {
                 case JumpType.AtActionDynamic:
                     DynamicJump();
@@ -354,7 +356,9 @@ namespace Metroma
                     break;
             }
         }
-        protected override void InputActionEnd() {
+        protected override void InputActionEnd(bool _action) {
+            base.InputActionEnd(_action);
+            
             switch (jumpType) {
                 case JumpType.AtActionEnd :
                     Jumping();
