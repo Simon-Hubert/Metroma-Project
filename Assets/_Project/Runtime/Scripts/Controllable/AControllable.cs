@@ -53,7 +53,6 @@ namespace Metroma
             }
         }
         
-        public Transform GetTransform { get => transform; }
         
         /// <summary>
         /// Do not register both event on the same callback, this may cause a double call.
@@ -97,7 +96,7 @@ namespace Metroma
 
         #region Inputs Callback
 
-        public ControllableCallBacks GetCallbacks {
+        protected ControllableCallBacks GetCallbacks {
             get {
                 InputV2CallBack moveStart = InputMoveStart;
                 InputV2CallBack moveEnd = InputMoveEnd;
@@ -108,26 +107,26 @@ namespace Metroma
             }
         }
         
-        protected virtual void InputMoveStart(Vector2 _move) {
+        protected virtual void InputMoveStart(Vector2 move) {
             OnMoveStartUnity.Invoke();
             if (showDebugLog) Debug.Log($"Controllable {name} : Move Start");
         }
-        protected virtual void InputMovePerformed(Vector2 _move) {
+        protected virtual void InputMovePerformed(Vector2 move) {
             if (showDebugLog) Debug.Log($"Controllable {name} : Move Performed");
         }
-        protected virtual void InputMoveEnd(Vector2 _move) {
+        protected virtual void InputMoveEnd(Vector2 move) {
             OnMoveEndUnity.Invoke();
             if (showDebugLog) Debug.Log($"Controllable {name} : Move End");
         }
 
-        protected virtual void InputActionStart(bool _action) {
+        protected virtual void InputActionStart(bool action) {
             OnActionStartUnity.Invoke();
             if (showDebugLog) Debug.Log($"Controllable {name} : Action Start");
         }
-        protected virtual void InputActionPerformed(bool _action) {
+        protected virtual void InputActionPerformed(bool action) {
             if (showDebugLog) Debug.Log($"Controllable {name} : Move Performed");
         }
-        protected virtual void InputActionEnd(bool _action) {
+        protected virtual void InputActionEnd(bool action) {
             OnActionEndUnity.Invoke();
             if (showDebugLog) Debug.Log($"Controllable {name} : Action End");
         }
