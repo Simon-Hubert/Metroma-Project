@@ -6,7 +6,7 @@ namespace Metroma
     [Serializable]
     public class ConditionalEvent : ICondition
     {
-        [SerializeField] private ICondition _condition;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.Decorator)] private ICondition _condition;
 
         public event Action OnValidated;
         public bool Evaluate()
