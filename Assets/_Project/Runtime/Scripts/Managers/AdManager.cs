@@ -1,4 +1,5 @@
 using UnityEngine;
+using Metroma.Transitions;
 
 namespace Metroma
 {
@@ -11,11 +12,11 @@ namespace Metroma
         public void StartAd(AdBase ad, ATransition inATransition, ATransition outATransition)
         {
             _currentAd = ad;
-            _ = inATransition.PlayAsync();
+            inATransition.Play();
             
             _currentAd.OnAdEnded += () =>
             {
-                _ = outATransition.PlayAsync();
+                outATransition.Play();
             };
         }
     }
