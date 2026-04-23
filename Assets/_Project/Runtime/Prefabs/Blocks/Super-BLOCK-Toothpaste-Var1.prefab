@@ -1,5 +1,105 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &207761663735959836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7006100634033586454}
+  - component: {fileID: 3618360996321464972}
+  - component: {fileID: 723689570925117746}
+  m_Layer: 0
+  m_Name: EndCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7006100634033586454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207761663735959836}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.2, y: 8.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4875383592584097295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &3618360996321464972
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207761663735959836}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 3.87
+--- !u!114 &723689570925117746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207761663735959836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e12111499b31c04ab0fb844381aa324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.AdCollider
+  _col: {fileID: 3618360996321464972}
+  _onTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 766172252698941403}
+        m_TargetAssemblyTypeName: Metroma.ConditionalEvent, Metroma
+        m_MethodName: Evaluate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onTriggerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &726094518554524130
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +317,7 @@ GameObject:
   - component: {fileID: 7883788351624954557}
   - component: {fileID: 7220412980347612395}
   - component: {fileID: 163215113435288472}
+  - component: {fileID: 1563342934794861490}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -533,6 +634,42 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &1563342934794861490
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3724904765642831911}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.41}
+  m_Radius: 0.87
 --- !u!1 &6501841342456073947
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +731,19 @@ MonoBehaviour:
       m_Calls: []
   _onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7763797460660757217}
+        m_TargetAssemblyTypeName: Metroma.ConditionalEvent, Metroma
+        m_MethodName: Evaluate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7717809932355107786
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,6 +859,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BLOCK-Snake
       objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: _condition
+      value: 8618242051757310050
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: 'managedReferences[8618242051757310050]'
+      value: Metroma Metroma.CollisionCondition
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242051757310050]._rb
+      value: 
+      objectReference: {fileID: 163215113435288472}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242051757310050]._collider
+      value: 
+      objectReference: {fileID: 723689570925117746}
     - target: {fileID: 7501940338115044964, guid: 48fc56d369b527842b92071d06081335, type: 3}
       propertyPath: _controllable
       value: 
@@ -760,8 +925,22 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
       insertIndex: 1
       addedObject: {fileID: 674701892931302327}
+    - targetCorrespondingSourceObject: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 7006100634033586454}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48fc56d369b527842b92071d06081335, type: 3}
+--- !u!114 &766172252698941403 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+  m_PrefabInstance: {fileID: 4019041127986815906}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375058d1676525c4f97bcfead2902c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ConditionalEvent
 --- !u!4 &4875383592584097295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
@@ -778,6 +957,50 @@ PrefabInstance:
     - target: {fileID: 3018314387671437117, guid: 48fc56d369b527842b92071d06081335, type: 3}
       propertyPath: m_Name
       value: BLOCK-Cap
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: _condition
+      value: 8618242051757309953
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: 'managedReferences[8618242051757309953]'
+      value: Metroma Metroma.NumberComparison
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: 'managedReferences[8618242051757309954]'
+      value: Metroma Metroma.IntGreater
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: 'managedReferences[8618242051757309956]'
+      value: Metroma Metroma.Int
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: 'managedReferences[8618242051757309957]'
+      value: Metroma Metroma.IntReference
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242051757309954].a
+      value: 8618242051757309957
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242051757309954].b
+      value: 8618242051757309956
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242051757309953]._a
+      value: 8618242051757309954
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242051757309956].value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242051757309957]._value
+      value: 
+      objectReference: {fileID: 8128139706645501675}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242051757309957]._variableName
+      value: _value
       objectReference: {fileID: 0}
     - target: {fileID: 7501940338115044964, guid: 48fc56d369b527842b92071d06081335, type: 3}
       propertyPath: _controllable
@@ -836,3 +1059,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
   m_PrefabInstance: {fileID: 6258298835218781848}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7763797460660757217 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+  m_PrefabInstance: {fileID: 6258298835218781848}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375058d1676525c4f97bcfead2902c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ConditionalEvent

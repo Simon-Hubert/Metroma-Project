@@ -28,7 +28,8 @@ namespace Metroma
             typeof(And),
             typeof(Or),
             typeof(Not),
-            typeof(NumberComparison)
+            typeof(NumberComparison),
+            typeof(CollisionCondition)
         };
 
         private static Type[] FloatCalculation = new[]

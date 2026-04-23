@@ -28,6 +28,7 @@ namespace Metroma
         }
 
         public async Awaitable EndAsync() {
+            _controllable.IsActive = false;
             _controllable.UnsubscribeInputs();
             await _endSequence.ExecuteAsync();
             OnBlockEnded?.Invoke();
