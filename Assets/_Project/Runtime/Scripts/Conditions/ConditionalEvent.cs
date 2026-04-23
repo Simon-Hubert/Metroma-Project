@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace Metroma
 {
-    [Serializable]
-    public class ConditionalEvent : ICondition
+    public class ConditionalEvent : MonoBehaviour, ICondition
     {
         [SerializeField] private ICondition _condition;
 

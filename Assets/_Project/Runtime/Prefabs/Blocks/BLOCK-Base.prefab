@@ -98,6 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8389738913625329069}
   - component: {fileID: 7501940338115044964}
+  - component: {fileID: 4424642623868204153}
   m_Layer: 0
   m_Name: BLOCK-Base
   m_TagString: Untagged
@@ -113,7 +114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3018314387671437117}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -136,4 +137,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.Block
   _startSequence: {fileID: 371445809858451483}
   _endSequence: {fileID: 5403533321267427389}
+  _endCondition: {fileID: 4424642623868204153}
   _controllable: {fileID: 0}
+--- !u!114 &4424642623868204153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3018314387671437117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375058d1676525c4f97bcfead2902c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ConditionalEvent
