@@ -10,7 +10,8 @@ namespace Metroma
         {
             Decorator,
             MathsComparison,
-            MathsCalculation
+            FloatCalculation,
+            IntCalculation
         }
         
         private ConditionType _conditionType;
@@ -30,30 +31,37 @@ namespace Metroma
             typeof(NumberComparison)
         };
 
-        private static Type[] MathsCalculation = new[]
+        private static Type[] FloatCalculation = new[]
         {
             typeof(Float),
+            typeof(FloatReference),
             typeof(FloatAdd),
-            typeof(FloatMul),
+            typeof(FloatMul)
+        };
+        
+        private static Type[] IntCalculation = new[]
+        {
             typeof(Int),
+            typeof(IntReference),
             typeof(IntAdd),
             typeof(IntMul)
         };
         
         private static Type[] MathsComparison = new[]
         {
-            typeof(FloatGreater),
-            typeof(FloatGreaterOrEqual),
-            typeof(FloatEqual),
-            typeof(FloatLess),
-            typeof(FloatLessOrEqual),
-
             typeof(IntGreater),
             typeof(IntGreaterOrEqual),
             typeof(IntEqual),
             typeof(IntLess),
-            typeof(IntLessOrEqual)
+            typeof(IntLessOrEqual),
+                
+            typeof(FloatGreater),
+            typeof(FloatGreaterOrEqual),
+            typeof(FloatEqual),
+            typeof(FloatLess),
+            typeof(FloatLessOrEqual)
         };
+        
         
         public Type[] GetTypes()
         {
@@ -63,9 +71,11 @@ namespace Metroma
                     return DecoratorTypes;
                 case ConditionType.MathsComparison:
                     return MathsComparison;
-                case ConditionType.MathsCalculation:
-                    return MathsCalculation;
-                    break;
+                case ConditionType.FloatCalculation:
+                    return FloatCalculation;
+                case ConditionType.IntCalculation:
+                    return IntCalculation;
+                
                 default:
                     throw new ArgumentOutOfRangeException();
             }
