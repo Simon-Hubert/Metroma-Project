@@ -3,20 +3,18 @@ using UnityEngine;
 
 namespace Metroma
 {
-    public class ConditionalEvent : MonoBehaviour, ICondition
+    public class ConditionalEvent : MonoBehaviour
     {
         [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.Decorator)] private ICondition _condition;
 
         public event Action OnValidated;
-        public bool Evaluate()
+        
+        public void Evaluate()
         {
             if (_condition.Evaluate())
             {
                 OnValidated?.Invoke();
-                return true;
             }
-
-            return false;
         }
     }
 }

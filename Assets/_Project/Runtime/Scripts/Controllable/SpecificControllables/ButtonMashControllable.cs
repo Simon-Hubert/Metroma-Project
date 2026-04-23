@@ -5,7 +5,7 @@ namespace Metroma
 {
     public class ButtonMashControllable : Controllable
     {
-        private int _value;
+        [ConditionParam] private int _value;
         public int Value => _value;
 
         [SerializeField] private UnityEvent<int> _onValueChanged;

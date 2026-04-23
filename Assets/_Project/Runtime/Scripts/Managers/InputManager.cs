@@ -177,7 +177,6 @@ namespace Metroma
 
         public void RemoveControllable(Controllable toRemove) {
             if (_controllables == null) return;
-            
             _controllables.Remove(toRemove);
             _controllablesCallBacks.Remove(toRemove);
         }
