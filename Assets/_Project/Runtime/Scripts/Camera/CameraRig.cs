@@ -59,6 +59,7 @@ namespace Metroma.CameraTool
         private RailModule _railModule;
         private TransitionModule _transitionModule;
         private SequenceModule _sequenceModule;
+        private FPSModule _fpsModule;
 
         private CameraPose _currentPose;
         private bool _isInitialized = false;
@@ -86,6 +87,7 @@ namespace Metroma.CameraTool
         public RailModule Rails => _railModule != null ? _railModule : (_railModule = GetComponent<RailModule>());
         public TransitionModule Transitions => _transitionModule != null ? _transitionModule : (_transitionModule = GetComponent<TransitionModule>());
         public SequenceModule Sequences => _sequenceModule != null ? _sequenceModule : (_sequenceModule = GetComponent<SequenceModule>());
+        public FPSModule FPS => _fpsModule != null ? _fpsModule : (_fpsModule = GetComponent<FPSModule>());
 
         public Transform CurrentLookAtTarget => Rails != null ? Rails.LookAtTarget : null;
         public PlayableDirector EditorDirector => Sequences != null ? Sequences.Director : null;
@@ -150,11 +152,13 @@ namespace Metroma.CameraTool
             _railModule = GetOrAddComponent<RailModule>();
             _transitionModule = GetOrAddComponent<TransitionModule>();
             _sequenceModule = GetOrAddComponent<SequenceModule>();
+            _fpsModule = GetOrAddComponent<FPSModule>();
 
             _modules.Clear();
             _modules.Add(_railModule);
             _modules.Add(_transitionModule);
             _modules.Add(_sequenceModule);
+            _modules.Add(_fpsModule);
 
             foreach (var module in _modules)
             {
@@ -190,7 +194,12 @@ namespace Metroma.CameraTool
                 }
             }
 
-            if (Transitions && Transitions.IsActive)
+            // FPS Module Override (Priority 20 — highest)
+            if (_fpsModule && _fpsModule.IsActive)
+            {
+                _currentPose = _fpsModule.ModifyPose(_currentPose);
+            }
+            else if (Transitions && Transitions.IsActive)
             {
                 _currentPose = Transitions.ModifyPose(_currentPose);
             }
