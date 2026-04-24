@@ -14,10 +14,13 @@ namespace Metroma
         [SerializeField] private float _f, _z, _r;
         private Vector3 _targetPos;
         private SecondOrderDynamics<Vector3> _dynamics;
-        
+
+        private void Awake() {
+            _targetPos = _from.position;
+        }
+
         private void Start() {
             _dynamics = new SecondOrderDynamics<Vector3>(_f, _z, _r, _from.position, new Linear3D());
-            _targetPos = _from.position;
         }
 
         public void UpdateTargetPos(int value) {

@@ -14,7 +14,6 @@ namespace Metroma
             base.InputActionStart();
             _value++;
             _onValueChanged?.Invoke(_value);
-            Debug.Log("+");
         }
     }
 }
