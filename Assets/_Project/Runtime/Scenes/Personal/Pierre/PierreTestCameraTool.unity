@@ -1481,7 +1481,7 @@ Transform:
   m_GameObject: {fileID: 1114130014}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -27.609528, y: 26, z: 65}
+  m_LocalPosition: {x: -50.594078, y: 26, z: 65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2879,6 +2879,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8064602958363773810, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 261369989779890810}
+    - targetCorrespondingSourceObject: {fileID: 8064602958363773810, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 261369989779890814}
   m_SourcePrefab: {fileID: 100100000, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
 --- !u!1 &261369989779890808 stripped
 GameObject:
@@ -3132,7 +3135,7 @@ MonoBehaviour:
   - {fileID: 4038748}
   - {fileID: 825341178}
   - {fileID: 1094037670}
-  globalProgress: 0.22407407
+  globalProgress: 0.013052233
   lookAtWeight: 1
   lookAtTarget: {fileID: 0}
   lookAtTargets: []
@@ -3165,6 +3168,18 @@ MonoBehaviour:
   foldHaptics: 0
   foldDebug: 0
   selectedChapterIndex: 0
+--- !u!114 &261369989779890814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261369989779890808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85938b24f55cfb64c94184dfd655c17c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Modules.FPSModule
 --- !u!1001 &1595966917090290224
 PrefabInstance:
   m_ObjectHideFlags: 0

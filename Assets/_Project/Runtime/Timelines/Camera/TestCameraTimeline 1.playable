@@ -195,7 +195,25 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -249,6 +267,10 @@ MonoBehaviour:
   m_Name: "Camera/\U0001F441 FPS Observation"
   m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraFPSMarker
   m_Time: 2.0166666666666666
+  profile: {fileID: 11400000, guid: a98fe5208dfcc954c9c2355664119696, type: 2}
+  deactivate: 0
+  startPosition: {x: 4.864492, y: 23.928162, z: 82.12874}
+  startRotation: {x: 15.530553, y: 87.3606, z: -0.00015064178}
   transitionDuration: 1
   transitionCurve:
     serializedVersion: 2
@@ -274,7 +296,32 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  fpsDuration: 0
+  exitTransitionDuration: 1
+  exitTransitionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  fpsDuration: 3
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
