@@ -1,4 +1,5 @@
 ﻿using System;
+using Metroma.Transitions;
 using UnityEngine;
 
 namespace Metroma
@@ -9,6 +10,7 @@ namespace Metroma
         [SerializeField] private Sequence _endSequence;
         [SerializeField] private ConditionalEvent _endCondition;
         [SerializeField] private Controllable _controllable;
+        [SerializeField] private ATransition _transitionIn;
 
         public event Action OnBlockEnded;
 
@@ -19,6 +21,8 @@ namespace Metroma
         }
 
         public async Awaitable StartAsync() {
+            if (_transitionIn)
+                await _transitionIn.PlayAsync();
             await _startSequence.ExecuteAsync();
             _controllable.SubscribeInputs(true);
         }

@@ -3,20 +3,17 @@ using Metroma.Transitions;
 
 namespace Metroma
 {
-    public class AdManager : MonoBehaviour
+    public static class AdManager
     {
-        public AdBase CurrentAd { get => _currentAd; }
-        
-        private AdBase _currentAd;
-        
-        public void StartAd(AdBase ad, ATransition inATransition, ATransition outATransition)
+        public static async Awaitable StartAd(AdBase ad, ATransition inATransition, ATransition outATransition)
         {
-            _currentAd = ad;
-            inATransition.Play();
+            await inATransition.PlayAsync();
             
-            _currentAd.OnAdEnded += () =>
+            ad.StartAd();
+            
+            ad.OnAdEnded += () =>
             {
-                outATransition.Play();
+                outATransition.PlayAsync();
             };
         }
     }
