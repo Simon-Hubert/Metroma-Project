@@ -1481,7 +1481,7 @@ Transform:
   m_GameObject: {fileID: 1114130014}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -50.594078, y: 26, z: 65}
+  m_LocalPosition: {x: -51.98616, y: 26, z: 65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2445,6 +2445,42 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[4].value
       value: 
       objectReference: {fileID: 261369989779890813}
+    - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[0].first
+      value: b621b527d8cce4e408199e2bf9d69874
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[1].first
+      value: 611f2a4c3ab107c4390ce6228124fdef
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[2].first
+      value: 8bbfd54d6d8eb4740a59a333c8f7f1df
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[3].first
+      value: fc3fce7c6b0656e4e873258195aa35b3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[0].second
+      value: 
+      objectReference: {fileID: 261369989779890809}
+    - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[1].second
+      value: 
+      objectReference: {fileID: 261369989779890809}
+    - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[2].second
+      value: 
+      objectReference: {fileID: 261369989779890809}
+    - target: {fileID: 6983691599906559030, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[3].second
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8064602958363773810, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: m_Name
       value: CameraTool
@@ -2918,6 +2954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Modules.SequenceModule
   playableDirector: {fileID: 261369989779890809}
+  playOnStart: 1
   chapters:
   - name: TestCameraTimeline 1
     timeline: {fileID: 11400000, guid: 0d8fbe606e712ae42acc54507dcc87fb, type: 2}
@@ -3119,6 +3156,12 @@ MonoBehaviour:
   onChapterEnd:
     m_PersistentCalls:
       m_Calls: []
+  onFocusStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  onFocusEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &261369989779890812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3135,7 +3178,7 @@ MonoBehaviour:
   - {fileID: 4038748}
   - {fileID: 825341178}
   - {fileID: 1094037670}
-  globalProgress: 0.013052233
+  globalProgress: 0
   lookAtWeight: 1
   lookAtTarget: {fileID: 0}
   lookAtTargets: []
@@ -3159,7 +3202,7 @@ MonoBehaviour:
       m_Calls: []
   targetCamera: {fileID: 1114130016}
   autoHandleTransform: 1
-  foldReferences: 0
+  foldReferences: 1
   foldChapters: 1
   foldSegments: 0
   foldAnimation: 0

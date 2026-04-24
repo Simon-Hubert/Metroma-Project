@@ -15,11 +15,21 @@ namespace Metroma.CameraTool.Modules
         #region --- Serialized Fields ---
 
         [SerializeField] private PlayableDirector playableDirector;
+        [SerializeField] private bool playOnStart = true;
         [SerializeField] private List<CameraChapter> chapters = new List<CameraChapter>();
 
-        [Header("Events")]
+        [Header("Events (Chapters)")]
         public UnityEvent<CameraChapter> onChapterStart;
         public UnityEvent<CameraChapter> onChapterEnd;
+
+        [Header("Events (FocusCam)")]
+        public UnityEvent onFocusStarted;
+        public UnityEvent onFocusEnded;
+
+        /// <summary> C# Delegate triggered when any FocusCam sequence starts. </summary>
+        public System.Action OnFocusStarted;
+        /// <summary> C# Delegate triggered when any FocusCam sequence finishes. </summary>
+        public System.Action OnFocusEnded;
 
         #endregion
 
@@ -39,6 +49,19 @@ namespace Metroma.CameraTool.Modules
         public int Priority => 5;
         public bool IsActive => true;
         
+        /// <summary> If true, the rail progress is frozen and cannot be modified by the Timeline. </summary>
+        public bool IsProgressLocked { get; set; }
+        private float _lockedProgress = 0f;
+
+        public void LockRail()
+        {
+            IsProgressLocked = true;
+            if (_rig != null && _rig.Rails != null)
+                _lockedProgress = _rig.Rails.GlobalProgress;
+        }
+
+        public void UnlockRail() => IsProgressLocked = false;
+        
         public List<CameraChapter> Chapters => chapters;
         public CameraChapter ActiveChapter => _activeChapter;
         public PlayableDirector Director => playableDirector != null ? playableDirector : (playableDirector = GetComponent<PlayableDirector>());
@@ -57,13 +80,27 @@ namespace Metroma.CameraTool.Modules
             }
         }
 
+        private void Start()
+        {
+            if (playOnStart && chapters.Count > 0)
+            {
+                PlayChapter(0);
+            }
+        }
+
         public void OnUpdate(float InDeltaTime)
         {
+            if (IsProgressLocked)
+            {
+                if (_rig != null && _rig.Rails != null)
+                    _rig.Rails.GlobalProgress = _lockedProgress;
+                return;
+            }
+
             if (_isWaitingForTransitionToPlay)
             {
                 _transitionWaitTimer -= InDeltaTime;
                 
-                // Freeze the playhead at the start to keep the Mixer active and driving the rig
                 if (playableDirector)
                 {
                     playableDirector.time = 0f;
@@ -73,14 +110,11 @@ namespace Metroma.CameraTool.Modules
                 if (_transitionWaitTimer <= 0f)
                 {
                     _isWaitingForTransitionToPlay = false;
-                    // No need to call Play() here as it's already playing, just let it roll
                 }
             }
 
             if (playableDirector && playableDirector.state == PlayState.Playing)
             {
-                playableDirector.Evaluate();
-
                 double duration = playableDirector.duration;
                 if (duration <= 0.01) duration = (_activeChapter != null && _activeChapter.timeline != null) ? _activeChapter.timeline.duration : 1.0;
                 
@@ -111,12 +145,10 @@ namespace Metroma.CameraTool.Modules
 
             playableDirector.playableAsset = chapter.timeline;
             
-            // Eval slightly ahead to get the target pose
             playableDirector.time = 0.05f; 
             playableDirector.Evaluate();
             CameraPose targetPose = _rig.GetTrueTargetPose();
             
-            // Reset to 0 for the blend period
             playableDirector.time = 0f;
             playableDirector.Evaluate();
 
@@ -127,7 +159,6 @@ namespace Metroma.CameraTool.Modules
                 _isWaitingForTransitionToPlay = true;
                 _transitionWaitTimer = InBlendDuration;
                 
-                // Start playing now, but we'll freeze its time in OnUpdate
                 playableDirector.Play();
             }
             else
@@ -151,7 +182,6 @@ namespace Metroma.CameraTool.Modules
 
         public void OnNotify(Playable origin, INotification notification, object context)
         {
-            // Early return if not playing to prevent markers from executing logic in the Editor (e.g., during clip generation)
             if (!Application.isPlaying)
                 return;
 
@@ -163,9 +193,93 @@ namespace Metroma.CameraTool.Modules
 
             if (notification is CameraMarkerBase marker)
             {
-                marker.Execute(_rig);
+                marker.Execute(_rig, origin.GetGraph().GetResolver());
                 _rig.Internal_NotifyMarkerHit(marker);
             }
+        }
+
+        public void Internal_NotifyFocusStarted()
+        {
+            onFocusStarted?.Invoke();
+            OnFocusStarted?.Invoke();
+        }
+
+        public void Internal_NotifyFocusEnded()
+        {
+            onFocusEnded?.Invoke();
+            OnFocusEnded?.Invoke();
+        }
+
+        /// <summary>
+        /// Plays a Focus Timeline independently from the camera rail/spline logic.
+        /// Useful for script-triggered cinematics (interactions, events).
+        /// </summary>
+        public void PlayFocusStandalone(PlayableDirector InDirector, TimelineAsset InTimeline, float InBlendIn = 1f, float InBlendOut = 1f, System.Action InOnStart = null, System.Action InOnEnd = null)
+        {
+            if (!InDirector || !InTimeline) return;
+            _rig.StartCoroutine(StandaloneFocusCoroutine(InDirector, InTimeline, InBlendIn, InBlendOut, InOnStart, InOnEnd));
+        }
+
+        private System.Collections.IEnumerator StandaloneFocusCoroutine(PlayableDirector InDirector, TimelineAsset InTimeline, float InIn, float InOut, System.Action InStart, System.Action InEnd)
+        {
+            Internal_NotifyFocusStarted();
+            InStart?.Invoke();
+
+            CameraPose targetPose = _rig.GetTrueTargetPose();
+            foreach (var track in InTimeline.GetOutputTracks())
+            {
+                if (track is Metroma.FocusCam.FocusCamTrack focusTrack)
+                {
+                    foreach (var clip in focusTrack.GetClips())
+                    {
+                        if (clip.asset is Metroma.FocusCam.FocusCamClip focusAsset)
+                        {
+                            if (focusAsset.overridePosition) targetPose.position = focusAsset.cameraPosition;
+                            if (focusAsset.mode == Metroma.FocusCam.FocusMode.LookAtPoint)
+                            {
+                                Vector3 direction = (focusAsset.position - targetPose.position).normalized;
+                                if (direction != Vector3.zero) targetPose.rotation = Quaternion.LookRotation(direction, Vector3.up);
+                            }
+                            else targetPose.rotation = Quaternion.Euler(focusAsset.rotation);
+
+                            if (focusAsset.overrideFOV) targetPose.fov = focusAsset.fov;
+                            targetPose.rotation *= Quaternion.Euler(0, 0, focusAsset.roll);
+                            goto FoundPose;
+                        }
+                    }
+                }
+            }
+            FoundPose:
+
+            if (InIn > 0.01f)
+            {
+                _rig.Transitions.StartTransition(targetPose, InIn);
+                yield return new WaitForSeconds(InIn);
+            }
+
+            _rig.SetControlActive(false);
+            _rig.Transitions.ClearTransition();
+
+            InDirector.playableAsset = InTimeline;
+            InDirector.Play();
+
+            yield return null;
+            while (InDirector.state == PlayState.Playing && InDirector.time < InDirector.duration - 0.02f)
+            {
+                yield return null;
+            }
+
+            _rig.SetControlActive(true);
+            if (InOut > 0.01f)
+            {
+                CameraPose railPose = _rig.GetTrueTargetPose();
+                _rig.Transitions.StartTransition(railPose, InOut);
+                yield return new WaitForSeconds(InOut);
+            }
+            _rig.Transitions.ReturnToRail(5f);
+
+            Internal_NotifyFocusEnded();
+            InEnd?.Invoke();
         }
 
         #endregion

@@ -182,6 +182,17 @@ namespace Metroma.CameraTool.Modules
             _rig.Internal_NotifyStateChanged(CameraState.ReturningToRail);
         }
 
+        /// <summary> Forces the transition module to stop any pose override immediately. </summary>
+        public void ClearTransition()
+        {
+            _isTransitioning = false;
+            _isStaticPose = false;
+            _rotationReturnTimer = 0f;
+            
+            if (_rig)
+                _rig.Internal_NotifyStateChanged(CameraState.FollowRail);
+        }
+
         private void UpdateTransitionState(float InDeltaTime)
         {
             if (!_isTransitioning)
