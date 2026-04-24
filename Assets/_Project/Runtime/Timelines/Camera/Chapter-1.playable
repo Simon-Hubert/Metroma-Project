@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7523455465870804304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc5c3d6dca91d9a45aa26dbfba066239, type: 3}
+  m_Name: Camera/StopMove
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraStopMarker
+  m_Time: 8
+  _stop: 1
 --- !u!114 &-654639417237642433
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,7 +105,8 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: Seq #00 (Rail.1-Test1)
   m_Markers:
-    m_Objects: []
+    m_Objects:
+    - {fileID: -7523455465870804304}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
