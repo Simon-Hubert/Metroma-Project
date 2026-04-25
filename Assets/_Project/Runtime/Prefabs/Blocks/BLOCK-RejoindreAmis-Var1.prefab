@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3801588347524418944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6974218892979079055}
+  - component: {fileID: 7930596072431434320}
+  m_Layer: 0
+  m_Name: MainView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6974218892979079055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3801588347524418944}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.5, y: -0.7800002, z: -18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6905203680634446851}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7930596072431434320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3801588347524418944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b62110f23b8f748898a3bd9e647bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::FixedView
+  _yaw: 0
+  _pitch: 0
+  _roll: 0
+  _fov: 60
 --- !u!1 &6023651162999051997
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,6 +157,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1647504069032418775}
+        m_TargetAssemblyTypeName: Metroma.ConditionalEvent, Metroma
+        m_MethodName: Evaluate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2034152636380433552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,8 +209,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _f: 0
-  _z: 0
+  _f: 1
+  _z: 1
   _r: 0
 --- !u!114 &4725002399071047719
 MonoBehaviour:
@@ -304,21 +364,69 @@ PrefabInstance:
       propertyPath: m_Name
       value: BLOCK-RejoindreAmis-Var1
       objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: _condition
+      value: 8618242053378146305
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: 'managedReferences[8618242053378146305]'
+      value: Metroma Metroma.NumberComparison
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: 'managedReferences[8618242053378146306]'
+      value: Metroma Metroma.IntGreater
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: 'managedReferences[8618242053378146308]'
+      value: Metroma Metroma.Int
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: 'managedReferences[8618242053378146309]'
+      value: Metroma Metroma.IntReference
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242053378146306].a
+      value: 8618242053378146309
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242053378146306].b
+      value: 8618242053378146308
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242053378146305]._a
+      value: 8618242053378146306
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242053378146308].value
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242053378146309]._value
+      value: 
+      objectReference: {fileID: 6082373615780399341}
+    - target: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: managedReferences[8618242053378146309]._variableName
+      value: _value
+      objectReference: {fileID: 0}
     - target: {fileID: 7501940338115044964, guid: 48fc56d369b527842b92071d06081335, type: 3}
       propertyPath: _controllable
       value: 
       objectReference: {fileID: 6082373615780399341}
+    - target: {fileID: 7501940338115044964, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      propertyPath: _transitionIn
+      value: 
+      objectReference: {fileID: 7496946772583468657}
     - target: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 111.367226
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6115
+      value: -21.3
       objectReference: {fileID: 0}
     - target: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.01494
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
       propertyPath: m_LocalRotation.w
@@ -352,7 +460,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
-      insertIndex: 1
+      insertIndex: 0
+      addedObject: {fileID: 6974218892979079055}
+    - targetCorrespondingSourceObject: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      insertIndex: 2
       addedObject: {fileID: 8174393134685743092}
     - targetCorrespondingSourceObject: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
       insertIndex: -1
@@ -360,8 +471,42 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4402344031165080755}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3018314387671437117, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7496946772583468657}
   m_SourcePrefab: {fileID: 100100000, guid: 48fc56d369b527842b92071d06081335, type: 3}
+--- !u!1 &169260810640303763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3018314387671437117, guid: 48fc56d369b527842b92071d06081335, type: 3}
+  m_PrefabInstance: {fileID: 3150937811923200430}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7496946772583468657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169260810640303763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800f665955f40604da9ae2bd7ae64d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ViewTransition
+  _cam: {fileID: 0}
+  _targetView: {fileID: 7930596072431434320}
+  _duration: 1.5
+--- !u!114 &1647504069032418775 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
+  m_PrefabInstance: {fileID: 3150937811923200430}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169260810640303763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375058d1676525c4f97bcfead2902c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ConditionalEvent
 --- !u!4 &6905203680634446851 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}

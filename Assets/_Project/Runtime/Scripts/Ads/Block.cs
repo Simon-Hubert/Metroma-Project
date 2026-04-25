@@ -11,6 +11,7 @@ namespace Metroma
         [SerializeField] private ConditionalEvent _endCondition;
         [SerializeField] private Controllable _controllable;
         [SerializeField] private ATransition _transitionIn;
+        [SerializeField] private bool _allowInputsBeforeStart;
 
         public event Action OnBlockEnded;
 
@@ -23,8 +24,15 @@ namespace Metroma
         public async Awaitable StartAsync() {
             if (_transitionIn)
                 await _transitionIn.PlayAsync();
-            await _startSequence.ExecuteAsync();
-            _controllable.SubscribeInputs(true);
+
+            if (_allowInputsBeforeStart) {
+                _controllable.SubscribeInputs(true);
+                await _startSequence.ExecuteAsync();
+            }
+            else {
+                await _startSequence.ExecuteAsync();
+                _controllable.SubscribeInputs(true);
+            }
         }
 
         public void End() {
