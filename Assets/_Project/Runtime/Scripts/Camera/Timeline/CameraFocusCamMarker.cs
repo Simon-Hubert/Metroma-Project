@@ -25,6 +25,7 @@ namespace Metroma.CameraTool.Timeline
         public AnimationCurve exitTransitionCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
         [Header("Settings")]
+        public bool returnToLastPos = true;
         public bool pauseMainTimeline = true;
         public bool restartIfPlaying = true;
 
@@ -136,6 +137,11 @@ namespace Metroma.CameraTool.Timeline
             else
             {
                 rig.Transitions.SnapToPose(targetPose);
+                if (rig.CameraTransform != null)
+                {
+                    rig.CameraTransform.SetPositionAndRotation(targetPose.position, targetPose.rotation);
+                    if (rig.TargetCamera != null) rig.TargetCamera.fieldOfView = targetPose.fov;
+                }
             }
 
             // 3. HAND OVER TO FOCUS
@@ -146,6 +152,7 @@ namespace Metroma.CameraTool.Timeline
             {
                 if (restartIfPlaying) focusDirector.Stop();
                 focusDirector.Play();
+                focusDirector.Evaluate();
 
                 // 5. WAIT FOR FINISH
                 yield return null; 
@@ -155,16 +162,33 @@ namespace Metroma.CameraTool.Timeline
                 }
             }
 
-            // 6. RETURN CONTROL
-            rig.SetControlActive(true);
-
-            // 7. TRANSITION OUT
-            if (exitTransitionDuration > 0.01f)
+            if (returnToLastPos)
             {
-                CameraPose railPose = rig.GetTrueTargetPose();
-                rig.Transitions.StartTransition(railPose, exitTransitionDuration, exitTransitionCurve);
-                yield return new WaitForSeconds(exitTransitionDuration);
+                // 6. RETURN CONTROL
+                rig.SetControlActive(true);
+
+                // 7. TRANSITION OUT
+                if (exitTransitionDuration > 0.01f)
+                {
+                    CameraPose railPose = rig.GetTrueTargetPose();
+                    rig.Transitions.StartTransition(railPose, exitTransitionDuration, exitTransitionCurve);
+                    yield return new WaitForSeconds(exitTransitionDuration);
+                }
+                else
+                {
+                    CameraPose railPose = rig.GetTrueTargetPose();
+                    rig.Transitions.SnapToPose(railPose);
+                    if (rig.CameraTransform != null)
+                    {
+                        rig.CameraTransform.SetPositionAndRotation(railPose.position, railPose.rotation);
+                        if (rig.TargetCamera != null) rig.TargetCamera.fieldOfView = railPose.fov;
+                    }
+                }
                 rig.Transitions.ReturnToRail(5f);
+            }
+            else
+            {
+                rig.Transitions.SnapToPose(targetPose);
             }
 
             // 8. RESUME & UNLOCK

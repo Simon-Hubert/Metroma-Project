@@ -2954,12 +2954,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Modules.SequenceModule
   playableDirector: {fileID: 261369989779890809}
-  playOnStart: 1
+  playOnStart: 0
   chapters:
   - name: TestCameraTimeline 1
     timeline: {fileID: 11400000, guid: 0d8fbe606e712ae42acc54507dcc87fb, type: 2}
     startRailIndex: 0
-    railCount: 2
+    railCount: 3
     waitAtStart: 0
     debugColor: {r: 0, g: 1, b: 1, a: 1}
     isExpanded: 0
@@ -3085,71 +3085,6 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - name: TestCameraTimeline
-    timeline: {fileID: 11400000, guid: 74d1ae1b6e18e7e4485227e9a813395b, type: 2}
-    startRailIndex: 2
-    railCount: 1
-    waitAtStart: 0
-    debugColor: {r: 0, g: 1, b: 1, a: 1}
-    isExpanded: 0
-    segments:
-    - label: "R2 Node 0 \u2192 1"
-      duration: 1
-      easing:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      waitAtEnd: 0
-      junctionOverride:
-        duration: 1
-        blendDistance: 1
-        smoothness: 5
-      isExpanded: 0
-    pacingMode: 0
-    globalCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 1
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
   onChapterStart:
     m_PersistentCalls:
       m_Calls: []
@@ -3162,6 +3097,9 @@ MonoBehaviour:
   onFocusEnded:
     m_PersistentCalls:
       m_Calls: []
+  debugFocusTimeline: {fileID: 11400000, guid: 0861b4827a14cee40a43a012c2f6ba4e, type: 2}
+  debugBlendIn: 0
+  debugBlendOut: 1
 --- !u!114 &261369989779890812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3202,14 +3140,14 @@ MonoBehaviour:
       m_Calls: []
   targetCamera: {fileID: 1114130016}
   autoHandleTransform: 1
-  foldReferences: 1
+  foldReferences: 0
   foldChapters: 1
   foldSegments: 0
   foldAnimation: 0
   foldEvents: 0
   foldViewport: 0
   foldHaptics: 0
-  foldDebug: 0
+  foldDebug: 1
   selectedChapterIndex: 0
 --- !u!114 &261369989779890814
 MonoBehaviour:
