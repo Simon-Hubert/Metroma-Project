@@ -768,13 +768,20 @@ namespace Metroma.CameraTool.Editor
                         
                         if (testObj != null)
                         {
-                            Selection.activeGameObject = testObj;
-                            EditorApplication.ExecuteMenuItem("Window/Sequencing/Timeline");
+                            EditorApplication.delayCall += () =>
+                            {
+                                if (testObj != null)
+                                {
+                                    Selection.activeGameObject = testObj;
+                                    EditorApplication.ExecuteMenuItem("Window/Sequencing/Timeline");
+                                }
+                            };
                         }
                     }
                     else
                     {
-                        Debug.LogWarning("[CameraTool] Test Focus only works in Play Mode.");
+                        EditorPrefs.SetBool("AutoTestFocusCam_Pending", true);
+                        EditorApplication.isPlaying = true;
                     }
                 }
                 GUI.backgroundColor = Color.white;

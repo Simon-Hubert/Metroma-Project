@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using Metroma.CameraTool.Timeline;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using NaughtyAttributes;
@@ -36,6 +37,8 @@ namespace Metroma.CameraTool.Modules
         [SerializeField] private TimelineAsset debugFocusTimeline;
         [SerializeField] private float debugBlendIn = 1f;
         [SerializeField] private float debugBlendOut = 1f;
+
+        public TimelineAsset DebugFocusTimeline => debugFocusTimeline;
 
         #endregion
 
@@ -84,6 +87,15 @@ namespace Metroma.CameraTool.Modules
             {
                 playableDirector = GetComponent<PlayableDirector>();
             }
+
+            if (playableDirector != null)
+            {
+                playableDirector.playOnAwake = false;
+                if (!playOnStart)
+                {
+                    playableDirector.Stop();
+                }
+            }
         }
 
         private void Start()
@@ -92,7 +104,25 @@ namespace Metroma.CameraTool.Modules
             {
                 PlayChapter(0);
             }
+
+#if UNITY_EDITOR
+            if (UnityEditor.EditorPrefs.GetBool("AutoTestFocusCam_Pending", false))
+            {
+                UnityEditor.EditorPrefs.SetBool("AutoTestFocusCam_Pending", false);
+                StartCoroutine(DelayedStartTest());
+            }
+#endif
         }
+
+#if UNITY_EDITOR
+        private IEnumerator DelayedStartTest()
+        {
+            yield return new WaitForSeconds(0.2f);
+            EditorTestFocusTimeline();
+            UnityEditor.Selection.activeGameObject = gameObject;
+            UnityEditor.EditorApplication.ExecuteMenuItem("Window/Sequencing/Timeline");
+        }
+#endif
 
         public void OnUpdate(float InDeltaTime)
         {
@@ -220,13 +250,13 @@ namespace Metroma.CameraTool.Modules
         /// Plays a Focus Timeline independently from the camera rail/spline logic.
         /// Useful for script-triggered cinematics (interactions, events).
         /// </summary>
-        public void PlayFocusStandalone(PlayableDirector InDirector, TimelineAsset InTimeline, float InBlendIn = 1f, float InBlendOut = 1f, System.Action InOnStart = null, System.Action InOnEnd = null)
+        public void PlayFocusStandalone(PlayableDirector InDirector, TimelineAsset InTimeline, float InBlendIn = 1f, float InBlendOut = 1f, bool InReturnToRail = true, System.Action InOnStart = null, System.Action InOnEnd = null)
         {
             if (!InDirector || !InTimeline) return;
-            _rig.StartCoroutine(StandaloneFocusCoroutine(InDirector, InTimeline, InBlendIn, InBlendOut, InOnStart, InOnEnd));
+            _rig.StartCoroutine(StandaloneFocusCoroutine(InDirector, InTimeline, InBlendIn, InBlendOut, InReturnToRail, InOnStart, InOnEnd));
         }
 
-        private System.Collections.IEnumerator StandaloneFocusCoroutine(PlayableDirector InDirector, TimelineAsset InTimeline, float InIn, float InOut, System.Action InStart, System.Action InEnd)
+        private System.Collections.IEnumerator StandaloneFocusCoroutine(PlayableDirector InDirector, TimelineAsset InTimeline, float InIn, float InOut, bool InReturnToRail, System.Action InStart, System.Action InEnd)
         {
             Internal_NotifyFocusStarted();
             InStart?.Invoke();
@@ -262,12 +292,22 @@ namespace Metroma.CameraTool.Modules
                 _rig.Transitions.StartTransition(targetPose, InIn);
                 yield return new WaitForSeconds(InIn);
             }
+            else
+            {
+                _rig.Transitions.SnapToPose(targetPose);
+                if (_rig.CameraTransform != null)
+                {
+                    _rig.CameraTransform.SetPositionAndRotation(targetPose.position, targetPose.rotation);
+                    if (_rig.TargetCamera != null) _rig.TargetCamera.fieldOfView = targetPose.fov;
+                }
+            }
 
             _rig.SetControlActive(false);
             _rig.Transitions.ClearTransition();
 
             InDirector.playableAsset = InTimeline;
             InDirector.Play();
+            InDirector.Evaluate();
 
             yield return null;
             while (InDirector.state == PlayState.Playing && InDirector.time < InDirector.duration - 0.02f)
@@ -275,14 +315,31 @@ namespace Metroma.CameraTool.Modules
                 yield return null;
             }
 
-            _rig.SetControlActive(true);
-            if (InOut > 0.01f)
+            if (InReturnToRail)
             {
-                CameraPose railPose = _rig.GetTrueTargetPose();
-                _rig.Transitions.StartTransition(railPose, InOut);
-                yield return new WaitForSeconds(InOut);
+                _rig.SetControlActive(true);
+                if (InOut > 0.01f)
+                {
+                    CameraPose railPose = _rig.GetTrueTargetPose();
+                    _rig.Transitions.StartTransition(railPose, InOut);
+                    yield return new WaitForSeconds(InOut);
+                }
+                else
+                {
+                    CameraPose railPose = _rig.GetTrueTargetPose();
+                    _rig.Transitions.SnapToPose(railPose);
+                    if (_rig.CameraTransform != null)
+                    {
+                        _rig.CameraTransform.SetPositionAndRotation(railPose.position, railPose.rotation);
+                        if (_rig.TargetCamera != null) _rig.TargetCamera.fieldOfView = railPose.fov;
+                    }
+                }
+                _rig.Transitions.ReturnToRail(5f);
             }
-            _rig.Transitions.ReturnToRail(5f);
+            else
+            {
+                _rig.Transitions.SnapToPose(targetPose);
+            }
 
             Internal_NotifyFocusEnded();
             InEnd?.Invoke();
@@ -314,32 +371,58 @@ namespace Metroma.CameraTool.Modules
                 return null;
             }
 
-            // Create temporary child object for the test playback
-            GameObject tempPlayerObject = new GameObject("[Temp_DebugFocusPlayer]");
-            tempPlayerObject.transform.SetParent(_rig != null ? _rig.transform : transform);
-            
-            PlayableDirector tempDirector = tempPlayerObject.AddComponent<PlayableDirector>();
-            tempDirector.playOnAwake = false;
-            tempDirector.extrapolationMode = DirectorWrapMode.None;
+            if (playableDirector == null)
+            {
+                playableDirector = GetComponent<PlayableDirector>();
+            }
 
+            if (playableDirector == null)
+            {
+                Debug.LogError("[SequenceModule] Critical: No Master PlayableDirector found on the CameraRig.");
+                return null;
+            }
+
+            // 1. Lock the rail progress
+            LockRail();
+
+            // 2. Cache original timeline state
+            PlayableAsset originalTimeline = playableDirector.playableAsset;
+            double originalTime = playableDirector.time;
+            PlayState originalState = playableDirector.state;
+
+            // 3. Hijack the master director
+            playableDirector.playableAsset = debugFocusTimeline;
+            bool shouldReturnToRail = (originalTimeline != null && originalState == PlayState.Playing);
+            
             // Auto-bind track to CameraRig
             foreach (var track in debugFocusTimeline.GetOutputTracks())
             {
                 if (track is Metroma.FocusCam.FocusCamTrack)
                 {
-                    tempDirector.SetGenericBinding(track, _rig);
+                    playableDirector.SetGenericBinding(track, _rig);
                 }
             }
 
-            PlayFocusStandalone(tempDirector, debugFocusTimeline, debugBlendIn, debugBlendOut, null, () => 
+            // 4. Play standalone
+            PlayFocusStandalone(playableDirector, debugFocusTimeline, debugBlendIn, debugBlendOut, shouldReturnToRail, null, () => 
             {
-                if (tempPlayerObject != null)
+                // 5. Restore state
+                if (shouldReturnToRail)
                 {
-                    Destroy(tempPlayerObject);
+                    if (playableDirector != null)
+                    {
+                        playableDirector.playableAsset = originalTimeline;
+                        playableDirector.time = originalTime;
+                        if (originalState == PlayState.Playing) playableDirector.Play();
+                        else playableDirector.Pause();
+                    }
+                    
+                    UnlockRail();
+                    Debug.Log("[SequenceModule] FocusCam test complete. Master Timeline restored.");
                 }
             });
 
-            return tempPlayerObject;
+            return gameObject;
         }
 
         #endregion
