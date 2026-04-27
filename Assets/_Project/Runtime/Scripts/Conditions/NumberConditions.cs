@@ -3,8 +3,15 @@ using UnityEngine;
 
 namespace Metroma
 {
+    public class EmptyNumber : ICondition
+    {
+        public bool Evaluate() {
+            return false;
+        }
+    }
+    
     #region Float conditions
-
+    
     [Serializable]
     public class FloatGreater : ICondition
     {

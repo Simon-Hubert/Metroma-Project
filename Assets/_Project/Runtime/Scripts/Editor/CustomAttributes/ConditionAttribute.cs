@@ -50,6 +50,8 @@ namespace Metroma
         
         private static Type[] MathsComparison = new[]
         {
+            typeof(EmptyNumber),
+            
             typeof(IntGreater),
             typeof(IntGreaterOrEqual),
             typeof(IntEqual),
