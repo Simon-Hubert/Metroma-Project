@@ -4,6 +4,7 @@ using UnityEngine.Timeline;
 using Metroma.CameraTool.Timeline;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using NaughtyAttributes;
 
 namespace Metroma.CameraTool.Modules
 {
@@ -30,6 +31,11 @@ namespace Metroma.CameraTool.Modules
         public System.Action OnFocusStarted;
         /// <summary> C# Delegate triggered when any FocusCam sequence finishes. </summary>
         public System.Action OnFocusEnded;
+
+        [Header("🛠️ Debug / Test FocusCam")]
+        [SerializeField] private TimelineAsset debugFocusTimeline;
+        [SerializeField] private float debugBlendIn = 1f;
+        [SerializeField] private float debugBlendOut = 1f;
 
         #endregion
 
@@ -288,6 +294,53 @@ namespace Metroma.CameraTool.Modules
 
         public void EditorAddChapter(CameraChapter InChapter) => chapters.Add(InChapter);
         public void EditorClearChapters() => chapters.Clear();
+
+        #endregion
+
+        #region --- Debug / Test ---
+
+        [Button("🎬 Play Test Focus In-Game")]
+        public GameObject EditorTestFocusTimeline()
+        {
+            if (!Application.isPlaying)
+            {
+                Debug.LogWarning("[SequenceModule] Test Focus only works in Play Mode.");
+                return null;
+            }
+
+            if (debugFocusTimeline == null)
+            {
+                Debug.LogError("[SequenceModule] Please assign a 'debugFocusTimeline' asset to test.");
+                return null;
+            }
+
+            // Create temporary child object for the test playback
+            GameObject tempPlayerObject = new GameObject("[Temp_DebugFocusPlayer]");
+            tempPlayerObject.transform.SetParent(_rig != null ? _rig.transform : transform);
+            
+            PlayableDirector tempDirector = tempPlayerObject.AddComponent<PlayableDirector>();
+            tempDirector.playOnAwake = false;
+            tempDirector.extrapolationMode = DirectorWrapMode.None;
+
+            // Auto-bind track to CameraRig
+            foreach (var track in debugFocusTimeline.GetOutputTracks())
+            {
+                if (track is Metroma.FocusCam.FocusCamTrack)
+                {
+                    tempDirector.SetGenericBinding(track, _rig);
+                }
+            }
+
+            PlayFocusStandalone(tempDirector, debugFocusTimeline, debugBlendIn, debugBlendOut, null, () => 
+            {
+                if (tempPlayerObject != null)
+                {
+                    Destroy(tempPlayerObject);
+                }
+            });
+
+            return tempPlayerObject;
+        }
 
         #endregion
     }

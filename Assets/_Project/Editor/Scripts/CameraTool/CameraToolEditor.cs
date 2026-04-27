@@ -46,6 +46,10 @@ namespace Metroma.CameraTool.Editor
         private SerializedProperty _onChapterStart;
         private SerializedProperty _onChapterEnd;
 
+        private SerializedProperty _debugFocusTimeline;
+        private SerializedProperty _debugBlendIn;
+        private SerializedProperty _debugBlendOut;
+
         private bool _isCameraLocked;
         private bool _showHud;
         private bool _showGrid = true;
@@ -128,6 +132,9 @@ namespace Metroma.CameraTool.Editor
                 _playableDirector = _sequenceSerialized.FindProperty("playableDirector");
                 _onChapterStart = _sequenceSerialized.FindProperty("onChapterStart");
                 _onChapterEnd = _sequenceSerialized.FindProperty("onChapterEnd");
+                _debugFocusTimeline = _sequenceSerialized.FindProperty("debugFocusTimeline");
+                _debugBlendIn = _sequenceSerialized.FindProperty("debugBlendIn");
+                _debugBlendOut = _sequenceSerialized.FindProperty("debugBlendOut");
             }
         }
 
@@ -737,6 +744,42 @@ namespace Metroma.CameraTool.Editor
         {
             DrawQuickActions(rig);
             DrawDebugSection(rig);
+
+            EditorGUILayout.Space(8);
+            DrawThinSeparator();
+            EditorGUILayout.Space(4);
+            GUILayout.Label("🎥 FOCUSCAM IN-GAME TESTING", EditorStyles.boldLabel);
+            
+            if (_debugFocusTimeline != null)
+            {
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(_debugFocusTimeline, new GUIContent("Focus Timeline"));
+                EditorGUILayout.PropertyField(_debugBlendIn, new GUIContent("Blend In (s)"));
+                EditorGUILayout.PropertyField(_debugBlendOut, new GUIContent("Blend Out (s)"));
+                
+                EditorGUILayout.Space(4);
+                GUI.backgroundColor = OkColor;
+                if (GUILayout.Button("🎬 Play Test Focus In-Game", GUILayout.Height(28)))
+                {
+                    if (Application.isPlaying && rig.Sequences != null)
+                    {
+                        _sequenceSerialized.ApplyModifiedProperties();
+                        GameObject testObj = rig.Sequences.EditorTestFocusTimeline();
+                        
+                        if (testObj != null)
+                        {
+                            Selection.activeGameObject = testObj;
+                            EditorApplication.ExecuteMenuItem("Window/Sequencing/Timeline");
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[CameraTool] Test Focus only works in Play Mode.");
+                    }
+                }
+                GUI.backgroundColor = Color.white;
+                EditorGUI.indentLevel--;
+            }
         }
 
         private void DrawSuiteHeader()
