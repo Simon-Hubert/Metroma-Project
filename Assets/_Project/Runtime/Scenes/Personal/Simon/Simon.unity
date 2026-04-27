@@ -143,7 +143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198089833}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -21.26, y: 23.26, z: 0}
   m_LocalScale: {x: 2.84, y: 2.84, z: 2.84}
   m_ConstrainProportionsScale: 1
@@ -151,7 +151,7 @@ Transform:
   - {fileID: 1932722181}
   - {fileID: 1083871104}
   - {fileID: 496024012}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 978389452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &438602567
 PrefabInstance:
@@ -161,10 +161,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 978389452}
     m_Modifications:
-    - target: {fileID: 942625981184504175, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
-      propertyPath: _waitForEnd
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1864954168438264350, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
       propertyPath: managedReferences[8813930980673323100].AnimatePositionTarget
       value: 
@@ -173,10 +169,6 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 1360449367}
-    - target: {fileID: 5930874364336133612, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
-      propertyPath: PositionWiggleProperties.WigglePermitted
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7698381742259749181, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
       propertyPath: m_LocalPosition.x
       value: -25.2
@@ -677,6 +669,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 438602569}
+  - {fileID: 198089834}
   - {fileID: 556253927}
   - {fileID: 2055900496}
   m_Father: {fileID: 0}
@@ -1199,4 +1192,3 @@ SceneRoots:
   - {fileID: 861988630}
   - {fileID: 978389452}
   - {fileID: 795674862}
-  - {fileID: 198089834}

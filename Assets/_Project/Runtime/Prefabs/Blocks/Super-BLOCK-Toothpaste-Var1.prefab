@@ -31,6 +31,7 @@ Transform:
   m_Children:
   - {fileID: 5433343077960950371}
   - {fileID: 1036343780261779793}
+  - {fileID: 8531983091554174405}
   m_Father: {fileID: 2501651421386775349}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &207761663735959836
@@ -437,7 +438,7 @@ MonoBehaviour:
         m_Calls: []
   DebugActive: 0
   FeedbacksList:
-  - rid: 8813930980673323086
+  - rid: 8618242141899980868
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   ForceStopFeedbacksOnDisable: 1
@@ -445,12 +446,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 8813930980673323086
-      type: {class: MMF_Rotation, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
+    - rid: 8618242141899980868
+      type: {class: MMF_Position, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1647759250
-        Label: Rotation
+        UniqueID: 591727643
+        Label: Position
         ChannelMode: 0
         Channel: 0
         MMChannelDefinition: {fileID: 0}
@@ -513,14 +514,45 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 6708342470190510380}
         DebugActive: 0
-        AnimateRotationTarget: {fileID: 1036343780261779793}
-        Mode: 1
-        RotationSpace: 0
-        AnimateRotationDuration: 0.75
+        AnimatePositionTarget: {fileID: 8535167697069527830}
+        Mode: 2
+        Space: 0
+        RandomizeRemap: 0
+        AnimatePositionDuration: 1.5
+        AnimatePositionTween:
+          MMTweenDefinitionType: 1
+          MMTweenCurve: 4
+          Curve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 2
+              outSlope: 2
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          Initialized: 0
         RemapCurveZero: 0
-        RemapCurveOne: 90
+        RemapCurveZeroAlt: 0
+        RemapCurveOne: 1
+        RemapCurveOneAlt: 1
         AnimateX: 0
-        AnimateRotationTweenX:
+        AnimatePositionTweenX:
           MMTweenDefinitionType: 1
           MMTweenCurve: 4
           Curve:
@@ -538,6 +570,15 @@ MonoBehaviour:
             - serializedVersion: 3
               time: 0.3
               value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 0.6
+              value: -1
               inSlope: 0
               outSlope: 0
               tangentMode: 0
@@ -558,7 +599,7 @@ MonoBehaviour:
             m_RotationOrder: 4
           Initialized: 0
         AnimateY: 0
-        AnimateRotationTweenY:
+        AnimatePositionTweenY:
           MMTweenDefinitionType: 1
           MMTweenCurve: 4
           Curve:
@@ -583,6 +624,15 @@ MonoBehaviour:
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
+              time: 0.6
+              value: -1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
               time: 1
               value: 0
               inSlope: 0
@@ -595,8 +645,8 @@ MonoBehaviour:
             m_PostInfinity: 2
             m_RotationOrder: 4
           Initialized: 0
-        AnimateZ: 1
-        AnimateRotationTweenZ:
+        AnimateZ: 0
+        AnimatePositionTweenZ:
           MMTweenDefinitionType: 1
           MMTweenCurve: 4
           Curve:
@@ -612,8 +662,26 @@ MonoBehaviour:
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 1
+              time: 0.3
               value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 0.6
+              value: -1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 0
               inSlope: 0
               outSlope: 0
               tangentMode: 0
@@ -625,56 +693,31 @@ MonoBehaviour:
             m_RotationOrder: 4
           Initialized: 0
         AllowAdditivePlays: 0
-        DetermineRotationOnPlay: 0
-        ToDestinationSpace: 0
-        DestinationAngles: {x: 0, y: 180, z: 0}
-        ToDestinationTween:
-          MMTweenDefinitionType: 0
-          MMTweenCurve: 10
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        AnimateRotationX:
+        RelativePosition: 1
+        DeterminePositionsOnPlay: 0
+        InitialPosition: {x: 0, y: 0, z: 0}
+        DestinationPosition: {x: 1, y: 1, z: 1}
+        InitialPositionTransform: {fileID: 0}
+        DestinationPositionTransform: {fileID: 8531983091554174405}
+        AnimatePositionCurveX:
           serializedVersion: 2
           m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        AnimateRotationY:
+        AnimatePositionCurveY:
           serializedVersion: 2
           m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        AnimateRotationZ:
+        AnimatePositionCurveZ:
           serializedVersion: 2
           m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        ToDestinationCurve:
+        AnimatePositionCurve:
           serializedVersion: 2
           m_Curve: []
           m_PreInfinity: 2
@@ -751,13 +794,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2315605003678783113}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.92504406, w: 0.37985986}
-  m_LocalPosition: {x: -12.5, y: 4.95, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.19123718, w: 0.9815439}
+  m_LocalPosition: {x: -8.94, y: 3.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6538276696566309634}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -135.35}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -22.05}
 --- !u!212 &4455331584074059029
 SpriteRenderer:
   serializedVersion: 2
@@ -807,7 +850,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: ce2f6585ecf5e6346a213ee8c495bcb1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 29b552e554c166c43a553402a1d77866, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1269,7 +1312,7 @@ Transform:
   m_GameObject: {fileID: 3724904765642831911}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.80587655, w: 0.5920836}
-  m_LocalPosition: {x: -7.6499996, y: 2.96, z: 0}
+  m_LocalPosition: {x: -8.94, y: 3.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2055,6 +2098,37 @@ Transform:
   - {fileID: 5852657051290114992}
   m_Father: {fileID: 2501651421386775349}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8098559530928031899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8531983091554174405}
+  m_Layer: 0
+  m_Name: EndPosCap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8531983091554174405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8098559530928031899}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 42.9, y: -19.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6538276696566309634}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8284707351120827864
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,7 +2548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.PlayFeedBack
   _feedbacks: {fileID: 1864954168438264350}
-  _waitForEnd: 0
+  _waitForEnd: 1
 --- !u!1 &8535167697069527830
 GameObject:
   m_ObjectHideFlags: 0
@@ -2502,13 +2576,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8535167697069527830}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.82333446, w: 0.56755656}
-  m_LocalPosition: {x: 1.38, y: -2.65, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.1773424, w: 0.9841492}
+  m_LocalPosition: {x: -6.18, y: -0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1036343780261779793}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -110.84}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -20.43}
 --- !u!212 &1293410910105813013
 SpriteRenderer:
   serializedVersion: 2
@@ -2558,7 +2632,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: c150a1985c7f8db4d81650bee38b94b3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9457c641b3cc274dbbf9c1721092994, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2585,7 +2659,7 @@ MonoBehaviour:
   RotationActive: 0
   ScaleActive: 0
   PositionWiggleProperties:
-    WigglePermitted: 1
+    WigglePermitted: 0
     WiggleType: 3
     UseUnscaledTime: 0
     StartWigglingAutomatically: 1
