@@ -17,6 +17,12 @@ namespace Metroma.CameraTool.Timeline
         public virtual PropertyName id => new PropertyName(GetType().Name);
         
         /// <summary> Method called when the marker is hit by the Timeline playhead. </summary>
-        public abstract void Execute(CameraRig rig);
+        public virtual void Execute(CameraRig rig) { }
+
+        /// <summary> Overload used to resolve scene references (ExposedReferences). </summary>
+        public virtual void Execute(CameraRig rig, IExposedPropertyTable resolver)
+        {
+            Execute(rig);
+        }
     }
 }

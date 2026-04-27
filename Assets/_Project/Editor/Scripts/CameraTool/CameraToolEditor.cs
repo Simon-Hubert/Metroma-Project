@@ -42,6 +42,7 @@ namespace Metroma.CameraTool.Editor
         private SerializedProperty _lookAtWeight;
         private SerializedProperty _defaultFOV;
         private SerializedProperty _chapters;
+        private SerializedProperty _playOnStart;
         private SerializedProperty _onChapterStart;
         private SerializedProperty _onChapterEnd;
 
@@ -123,6 +124,7 @@ namespace Metroma.CameraTool.Editor
             {
                 _sequenceSerialized = new SerializedObject(sequenceModule);
                 _chapters = _sequenceSerialized.FindProperty("chapters");
+                _playOnStart = _sequenceSerialized.FindProperty("playOnStart");
                 _playableDirector = _sequenceSerialized.FindProperty("playableDirector");
                 _onChapterStart = _sequenceSerialized.FindProperty("onChapterStart");
                 _onChapterEnd = _sequenceSerialized.FindProperty("onChapterEnd");
@@ -222,6 +224,14 @@ namespace Metroma.CameraTool.Editor
 
         private void DrawChapterWorkflow(CameraRig rig)
         {
+            if (_playOnStart != null)
+            {
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(_playOnStart, new GUIContent("🚀  Auto-Play On Start", "If checked, the first chapter will launch automatically when entering Play Mode."));
+                EditorGUI.indentLevel--;
+                EditorGUILayout.Space(5);
+            }
+
             DrawChaptersSection(rig);
             
             EditorGUILayout.Space(4);
