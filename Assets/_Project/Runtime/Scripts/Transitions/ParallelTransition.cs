@@ -11,8 +11,12 @@ namespace Metroma.Transitions
         [SerializeField] private ATransition _b;
         
         protected override async Awaitable TransitionAsync() {
+            Debug.Log($"Parallel {name} Start");
+            
             _ = _a.PlayAsync();
             await _b.PlayAsync();
+            
+            Debug.Log($"Parallel {name} End");
         }
     }
 }
