@@ -412,10 +412,6 @@ PrefabInstance:
       propertyPath: _controllable
       value: 
       objectReference: {fileID: 6082373615780399341}
-    - target: {fileID: 7501940338115044964, guid: 48fc56d369b527842b92071d06081335, type: 3}
-      propertyPath: _transitionIn
-      value: 
-      objectReference: {fileID: 7496946772583468657}
     - target: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.6
@@ -471,40 +467,14 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4402344031165080755}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3018314387671437117, guid: 48fc56d369b527842b92071d06081335, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7496946772583468657}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48fc56d369b527842b92071d06081335, type: 3}
---- !u!1 &169260810640303763 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3018314387671437117, guid: 48fc56d369b527842b92071d06081335, type: 3}
-  m_PrefabInstance: {fileID: 3150937811923200430}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7496946772583468657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169260810640303763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 800f665955f40604da9ae2bd7ae64d3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ViewTransition
-  _onTransitionEnded:
-    m_PersistentCalls:
-      m_Calls: []
-  _cam: {fileID: 0}
-  _targetView: {fileID: 7930596072431434320}
-  _duration: 1.5
 --- !u!114 &1647504069032418775 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4424642623868204153, guid: 48fc56d369b527842b92071d06081335, type: 3}
   m_PrefabInstance: {fileID: 3150937811923200430}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169260810640303763}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 375058d1676525c4f97bcfead2902c92, type: 3}

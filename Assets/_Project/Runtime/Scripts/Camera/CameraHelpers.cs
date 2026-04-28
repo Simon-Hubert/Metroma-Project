@@ -45,6 +45,30 @@ namespace Metroma
             }
             ApplyConfiguration(cam, toConfig);
         }
+        
+        public static async Awaitable TransitionToViewAsync(Camera cam, AView to, float duration, AnimationCurve curve) {
+            CameraConfiguration toConfig = to.GetConfiguration();
+            toConfig.Yaw = Mathf.DeltaAngle(0, toConfig.Yaw);
+            CameraConfiguration fromConfig = new CameraConfiguration()
+            {
+                Distance = 0,
+                Fov = cam.fieldOfView,
+                Pitch = Mathf.DeltaAngle(0,cam.transform.rotation.eulerAngles.x),
+                Yaw = Mathf.DeltaAngle(0,cam.transform.rotation.eulerAngles.y),
+                Roll = Mathf.DeltaAngle(0,cam.transform.rotation.eulerAngles.z),
+                Pivot = cam.transform.position,
+            };
+            ApplyConfiguration(cam, fromConfig);
+            float t = 0;
+            while (t < duration) {
+                t += Time.deltaTime;
+                float p = t / duration;
+                p = curve.Evaluate(p);
+                ApplyConfiguration(cam, Lerp(fromConfig, toConfig, p));
+                await Awaitable.NextFrameAsync();
+            }
+            ApplyConfiguration(cam, toConfig);
+        }
 
         public static async Awaitable ViewToViewTransitionAsync(Camera cam, AView from, AView to, float duration) {
             try {

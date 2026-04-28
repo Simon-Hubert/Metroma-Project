@@ -8,9 +8,15 @@ namespace Metroma
         [SerializeField] private Camera _cam;
         [SerializeField] private AView _targetView;
         [SerializeField] private float _duration;
+        [SerializeField] private AnimationCurve _curve = null;
         
         protected override async Awaitable TransitionAsync() {
-            await CameraHelpers.TransitionToViewAsync(_cam, _targetView, _duration);
+            if (_curve.keys.Length > 0) {
+                await CameraHelpers.TransitionToViewAsync(_cam, _targetView, _duration, _curve);
+            }
+            else {
+                await CameraHelpers.TransitionToViewAsync(_cam, _targetView, _duration);
+            }
         }
     }
 }
