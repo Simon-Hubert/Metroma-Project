@@ -2147,6 +2147,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8414450917787545520, guid: 41146f803a7901042be073333e5b3312, type: 3}
   m_PrefabInstance: {fileID: 556253925}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &556253928 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1742769406259301985, guid: 41146f803a7901042be073333e5b3312, type: 3}
+  m_PrefabInstance: {fileID: 556253925}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141067114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f210828086c1a4398856e1ba65627c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShapesRuntime::Shapes.Rectangle
 --- !u!1 &709772873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,6 +2313,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 978389452}
     m_Modifications:
+    - target: {fileID: 909866440037703294, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
+      propertyPath: _Shape
+      value: 
+      objectReference: {fileID: 2055900500}
     - target: {fileID: 1474057686808106113, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
       propertyPath: managedReferences[3104589352517238853].AnimatePositionTarget
       value: 
@@ -2402,6 +2417,18 @@ PrefabInstance:
       propertyPath: managedReferences[3104589374601560135].AnimateRotationTarget
       value: 
       objectReference: {fileID: 141067115}
+    - target: {fileID: 7506785014654242848, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
+      propertyPath: managedReferences[3104589374601560140].AnimateRotationTarget
+      value: 
+      objectReference: {fileID: 2055900498}
+    - target: {fileID: 7506785014654242848, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
+      propertyPath: managedReferences[3104589374601560141].AnimatePositionTarget
+      value: 
+      objectReference: {fileID: 2055900499}
+    - target: {fileID: 7506785014654242848, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
+      propertyPath: managedReferences[3104589374601560141].DestinationPositionTransform
+      value: 
+      objectReference: {fileID: 2055900497}
     - target: {fileID: 7631735692833219480, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
       propertyPath: managedReferences[3104589374601560133].AnimatePositionTarget
       value: 
@@ -2410,6 +2437,10 @@ PrefabInstance:
       propertyPath: managedReferences[3104589374601560134].AnimateRotationTarget
       value: 
       objectReference: {fileID: 141067115}
+    - target: {fileID: 7837648957952359220, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
+      propertyPath: _Shape
+      value: 
+      objectReference: {fileID: 556253928}
     - target: {fileID: 7944309210271252178, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
       propertyPath: m_Icon
       value: 
@@ -4711,6 +4742,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6905203680634446851, guid: 201c565787287194f8b44841672c5cef, type: 3}
   m_PrefabInstance: {fileID: 2055900494}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2055900497 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1363105130598212091, guid: 201c565787287194f8b44841672c5cef, type: 3}
+  m_PrefabInstance: {fileID: 2055900494}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2055900498 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8174393134685743092, guid: 201c565787287194f8b44841672c5cef, type: 3}
+  m_PrefabInstance: {fileID: 2055900494}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2055900499 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6544073215647103880, guid: 201c565787287194f8b44841672c5cef, type: 3}
+  m_PrefabInstance: {fileID: 2055900494}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2055900500 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4725002399071047719, guid: 201c565787287194f8b44841672c5cef, type: 3}
+  m_PrefabInstance: {fileID: 2055900494}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055900499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd51d29965c9d04599a2fdc8a833c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShapesRuntime::Shapes.Disc
 --- !u!114 &2093260425 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 438922644758331580, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}

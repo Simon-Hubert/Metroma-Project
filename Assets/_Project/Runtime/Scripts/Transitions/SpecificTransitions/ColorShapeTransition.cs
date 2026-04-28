@@ -14,7 +14,7 @@ namespace Metroma
         
         protected override async Awaitable TransitionAsync() {
             float timer = 0;
-            if (_useShapeColorAsStart) _fromColor = _Shape.Color;
+            if (_useShapeColorAsStart && _Shape != null) _fromColor = _Shape.Color;
             
             while (timer < _duration) {
                 timer += Time.deltaTime;
