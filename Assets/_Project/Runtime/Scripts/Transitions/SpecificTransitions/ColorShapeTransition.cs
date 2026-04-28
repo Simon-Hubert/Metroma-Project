@@ -12,7 +12,7 @@ namespace Metroma
         
         protected override Awaitable TransitionAsync() {
             float timer = 0;
-            Color
+            
             while (timer < _duration) {
                 timer += Time.deltaTime;
                 
