@@ -393,6 +393,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 978389452}
     m_Modifications:
+    - target: {fileID: 1742769406259301985, guid: 41146f803a7901042be073333e5b3312, type: 3}
+      propertyPath: color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2975543867297508640, guid: 41146f803a7901042be073333e5b3312, type: 3}
       propertyPath: m_Name
       value: BLOCK-Noyade-Var1
@@ -470,6 +474,17 @@ Transform:
 --- !u!114 &722952878 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 438922644758331580, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
+  m_PrefabInstance: {fileID: 5295387564574302356}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99573f6d47bf757c4a68f10fd0de3b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Transitions.SeriesTransition
+--- !u!114 &735658404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5752153373021730050, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
   m_PrefabInstance: {fileID: 5295387564574302356}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -851,6 +866,39 @@ MonoBehaviour:
   closed: 0
   thickness: 0.125
   thicknessSpace: 0
+--- !u!114 &1176102229 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 304835026245065303, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
+  m_PrefabInstance: {fileID: 5295387564574302356}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5d8acf5297cc7499d8966be2ddd2d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Transitions.ParallelTransition
+--- !u!114 &1242662606 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7064316882701020876, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
+  m_PrefabInstance: {fileID: 5295387564574302356}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5d8acf5297cc7499d8966be2ddd2d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Transitions.ParallelTransition
+--- !u!114 &1297978307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7930596072431434320, guid: 201c565787287194f8b44841672c5cef, type: 3}
+  m_PrefabInstance: {fileID: 2055900494}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b62110f23b8f748898a3bd9e647bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::FixedView
 --- !u!1 &1360449365
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,6 +1036,17 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1832422705 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2248769222860585653, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
+  m_PrefabInstance: {fileID: 5295387564574302356}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5d8acf5297cc7499d8966be2ddd2d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Transitions.ParallelTransition
 --- !u!4 &1873003859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2037538189360439792, guid: 41146f803a7901042be073333e5b3312, type: 3}
@@ -1285,6 +1344,10 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 1360449367}
+    - target: {fileID: 3586801120683158445, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
+      propertyPath: _targetView
+      value: 
+      objectReference: {fileID: 1297978307}
     - target: {fileID: 4454799641757716522, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
       propertyPath: managedReferences[3104589374601560137].AnimateScaleTarget
       value: 
@@ -1301,6 +1364,14 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 1360449367}
+    - target: {fileID: 5752153373021730050, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
+      propertyPath: _a
+      value: 
+      objectReference: {fileID: 1832422705}
+    - target: {fileID: 5752153373021730050, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
+      propertyPath: _b
+      value: 
+      objectReference: {fileID: 1242662606}
     - target: {fileID: 5846597512581757113, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
       propertyPath: m_Name
       value: TransiJump
@@ -1309,6 +1380,10 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 1360449367}
+    - target: {fileID: 7506785014654242848, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
+      propertyPath: FeedbacksList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7506785014654242848, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
       propertyPath: managedReferences[3104589374601560137].AnimateScaleTarget
       value: 
@@ -1332,11 +1407,11 @@ PrefabInstance:
     - target: {fileID: 8242550333659055244, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
       propertyPath: _a
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 735658404}
     - target: {fileID: 8242550333659055244, guid: d70bdfcab7514b34cb9fcb85d5d0ef1e, type: 3}
       propertyPath: _b
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1176102229}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
