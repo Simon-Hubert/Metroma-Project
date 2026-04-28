@@ -11,6 +11,9 @@ namespace Metroma
         private void Reset() {
             _feedbacks = GetComponent<MMF_Player>();
         }
+        private void Awake() {
+            _feedbacks = GetComponent<MMF_Player>();
+        }
         
         protected override async Awaitable TransitionAsync() {
             await _feedbacks.PlayFeedbacksTask(transform.position);
