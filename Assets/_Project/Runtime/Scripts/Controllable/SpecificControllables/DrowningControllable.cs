@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Metroma
@@ -20,6 +21,8 @@ namespace Metroma
         [Header("References")]
         [SerializeField] private Rigidbody2D _rb2D;
         [SerializeField] private Transform _respawnPos;
+
+        [SerializeField] private UnityEvent _onDeath;
         
         private Vector2 _additionalForce;
         private Vector2 _dashForce;
@@ -106,6 +109,7 @@ namespace Metroma
                 yield return null;
                 t += Time.deltaTime;
             }
+            _onDeath?.Invoke();
             Respawn();
         }
     }
