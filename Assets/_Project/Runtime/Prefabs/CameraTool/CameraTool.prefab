@@ -1,0 +1,338 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8064602958363773810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2046058050442970005}
+  - component: {fileID: 6983691599906559030}
+  - component: {fileID: 4850263036748390343}
+  - component: {fileID: 4142599870282886990}
+  - component: {fileID: 972278648111774280}
+  - component: {fileID: 2417558811924320142}
+  m_Layer: 0
+  m_Name: CameraTool
+  m_TagString: Untagged
+  m_Icon: {fileID: 2800000, guid: 7cba34d70552e144586a4d3ce4a33de5, type: 3}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2046058050442970005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8064602958363773810}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &6983691599906559030
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8064602958363773810}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 0d8fbe606e712ae42acc54507dcc87fb, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 8395023584946261708, guid: 74d1ae1b6e18e7e4485227e9a813395b, type: 2}
+    value: {fileID: 4850263036748390343}
+  - key: {fileID: 0}
+    value: {fileID: 4850263036748390343}
+  - key: {fileID: -1248282423252703618, guid: f891da07dd81e0e4081f480eea5e91bf, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1436906873548814857, guid: 4ee495760f299f444a6d33e6947c605e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -654639417237642433, guid: 0d8fbe606e712ae42acc54507dcc87fb, type: 2}
+    value: {fileID: 4850263036748390343}
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &4850263036748390343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8064602958363773810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a46995e07ac0ab41bd041b1a93d7956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.CameraRig
+  onSplineNotified:
+    m_PersistentCalls:
+      m_Calls: []
+  targetCamera: {fileID: 0}
+  autoHandleTransform: 1
+  foldReferences: 0
+  foldChapters: 1
+  foldSegments: 1
+  foldAnimation: 0
+  foldEvents: 0
+  foldViewport: 0
+  foldHaptics: 0
+  foldDebug: 0
+  selectedChapterIndex: 0
+--- !u!114 &4142599870282886990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8064602958363773810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c4ec764cee7f44e995f57da298b4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Modules.RailModule
+  splineRails:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  globalProgress: 0.5962963
+  lookAtWeight: 1
+  lookAtTarget: {fileID: 0}
+  lookAtTargets: []
+  defaultFOV: 60
+  junctionBlendDistance: 0.5
+  junctionSmoothness: 5
+--- !u!114 &972278648111774280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8064602958363773810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1e4e5d09ba8a444900102fe23c34c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Modules.SequenceModule
+  playableDirector: {fileID: 6983691599906559030}
+  chapters:
+  - name: TestCameraTimeline 1
+    timeline: {fileID: 11400000, guid: 0d8fbe606e712ae42acc54507dcc87fb, type: 2}
+    startRailIndex: 0
+    railCount: 2
+    debugColor: {r: 0, g: 1, b: 1, a: 1}
+    isExpanded: 0
+    segments:
+    - label: "R0 Node 0 \u2192 1"
+      duration: 3
+      easing:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      waitAtEnd: 0
+      junctionOverride:
+        duration: 1
+        blendDistance: 1
+        smoothness: 5
+      isExpanded: 0
+    - label: "R0 Node 1 \u2192 2"
+      duration: 3
+      easing:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      waitAtEnd: 0
+      junctionOverride:
+        duration: 2
+        blendDistance: 1
+        smoothness: 5
+      isExpanded: 1
+    - label: "R1 Node 0 \u2192 1"
+      duration: 3
+      easing:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      waitAtEnd: 0
+      junctionOverride:
+        duration: 1
+        blendDistance: 1
+        smoothness: 5
+      isExpanded: 0
+    pacingMode: 0
+    globalCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - name: TestCameraTimeline
+    timeline: {fileID: 11400000, guid: 74d1ae1b6e18e7e4485227e9a813395b, type: 2}
+    startRailIndex: 2
+    railCount: 1
+    debugColor: {r: 0, g: 1, b: 1, a: 1}
+    isExpanded: 0
+    segments:
+    - label: "R2 Node 0 \u2192 1"
+      duration: 1
+      easing:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      waitAtEnd: 0
+      junctionOverride:
+        duration: 1
+        blendDistance: 1
+        smoothness: 5
+      isExpanded: 0
+    pacingMode: 0
+    globalCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  onChapterStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onChapterEnd:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2417558811924320142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8064602958363773810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbee69b039c0f91458565a6d23890405, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Modules.TransitionModule
