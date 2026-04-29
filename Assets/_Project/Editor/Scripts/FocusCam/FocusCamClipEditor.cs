@@ -86,6 +86,74 @@ namespace Metroma.FocusCam.Editor
             
             EditorGUILayout.EndVertical();
 
+            EditorGUILayout.Space(10);
+            
+            GUI.backgroundColor = new Color(0.2f, 0.6f, 1.0f);
+            if (GUILayout.Button("🎬 Snap Camera", GUILayout.Height(30)))
+            {
+                Debug.Log("[FocusCamClipEditor] Teleport button clicked.");
+                FocusCamClip clip = (FocusCamClip)target;
+                if (clip != null)
+                {
+                    Vector3 finalPos = clip.cameraPosition;
+                    UnityEngine.Camera mainCam = UnityEngine.Camera.main;
+                    if (mainCam == null) mainCam = UnityEngine.Object.FindAnyObjectByType<UnityEngine.Camera>();
+
+                    var sceneView = SceneView.lastActiveSceneView;
+                    if (sceneView == null && SceneView.sceneViews.Count > 0)
+                    {
+                        sceneView = (SceneView)SceneView.sceneViews[0];
+                    }
+                    if (!clip.overridePosition)
+                    {
+                        if (mainCam != null) finalPos = mainCam.transform.position;
+                        else if (sceneView != null && sceneView.camera != null) finalPos = sceneView.camera.transform.position;
+                    }
+
+                    Quaternion finalRot = Quaternion.identity;
+                    
+                    if (clip.mode == FocusMode.LookAtPoint)
+                    {
+                        Vector3 direction = (clip.position - finalPos).normalized;
+                        if (direction != Vector3.zero) finalRot = Quaternion.LookRotation(direction, Vector3.up);
+                        Debug.Log($"[FocusCamClipEditor] Mode: LookAtPoint. Target: {clip.position}");
+                    }
+                    else
+                    {
+                        finalRot = Quaternion.Euler(clip.rotation);
+                        Debug.Log($"[FocusCamClipEditor] Mode: KeepOrientation. Rotation: {clip.rotation}");
+                    }
+                    finalRot *= Quaternion.Euler(0, 0, clip.roll);
+
+                    if (mainCam != null)
+                    {
+                        mainCam.transform.SetPositionAndRotation(finalPos, finalRot);
+                        if (clip.overrideFOV) mainCam.fieldOfView = clip.fov;
+                        Debug.Log($"[FocusCamClipEditor] Successfully moved Game Camera: {mainCam.name}");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[FocusCamClipEditor] No active Game Camera found in the scene.");
+                    }
+
+                    if (sceneView != null)
+                    {
+                        sceneView.pivot = finalPos;
+                        sceneView.rotation = finalRot;
+                        sceneView.size = 0f;
+                        sceneView.Repaint();
+                        Debug.Log($"[FocusCamClipEditor] Set SceneView Pivot: {finalPos}, Rotation: {finalRot}, Size: 0");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[FocusCamClipEditor] No active Scene View available.");
+                    }
+
+                    UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
+                }
+            }
+            GUI.backgroundColor = Color.white;
+
             serializedObject.ApplyModifiedProperties();
         }
 
