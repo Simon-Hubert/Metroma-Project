@@ -1,4 +1,6 @@
 using UnityEngine;
+using System;
+using System.Threading;
 
 namespace Metroma.Transitions 
 {
@@ -7,13 +9,14 @@ namespace Metroma.Transitions
         [SerializeField] private ATransition _a;
         [SerializeField] private ATransition _b;
 
-        protected override async Awaitable TransitionAsync() {
-            Debug.Log($"Series {name} Start");
-            
-            await _a.PlayAsync();
-            await _b.PlayAsync();
-            
-            Debug.Log($"Series {name} End");
+        protected override async Awaitable TransitionAsync(CancellationToken cancelToken) {
+            try {
+                await _a.PlayAsync(cancelToken);
+                await _b.PlayAsync(cancelToken);
+            }
+            catch (OperationCanceledException) {
+                
+            }
         }
     }
 }
