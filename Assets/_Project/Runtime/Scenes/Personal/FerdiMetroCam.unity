@@ -3508,6 +3508,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &442372998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 442373000}
+  - component: {fileID: 442372999}
+  m_Layer: 0
+  m_Name: director
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &442372999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442372998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d539d7cc2bdbcd46bc00d7a5d109b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma.Interfacing::Metroma.Interfacing.Director
+  _tool: {fileID: 238838830}
+--- !u!4 &442373000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442372998}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -106.98157, y: 50.47785, z: 124.26746}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &446919207
 GameObject:
   m_ObjectHideFlags: 0
@@ -4464,16 +4509,20 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 0861b4827a14cee40a43a012c2f6ba4e, type: 2}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].name
-      value: Chapter-1
+      value: TestCameraTimeline 1
       objectReference: {fileID: 0}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].timeline
       value: 
-      objectReference: {fileID: 11400000, guid: 5fb49a3f06d697b4294401652b0c2f2e, type: 2}
+      objectReference: {fileID: 11400000, guid: 0861b4827a14cee40a43a012c2f6ba4e, type: 2}
+    - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: chapters.Array.data[1].timeline
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b8149efe429c364cad240d5ded84fb8, type: 2}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].railCount
       value: 1
@@ -4483,36 +4532,48 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: chapters.Array.data[1].isExpanded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].debugColor.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].debugColor.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].debugColor.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].startRailIndex
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: chapters.Array.data[1].startRailIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].segments.Array.size
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
+      propertyPath: chapters.Array.data[1].segments.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].globalCurve.m_PreInfinity
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].globalCurve.m_PostInfinity
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].globalCurve.m_RotationOrder
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].segments.Array.data[0].label
@@ -4520,7 +4581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].globalCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 972278648111774280, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: chapters.Array.data[0].segments.Array.data[0].duration
@@ -4580,7 +4641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4850263036748390343, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: foldChapters
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4850263036748390343, guid: 0fff81f410a7a7a47bc8e6fad1dee0b4, type: 3}
       propertyPath: foldSegments
@@ -11836,3 +11897,4 @@ SceneRoots:
   - {fileID: 1745618778}
   - {fileID: 838446996}
   - {fileID: 1329548234}
+  - {fileID: 442373000}
