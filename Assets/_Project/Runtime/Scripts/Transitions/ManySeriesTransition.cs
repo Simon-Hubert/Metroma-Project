@@ -12,7 +12,7 @@ namespace Metroma.Transitions
         protected override async Awaitable TransitionAsync(CancellationToken cancelToken) {
             try {
                 foreach (ATransition t in _trans) {
-                    await t.PlayAsync(cancelToken);
+                    if (t != null) await t.PlayAsync(cancelToken);
                 }
             }
             catch (OperationCanceledException) {

@@ -11,8 +11,8 @@ namespace Metroma.Transitions
 
         protected override async Awaitable TransitionAsync(CancellationToken cancelToken) {
             try {
-                await _a.PlayAsync(cancelToken);
-                await _b.PlayAsync(cancelToken);
+                if (_a != null) await _a.PlayAsync(cancelToken);
+                if (_b != null) await _b.PlayAsync(cancelToken);
             }
             catch (OperationCanceledException) {
                 
