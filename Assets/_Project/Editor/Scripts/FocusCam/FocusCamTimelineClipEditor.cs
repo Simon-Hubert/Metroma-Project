@@ -55,58 +55,58 @@ namespace Metroma.FocusCam.Editor
             Rect rect = region.position;
             if (rect.width < 10) return;
 
-            // --- 1. Blend & Safe Zone ---
-            float blendInWidth = (float)(clip.blendInDuration / clip.duration) * rect.width;
-            float blendOutWidth = (float)(clip.blendOutDuration / clip.duration) * rect.width;
-            
-            float safeX = rect.x + blendInWidth;
-            float safeWidth = rect.width - blendInWidth - blendOutWidth;
-
-            // If we have almost no safe space, we fallback to the visible rect
-            if (safeWidth < 30)
+            // --- 1. Clipping Group ---
+            // This ensures EVERYTHING drawn inside is clipped to the clip's rect.
+            GUI.BeginGroup(rect);
+            try
             {
-                safeX = rect.x;
-                safeWidth = rect.width;
-            }
+                // --- 2. Local Coordinates (0,0 is now the top-left of the clip) ---
+                float blendInPx = (float)(clip.blendInDuration / clip.duration) * rect.width;
+                float safeOffset = Mathf.Min(blendInPx, rect.width * 0.5f);
+                
+                float localX = safeOffset + 5;
+                // Clamp width so it NEVER exceeds the clip's right edge
+                float labelWidth = Mathf.Min(135, rect.width - localX - 5);
 
-            // --- 2. Styles ---
-            GUIStyle labelStyle = new GUIStyle(EditorStyles.miniLabel);
-            labelStyle.normal.textColor = Color.white;
-            labelStyle.fontStyle = FontStyle.Bold;
-
-            GUIStyle valueStyle = new GUIStyle(EditorStyles.miniLabel);
-            valueStyle.normal.textColor = new Color(1, 1, 1, 0.6f);
-            valueStyle.fontSize = 9;
-
-            // --- 3. Full-Width Header Bar ---
-            Rect headerRect = new Rect(safeX, rect.y + 3, safeWidth, 16);
-            
-            // Draw a solid dark band that spans the safe width
-            EditorGUI.DrawRect(headerRect, new Color(0, 0, 0, 0.5f));
-
-            string modeName = asset.mode == FocusMode.LookAtPoint ? "LookAt" : "Fixed";
-            string icon = asset.mode == FocusMode.LookAtPoint ? "🎯" : "🧭";
-            GUI.Label(new Rect(headerRect.x + 4, headerRect.y, headerRect.width - 8, headerRect.height), $"{icon} {modeName}", labelStyle);
-
-            // --- 4. Values Line ---
-            if (rect.height > 28 && safeWidth > 40)
-            {
-                string coords = asset.mode == FocusMode.LookAtPoint 
-                    ? $"{asset.position.x:F0}, {asset.position.y:F0}, {asset.position.z:F0}" 
-                    : $"{asset.rotation.x:F0}, {asset.rotation.y:F0}, {asset.rotation.z:F0}";
-
-                Rect valueRect = new Rect(safeX + 6, rect.y + 17, safeWidth - 10, 14);
-                GUI.Label(valueRect, coords, valueStyle);
-
-                if (rect.height > 42)
+                if (labelWidth > 10)
                 {
-                    string extras = (asset.overridePosition ? "🎥 " : "") + (asset.overrideFOV ? "🔎" : "");
-                    if (!string.IsNullOrEmpty(extras))
+                    // --- 3. Styles ---
+                    GUIStyle labelStyle = new GUIStyle(EditorStyles.boldLabel);
+                    labelStyle.normal.textColor = Color.white;
+                    labelStyle.fontSize = 10;
+
+                    GUIStyle valueStyle = new GUIStyle(EditorStyles.miniLabel);
+                    valueStyle.normal.textColor = new Color(1, 1, 1, 0.7f);
+                    valueStyle.fontSize = 9;
+
+                    Color highlightColor = asset.mode == FocusMode.LookAtPoint 
+                        ? new Color(0.95f, 0.2f, 0.45f, 0.8f) 
+                        : new Color(0.15f, 0.6f, 1.0f, 0.8f);
+
+                    // --- 4. Draw Header Bar ---
+                    Rect headerRect = new Rect(localX, 2, labelWidth, 16);
+                    EditorGUI.DrawRect(headerRect, new Color(0, 0, 0, 0.8f));
+                    EditorGUI.DrawRect(new Rect(headerRect.x, headerRect.y, 3, headerRect.height), highlightColor);
+
+                    string modeName = asset.mode == FocusMode.LookAtPoint ? "LookAt" : "Fixed";
+                    string icon = asset.mode == FocusMode.LookAtPoint ? "🎯" : "🧭";
+                    GUI.Label(new Rect(headerRect.x + 6, headerRect.y, headerRect.width - 8, headerRect.height), $"{icon} {modeName}", labelStyle);
+
+                    // --- 5. Values Line ---
+                    if (rect.height > 25)
                     {
-                        Rect extraRect = new Rect(safeX + 6, rect.y + 29, safeWidth - 10, 14);
-                        GUI.Label(extraRect, extras, labelStyle);
+                        string coords = asset.mode == FocusMode.LookAtPoint 
+                            ? $"{asset.position.x:F0}, {asset.position.y:F0}, {asset.position.z:F0}" 
+                            : $"{asset.rotation.x:F0}, {asset.rotation.y:F0}, {asset.rotation.z:F0}";
+
+                        Rect valueRect = new Rect(localX + 2, 18, labelWidth, 14);
+                        GUI.Label(valueRect, coords, valueStyle);
                     }
                 }
+            }
+            finally
+            {
+                GUI.EndGroup();
             }
         }
     }
