@@ -250,14 +250,22 @@ namespace Metroma.CameraTool.Modules
         /// Plays a Focus Timeline independently from the camera rail/spline logic.
         /// Useful for script-triggered cinematics (interactions, events).
         /// </summary>
-        public void PlayFocusStandalone(PlayableDirector InDirector, TimelineAsset InTimeline, float InBlendIn = 1f, float InBlendOut = 1f, bool InReturnToRail = true, System.Action InOnStart = null, System.Action InOnEnd = null)
+        public void PlayFocusStandalone(PlayableDirector InDirector, TimelineAsset InTimeline, float InBlendIn = 1f, float InBlendOut = 1f, bool InReturnToLastPos = true, System.Action InOnStart = null, System.Action InOnEnd = null)
         {
             if (!InDirector || !InTimeline) return;
-            _rig.StartCoroutine(StandaloneFocusCoroutine(InDirector, InTimeline, InBlendIn, InBlendOut, InReturnToRail, InOnStart, InOnEnd));
+            _rig.StartCoroutine(StandaloneFocusCoroutine(InDirector, InTimeline, InBlendIn, InBlendOut, InReturnToLastPos, InOnStart, InOnEnd));
         }
 
-        private System.Collections.IEnumerator StandaloneFocusCoroutine(PlayableDirector InDirector, TimelineAsset InTimeline, float InIn, float InOut, bool InReturnToRail, System.Action InStart, System.Action InEnd)
+        private System.Collections.IEnumerator StandaloneFocusCoroutine(PlayableDirector InDirector, TimelineAsset InTimeline, float InIn, float InOut, bool InReturnToLastPos, System.Action InStart, System.Action InEnd)
         {
+            CameraPose initialPose = new CameraPose 
+            { 
+                position = _rig.CameraTransform.position, 
+                rotation = _rig.CameraTransform.rotation, 
+                fov = _rig.TargetCamera ? _rig.TargetCamera.fieldOfView : 60f,
+                up = _rig.CameraTransform.up 
+            };
+
             Internal_NotifyFocusStarted();
             InStart?.Invoke();
 
@@ -315,25 +323,25 @@ namespace Metroma.CameraTool.Modules
                 yield return null;
             }
 
-            if (InReturnToRail)
+            if (InReturnToLastPos)
             {
-                _rig.SetControlActive(true);
                 if (InOut > 0.01f)
                 {
-                    CameraPose railPose = _rig.GetTrueTargetPose();
-                    _rig.Transitions.StartTransition(railPose, InOut);
+                    _rig.Transitions.StartTransition(initialPose, InOut);
                     yield return new WaitForSeconds(InOut);
                 }
                 else
                 {
-                    CameraPose railPose = _rig.GetTrueTargetPose();
-                    _rig.Transitions.SnapToPose(railPose);
+                    _rig.Transitions.SnapToPose(initialPose);
                     if (_rig.CameraTransform != null)
                     {
-                        _rig.CameraTransform.SetPositionAndRotation(railPose.position, railPose.rotation);
-                        if (_rig.TargetCamera != null) _rig.TargetCamera.fieldOfView = railPose.fov;
+                        _rig.CameraTransform.SetPositionAndRotation(initialPose.position, initialPose.rotation);
+                        if (_rig.TargetCamera != null) _rig.TargetCamera.fieldOfView = initialPose.fov;
                     }
                 }
+                
+                // Return full control to Rig's usual evaluation system (Rail, FPS, Timeline)
+                _rig.SetControlActive(true);
                 _rig.Transitions.ReturnToRail(5f);
             }
             else
@@ -354,6 +362,7 @@ namespace Metroma.CameraTool.Modules
 
         #endregion
 
+#if UNITY_EDITOR
         #region --- Debug / Test ---
 
         [Button("🎬 Play Test Focus In-Game")]
@@ -426,5 +435,6 @@ namespace Metroma.CameraTool.Modules
         }
 
         #endregion
+#endif
     }
 }
