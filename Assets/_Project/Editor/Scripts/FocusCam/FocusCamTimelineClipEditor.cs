@@ -36,12 +36,13 @@ namespace Metroma.FocusCam.Editor
 
         public override void OnCreate(TimelineClip clip, TrackAsset track, TimelineClip clonedFrom)
         {
-            clip.displayName = ""; // We draw everything manually for a cleaner look
+            clip.displayName = " "; // Use a space to avoid Unity showing "(Empty)"
         }
 
         public override void OnClipChanged(TimelineClip clip)
         {
-            clip.displayName = ""; // Keep it clean if edited
+            if (string.IsNullOrEmpty(clip.displayName) || clip.displayName == "(Empty)")
+                clip.displayName = " ";
         }
 
         public override void DrawBackground(TimelineClip clip, ClipBackgroundRegion region)
@@ -52,48 +53,57 @@ namespace Metroma.FocusCam.Editor
             if (asset == null) return;
 
             Rect rect = region.position;
-            if (rect.width < 30) return; // Don't draw if too small
+            if (rect.width < 10) return;
 
-            // --- 1. Prepare Styles ---
+            // --- 1. Blend & Safe Zone ---
+            float blendInWidth = (float)(clip.blendInDuration / clip.duration) * rect.width;
+            float blendOutWidth = (float)(clip.blendOutDuration / clip.duration) * rect.width;
+            
+            float safeX = rect.x + blendInWidth;
+            float safeWidth = rect.width - blendInWidth - blendOutWidth;
+
+            // If we have almost no safe space, we fallback to the visible rect
+            if (safeWidth < 30)
+            {
+                safeX = rect.x;
+                safeWidth = rect.width;
+            }
+
+            // --- 2. Styles ---
             GUIStyle labelStyle = new GUIStyle(EditorStyles.miniLabel);
             labelStyle.normal.textColor = Color.white;
             labelStyle.fontStyle = FontStyle.Bold;
-            labelStyle.alignment = TextAnchor.MiddleLeft;
 
             GUIStyle valueStyle = new GUIStyle(EditorStyles.miniLabel);
             valueStyle.normal.textColor = new Color(1, 1, 1, 0.6f);
             valueStyle.fontSize = 9;
 
-            // --- 2. Calculate Content ---
-            string icon = asset.mode == FocusMode.LookAtPoint ? "🎯" : "🧭";
-            string modeName = asset.mode == FocusMode.LookAtPoint ? "LookAt" : "Fixed";
-            string coords = asset.mode == FocusMode.LookAtPoint 
-                ? $"({asset.position.x:F1}, {asset.position.y:F1}, {asset.position.z:F1})" 
-                : $"({asset.rotation.x:F0}, {asset.rotation.y:F0}, {asset.rotation.z:F0})";
-
-            // --- 3. Draw Header Label ---
-            Rect headerRect = new Rect(rect.x + 4, rect.y + 4, rect.width - 8, 16);
+            // --- 3. Full-Width Header Bar ---
+            Rect headerRect = new Rect(safeX, rect.y + 3, safeWidth, 16);
             
-            // Draw semi-transparent dark backing for readability
-            EditorGUI.DrawRect(new Rect(headerRect.x - 2, headerRect.y, headerRect.width + 4, 14), new Color(0, 0, 0, 0.3f));
-            GUI.Label(headerRect, $"{icon}  {modeName}", labelStyle);
+            // Draw a solid dark band that spans the safe width
+            EditorGUI.DrawRect(headerRect, new Color(0, 0, 0, 0.5f));
 
-            // --- 4. Draw Values Line ---
-            if (rect.height > 30)
+            string modeName = asset.mode == FocusMode.LookAtPoint ? "LookAt" : "Fixed";
+            string icon = asset.mode == FocusMode.LookAtPoint ? "🎯" : "🧭";
+            GUI.Label(new Rect(headerRect.x + 4, headerRect.y, headerRect.width - 8, headerRect.height), $"{icon} {modeName}", labelStyle);
+
+            // --- 4. Values Line ---
+            if (rect.height > 28 && safeWidth > 40)
             {
-                Rect valueRect = new Rect(rect.x + 6, rect.y + 18, rect.width - 12, 14);
+                string coords = asset.mode == FocusMode.LookAtPoint 
+                    ? $"{asset.position.x:F0}, {asset.position.y:F0}, {asset.position.z:F0}" 
+                    : $"{asset.rotation.x:F0}, {asset.rotation.y:F0}, {asset.rotation.z:F0}";
+
+                Rect valueRect = new Rect(safeX + 6, rect.y + 17, safeWidth - 10, 14);
                 GUI.Label(valueRect, coords, valueStyle);
 
-                // Add small sub-icons for overrides
-                if (rect.height > 45)
+                if (rect.height > 42)
                 {
-                    string extras = "";
-                    if (asset.overridePosition) extras += " 🎥";
-                    if (asset.overrideFOV) extras += " 🔎";
-                    
+                    string extras = (asset.overridePosition ? "🎥 " : "") + (asset.overrideFOV ? "🔎" : "");
                     if (!string.IsNullOrEmpty(extras))
                     {
-                        Rect extraRect = new Rect(rect.x + 6, rect.y + 30, rect.width - 12, 14);
+                        Rect extraRect = new Rect(safeX + 6, rect.y + 29, safeWidth - 10, 14);
                         GUI.Label(extraRect, extras, labelStyle);
                     }
                 }
