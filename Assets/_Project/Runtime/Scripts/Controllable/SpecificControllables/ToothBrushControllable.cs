@@ -35,20 +35,20 @@ namespace Metroma
             _rb2D.linearVelocity = _velocity;
         }
 
-        /*
-        protected override void InputMoveStart() {
-            base.InputMoveStart();
+        
+        protected override void InputMoveStart(Vector2 move) {
+            base.InputMoveStart(move);
             movementRoutine ??= StartCoroutine(MoveRoutine());
         }
         
-        protected override void InputMoveEnd() {
-            base.InputMoveEnd();
+        protected override void InputMoveEnd(Vector2 move) {
+            base.InputMoveEnd(move);
             if (movementRoutine != null) {
                 StopCoroutine(movementRoutine);
             }
             movementRoutine = null;
             _moveDirection = Vector2.zero;
-        }   */
+        }   
         
         IEnumerator MoveRoutine() {
             while (true) {
