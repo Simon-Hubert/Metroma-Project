@@ -21,9 +21,11 @@ namespace Metroma
         }
 
         private void OnDrawGizmos() {
+            #if UNITY_EDITOR
             Handles.color = Color.lawnGreen;
             Handles.DrawWireDisc(transform.position, Vector3.back, _radius);
             Handles.DrawWireDisc(transform.position, Vector3.back, 0.5f);
+            #endif
         }
     }
 }

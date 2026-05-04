@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace Metroma
+namespace Metroma.Editor
 {
     [CustomPropertyDrawer(typeof(IntReference))]
     public class IntReferencePropertyDrawer : PropertyDrawer

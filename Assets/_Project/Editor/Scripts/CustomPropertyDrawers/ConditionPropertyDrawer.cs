@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using UnityEditor;
 using UnityEngine;
 
-namespace Metroma
+namespace Metroma.Editor
 {
     [CustomPropertyDrawer(typeof(ConditionAttribute))]
     public class ConditionPropertyDrawer : PropertyDrawer
