@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Metroma.Transitions;
 using NaughtyAttributes;
 using UnityEngine;
@@ -14,34 +15,42 @@ namespace Metroma
         [SerializeField, HideIf("_useGradient")] private Color _toColor;
         [SerializeField] private AnimationCurve _curve;
 
-        protected override async Awaitable TransitionAsync() {
+        protected override async Awaitable TransitionAsync(CancellationToken cancelToken) {
             float t = 0;
             Color startCol = _cam.backgroundColor;
-            while (t < _duration) {
-                Debug.Log(t);
-                t += Time.deltaTime;
-                float p = t / _duration;    
-                p = _curve.Evaluate(p);
-                Color col;
+
+            try {
+                while (t < _duration) {
+                    Debug.Log(t);
+                    t += Time.deltaTime;
+                    float p = t / _duration;
+                    p = _curve.Evaluate(p);
+                    Color col;
+                    if (_useGradient) {
+                        col = _gradient.Evaluate(p);
+                    }
+                    else {
+                        col = Color.Lerp(startCol, _toColor, p);
+                    }
+
+                    _cam.backgroundColor = col;
+                    await Awaitable.NextFrameAsync();
+                }
+            }
+            catch (OperationCanceledException) {
+
+            }
+            finally {
+                Color color;
                 if (_useGradient) {
-                    col = _gradient.Evaluate(p);
+                    color = _gradient.Evaluate(1);
                 }
                 else {
-                    col = Color.Lerp(startCol, _toColor, p);
+                    color = Color.Lerp(startCol, _toColor, 1);
                 }
-                _cam.backgroundColor = col;
-                await Awaitable.NextFrameAsync();
+                
+                _cam.backgroundColor = color;
             }
-
-            Color color;
-            if (_useGradient) {
-                color = _gradient.Evaluate(1);
-            }
-            else {
-                color = Color.Lerp(startCol, _toColor, 1);
-            }
-
-            _cam.backgroundColor = color;
         }
     }
 }
