@@ -40,5 +40,17 @@ namespace Metroma
             _blocks[_currentBlock].OnBlockEnded += GoNextBlock;
             _currentBlock++;
         }
+
+        public void PlayBlock(int index)
+        {
+            _blocks[_currentBlock].End();
+            _currentBlock = index;
+            GoNextBlock();
+        }
+
+        public void AutoFetchChildBlocks()
+        {
+            _blocks = GetComponentsInChildren<Block>();
+        }
     }
 }
