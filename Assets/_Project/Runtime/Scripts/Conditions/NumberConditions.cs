@@ -3,13 +3,20 @@ using UnityEngine;
 
 namespace Metroma
 {
+    public class EmptyNumber : ICondition
+    {
+        public bool Evaluate() {
+            return false;
+        }
+    }
+    
     #region Float conditions
-
+    
     [Serializable]
     public class FloatGreater : ICondition
     {
-        [SerializeField] private IFloat a;
-        [SerializeField] private IFloat b;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.FloatCalculation)] private IFloat a;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.FloatCalculation)] private IFloat b;
 
         public bool Evaluate()
         {
@@ -20,8 +27,8 @@ namespace Metroma
     [Serializable]
     public class FloatGreaterOrEqual : ICondition
     {
-        [SerializeField] private IFloat a;
-        [SerializeField] private IFloat b;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.FloatCalculation)] private IFloat a;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.FloatCalculation)] private IFloat b;
 
         public bool Evaluate()
         {
@@ -32,8 +39,8 @@ namespace Metroma
     [Serializable]
     public class FloatLess : ICondition
     {
-        [SerializeField] private IFloat a;
-        [SerializeField] private IFloat b;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.FloatCalculation)] private IFloat a;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.FloatCalculation)] private IFloat b;
 
         public bool Evaluate()
         {
@@ -44,8 +51,8 @@ namespace Metroma
     [Serializable]
     public class FloatLessOrEqual : ICondition
     {
-        [SerializeField] private IFloat a;
-        [SerializeField] private IFloat b;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.FloatCalculation)] private IFloat a;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.FloatCalculation)] private IFloat b;
 
         public bool Evaluate()
         {
@@ -56,8 +63,8 @@ namespace Metroma
     [Serializable]
     public class FloatEqual : ICondition
     {
-        [SerializeField] private IFloat a;
-        [SerializeField] private IFloat b;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.FloatCalculation)] private IFloat a;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.FloatCalculation)] private IFloat b;
 
         public bool Evaluate()
         {
@@ -72,8 +79,8 @@ namespace Metroma
     [Serializable]
     public class IntGreater : ICondition
     {
-        [SerializeField] private IInt a;
-        [SerializeField] private IInt b;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.IntCalculation)] private IInt a;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.IntCalculation)] private IInt b;
 
         public bool Evaluate()
         {
@@ -84,8 +91,8 @@ namespace Metroma
     [Serializable]
     public class IntGreaterOrEqual : ICondition
     {
-        [SerializeField] private IInt a;
-        [SerializeField] private IInt b;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.IntCalculation)] private IInt a;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.IntCalculation)] private IInt b;
 
         public bool Evaluate()
         {
@@ -96,8 +103,8 @@ namespace Metroma
     [Serializable]
     public class IntLess : ICondition
     {
-        [SerializeField] private IInt a;
-        [SerializeField] private IInt b;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.IntCalculation)] private IInt a;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.IntCalculation)] private IInt b;
 
         public bool Evaluate()
         {
@@ -108,8 +115,8 @@ namespace Metroma
     [Serializable]
     public class IntLessOrEqual : ICondition
     {
-        [SerializeField] private IInt a;
-        [SerializeField] private IInt b;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.IntCalculation)] private IInt a;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.IntCalculation)] private IInt b;
 
         public bool Evaluate()
         {
@@ -120,8 +127,8 @@ namespace Metroma
     [Serializable]
     public class IntEqual : ICondition
     {
-        [SerializeField] private IInt a;
-        [SerializeField] private IInt b;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.IntCalculation)] private IInt a;
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.IntCalculation)] private IInt b;
 
         public bool Evaluate()
         {

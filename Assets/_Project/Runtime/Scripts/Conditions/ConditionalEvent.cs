@@ -1,23 +1,23 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Metroma
 {
-    [Serializable]
-    public class ConditionalEvent : ICondition
+    public class ConditionalEvent : MonoBehaviour
     {
-        [SerializeField] private ICondition _condition;
-
+        [SerializeReference, ConditionAttribute(ConditionAttribute.ConditionType.Decorator)] private ICondition _condition;
+        [SerializeField] private UnityEvent _onValidated;
+        
         public event Action OnValidated;
-        public bool Evaluate()
+        
+        public void Evaluate()
         {
             if (_condition.Evaluate())
             {
                 OnValidated?.Invoke();
-                return true;
+                _onValidated?.Invoke();
             }
-
-            return false;
         }
     }
 }

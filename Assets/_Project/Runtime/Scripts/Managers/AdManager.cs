@@ -1,21 +1,19 @@
 using UnityEngine;
+using Metroma.Transitions;
 
 namespace Metroma
 {
-    public class AdManager : MonoBehaviour
+    public static class AdManager
     {
-        public AdBase CurrentAd { get => _currentAd; }
-        
-        private AdBase _currentAd;
-        
-        public void StartAd(AdBase ad, Transition inTransition, Transition outTransition)
+        public static async Awaitable StartAd(AdBase ad, ATransition inATransition, ATransition outATransition)
         {
-            _currentAd = ad;
-            _ = inTransition.PlayAsync();
+            await inATransition.PlayAsync();
             
-            _currentAd.OnAdEnded += () =>
+            ad.StartAd();
+            
+            ad.OnAdEnded += () =>
             {
-                _ = outTransition.PlayAsync();
+                outATransition.PlayAsync();
             };
         }
     }
