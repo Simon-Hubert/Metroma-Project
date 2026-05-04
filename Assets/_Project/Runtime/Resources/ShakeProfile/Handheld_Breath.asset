@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a89792b5fc5b014aa6fee170a948782, type: 3}
+  m_Name: Handheld_Breath
+  m_EditorClassIdentifier: 
+  positionIntensity: {x: 3, y: 4, z: 0.5}
+  rotationIntensity: {x: 0.2, y: 0.3, z: 0.05}
+  roughness: 1
+  damping: 0.25
+  influence: 2
+  breathCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 2.3406284
+      outSlope: 2.3406284
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.1
+    - serializedVersion: 3
+      time: 0.5
+      value: 1.0019035
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.5004707
+      inSlope: -2.548707
+      outSlope: -2.548707
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.093333125
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  breathSpeed: 0.5
