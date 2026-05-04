@@ -59,14 +59,14 @@ namespace Metroma
         /// TODO : Rework this ascpect to not implement public events in this class on refacto. Callback functions could be a solution
         /// </summary>
         #region Events
-        [Obsolete("May not be used in the futur"), Foldout("Events")] public UnityEvent OnMoveStartUnity;
+        [Obsolete("May not be used in the futur"), Foldout("Events [Obselete]")] public UnityEvent OnMoveStartUnity;
         [Obsolete] public event Action OnMoveStart;
-        [Obsolete("May not be used in the futur"), Foldout("Events")] public UnityEvent OnMoveEndUnity;
+        [Obsolete("May not be used in the futur"), Foldout("Events [Obselete]")] public UnityEvent OnMoveEndUnity;
         [Obsolete]public event Action OnMoveEnd;
 
-        [Obsolete("May not be used in the futur"), Foldout("Events")] public UnityEvent OnActionStartUnity;
+        [Obsolete("May not be used in the futur"), Foldout("Events [Obselete]")] public UnityEvent OnActionStartUnity;
         [Obsolete]public event Action OnActionStart;
-        [Obsolete("May not be used in the futur"), Foldout("Events")] public UnityEvent OnActionEndUnity;
+        [Obsolete("May not be used in the futur"), Foldout("Events [Obselete]")] public UnityEvent OnActionEndUnity;
         [Obsolete]public event Action OnActionEnd;
         #endregion
 
