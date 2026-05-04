@@ -33,12 +33,14 @@ namespace Metroma.CameraTool.Modules
         /// <summary> C# Delegate triggered when any FocusCam sequence finishes. </summary>
         public System.Action OnFocusEnded;
 
+#if UNITY_EDITOR
         [Header("🛠️ Debug / Test FocusCam")]
         [SerializeField] private TimelineAsset debugFocusTimeline;
         [SerializeField] private float debugBlendIn = 1f;
         [SerializeField] private float debugBlendOut = 1f;
 
         public TimelineAsset DebugFocusTimeline => debugFocusTimeline;
+#endif
 
         #endregion
 
@@ -61,6 +63,9 @@ namespace Metroma.CameraTool.Modules
         /// <summary> If true, the rail progress is frozen and cannot be modified by the Timeline. </summary>
         public bool IsProgressLocked { get; set; }
         private float _lockedProgress = 0f;
+
+        /// <summary> True if a FocusCam sequence is currently running. </summary>
+        public bool IsPlayingFocus { get; private set; }
 
         public void LockRail()
         {
@@ -229,6 +234,20 @@ namespace Metroma.CameraTool.Modules
 
             if (notification is CameraMarkerBase marker)
             {
+                Debug.Log($"[SequenceModule] Received marker notification: {marker.GetType().Name} from {origin.GetGraph().GetResolver()}");
+                if (IsPlayingFocus)
+                {
+                    string markerName = marker.GetType().Name;
+                    if (markerName == "CameraNextChapterMarker" || 
+                        markerName == "CameraRailSwitchMarker" || 
+                        markerName == "CameraFocusCamMarker" || 
+                        markerName == "CameraLookAtSwitchMarker")
+                    {
+                        Debug.LogWarning($"[SequenceModule] Marker '{markerName}' is blocked during a Focus Cam Timeline to prevent structural conflicts.");
+                        return;
+                    }
+                }
+
                 marker.Execute(_rig, origin.GetGraph().GetResolver());
                 _rig.Internal_NotifyMarkerHit(marker);
             }
@@ -236,12 +255,14 @@ namespace Metroma.CameraTool.Modules
 
         public void Internal_NotifyFocusStarted()
         {
+            IsPlayingFocus = true;
             onFocusStarted?.Invoke();
             OnFocusStarted?.Invoke();
         }
 
         public void Internal_NotifyFocusEnded()
         {
+            IsPlayingFocus = false;
             onFocusEnded?.Invoke();
             OnFocusEnded?.Invoke();
         }
@@ -314,8 +335,46 @@ namespace Metroma.CameraTool.Modules
             _rig.Transitions.ClearTransition();
 
             InDirector.playableAsset = InTimeline;
+
+            // Ensure the Director's GameObject can forward intrinsic markers to the SequenceModule
+            CameraMarkerForwarder forwarder = InDirector.GetComponent<CameraMarkerForwarder>();
+            if (forwarder == null)
+            {
+                forwarder = InDirector.gameObject.AddComponent<CameraMarkerForwarder>();
+            }
+            forwarder.TargetModule = this;
+
+            // 1. Bind the intrinsic Timeline marker track
+            if (InTimeline.markerTrack != null)
+            {
+                Debug.Log("[SequenceModule] Found intrinsic MarkerTrack. Binding to rig.");
+                InDirector.SetGenericBinding(InTimeline.markerTrack, _rig.gameObject);
+            }
+            else
+            {
+                Debug.LogWarning("[SequenceModule] Intrinsic MarkerTrack is NULL!");
+            }
+
+            // 2. Bind any additional user-created marker/tool tracks
+            foreach (var track in InTimeline.GetOutputTracks())
+            {
+                Debug.Log($"[SequenceModule] Found track: {track.name} ({track.GetType().Name})");
+                if (track is UnityEngine.Timeline.MarkerTrack)
+                {
+                    Debug.Log($"[SequenceModule] Binding user MarkerTrack {track.name} to rig.");
+                    InDirector.SetGenericBinding(track, _rig.gameObject);
+                }
+                else if (track.GetType().Name == "CameraToolTrack" || track.GetType().Name == "FocusCamTrack")
+                {
+                    Debug.Log($"[SequenceModule] Binding Tool/Focus Track {track.name} to rig.");
+                    InDirector.SetGenericBinding(track, _rig);
+                }
+            }
+
+            InDirector.RebuildGraph();
+            InDirector.time = 0; // Ensure it starts from the beginning
             InDirector.Play();
-            InDirector.Evaluate();
+            // Removed InDirector.Evaluate() to prevent swallowing timeline notifications on the first frame
 
             yield return null;
             while (InDirector.state == PlayState.Playing && InDirector.time < InDirector.duration - 0.02f)
@@ -436,5 +495,23 @@ namespace Metroma.CameraTool.Modules
 
         #endregion
 #endif
+    }
+
+    /// <summary>
+    /// Forwards Timeline INotifications from an external PlayableDirector to the main SequenceModule.
+    /// This is required because Unity routes intrinsic Timeline markers exclusively to the GameObject hosting the PlayableDirector.
+    /// </summary>
+    public class CameraMarkerForwarder : MonoBehaviour, INotificationReceiver
+    {
+        public SequenceModule TargetModule;
+
+        public void OnNotify(Playable origin, INotification notification, object context)
+        {
+            Debug.Log($"[CameraMarkerForwarder] Intercepted notification: {notification.GetType().Name}. Forwarding to {TargetModule}");
+            if (TargetModule != null)
+            {
+                TargetModule.OnNotify(origin, notification, context);
+            }
+        }
     }
 }

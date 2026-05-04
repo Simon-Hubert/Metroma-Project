@@ -20,6 +20,36 @@ MonoBehaviour:
   overrideFOV: 0
   fov: 60
   roll: 0
+--- !u!114 &-5775959099341625130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55bf4880fd12bdf49ae5346cb1682d87, type: 3}
+  m_Name: "Camera/\U0001F3A5 Handheld Mode"
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraHandheldMarker
+  m_Time: 3.0166666666666666
+  profile: {fileID: 11400000, guid: dc112b0a9856e8e4ca613b7793c6f668, type: 2}
+  deactivate: 0
+--- !u!114 &-3281488197612083917
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e92547363eac4b49af4c60ada8421d3, type: 3}
+  m_Name: "Camera/\U0001F3AC Screen Flash"
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraFlashMarker
+  m_Time: 3.333333333333332
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  duration: 0.5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +228,9 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: FocusCamClip
   m_Markers:
-    m_Objects: []
+    m_Objects:
+    - {fileID: -5775959099341625130}
+    - {fileID: -3281488197612083917}
 --- !u!114 &1538963749676293901
 MonoBehaviour:
   m_ObjectHideFlags: 1
