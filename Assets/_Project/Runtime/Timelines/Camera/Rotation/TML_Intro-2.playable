@@ -20,6 +20,21 @@ MonoBehaviour:
   overrideFOV: 1
   fov: 60
   roll: 0
+--- !u!114 &-7377704683543562119
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55bf4880fd12bdf49ae5346cb1682d87, type: 3}
+  m_Name: "Camera/\U0001F3A5 Handheld Mode"
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraHandheldMarker
+  m_Time: 8.283333333333335
+  profile: {fileID: 0}
+  deactivate: 1
 --- !u!114 &-6444234200901526682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -60,6 +75,21 @@ MonoBehaviour:
   overrideFOV: 1
   fov: 60
   roll: 0
+--- !u!114 &-2519158371808988312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55bf4880fd12bdf49ae5346cb1682d87, type: 3}
+  m_Name: "Camera/\U0001F3A5 Handheld Mode"
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraHandheldMarker
+  m_Time: 0
+  profile: {fileID: 11400000, guid: dc112b0a9856e8e4ca613b7793c6f668, type: 2}
+  deactivate: 0
 --- !u!114 &-1009269110074290771
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -546,6 +576,8 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: -1009269110074290771}
+    - {fileID: -2519158371808988312}
+    - {fileID: -7377704683543562119}
 --- !u!114 &1538963749676293901
 MonoBehaviour:
   m_ObjectHideFlags: 1
