@@ -1,4 +1,5 @@
 using System;
+using NaughtyAttributes;
 using UnityEngine;
 using static UnityEngine.Mathf;
 
@@ -8,9 +9,11 @@ namespace Metroma
     {
         [SerializeField] private Camera _cam;
         [SerializeField] private AView _view;
-        [SerializeField] private float _f = 1;
-        [SerializeField] private float _z = 2;
-        [SerializeField] private float _r = 0;
+        [SerializeField] private bool _dampen = true;
+        [SerializeField, ShowIf("_dampen")] private float _f = 1;
+        [SerializeField, ShowIf("_dampen")] private float _z = 2;
+        [SerializeField, ShowIf("_dampen")] private float _r = 0;
+        
         
         private CameraConfiguration _current;
         private SecondDegreeSmoother _smoother;
@@ -18,11 +21,18 @@ namespace Metroma
 
         private void Start() {
             _smoother = new SecondDegreeSmoother(_f, _z, _r);
+            _current = CameraHelpers.GetConfigOfCam(_cam);
         }
 
         private void Update() {
-            _current = _smoother.Smooth(_current, _view.GetConfiguration());
-            CameraHelpers.ApplyConfiguration(_cam, _current);
+            if (_dampen) {
+                _current = _smoother.Smooth(_current, _view.GetConfiguration());
+                CameraHelpers.ApplyConfiguration(_cam, _current);
+            }
+            else {
+                CameraHelpers.ApplyConfiguration(_cam, _view.GetConfiguration());
+            }
+            
         }
     }
     
