@@ -1,18 +1,19 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Metroma.Transitions 
 {
-    public class SeriesTransition : ATransition
+    public class ManySeriesTransition : ATransition
     {
-        [SerializeField] private ATransition _a;
-        [SerializeField] private ATransition _b;
+        [SerializeField] private List<ATransition> _trans;
 
         protected override async Awaitable TransitionAsync(CancellationToken cancelToken) {
             try {
-                if (_a != null) await _a.PlayAsync(cancelToken);
-                if (_b != null) await _b.PlayAsync(cancelToken);
+                foreach (ATransition t in _trans) {
+                    if (t != null) await t.PlayAsync(cancelToken);
+                }
             }
             catch (OperationCanceledException) {
                 

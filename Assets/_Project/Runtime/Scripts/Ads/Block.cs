@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading;
 using Metroma.Transitions;
 using UnityEngine;
+using Metroma.Utils;
 
 namespace Metroma
 {
@@ -13,25 +15,33 @@ namespace Metroma
         [SerializeField] private ATransition _transitionIn;
         [SerializeField] private bool _allowInputsBeforeStart;
 
+        private CancellationTokenSource _cancelTokenSrc;
+
         public event Action OnBlockEnded;
 
         public void StartBlock() {
             Debug.Log($"{name} started !");
             _endCondition.OnValidated += End;
-            _ = StartAsync();
+            _ = StartAsync(AwaitableUtils.ResetToken(ref _cancelTokenSrc));
         }
 
-        public async Awaitable StartAsync() {
-            if (_transitionIn)
-                await _transitionIn.PlayAsync();
+        public async Awaitable StartAsync(CancellationToken cancelToken) {
+            try {
+                if (_transitionIn) {
+                    await _transitionIn.PlayAsync(cancelToken);
+                }
 
-            if (_allowInputsBeforeStart) {
-                _controllable.SubscribeInputs(true);
-                await _startSequence.ExecuteAsync();
+                if (_allowInputsBeforeStart) {
+                    _controllable.SubscribeInputs(true);
+                    await _startSequence.ExecuteAsync();
+                }
+                else {
+                    await _startSequence.ExecuteAsync();
+                    _controllable.SubscribeInputs(true);
+                }
             }
-            else {
-                await _startSequence.ExecuteAsync();
-                _controllable.SubscribeInputs(true);
+            catch (OperationCanceledException) {
+                
             }
         }
 
