@@ -6,12 +6,12 @@ namespace Metroma
 {
     public class OpenSpaceControllable : AControllable
     {
-        [SerializeField] private float _accelTime;
+        [SerializeField, Min(0)] private float _accelTime;
         private float _currentAccel;
         [SerializeField] private AnimationCurve _accelCurve;
         
         [SerializeField] private float _speed = 100;
-        [ReadOnly, ConditionParam] private float _currentSpeed;
+        [SerializeField, ReadOnly, ConditionParam] private float _currentSpeed;
         public float GetSpeed { get => _currentSpeed; }
         
         
@@ -28,7 +28,7 @@ namespace Metroma
             else {
                 _currentAccel = 0;
             }
-
+            
             UpdateSpeed(move.x);
         }
 
@@ -41,7 +41,7 @@ namespace Metroma
 
         private void UpdateSpeed(float dir)
         {
-            _currentSpeed = dir * _speed * _accelCurve.Evaluate(_currentAccel / _accelTime);
+            _currentSpeed = dir * _speed * (_accelTime > 0 ? _accelCurve.Evaluate(_currentAccel / _accelTime) : 1);
         }
     }
 }

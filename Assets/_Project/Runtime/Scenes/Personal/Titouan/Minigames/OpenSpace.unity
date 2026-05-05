@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 151523172}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.45, y: 0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -167,16 +167,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.OpenSpaceMoveLine
   _ctrl: {fileID: 381408989}
   _lineIndex: 0
-  _moveLines:
-  - points:
-    - {fileID: 1016636087}
-    - {fileID: 775122487}
-    - {fileID: 339095141}
-  - points:
-    - {fileID: 1882996919}
-    - {fileID: 194389306}
-    - {fileID: 1489928749}
-    - {fileID: 493529977}
+  _noGoBack: 1
+  _moveTracks:
+  - {fileID: 745034117}
+  - {fileID: 944051364}
+  _inProjection: 0
+  _projectionSpeed: -30
 --- !u!1 &194389305
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +263,7 @@ Transform:
   m_GameObject: {fileID: 381408985}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.59, y: 1.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -371,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8b7448f9de71145ac6949cb9c50400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.OpenSpaceControllable
-  activeAtStart: 0
+  activeAtStart: 1
   showDebugLog: 0
   _isActive: 0
   OnMoveStartUnity:
@@ -411,7 +407,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _speed: 100
+  _speed: 10
+  _currentSpeed: 0
 --- !u!1 &493529976
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +630,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 745034116}
+  - component: {fileID: 745034117}
   m_Layer: 0
   m_Name: Track1
   m_TagString: Untagged
@@ -658,6 +656,22 @@ Transform:
   - {fileID: 339095141}
   m_Father: {fileID: 151523173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &745034117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745034115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce2920d972ba29fa8508bedb28c1cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Utils.MoveLine
+  points:
+  - {fileID: 1016636087}
+  - {fileID: 775122487}
+  - {fileID: 339095141}
 --- !u!1 &775122486
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 944051363}
+  - component: {fileID: 944051364}
   m_Layer: 0
   m_Name: Track2
   m_TagString: Untagged
@@ -851,6 +866,23 @@ Transform:
   - {fileID: 493529977}
   m_Father: {fileID: 151523173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &944051364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944051362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce2920d972ba29fa8508bedb28c1cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Utils.MoveLine
+  points:
+  - {fileID: 1882996919}
+  - {fileID: 194389306}
+  - {fileID: 1489928749}
+  - {fileID: 493529977}
 --- !u!1 &1016636086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,7 +1256,7 @@ MonoBehaviour:
   _startSequence: {fileID: 577379810}
   _endSequence: {fileID: 1822823671}
   _endCondition: {fileID: 1914564713}
-  _controllable: {fileID: 0}
+  _controllable: {fileID: 381408989}
   _transitionIn: {fileID: 1912842751}
   _allowInputsBeforeStart: 0
 --- !u!1660057539 &9223372036854775807

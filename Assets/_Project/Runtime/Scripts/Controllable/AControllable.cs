@@ -109,26 +109,26 @@ namespace Metroma
         
         protected virtual void InputMoveStart(Vector2 move) {
             OnMoveStartUnity.Invoke();
-            if (showDebugLog) Debug.Log($"Controllable {name} : Move Start");
+            if (showDebugLog) Debug.Log($"Controllable {name} : Move Start -> value : {move}");
         }
         protected virtual void InputMovePerformed(Vector2 move) {
-            if (showDebugLog) Debug.Log($"Controllable {name} : Move Performed");
+            if (showDebugLog) Debug.Log($"Controllable {name} : Move Performed -> value : {move}");
         }
         protected virtual void InputMoveEnd(Vector2 move) {
             OnMoveEndUnity.Invoke();
-            if (showDebugLog) Debug.Log($"Controllable {name} : Move End");
+            if (showDebugLog) Debug.Log($"Controllable {name} : Move End -> value : {move}");
         }
 
         protected virtual void InputActionStart(bool action) {
             OnActionStartUnity.Invoke();
-            if (showDebugLog) Debug.Log($"Controllable {name} : Action Start");
+            if (showDebugLog) Debug.Log($"Controllable {name} : Action Start -> value : {action}");
         }
         protected virtual void InputActionPerformed(bool action) {
-            if (showDebugLog) Debug.Log($"Controllable {name} : Move Performed");
+            if (showDebugLog) Debug.Log($"Controllable {name} : Move Performed -> value : {action}");
         }
         protected virtual void InputActionEnd(bool action) {
             OnActionEndUnity.Invoke();
-            if (showDebugLog) Debug.Log($"Controllable {name} : Action End");
+            if (showDebugLog) Debug.Log($"Controllable {name} : Action End -> value : {action}");
         }
 
         #endregion
