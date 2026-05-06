@@ -87,14 +87,12 @@ namespace Metroma.Utils
             float dot = Vector3.Dot(startToTarget, GetSegmentNormal());
             float lerp = dot / segmentLength;
 
-            if (lerp < 0f)
-            {
+            if (lerp < 0f) {
                 Vector3 res = GetSegmentStart();
                 CurrentSegment -= 1;
                 return res;
             }
-            else if (lerp > 1f)
-            {
+            else if (lerp > 1f) {
                 Vector3 res = GetSegmentEnd();
                 CurrentSegment += 1;
                 return res;
