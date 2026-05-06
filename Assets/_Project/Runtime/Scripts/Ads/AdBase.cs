@@ -12,6 +12,7 @@ namespace Metroma
         public event Action OnAdStarted;
         public event Action OnAdEnded;
 
+
         public virtual void StartAd()
         {
             Debug.Log($"{name} started !");

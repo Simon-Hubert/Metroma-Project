@@ -16,21 +16,6 @@ namespace Metroma.FocusCam
     }
 
     [Serializable]
-    public class FocusCamBehaviour : PlayableBehaviour
-    {
-        public FocusMode mode;
-        public Vector3 position;
-        public Vector3 rotation;
-        
-        public bool overridePosition;
-        public Vector3 cameraPosition;
-        
-        public bool overrideFOV;
-        public float fov;
-        public float roll;
-    }
-
-    [Serializable]
     public class FocusCamClip : PlayableAsset, ITimelineClipAsset
     {
         public FocusMode mode;
@@ -80,4 +65,18 @@ namespace Metroma.FocusCam
         }
     }
 
+    [Serializable]
+    public class FocusCamBehaviour : PlayableBehaviour
+    {
+        public FocusMode mode;
+        public Vector3 position;
+        public Vector3 rotation;
+        
+        public bool overridePosition;
+        public Vector3 cameraPosition;
+        
+        public bool overrideFOV;
+        public float fov;
+        public float roll;
+    }
 }

@@ -49,26 +49,34 @@ namespace Metroma.CameraTool.Editor
                     }
                 }
 
-                // 2. Assembly Redirect (Namespace repair)
+                // 2. Assembly Redirect (Namespace & Assembly header repair)
                 string[] oldIdentifiers = { 
                     "Metroma.FocusCam::Metroma.FocusCam.FocusCamClip",
-                    "Metroma.FocusCam::Metroma.FocusCam.FocusCamTrack"
+                    "Metroma.FocusCam::Metroma.FocusCam.FocusCamTrack",
+                    "Metroma.FocusCam::Metroma.FocusCam.FocusCamMixer"
                 };
                 
                 foreach (var oldId in oldIdentifiers)
                 {
                     if (content.Contains(oldId))
                     {
+                        // Redirect to the new assembly and namespace
                         string newId = oldId.Replace("Metroma.FocusCam::", "Metroma.CameraTool::");
                         content = content.Replace(oldId, newId);
                         changed = true;
                     }
                 }
                 
-                // Fallback catch-all for any missed assembly headers
+                // 3. Fallback catch-all for any missed assembly headers or legacy references
                 if (content.Contains("Metroma.FocusCam::"))
                 {
                     content = content.Replace("Metroma.FocusCam::", "Metroma.CameraTool::");
+                    changed = true;
+                }
+
+                if (content.Contains("m_EditorClassIdentifier: Metroma.FocusCam."))
+                {
+                    content = content.Replace("m_EditorClassIdentifier: Metroma.FocusCam.", "m_EditorClassIdentifier: Metroma.CameraTool::Metroma.FocusCam.");
                     changed = true;
                 }
 
