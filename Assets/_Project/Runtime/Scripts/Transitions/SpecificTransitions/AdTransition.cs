@@ -12,38 +12,38 @@ namespace Metroma
         private static readonly int Transition = Shader.PropertyToID("_Transition");
         
         void ActivateZTest(Material mat) {
-            mat.SetInt(ZTest, 4);
+            mat.SetInt(ZTest, 8);
         }
         
         void DeactivateZTest(Material mat) {
-            mat.SetInt(ZTest, 8);
+            mat.SetInt(ZTest, 4);
         }
         
         protected override async Awaitable TransitionAsync(CancellationToken cancelToken) {
             try {
                 if (_data.IsIn) {
-                    ActivateZTest(_data.Material);
+                    ActivateZTest(_data.Material.Material);
                     float t = 0f;
                     while (t < _data.Duration) {
                         float p = t / _data.Duration;
-                        _data.Material.SetFloat(Transition, 1 - p);
+                        _data.Material.Material.SetFloat(Transition, 1 - p);
                         t += Time.deltaTime;
                         await Awaitable.NextFrameAsync(cancelToken);
                     }
 
-                    _data.Material.SetFloat(Transition, 0);
+                    _data.Material.Material.SetFloat(Transition, 0);
                 }
                 else {
                     float t = 0f;
                     while (t < _data.Duration) {
                         float p = t / _data.Duration;
-                        _data.Material.SetFloat(Transition, p);
+                        _data.Material.Material.SetFloat(Transition, p);
                         t += Time.deltaTime;
                         await Awaitable.NextFrameAsync(cancelToken);
                     }
 
-                    _data.Material.SetFloat(Transition, 1);
-                    DeactivateZTest(_data.Material);
+                    _data.Material.Material.SetFloat(Transition, 1);
+                    DeactivateZTest(_data.Material.Material);
                 }
             }
             catch (OperationCanceledException oce) {
