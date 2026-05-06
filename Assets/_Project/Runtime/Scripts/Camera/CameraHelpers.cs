@@ -91,5 +91,17 @@ namespace Metroma
                 
             }
         }
+
+        public static CameraConfiguration GetConfigOfCam(Camera cam) {
+            return new CameraConfiguration()
+            {
+                Distance = 0,
+                Fov = cam.fieldOfView,
+                Pitch = Mathf.DeltaAngle(0,cam.transform.rotation.eulerAngles.x),
+                Yaw = Mathf.DeltaAngle(0,cam.transform.rotation.eulerAngles.y),
+                Roll = Mathf.DeltaAngle(0,cam.transform.rotation.eulerAngles.z),
+                Pivot = cam.transform.position,
+            };
+        }
     }
 }

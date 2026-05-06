@@ -1,22 +1,38 @@
 using UnityEngine;
 using System;
 using System.Threading;
-using NaughtyAttributes;
 using UnityEngine.Events;
 
 namespace Metroma.Transitions
 {
     public abstract class ATransition : MonoBehaviour
     {
+        [SerializeField] private bool _callEventIfCancellation;
         public event Action OnTransitionEnd;
         [SerializeField] private UnityEvent _onTransitionEnded;
         
-        protected abstract Awaitable TransitionAsync();
+        protected CancellationTokenSource cancelTokenSource;
+        
+        protected abstract Awaitable TransitionAsync(CancellationToken cancelToken);
+        
+        public async Awaitable PlayAsync(CancellationToken cancelToken) {
+            try {
+                await TransitionAsync(cancelToken);
 
-        public async Awaitable PlayAsync() {
-            await TransitionAsync();
-            OnTransitionEnd?.Invoke();
-            _onTransitionEnded?.Invoke();
+                if (!_callEventIfCancellation) {
+                    OnTransitionEnd?.Invoke();
+                    _onTransitionEnded?.Invoke();
+                }
+            }
+            catch (OperationCanceledException) {
+                Debug.Log($"'{name}' : Transition was Cancelled", gameObject);
+            }
+            finally {
+                if (_callEventIfCancellation) {
+                    OnTransitionEnd?.Invoke();
+                    _onTransitionEnded?.Invoke();
+                }
+            }
         }
     }
 }

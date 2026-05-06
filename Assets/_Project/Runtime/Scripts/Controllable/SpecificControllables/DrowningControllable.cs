@@ -63,15 +63,15 @@ namespace Metroma
         public void SetAdditionalForce(Vector2 force) {
             _additionalForce = force;
         }
-
-        /*
-        protected override void InputMoveStart() {
-            base.InputMoveStart();
+        
+        
+        protected override void InputMoveStart(Vector2 move) {
+            base.InputMoveStart(move);
             movementRoutine ??= StartCoroutine(MoveRoutine());
         }
         
-        protected override void InputMoveEnd() {
-            base.InputMoveEnd();
+        protected override void InputMoveEnd(Vector2 move) {
+            base.InputMoveEnd(move);
             if (movementRoutine != null) {
                 StopCoroutine(movementRoutine);
             }
@@ -79,15 +79,15 @@ namespace Metroma
             _moveDirection = Vector2.zero;
         }   
 
-        protected override void InputActionStart() {
-            base.InputActionStart();
+        protected override void InputActionStart(bool action) {
+            base.InputActionStart(action);
             Debug.Log("Dashed");
             _dashForce += _moveDirection * _dashDistance;
             Vector2.ClampMagnitude(_dashForce, _dashDistance);
             if (dashRoutine == null) {
                 dashRoutine = StartCoroutine(DashCoroutine());
             }
-        }*/
+        }
         
 
         IEnumerator DashCoroutine() {

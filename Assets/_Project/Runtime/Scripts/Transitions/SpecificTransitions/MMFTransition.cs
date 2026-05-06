@@ -1,3 +1,5 @@
+using System;
+using System.Threading;
 using Metroma.Transitions;
 using MoreMountains.Feedbacks;
 using UnityEngine;
@@ -15,8 +17,13 @@ namespace Metroma
             _feedbacks = GetComponent<MMF_Player>();
         }
         
-        protected override async Awaitable TransitionAsync() {
-            await _feedbacks.PlayFeedbacksTask(transform.position);
+        protected override async Awaitable TransitionAsync(CancellationToken cancelToken) {
+            try {
+                await _feedbacks.PlayFeedbacksTask(transform.position);
+            }
+            catch (OperationCanceledException) {
+                
+            }
         }
     }
 }

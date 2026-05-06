@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3356585410610700816}
   - component: {fileID: 2248769222860585653}
+  - component: {fileID: 9144243047277815252}
   m_Layer: 0
   m_Name: JumpStart
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 2729410814807211191}
   - {fileID: 6804845840452274100}
-  m_Father: {fileID: 8604477593040119373}
+  m_Father: {fileID: 1649337788016528729}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2248769222860585653
 MonoBehaviour:
@@ -46,62 +47,121 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5d8acf5297cc7499d8966be2ddd2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Transitions.ParallelTransition
+  _callEventIfCancellation: 0
   _onTransitionEnded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9144243047277815252}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _a: {fileID: 3294567140608778911}
   _b: {fileID: 7221133129575661836}
---- !u!1 &220894195072476007
-GameObject:
+--- !u!82 &9144243047277815252
+AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8604477593040119373}
-  - component: {fileID: 5752153373021730050}
-  m_Layer: 0
-  m_Name: InJumpFirst
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8604477593040119373
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 220894195072476007}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3356585410610700816}
-  - {fileID: 7640106993441751417}
-  m_Father: {fileID: 1649337788016528729}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5752153373021730050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 220894195072476007}
+  m_GameObject: {fileID: 191283294155753907}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99573f6d47bf757c4a68f10fd0de3b82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Transitions.SeriesTransition
-  _onTransitionEnded:
-    m_PersistentCalls:
-      m_Calls: []
-  _a: {fileID: 2248769222860585653}
-  _b: {fileID: 7064316882701020876}
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 0cdef89be2fbe1349a2f1574931b2c4b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &545294107294926337
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,69 +206,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800f665955f40604da9ae2bd7ae64d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.ViewTransition
+  _callEventIfCancellation: 0
   _onTransitionEnded:
     m_PersistentCalls:
       m_Calls: []
   _cam: {fileID: 0}
-  _targetView: {fileID: 4561107263518744370}
+  _targetView: {fileID: 0}
   _duration: 2
   _curve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &563653343836545573
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 734321390817959825}
-  - component: {fileID: 438922644758331580}
-  m_Layer: 0
-  m_Name: TransiSequenceur
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &734321390817959825
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 563653343836545573}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2325026752642381015}
-  - {fileID: 555865814368389794}
-  m_Father: {fileID: 2610738216794201280}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &438922644758331580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 563653343836545573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99573f6d47bf757c4a68f10fd0de3b82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Transitions.SeriesTransition
-  _onTransitionEnded:
-    m_PersistentCalls:
-      m_Calls: []
-  _a: {fileID: 133088363909889545}
-  _b: {fileID: 8242550333659055244}
 --- !u!1 &1112001984280166527
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7139393579860931587}
-  - component: {fileID: 304835026245065303}
+  - component: {fileID: 4474035013460718312}
   m_Layer: 0
   m_Name: JumpEnd
   m_TagString: Untagged
@@ -239,11 +267,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6138371250554019540}
+  - {fileID: 420783593935754145}
+  - {fileID: 1776707891634778277}
+  - {fileID: 3886952189254050599}
   - {fileID: 662859838004694722}
   m_Father: {fileID: 1649337788016528729}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &304835026245065303
+--- !u!114 &4474035013460718312
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,14 +282,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1112001984280166527}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab5d8acf5297cc7499d8966be2ddd2d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a04d8d5317ffa349b61a570a710cba0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Transitions.ParallelTransition
+  m_EditorClassIdentifier: Metroma::Metroma.Transitions.ManyParallelTransition
+  _callEventIfCancellation: 0
   _onTransitionEnded:
     m_PersistentCalls:
       m_Calls: []
-  _a: {fileID: 2766053874980436432}
-  _b: {fileID: 3586801120683158445}
+  _trans:
+  - {fileID: 7837648957952359220}
+  - {fileID: 909866440037703294}
+  - {fileID: 517772533624084409}
+  - {fileID: 3586801120683158445}
 --- !u!1 &1442044007144372626
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,8 +676,8 @@ MonoBehaviour:
         DeterminePositionsOnPlay: 0
         InitialPosition: {x: 0, y: 0, z: 0}
         DestinationPosition: {x: 5, y: 2, z: 0}
-        InitialPositionTransform: {fileID: 2373264977363138349}
-        DestinationPositionTransform: {fileID: 875267074603977563}
+        InitialPositionTransform: {fileID: 0}
+        DestinationPositionTransform: {fileID: 0}
         AnimatePositionCurveX:
           serializedVersion: 2
           m_Curve: []
@@ -1107,6 +1141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d9826dacc10694295f8033222c2784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.MMFTransition
+  _callEventIfCancellation: 0
   _onTransitionEnded:
     m_PersistentCalls:
       m_Calls: []
@@ -1142,7 +1177,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6138371250554019540}
+  m_Father: {fileID: 7139393579860931587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7506785014654242848
 MonoBehaviour:
@@ -1494,7 +1529,7 @@ MonoBehaviour:
         DeterminePositionsOnPlay: 0
         InitialPosition: {x: 0, y: 0, z: 0}
         DestinationPosition: {x: 5, y: 2, z: 0}
-        InitialPositionTransform: {fileID: 875267074603977563}
+        InitialPositionTransform: {fileID: 0}
         DestinationPositionTransform: {fileID: 0}
         AnimatePositionCurveX:
           serializedVersion: 2
@@ -1823,7 +1858,7 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 7506785014654242848}
         DebugActive: 0
-        AnimateRotationTarget: {fileID: 3886952189254050599}
+        AnimateRotationTarget: {fileID: 0}
         Mode: 0
         RotationSpace: 0
         AnimateRotationDuration: 2
@@ -2241,7 +2276,7 @@ MonoBehaviour:
         DeterminePositionsOnPlay: 0
         InitialPosition: {x: 0, y: 0, z: 0}
         DestinationPosition: {x: 5, y: 2, z: 0}
-        InitialPositionTransform: {fileID: 875267074603977563}
+        InitialPositionTransform: {fileID: 0}
         DestinationPositionTransform: {fileID: 0}
         AnimatePositionCurveX:
           serializedVersion: 2
@@ -2279,6 +2314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d9826dacc10694295f8033222c2784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.MMFTransition
+  _callEventIfCancellation: 0
   _onTransitionEnded:
     m_PersistentCalls:
       m_Calls: []
@@ -2665,7 +2701,7 @@ MonoBehaviour:
         InitialPosition: {x: 0, y: 0, z: 0}
         DestinationPosition: {x: 1, y: 1, z: 1}
         InitialPositionTransform: {fileID: 0}
-        DestinationPositionTransform: {fileID: 2373264977363138349}
+        DestinationPositionTransform: {fileID: 0}
         AnimatePositionCurveX:
           serializedVersion: 2
           m_Curve: []
@@ -2937,198 +2973,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d9826dacc10694295f8033222c2784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.MMFTransition
+  _callEventIfCancellation: 0
   _onTransitionEnded:
     m_PersistentCalls:
       m_Calls: []
   _feedbacks: {fileID: 7631735692833219480}
---- !u!1 &2750996777364471666
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2373264977363138349}
-  m_Layer: 0
-  m_Name: JumpTopPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2373264977363138349
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2750996777364471666}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 29.6, y: 12.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1959138811312729482}
-  m_Father: {fileID: 2610738216794201280}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3244639266650680265
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3290755674015660068}
-  - component: {fileID: 4065295223575136708}
-  m_Layer: 0
-  m_Name: camcolor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3290755674015660068
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3244639266650680265}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 555865814368389794}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4065295223575136708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3244639266650680265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61cfec8a51140f1429b9884e22aae58f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CameraColorTransition
-  _onTransitionEnded:
-    m_PersistentCalls:
-      m_Calls: []
-  _cam: {fileID: 0}
-  _duration: 5
-  _useGradient: 0
-  _gradient:
-    serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  _toColor: {r: 0, g: 0, b: 0, a: 0}
-  _curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!1 &4452368847515749427
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4366445390550341384}
-  - component: {fileID: 3508818997747648248}
-  m_Layer: 0
-  m_Name: para2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4366445390550341384
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4452368847515749427}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 420783593935754145}
-  - {fileID: 1776707891634778277}
-  m_Father: {fileID: 6138371250554019540}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3508818997747648248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4452368847515749427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab5d8acf5297cc7499d8966be2ddd2d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Transitions.ParallelTransition
-  _onTransitionEnded:
-    m_PersistentCalls:
-      m_Calls: []
-  _a: {fileID: 7837648957952359220}
-  _b: {fileID: 909866440037703294}
 --- !u!1 &4964776732037055887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3154,12 +3003,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4964776732037055887}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4366445390550341384}
+  m_Father: {fileID: 7139393579860931587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7837648957952359220
 MonoBehaviour:
@@ -3173,6 +3022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19c231c568fb0e48b8c63682307e47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.ColorShapeTransition
+  _callEventIfCancellation: 0
   _onTransitionEnded:
     m_PersistentCalls:
       m_Calls: []
@@ -3181,57 +3031,6 @@ MonoBehaviour:
   _fromColor: {r: 0, g: 0, b: 0, a: 0}
   _targetColor: {r: 1, g: 1, b: 1, a: 0}
   _duration: 2
---- !u!1 &5054186434844335128
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6138371250554019540}
-  - component: {fileID: 2766053874980436432}
-  m_Layer: 0
-  m_Name: para1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6138371250554019540
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5054186434844335128}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4366445390550341384}
-  - {fileID: 3886952189254050599}
-  m_Father: {fileID: 7139393579860931587}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2766053874980436432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5054186434844335128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab5d8acf5297cc7499d8966be2ddd2d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Transitions.ParallelTransition
-  _onTransitionEnded:
-    m_PersistentCalls:
-      m_Calls: []
-  _a: {fileID: 3508818997747648248}
-  _b: {fileID: 517772533624084409}
 --- !u!1 &5087236674998130222
 GameObject:
   m_ObjectHideFlags: 0
@@ -3276,6 +3075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800f665955f40604da9ae2bd7ae64d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.ViewTransition
+  _callEventIfCancellation: 0
   _onTransitionEnded:
     m_PersistentCalls:
       m_Calls: []
@@ -3284,58 +3084,28 @@ MonoBehaviour:
   _duration: 2
   _curve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &5272498664609036288
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2174445464846297452}
-  - component: {fileID: 4561107263518744370}
-  m_Layer: 0
-  m_Name: JumpMiddleView
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2174445464846297452
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5272498664609036288}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -18}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 875267074603977563}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4561107263518744370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5272498664609036288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0b62110f23b8f748898a3bd9e647bf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::FixedView
-  _yaw: 0
-  _pitch: 0
-  _roll: 0
-  _fov: 60
 --- !u!1 &5411664909908136136
 GameObject:
   m_ObjectHideFlags: 0
@@ -3380,52 +3150,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800f665955f40604da9ae2bd7ae64d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.ViewTransition
+  _callEventIfCancellation: 0
   _onTransitionEnded:
     m_PersistentCalls:
       m_Calls: []
   _cam: {fileID: 0}
-  _targetView: {fileID: 6048865979851883822}
+  _targetView: {fileID: 0}
   _duration: 1
   _curve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &5846597512581757113
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2610738216794201280}
-  m_Layer: 0
-  m_Name: TransiJump
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2610738216794201280
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5846597512581757113}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.6, y: 2.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2373264977363138349}
-  - {fileID: 875267074603977563}
-  - {fileID: 734321390817959825}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6574397279519887818
 GameObject:
   m_ObjectHideFlags: 0
@@ -3458,7 +3213,7 @@ Transform:
   m_Children:
   - {fileID: 8468037854676108770}
   - {fileID: 1903089257593892262}
-  m_Father: {fileID: 8604477593040119373}
+  m_Father: {fileID: 1649337788016528729}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7064316882701020876
 MonoBehaviour:
@@ -3472,6 +3227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5d8acf5297cc7499d8966be2ddd2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Transitions.ParallelTransition
+  _callEventIfCancellation: 0
   _onTransitionEnded:
     m_PersistentCalls:
       m_Calls: []
@@ -3486,9 +3242,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1649337788016528729}
-  - component: {fileID: 8242550333659055244}
+  - component: {fileID: 4787699050619975013}
   m_Layer: 0
-  m_Name: InJump
+  m_Name: TransiJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3507,11 +3263,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8604477593040119373}
+  - {fileID: 3356585410610700816}
+  - {fileID: 7640106993441751417}
   - {fileID: 7139393579860931587}
-  m_Father: {fileID: 555865814368389794}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8242550333659055244
+--- !u!114 &4787699050619975013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3520,567 +3277,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6731999449127935844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99573f6d47bf757c4a68f10fd0de3b82, type: 3}
+  m_Script: {fileID: 11500000, guid: 4124e70c0b5b8c74e9c012c84a91a155, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Transitions.SeriesTransition
+  m_EditorClassIdentifier: Metroma::Metroma.Transitions.ManySeriesTransition
+  _callEventIfCancellation: 0
   _onTransitionEnded:
     m_PersistentCalls:
       m_Calls: []
-  _a: {fileID: 5752153373021730050}
-  _b: {fileID: 304835026245065303}
---- !u!1 &7117786778396591304
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 555865814368389794}
-  - component: {fileID: 655638770536477349}
-  m_Layer: 0
-  m_Name: TransiParallel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &555865814368389794
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117786778396591304}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.51695, y: -0.95168, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1649337788016528729}
-  - {fileID: 3290755674015660068}
-  m_Father: {fileID: 734321390817959825}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &655638770536477349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117786778396591304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab5d8acf5297cc7499d8966be2ddd2d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Transitions.ParallelTransition
-  _onTransitionEnded:
-    m_PersistentCalls:
-      m_Calls: []
-  _a: {fileID: 8242550333659055244}
-  _b: {fileID: 4065295223575136708}
---- !u!1 &7540436196711794711
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2325026752642381015}
-  - component: {fileID: 1474057686808106113}
-  - component: {fileID: 133088363909889545}
-  m_Layer: 0
-  m_Name: GoUpTouillette
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2325026752642381015
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540436196711794711}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6000004, y: 39.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 734321390817959825}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1474057686808106113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540436196711794711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: MoreMountains.Feedbacks::MoreMountains.Feedbacks.MMF_Player
-  Feedbacks: []
-  InitializationMode: 2
-  SafeMode: 3
-  Direction: 0
-  AutoChangeDirectionOnEnd: 0
-  AutoPlayOnStart: 0
-  AutoPlayOnEnable: 0
-  ForceTimescaleMode: 0
-  ForcedTimescaleMode: 1
-  DurationMultiplier: 1
-  RandomizeDuration: 0
-  RandomDurationMultiplier: {x: 0.5, y: 1.5}
-  DisplayFullDurationDetails: 0
-  PlayerTimescaleMode: 1
-  OnlyPlayIfWithinRange: 0
-  RangeCenter: {fileID: 0}
-  RangeDistance: 5
-  UseRangeFalloff: 0
-  RangeFalloff:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  RemapRangeFalloff: {x: 0, y: 1}
-  IgnoreRangeEvents: 0
-  CooldownDuration: 0
-  InitialDelay: 0
-  CanPlay: 1
-  CanPlayWhileAlreadyPlaying: 1
-  ChanceToPlay: 100
-  FeedbacksIntensity: 1
-  Events:
-    TriggerMMFeedbacksEvents: 0
-    TriggerUnityEvents: 1
-    OnPlay:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPause:
-      m_PersistentCalls:
-        m_Calls: []
-    OnResume:
-      m_PersistentCalls:
-        m_Calls: []
-    OnRevert:
-      m_PersistentCalls:
-        m_Calls: []
-    OnComplete:
-      m_PersistentCalls:
-        m_Calls: []
-    OnRestoreInitialValues:
-      m_PersistentCalls:
-        m_Calls: []
-    OnSkipToTheEnd:
-      m_PersistentCalls:
-        m_Calls: []
-  DebugActive: 0
-  FeedbacksList:
-  - rid: 3104589352517238853
-  KeepPlayModeChanges: 0
-  PerformanceMode: 0
-  ForceStopFeedbacksOnDisable: 1
-  PlayCount: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: 3104589352517238853
-      type: {class: MMF_Position, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
-      data:
-        Active: 1
-        UniqueID: -543399954
-        Label: Position
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 1474057686808106113}
-        DebugActive: 0
-        AnimatePositionTarget: {fileID: 0}
-        Mode: 0
-        Space: 0
-        RandomizeRemap: 0
-        AnimatePositionDuration: 2
-        AnimatePositionTween:
-          MMTweenDefinitionType: 1
-          MMTweenCurve: 4
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        RemapCurveZero: 0
-        RemapCurveZeroAlt: 0
-        RemapCurveOne: 1
-        RemapCurveOneAlt: 1
-        AnimateX: 0
-        AnimatePositionTweenX:
-          MMTweenDefinitionType: 1
-          MMTweenCurve: 4
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.6
-              value: -1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        AnimateY: 0
-        AnimatePositionTweenY:
-          MMTweenDefinitionType: 1
-          MMTweenCurve: 4
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.6
-              value: -1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        AnimateZ: 0
-        AnimatePositionTweenZ:
-          MMTweenDefinitionType: 1
-          MMTweenCurve: 4
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.6
-              value: -1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        AllowAdditivePlays: 0
-        RelativePosition: 1
-        DeterminePositionsOnPlay: 1
-        InitialPosition: {x: 0, y: 0, z: 0}
-        DestinationPosition: {x: 0, y: 0, z: 0}
-        InitialPositionTransform: {fileID: 0}
-        DestinationPositionTransform: {fileID: 0}
-        AnimatePositionCurveX:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        AnimatePositionCurveY:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        AnimatePositionCurveZ:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        AnimatePositionCurve:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
---- !u!114 &133088363909889545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540436196711794711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34d9826dacc10694295f8033222c2784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.MMFTransition
-  _onTransitionEnded:
-    m_PersistentCalls:
-      m_Calls: []
-  _feedbacks: {fileID: 1474057686808106113}
---- !u!1 &7944309210271252178
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 875267074603977563}
-  m_Layer: 0
-  m_Name: JumpMiddlePos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &875267074603977563
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7944309210271252178}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 29.6, y: -4.7, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2174445464846297452}
-  m_Father: {fileID: 2610738216794201280}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8609380626719337890
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1959138811312729482}
-  - component: {fileID: 6048865979851883822}
-  m_Layer: 0
-  m_Name: JumpTopView
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1959138811312729482
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8609380626719337890}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -18}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2373264977363138349}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6048865979851883822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8609380626719337890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0b62110f23b8f748898a3bd9e647bf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::FixedView
-  _yaw: 0
-  _pitch: 0
-  _roll: 0
-  _fov: 60
+  _trans:
+  - {fileID: 2248769222860585653}
+  - {fileID: 7064316882701020876}
+  - {fileID: 4474035013460718312}
 --- !u!1 &8781546099671223477
 GameObject:
   m_ObjectHideFlags: 0
@@ -4106,12 +3313,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8781546099671223477}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4366445390550341384}
+  m_Father: {fileID: 7139393579860931587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &909866440037703294
 MonoBehaviour:
@@ -4125,6 +3332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19c231c568fb0e48b8c63682307e47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.ColorShapeTransition
+  _callEventIfCancellation: 0
   _onTransitionEnded:
     m_PersistentCalls:
       m_Calls: []
