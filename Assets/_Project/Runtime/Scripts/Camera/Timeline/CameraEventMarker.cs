@@ -5,13 +5,11 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Playables;
 
-
 namespace Metroma.CameraTool.Timeline
 {
-
     [Serializable]
     [DisplayName("Camera Event")]
-    public class CameraEventMarker : Marker, INotification
+    public class CameraEventMarker : CameraMarkerBase
     {
         [Tooltip("Event name forwarded to CameraTool.TriggerTimelineEvent().")]
         [SerializeField] private string eventName;
@@ -23,7 +21,7 @@ namespace Metroma.CameraTool.Timeline
         [SerializeField] private bool emitOnce;
 
         /// <summary>Unique notification id for the Playable system.</summary>
-        public PropertyName id => new PropertyName(eventName);
+        public override PropertyName id => new PropertyName(eventName);
 
         /// <summary>The event identifier forwarded to <see cref="CameraTool.TriggerTimelineEvent"/>.</summary>
         public string EventName => eventName;
@@ -34,9 +32,10 @@ namespace Metroma.CameraTool.Timeline
         /// <inheritdoc cref="emitOnce"/>
         public bool EmitOnce => emitOnce;
 
-        public override void OnInitialize(TrackAsset aPent)
+        public override void Execute(CameraRig rig)
         {
-            base.OnInitialize(aPent);
+            // Standard CameraEventMarker doesn't do anything by default on the rig,
+            // it's mainly for external systems listening to the OnMarkerEventHit delegate.
         }
     }
 }

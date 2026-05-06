@@ -33,10 +33,42 @@ namespace Metroma.CameraTool.Modifiers
         [Range(0f, 30f)]
         public float inputSmoothing = 0f;
 
-        [Header("Visual")]
+        [Header("Visual & Juice")]
         [Tooltip("FOV override during FPS mode. Set to -1 to keep the current FOV.")]
         public float fovOverride = -1f;
 
+        [Tooltip("Amount of dynamic roll (tilt) when looking sideways.")]
+        [Range(0f, 5f)]
+        public float tiltAmount = 1.0f;
+
+        [Tooltip("How fast the camera returns to horizontal after tilting.")]
+        [Range(0.1f, 10f)]
+        public float tiltReturnSpeed = 5.0f;
+
+        [Tooltip("Adds weight and momentum to rotation. High value = Heavy camera.")]
+        [Range(0f, 1f)]
+        public float rotationMomentum = 0.5f;
+
+        [Header("Procedural Motion")]
+        [Tooltip("Optional Handheld Profile to drive the camera motion. If assigned, legacy settings below are ignored.")]
+        public CameraHandheldProfile handheldProfile;
+
+        [Header("Legacy Motion (Manual)")]
+        [Tooltip("Amount of procedural handheld sway (breath) per axis (X=Horiz, Y=Vert).")]
+        public Vector2 swayAmount = new Vector2(0.1f, 0.2f);
+
+        [Tooltip("Speed of the handheld sway.")]
+        [Range(0f, 5f)]
+        public float swaySpeed = 1.0f;
+
+        [Tooltip("Amount of high-frequency micro-jitter (shaky hands).")]
+        [Range(0f, 5f)]
+        public float jitterAmount = 0.1f;
+
+        [Tooltip("Speed of the micro-jitter.")]
+        [Range(0.1f, 50f)]
+        public float jitterSpeed = 10.0f;
+        
         public bool IsYawUnlimited => yawLimits.x <= -179f && yawLimits.y >= 179f;
     }
 }

@@ -34,9 +34,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma.CameraTool::Metroma.FocusCam.FocusCamClip
   mode: 1
   position: {x: 6.757917, y: 23.117329, z: 88.402}
-  rotation: {x: 0.4925275, y: 144.93661, z: -0.00024260074}
+  rotation: {x: 355.40466, y: 18.15251, z: -0.00009978539}
   overridePosition: 1
-  cameraPosition: {x: 6.757917, y: 23.117329, z: 88.402}
+  cameraPosition: {x: 46.489235, y: 24.344988, z: 45.660503}
   overrideFOV: 0
   fov: 60
   roll: 0
@@ -57,74 +57,6 @@ MonoBehaviour:
   m_Time: 3.0166666666666666
   profile: {fileID: 11400000, guid: dc112b0a9856e8e4ca613b7793c6f668, type: 2}
   deactivate: 0
---- !u!114 &-4059742022264382267
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90f57ea2c1ea04e468a58b3fe66e5560, type: 3}
-  m_Name: "Camera/\U0001F441 FPS Observation"
-  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraFPSMarker
-  m_Time: 5.6
-  profile: {fileID: 11400000, guid: a98fe5208dfcc954c9c2355664119696, type: 2}
-  deactivate: 0
-  startPosition: {x: 6.757917, y: 23.117329, z: 88.402}
-  startRotation: {x: 0.76755023, y: 41.666718, z: -0.00024694946}
-  transitionDuration: 1
-  transitionCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  exitTransitionDuration: 1
-  exitTransitionCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  fpsDuration: 0
 --- !u!114 &-3590255964447599191
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,7 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma.CameraTool::Metroma.FocusCam.FocusCamClip
   mode: 1
   position: {x: 6.757917, y: 23.117329, z: 88.402}
-  rotation: {x: 0.76755023, y: 41.666718, z: -0.00024694946}
+  rotation: {x: 337.80338, y: 166.11314, z: -0.000034348534}
   overridePosition: 0
   cameraPosition: {x: 6.757917, y: 23.117329, z: 88.402}
   overrideFOV: 0
@@ -250,10 +182,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: ' '
   m_Markers:
-    m_Objects:
-    - {fileID: 252810457585537619}
-    - {fileID: 7775182088519310839}
-    - {fileID: -4059742022264382267}
+    m_Objects: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +193,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
-  m_Name: RotationTimeline
+  m_Name: RotationTimeline 1
   m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.TimelineAsset
   m_Version: 0
   m_Tracks:
@@ -275,73 +204,6 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 0}
---- !u!114 &252810457585537619
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73aa712527bcc0a429c6781b76ea5a53, type: 3}
-  m_Name: "FocusCam/\U0001F3A5 Play Focus Timeline (Auto)"
-  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraFocusCamMarker
-  m_Time: 8.316666666666666
-  focusTimeline: {fileID: 11400000, guid: 99ce58e177a3dc64f99c2c47c88371be, type: 2}
-  blendDuration: 1
-  blendCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  exitTransitionDuration: 1
-  exitTransitionCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  returnToLastPos: 1
-  pauseMainTimeline: 1
-  restartIfPlaying: 1
 --- !u!114 &1538963749676293901
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -357,26 +219,6 @@ MonoBehaviour:
   mode: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
---- !u!114 &7775182088519310839
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d62500ee70d559645840c68d37e5aeba, type: 3}
-  m_Name: Camera Visibility Marker
-  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraVisibilityMarker
-  m_Time: 5
-  targetObject:
-    exposedName: 64f18e8cfa671e942b5e0b0a3c8376d1
-    defaultValue: {fileID: 0}
-  requiredSeconds: 3
-  eventId: object_seen
-  checkOcclusion: 1
-  persistUntilMet: 1
 --- !u!114 &8640527992012964971
 MonoBehaviour:
   m_ObjectHideFlags: 1

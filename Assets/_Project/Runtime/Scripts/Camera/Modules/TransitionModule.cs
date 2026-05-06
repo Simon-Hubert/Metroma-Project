@@ -18,7 +18,7 @@ namespace Metroma.CameraTool.Modules
         private float _transitionTime;
         private AnimationCurve _transitionCurve;
 
-        private float _rotationReturnTimer = 0f;
+        private float _returnTimer = 0f;
         private float _returnDuration = 0f;
         private CameraPose _returnStartPose;
 
@@ -30,7 +30,7 @@ namespace Metroma.CameraTool.Modules
         #region --- Properties ---
 
         public int Priority => 10;
-        public bool IsActive => _isTransitioning || _isStaticPose || _rotationReturnTimer > 0;
+        public bool IsActive => _isTransitioning || _isStaticPose || _returnTimer > 0;
 
         #endregion
 
@@ -44,7 +44,7 @@ namespace Metroma.CameraTool.Modules
         public void OnUpdate(float InDeltaTime)
         {
             UpdateTransitionState(InDeltaTime);
-            UpdateRotationReturn(InDeltaTime);
+            UpdateReturnState(InDeltaTime);
         }
 
         #endregion
@@ -67,25 +67,9 @@ namespace Metroma.CameraTool.Modules
                     float arrivalAlpha = (_transitionAlpha - 0.8f) / 0.2f; // 0 to 1 over the last 20%
                     arrivalAlpha = Mathf.SmoothStep(0f, 1f, arrivalAlpha);
                     
-                    // Blend from the static target towards the dynamic base (Timeline/Rail)
+                    // Blend from the static target towards the dynamic base (Timeline/Rig)
                     finalPose.position = Vector3.Lerp(finalPose.position, InBasePose.position, arrivalAlpha * 0.5f);
                     finalPose.rotation = Quaternion.Slerp(finalPose.rotation, InBasePose.rotation, arrivalAlpha * 0.5f);
-                }
-
-                if (_rig.Rails && _rig.Rails.LookAtTarget)
-                {
-                    Vector3 direction = _rig.Rails.LookAtTarget.position - finalPose.position;
-                    if (direction.sqrMagnitude > 0.001f)
-                    {
-                        Vector3 currentUp = finalPose.up != Vector3.zero ? finalPose.up : Vector3.up;
-                        Quaternion dynamicRot = Quaternion.LookRotation(direction, currentUp);
-                
-                        finalPose.rotation = Quaternion.Slerp(_startPose.rotation, dynamicRot, _transitionAlpha);
-                    }
-                }
-                else
-                {
-                    finalPose.rotation = Quaternion.Slerp(_startPose.rotation, _targetPose.rotation, _transitionAlpha);
                 }
             }
             else if (_isStaticPose)
@@ -93,10 +77,9 @@ namespace Metroma.CameraTool.Modules
                 finalPose = _targetPose;
             }
 
-            if (!_isTransitioning && _rotationReturnTimer > 0)
+            if (!_isTransitioning && _returnTimer > 0)
             {
-                float alpha = 1f - (_rotationReturnTimer / _returnDuration);
-                
+                float alpha = 1f - (_returnTimer / _returnDuration);
                 alpha = Mathf.SmoothStep(0f, 1f, alpha);
 
                 finalPose.position = Vector3.Lerp(_returnStartPose.position, finalPose.position, alpha);
@@ -117,16 +100,15 @@ namespace Metroma.CameraTool.Modules
             if (!_rig)
                 return;
             
-            _startPose = new CameraPose 
-            {
-                position = _rig.CameraTransform.position,
-                rotation = _rig.CameraTransform.rotation,
-                fov = _rig.TargetCamera ? _rig.TargetCamera.fieldOfView : 60f,
-                up = _rig.CameraTransform.up
-            };
+            _startPose = _rig.GetTrueTargetPose();
+            
+            if (_rig.TargetCamera)
+                _startPose.fov = _rig.TargetCamera.fieldOfView;
+
+            Debug.Log($"[TransitionModule] StartTransition from {_startPose.position} to {InTargetPose.position} over {InDuration}s");
 
             _targetPose = InTargetPose;
-            _transitionDuration = InDuration;
+            _transitionDuration = Mathf.Max(0.01f, InDuration);
             _transitionTime = 0f;
             _transitionCurve = InCurve ?? AnimationCurve.EaseInOut(0, 0, 1, 1);
             _transitionAlpha = 0f;
@@ -143,30 +125,32 @@ namespace Metroma.CameraTool.Modules
             _targetPose = InPose;
             _isStaticPose = true;
             _isTransitioning = false;
-            _rotationReturnTimer = 0f;
+            _returnTimer = 0f;
             _autoReturnDuration = 0f;
 
             _rig.Internal_NotifyStateChanged(CameraState.StaticPose);
             _rig.Internal_NotifyPoseReached(InPose);
         }
 
-        public void ReturnToRail(float InSmoothness = 5.0f)
+        public void SetStartPose(CameraPose InPose)
+        {
+            _startPose = InPose;
+        }
+
+        public void ReturnToRigControl(float InSmoothness = 5.0f)
         {
             _isStaticPose = false;
             _isTransitioning = false;
             
             if (InSmoothness > 100f || InSmoothness <= 0.01f)
             {
-                _rotationReturnTimer = 0f;
+                _returnTimer = 0f;
                 _returnDuration = 0f;
-                _rig.Internal_NotifyStateChanged(CameraState.ReturningToRail);
-                
                 return;
             }
             
-            // Treat InSmoothness as a speed coefficient (High = Fast, Low = Slow)
             _returnDuration = Mathf.Max(0.001f, 1.0f / InSmoothness);
-            _rotationReturnTimer = _returnDuration; 
+            _returnTimer = _returnDuration; 
 
             if (_rig && _rig.CameraTransform)
             {
@@ -178,8 +162,6 @@ namespace Metroma.CameraTool.Modules
                     up = _rig.CameraTransform.up
                 };
             }
-
-            _rig.Internal_NotifyStateChanged(CameraState.ReturningToRail);
         }
 
         /// <summary> Forces the transition module to stop any pose override immediately. </summary>
@@ -187,10 +169,7 @@ namespace Metroma.CameraTool.Modules
         {
             _isTransitioning = false;
             _isStaticPose = false;
-            _rotationReturnTimer = 0f;
-            
-            if (_rig)
-                _rig.Internal_NotifyStateChanged(CameraState.FollowRail);
+            _returnTimer = 0f;
         }
 
         private void UpdateTransitionState(float InDeltaTime)
@@ -205,10 +184,10 @@ namespace Metroma.CameraTool.Modules
             if (t >= 1f)
             {
                 _isTransitioning = false;
-
+                
                 if (_autoReturnDuration > 0.01f)
                 {
-                    ReturnToRail(_autoReturnDuration);
+                    ReturnToRigControl(_autoReturnDuration);
                 }
                 else
                 {
@@ -219,14 +198,14 @@ namespace Metroma.CameraTool.Modules
             }
         }
 
-        private void UpdateRotationReturn(float InDeltaTime)
+        private void UpdateReturnState(float InDeltaTime)
         {
-            if (_rotationReturnTimer > 0)
+            if (_returnTimer > 0)
             {
-                _rotationReturnTimer -= InDeltaTime;
+                _returnTimer -= InDeltaTime;
                 
-                if (_rotationReturnTimer < 0)
-                    _rotationReturnTimer = 0;
+                if (_returnTimer < 0)
+                    _returnTimer = 0;
             }
         }
 

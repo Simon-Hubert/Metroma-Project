@@ -9,6 +9,10 @@ namespace Metroma.FocusCam.Editor
     [CustomTimelineEditor(typeof(FocusCamClip))]
     public class FocusCamTimelineClipEditor : ClipEditor
     {
+        private readonly Color _metromaPink = new Color(0.95f, 0.2f, 0.45f);
+        private readonly Color _metromaBlue = new Color(0.15f, 0.6f, 1.0f);
+        private readonly Color _metromaDark = new Color(0.12f, 0.12f, 0.15f, 0.9f);
+
         public override ClipDrawOptions GetClipOptions(TimelineClip clip)
         {
             ClipDrawOptions options = base.GetClipOptions(clip);
@@ -16,98 +20,93 @@ namespace Metroma.FocusCam.Editor
             FocusCamClip asset = clip.asset as FocusCamClip;
             if (asset != null)
             {
-                // Dynamic Title (Updated for tooltip)
-                string title = asset.mode == FocusMode.LookAtPoint ? "🎯 Look At" : "🧭 Fixed Orientation";
-                string details = "";
-                if (asset.overridePosition) details += " | 🎥 Position Override";
-                if (asset.overrideFOV) details += $" | 🔎 FOV: {asset.fov}";
-
-                options.tooltip = title + details;
-                
-                // Colors matching the Metroma theme
-                if (asset.mode == FocusMode.LookAtPoint)
-                    options.highlightColor = new Color(0.95f, 0.2f, 0.45f); // Neon Pink
-                else
-                    options.highlightColor = new Color(0.15f, 0.6f, 1.0f); // Electric Blue
+                options.tooltip = asset.mode == FocusMode.LookAtPoint ? "🎯 Focus Point" : "🧭 Fixed Orientation";
+                Color hColor = asset.mode == FocusMode.LookAtPoint ? _metromaPink : _metromaBlue;
+                if (asset.useCustomColor) hColor = asset.customColor;
+                options.highlightColor = hColor;
             }
+
+            // Supprime le nom par défaut "Focus Cam Clip Asset" d'Unity
+            if (clip.displayName != " ") clip.displayName = " ";
 
             return options;
         }
 
-        public override void OnCreate(TimelineClip clip, TrackAsset track, TimelineClip clonedFrom)
-        {
-            clip.displayName = " "; // Use a space to avoid Unity showing "(Empty)"
-        }
-
-        public override void OnClipChanged(TimelineClip clip)
-        {
-            if (string.IsNullOrEmpty(clip.displayName) || clip.displayName == "(Empty)")
-                clip.displayName = " ";
-        }
-
         public override void DrawBackground(TimelineClip clip, ClipBackgroundRegion region)
         {
-            base.DrawBackground(clip, region);
-
             FocusCamClip asset = clip.asset as FocusCamClip;
             if (asset == null) return;
 
             Rect rect = region.position;
-            if (rect.width < 10) return;
+            if (rect.width < 5) return;
 
-            // --- 1. Clipping Group ---
-            // This ensures EVERYTHING drawn inside is clipped to the clip's rect.
-            GUI.BeginGroup(rect);
-            try
+            // --- 1. FOND SOMBRE ---
+            EditorGUI.DrawRect(rect, _metromaDark);
+
+            // --- 2. DESSIN DES TRANSITIONS (BLEU/ROSE) ---
+            float blendInPx = clip.duration > 0 ? (float)(clip.blendInDuration / clip.duration) * rect.width : 0;
+            float blendOutPx = clip.duration > 0 ? (float)(clip.blendOutDuration / clip.duration) * rect.width : 0;
+            Color modeColor = asset.mode == FocusMode.LookAtPoint ? _metromaPink : _metromaBlue;
+            if (asset.useCustomColor) modeColor = asset.customColor;
+
+            if (blendInPx > 1)
             {
-                // --- 2. Local Coordinates (0,0 is now the top-left of the clip) ---
-                float blendInPx = (float)(clip.blendInDuration / clip.duration) * rect.width;
-                float safeOffset = Mathf.Min(blendInPx, rect.width * 0.5f);
+                EditorGUI.DrawRect(new Rect(rect.x, rect.y, blendInPx, rect.height), new Color(modeColor.r, modeColor.g, modeColor.b, 0.2f));
+                EditorGUI.DrawRect(new Rect(rect.x, rect.y, 2, rect.height), modeColor);
+            }
+
+            if (blendOutPx > 1)
+            {
+                EditorGUI.DrawRect(new Rect(rect.xMax - blendOutPx, rect.y, blendOutPx, rect.height), new Color(modeColor.r, modeColor.g, modeColor.b, 0.2f));
+                EditorGUI.DrawRect(new Rect(rect.xMax - 2, rect.y, 2, rect.height), modeColor);
+            }
+
+            // --- 3. TEXTE (PUNAISÉ AU BORD GAUCHE) ---
+            // On fixe le texte avec une petite marge absolue de 8 pixels, il ne bougera PLUS JAMAIS.
+            float availableWidth = rect.width - 16;
+
+            if (availableWidth > 20)
+            {
+                // Styles stricts qui forcent Unity à couper au ciseau si le clip est trop petit
+                GUIStyle labelStyle = new GUIStyle(EditorStyles.boldLabel) { 
+                    fontSize = 10, normal = { textColor = Color.white }, 
+                    alignment = TextAnchor.UpperLeft, clipping = TextClipping.Clip 
+                };
+                GUIStyle miniStyle = new GUIStyle(EditorStyles.miniLabel) { 
+                    fontSize = 8, normal = { textColor = new Color(1, 1, 1, 0.5f) }, 
+                    alignment = TextAnchor.UpperLeft, clipping = TextClipping.Clip 
+                };
+
+                string icon = asset.mode == FocusMode.LookAtPoint ? "🎯" : "🧭";
+                string modeName = asset.mode == FocusMode.LookAtPoint ? "LOOK AT" : "FIXED";
                 
-                float localX = safeOffset + 5;
-                // Clamp width so it NEVER exceeds the clip's right edge
-                float labelWidth = Mathf.Min(135, rect.width - localX - 5);
-
-                if (labelWidth > 10)
+                // Titre
+                GUI.Label(new Rect(rect.x + 8, rect.y + 2, availableWidth, 16), $"{icon} {modeName}", labelStyle);
+                
+                // Sous-titre
+                if (rect.height > 24)
                 {
-                    // --- 3. Styles ---
-                    GUIStyle labelStyle = new GUIStyle(EditorStyles.boldLabel);
-                    labelStyle.normal.textColor = Color.white;
-                    labelStyle.fontSize = 10;
-
-                    GUIStyle valueStyle = new GUIStyle(EditorStyles.miniLabel);
-                    valueStyle.normal.textColor = new Color(1, 1, 1, 0.7f);
-                    valueStyle.fontSize = 9;
-
-                    Color highlightColor = asset.mode == FocusMode.LookAtPoint 
-                        ? new Color(0.95f, 0.2f, 0.45f, 0.8f) 
-                        : new Color(0.15f, 0.6f, 1.0f, 0.8f);
-
-                    // --- 4. Draw Header Bar ---
-                    Rect headerRect = new Rect(localX, 2, labelWidth, 16);
-                    EditorGUI.DrawRect(headerRect, new Color(0, 0, 0, 0.8f));
-                    EditorGUI.DrawRect(new Rect(headerRect.x, headerRect.y, 3, headerRect.height), highlightColor);
-
-                    string modeName = asset.mode == FocusMode.LookAtPoint ? "LookAt" : "Fixed";
-                    string icon = asset.mode == FocusMode.LookAtPoint ? "🎯" : "🧭";
-                    GUI.Label(new Rect(headerRect.x + 6, headerRect.y, headerRect.width - 8, headerRect.height), $"{icon} {modeName}", labelStyle);
-
-                    // --- 5. Values Line ---
-                    if (rect.height > 25)
-                    {
-                        string coords = asset.mode == FocusMode.LookAtPoint 
-                            ? $"{asset.position.x:F0}, {asset.position.y:F0}, {asset.position.z:F0}" 
-                            : $"{asset.rotation.x:F0}, {asset.rotation.y:F0}, {asset.rotation.z:F0}";
-
-                        Rect valueRect = new Rect(localX + 2, 18, labelWidth, 14);
-                        GUI.Label(valueRect, coords, valueStyle);
-                    }
+                    string subText = asset.mode == FocusMode.LookAtPoint ? "Position Target" : "Rotation Target";
+                    if (asset.overrideFOV) subText += $" | 🔎 {asset.fov}°";
+                    GUI.Label(new Rect(rect.x + 8, rect.y + 14, availableWidth, 12), subText, miniStyle);
                 }
             }
-            finally
+            else if (rect.width > 20)
             {
-                GUI.EndGroup();
+                // Si le clip est très écrasé, on n'affiche que l'icône centrée
+                GUIStyle iconStyle = new GUIStyle(EditorStyles.boldLabel) { alignment = TextAnchor.MiddleCenter, fontSize = 12, clipping = TextClipping.Clip };
+                GUI.Label(new Rect(rect.x, rect.y, rect.width, rect.height), asset.mode == FocusMode.LookAtPoint ? "🎯" : "🧭", iconStyle);
             }
+
+            // --- 4. BORDURE SUPÉRIEURE ---
+            EditorGUI.DrawRect(new Rect(rect.x, rect.y, rect.width, 1), new Color(1, 1, 1, 0.1f));
+        }
+
+        public override void OnCreate(TimelineClip clip, TrackAsset track, TimelineClip clonedFrom)
+        {
+            clip.displayName = " ";
+            clip.blendInDuration = 0.5f;
+            clip.blendOutDuration = 0.5f;
         }
     }
 }

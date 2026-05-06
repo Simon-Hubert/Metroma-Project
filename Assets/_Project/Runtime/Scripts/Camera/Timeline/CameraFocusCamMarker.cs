@@ -48,43 +48,56 @@ namespace Metroma.CameraTool.Timeline
         public override void Execute(CameraRig rig, IExposedPropertyTable resolver)
         {
             if (rig == null || focusTimeline == null)
+            {
+                Debug.LogWarning($"[CameraFocusCamMarker] Missing Rig ({rig != null}) or { (focusTimeline == null ? "Timeline (NULL)" : "Timeline (OK)") } on marker.");
                 return;
+            }
 
-            // 🛡️ SAFETY: Prevent re-triggering during active lock
-            if (rig.Sequences != null && rig.Sequences.IsProgressLocked)
-                return;
+            Debug.Log($"[CameraFocusCamMarker] Executing Focus Timeline: {focusTimeline.name}");
 
             PlayableDirector mainDirector = rig.Sequences != null ? rig.Sequences.Director : null;
             
-            // 🛡️ DYNAMIC CREATION: We now always create a clean temp director on a child object
-            GameObject tempPlayerObject = new GameObject("[Temp_FocusCamPlayer]");
+            // DYNAMIC CREATION: We now always create a clean temp director on a child object
+            GameObject tempPlayerObject = new GameObject($"[FocusPlayer_{focusTimeline.name}]");
             tempPlayerObject.transform.SetParent(rig.transform);
             
             PlayableDirector focusDirector = tempPlayerObject.AddComponent<PlayableDirector>();
+            
+            // FORWARDER: Crucial for markers inside the sub-timeline to work!
+            if (rig.Sequences != null)
+            {
+                var forwarder = tempPlayerObject.AddComponent<CameraMarkerForwarder>();
+                forwarder.TargetModule = rig.Sequences;
+            }
+
             if (focusDirector != null)
             {
                 focusDirector.playOnAwake = false;
                 focusDirector.extrapolationMode = DirectorWrapMode.None;
                 focusDirector.playableAsset = focusTimeline;
 
-                // 🔗 AUTO-BINDING: Ensure the FocusCam track is bound to the current rig
+                // AUTO-BINDING: Ensure all relevant tracks are bound
                 foreach (var track in focusTimeline.GetOutputTracks())
                 {
-                    if (track is FocusCamTrack)
+                    if (track is FocusCamTrack || track is MarkerTrack)
                     {
                         focusDirector.SetGenericBinding(track, rig);
                     }
                 }
 
-                CameraPose startPose = ExtractFirstClipPose(rig);
-                rig.StartCoroutine(FocusSequenceCoroutine(rig, focusDirector, startPose, mainDirector, tempPlayerObject));
+                CameraPose targetPose = ExtractFirstClipPose(rig);
+                rig.StartCoroutine(FocusSequenceCoroutine(rig, focusDirector, targetPose, mainDirector, tempPlayerObject));
             }
         }
 
         private CameraPose ExtractFirstClipPose(CameraRig rig)
         {
+            // BACK TO MANUAL: More reliable for static analysis than Evaluate() on a fresh object.
             CameraPose pose = rig.GetTrueTargetPose(); 
             if (focusTimeline == null) return pose;
+
+            float earliestStart = float.MaxValue;
+            bool foundAny = false;
 
             foreach (var track in focusTimeline.GetOutputTracks())
             {
@@ -94,58 +107,83 @@ namespace Metroma.CameraTool.Timeline
                     {
                         if (clip.asset is FocusCamClip focusAsset)
                         {
-                            if (focusAsset.overridePosition) pose.position = focusAsset.cameraPosition;
-                            
-                            if (focusAsset.mode == FocusMode.LookAtPoint)
+                            // We want the VERY FIRST clip of the timeline
+                            if (clip.start < earliestStart)
                             {
-                                Vector3 direction = (focusAsset.position - pose.position).normalized;
-                                if (direction != Vector3.zero) pose.rotation = Quaternion.LookRotation(direction, Vector3.up);
-                            }
-                            else pose.rotation = Quaternion.Euler(focusAsset.rotation);
+                                earliestStart = (float)clip.start;
+                                foundAny = true;
 
-                            if (focusAsset.overrideFOV) pose.fov = focusAsset.fov;
-                            pose.rotation *= Quaternion.Euler(0, 0, focusAsset.roll);
-                            
-                            return pose;
+                                Debug.Log($"[CameraFocusCamMarker] Extracting pose from earliest clip: {clip.displayName} at t={clip.start}");
+                                
+                                if (focusAsset.overridePosition) 
+                                {
+                                    pose.position = focusAsset.cameraPosition;
+                                    Debug.Log($"[CameraFocusCamMarker] -> Position Override: {pose.position}");
+                                }
+                                
+                                if (focusAsset.mode == FocusMode.LookAtPoint)
+                                {
+                                    Vector3 direction = (focusAsset.position - pose.position).normalized;
+                                    if (direction != Vector3.zero) 
+                                        pose.rotation = Quaternion.LookRotation(direction, Vector3.up);
+                                }
+                                else 
+                                {
+                                    pose.rotation = Quaternion.Euler(focusAsset.rotation);
+                                }
+
+                                if (focusAsset.overrideFOV) pose.fov = focusAsset.fov;
+                                pose.rotation *= Quaternion.Euler(0, 0, focusAsset.roll);
+                            }
                         }
                     }
                 }
             }
+            
+            if (!foundAny) Debug.LogWarning("[CameraFocusCamMarker] No FocusCamClip found to extract pose.");
             return pose;
         }
 
         private IEnumerator FocusSequenceCoroutine(CameraRig rig, PlayableDirector focusDirector, CameraPose targetPose, PlayableDirector mainDirector, GameObject tempObject)
         {
-            yield return null;
+            // Start immediately to avoid single-frame glitches (Raw Transform for absolute truth)
+            CameraPose initialPose = new CameraPose
+            {
+                position = rig.CameraTransform.position,
+                rotation = rig.CameraTransform.rotation,
+                fov = rig.TargetCamera ? rig.TargetCamera.fieldOfView : 60f,
+                up = rig.CameraTransform.up
+            };
 
             // 0. TRIGGER START DELEGATE
             if (rig.Sequences != null) rig.Sequences.Internal_NotifyFocusStarted();
 
-            // 1. LOCK & PAUSE
-            if (pauseMainTimeline && mainDirector != null && rig.Sequences != null)
-            {
-                rig.Sequences.LockRail();
+            // 1. PAUSE MAIN
+            if (pauseMainTimeline && mainDirector != null)
                 mainDirector.Pause();
-            }
 
             // 2. TRANSITION IN
             if (blendDuration > 0.01f)
             {
                 rig.Transitions.StartTransition(targetPose, blendDuration, blendCurve);
-                yield return new WaitForSeconds(blendDuration);
+                
+                float elapsed = 0f;
+                while (elapsed < blendDuration)
+                {
+                    float dt = Time.deltaTime;
+                    elapsed += dt;
+                    
+                    // FORCE Rig Update: This bypasses any pause/stalling issues
+                    rig.Internal_ManualUpdate(dt);
+                    yield return null;
+                }
             }
             else
             {
                 rig.Transitions.SnapToPose(targetPose);
-                if (rig.CameraTransform != null)
-                {
-                    rig.CameraTransform.SetPositionAndRotation(targetPose.position, targetPose.rotation);
-                    if (rig.TargetCamera != null) rig.TargetCamera.fieldOfView = targetPose.fov;
-                }
             }
 
             // 3. HAND OVER TO FOCUS
-            rig.SetControlActive(false);
             rig.Transitions.ClearTransition();
 
             if (focusDirector != null)
@@ -154,51 +192,58 @@ namespace Metroma.CameraTool.Timeline
                 focusDirector.Play();
                 focusDirector.Evaluate();
 
-                // 5. WAIT FOR FINISH
+                // 5. WAIT FOR FINISH (Robust loop)
                 yield return null; 
-                while (focusDirector != null && focusDirector.state == PlayState.Playing && focusDirector.time < focusDirector.duration - 0.02f)
+                float subElapsed = 0f;
+                // Wait while playing OR if we just started and state hasn't switched yet
+                while (focusDirector != null && (focusDirector.state == PlayState.Playing || subElapsed < 0.2f))
                 {
+                    subElapsed += Time.deltaTime;
+                    if (focusDirector.time >= focusDirector.duration - 0.02f) break;
                     yield return null;
                 }
-            }
-
-            if (returnToLastPos)
-            {
-                // 6. RETURN CONTROL
-                rig.SetControlActive(true);
-
-                // 7. TRANSITION OUT
-                if (exitTransitionDuration > 0.01f)
+                
+                // 1. ULTIMATE SOURCE OF TRUTH: Capture the actual physical transform
+                CameraPose exitPose = new CameraPose
                 {
-                    CameraPose railPose = rig.GetTrueTargetPose();
-                    rig.Transitions.StartTransition(railPose, exitTransitionDuration, exitTransitionCurve);
-                    yield return new WaitForSeconds(exitTransitionDuration);
-                }
-                else
+                    position = rig.CameraTransform.position,
+                    rotation = rig.CameraTransform.rotation,
+                    fov = rig.TargetCamera ? rig.TargetCamera.fieldOfView : 60f,
+                    up = rig.CameraTransform.up
+                };
+                
+                // 2. Identify return target
+                CameraPose target = returnToLastPos ? initialPose : rig.GetTrueTargetPose();
+                float duration = Mathf.Max(0.01f, exitTransitionDuration);
+                
+                // 3. Start Transition and LOCK it immediately
+                rig.Transitions.StartTransition(target, duration, exitTransitionCurve);
+                rig.Transitions.SetStartPose(exitPose);
+                
+                // CRITICAL: Stop the sub-timeline influence ONLY after we've locked the pose
+                if (focusDirector != null) focusDirector.Stop();
+                
+                // Force an immediate update to ensure the transition module captures the Rig 
+                // and applies the first frame of the blend before Unity can render.
+                rig.Internal_ManualUpdate(0); 
+
+                // 4. Smooth Transition Loop
+                float outElapsed = 0f;
+                while (outElapsed < duration)
                 {
-                    CameraPose railPose = rig.GetTrueTargetPose();
-                    rig.Transitions.SnapToPose(railPose);
-                    if (rig.CameraTransform != null)
-                    {
-                        rig.CameraTransform.SetPositionAndRotation(railPose.position, railPose.rotation);
-                        if (rig.TargetCamera != null) rig.TargetCamera.fieldOfView = railPose.fov;
-                    }
+                    float dt = Time.deltaTime;
+                    outElapsed += dt;
+                    rig.Internal_ManualUpdate(dt);
+                    yield return null;
                 }
-                rig.Transitions.ReturnToRail(5f);
-            }
-            else
-            {
-                rig.Transitions.SnapToPose(targetPose);
+                
+                // 5. Cleanup
+                rig.Transitions.ClearTransition();
             }
 
-            // 8. RESUME & UNLOCK
-            if (pauseMainTimeline && mainDirector != null && rig.Sequences != null)
-            {
-                mainDirector.time += 0.05f; 
+            // 8. RESUME
+            if (pauseMainTimeline && mainDirector != null)
                 mainDirector.Play();
-                yield return null; 
-                rig.Sequences.UnlockRail();
-            }
             
             // 9. TRIGGER END DELEGATE
             if (rig.Sequences != null) rig.Sequences.Internal_NotifyFocusEnded();

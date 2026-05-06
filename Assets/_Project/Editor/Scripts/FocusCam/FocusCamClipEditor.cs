@@ -87,6 +87,22 @@ namespace Metroma.FocusCam.Editor
             EditorGUILayout.EndVertical();
 
             EditorGUILayout.Space(10);
+
+            // --- Section: EDITOR VISUALS ---
+            EditorGUILayout.LabelField("🎨 EDITOR VISUALS", EditorStyles.boldLabel);
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            
+            SerializedProperty useCustomColorProp = serializedObject.FindProperty("useCustomColor");
+            EditorGUILayout.PropertyField(useCustomColorProp, new GUIContent("Use Custom Color"));
+            
+            if (useCustomColorProp.boolValue)
+            {
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("customColor"), new GUIContent("Clip Color"));
+            }
+            
+            EditorGUILayout.EndVertical();
+
+            EditorGUILayout.Space(10);
             
             GUI.backgroundColor = new Color(0.2f, 0.6f, 1.0f);
             if (GUILayout.Button("🎬 Snap Camera", GUILayout.Height(30)))

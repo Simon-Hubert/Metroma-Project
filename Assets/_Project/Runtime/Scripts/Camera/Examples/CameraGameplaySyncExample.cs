@@ -2,12 +2,12 @@ using UnityEngine;
 using Metroma.CameraTool.Modifiers;
 using Metroma.CameraTool.Timeline;
 
-
 namespace Metroma.CameraTool.Examples
 {
     /// <summary>
     /// Example script for Gameplay Programmers to demonstrate how to sync
     /// game systems (UI, Audio, VFX) with the Camera Suite events.
+    /// Updated for FocusCam architecture.
     /// </summary>
     public class CameraGameplaySyncExample : MonoBehaviour
     {
@@ -17,19 +17,16 @@ namespace Metroma.CameraTool.Examples
             if (CameraRig.Active == null)
                 return;
 
-            // 1. Subscribe to Camera State changes (FollowRail, Transitioning, StaticPose, ReturningToRail)
+            // 1. Subscribe to Camera State changes (TimelineDriven, Transitioning, StaticPose, Manual)
             CameraRig.Active.OnStateChanged += HandleStateChanged;
 
             // 2. Subscribe to Static Pose arrival (perfect for triggering Minigames or Interaction UI)
             CameraRig.Active.OnPoseEventReached += HandleMinigameStart;
 
-            // 3. Subscribe to Chapter transitions (when a new Timeline starts its blend)
-            CameraRig.Active.OnChapterStarted += HandleChapterSwitch;
-
-            // 4. Subscribe to any Timeline Marker hit
+            // 3. Subscribe to any Timeline Marker hit
             CameraRig.Active.OnMarkerEventHit += HandleMarker;
 
-            // 5. Subscribe to Slow-Motion state changes
+            // 4. Subscribe to Slow-Motion state changes
             CameraTimeHandler.OnSlowMoStateChanged += HandleSlowMo;
         }
 
@@ -39,7 +36,6 @@ namespace Metroma.CameraTool.Examples
             {
                 CameraRig.Active.OnStateChanged -= HandleStateChanged;
                 CameraRig.Active.OnPoseEventReached -= HandleMinigameStart;
-                CameraRig.Active.OnChapterStarted -= HandleChapterSwitch;
                 CameraRig.Active.OnMarkerEventHit -= HandleMarker;
             }
 
@@ -56,12 +52,6 @@ namespace Metroma.CameraTool.Examples
             Debug.Log("[SyncExample] <color=green>Camera reached static pose.</color> You can now enable Minigame Input.");
             // Example: GameInput.SetMode(InputMode.Minigame);
             // Example: UIController.Instance.FadeInMinigameHUD();
-        }
-
-        private void HandleChapterSwitch(CameraChapter chapter)
-        {
-            Debug.Log($"[SyncExample] Transitioning to Chapter: <b>{chapter.name}</b>. Syncing Audio Mixer...");
-            // Example: AudioManager.SetSnapShot(chapter.name);
         }
 
         private void HandleMarker(CameraMarkerBase marker)

@@ -11,14 +11,18 @@ namespace Metroma.CameraTool.Timeline
     [DisplayName("Camera/🎯 Auto-Focus Toggle")]
     public class CameraAutoFocusMarker : CameraMarkerBase
     {
-        [Tooltip("Enable or disable real-time Depth of Field sync to the current target.")]
+        [Tooltip("Enable or disable real-time Depth of Field sync.")]
         public bool active = true;
 
-        public override void Execute(CameraRig rig)
+        [Tooltip("Optional: Specific target to focus on. If empty, it will use whatever target is currently set or remain inactive.")]
+        public ExposedReference<Transform> focusTarget;
+
+        public override void Execute(CameraRig rig, IExposedPropertyTable resolver)
         {
             if (rig.TargetCamera != null)
             {
-                CameraModifiers.SetAutoFocus(rig.TargetCamera, active, rig.CurrentLookAtTarget);
+                Transform target = focusTarget.Resolve(resolver);
+                CameraModifiers.SetAutoFocus(rig.TargetCamera, active, target);
             }
         }
     }

@@ -34,6 +34,12 @@ namespace Metroma.CameraTool.Modules
         private float _exitDuration;
         private AnimationCurve _exitCurve;
 
+        private float _noiseTime;
+        private float _jitterTime;
+        private float _currentTilt;
+        private float _tiltVelocity;
+        private Vector2 _lookVelocity;
+
         // --- Properties ---
 
         public int Priority => 20;
@@ -48,8 +54,13 @@ namespace Metroma.CameraTool.Modules
 
         public void OnUpdate(float InDeltaTime)
         {
-            if (!_isActive || _activeProfile == null)
+            if (!_isActive) return;
+            
+            if (_activeProfile == null)
+            {
+                Debug.LogWarning("[FPSModule] Active but profile is NULL!");
                 return;
+            }
 
             // Auto-exit timer
             if (_fpsDuration > 0f)
@@ -89,6 +100,19 @@ namespace Metroma.CameraTool.Modules
                 _smoothPitch = _pitch;
                 _smoothYaw = _yaw;
             }
+
+            // --- Juice: Procedural Tilt & Sway ---
+            
+            // 1. Handheld Sway (Noise)
+            _noiseTime += InDeltaTime * _activeProfile.swaySpeed;
+            _jitterTime += InDeltaTime * _activeProfile.jitterSpeed;
+
+            // 2. Dynamic Tilt (Roll) based on horizontal movement
+            float targetTilt = -lookDelta.x * _activeProfile.tiltAmount;
+            _currentTilt = Mathf.Lerp(_currentTilt, targetTilt, InDeltaTime * _activeProfile.tiltReturnSpeed);
+            
+            // 3. Momentum tracking
+            _lookVelocity = Vector2.Lerp(_lookVelocity, lookDelta, InDeltaTime * (1f - _activeProfile.rotationMomentum) * 10f);
         }
 
         // --- Public API ---
@@ -148,6 +172,15 @@ namespace Metroma.CameraTool.Modules
             if (_rig != null && _rig.Sequences != null && _rig.Sequences.Director != null)
                 _rig.Sequences.Director.Pause();
 
+            // Handle dedicated Handheld Profile if assigned
+            if (_activeProfile.handheldProfile != null && _rig != null && _rig.TargetCamera != null)
+            {
+                _rig.TargetCamera.SetHandheld(true, _activeProfile.handheldProfile);
+            }
+                
+            if (_rig != null)
+                _rig.SetControlActive(true);
+
             _isActive = true;
 
             Debug.Log($"<color=#1ebfff><b>[CameraTool]</b></color> FPS Mode ENABLED — Profile: '{InProfile.name}' (Duration: {(InDuration > 0f ? $"{InDuration}s" : "∞")})");
@@ -165,6 +198,12 @@ namespace Metroma.CameraTool.Modules
             _isActive = false;
 
             UnbindLookAction();
+
+            // Cleanup handheld effect
+            if (_rig != null && _rig.TargetCamera != null)
+            {
+                _rig.TargetCamera.SetHandheld(false, null);
+            }
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -191,7 +230,7 @@ namespace Metroma.CameraTool.Modules
             yield return new WaitForSeconds(InDelay);
 
             if (_rig != null && _rig.Transitions != null)
-                _rig.Transitions.ReturnToRail(5f);
+                _rig.Transitions.ReturnToRigControl(5f);
 
             if (_rig != null && _rig.Sequences != null && _rig.Sequences.Director != null)
                 _rig.Sequences.Director.Resume();
@@ -205,8 +244,40 @@ namespace Metroma.CameraTool.Modules
         /// </summary>
         public CameraPose ModifyPose(CameraPose InBasePose)
         {
-            InBasePose.position = _frozenPosition;
-            InBasePose.rotation = Quaternion.Euler(_smoothPitch, _smoothYaw, 0f);
+            float totalNoiseX = 0f;
+            float totalNoiseY = 0f;
+            float jitterRoll = 0f;
+
+            // Only use manual noise if NO dedicated handheld profile is assigned
+            if (_activeProfile.handheldProfile == null)
+            {
+                // Natural Breathing (Sine-based Figure-8 pattern)
+                float breatheTime = _noiseTime; 
+                float breatheX = Mathf.Sin(breatheTime * 0.5f) * _activeProfile.swayAmount.x;
+                float breatheY = Mathf.Sin(breatheTime) * _activeProfile.swayAmount.y;
+                
+                // High-frequency Handheld Jitter (Micro-tremors)
+                float jitterX = (Mathf.PerlinNoise(_jitterTime * 1.5f, 0f) - 0.5f) * _activeProfile.jitterAmount;
+                float jitterY = (Mathf.PerlinNoise(0f, _jitterTime * 1.5f) - 0.5f) * _activeProfile.jitterAmount;
+
+                totalNoiseX = breatheX + jitterX;
+                totalNoiseY = breatheY + jitterY;
+                jitterRoll = jitterX * 2f;
+
+                // Apply manual position shift
+                InBasePose.position = _frozenPosition + new Vector3(totalNoiseX * 0.05f, totalNoiseY * 0.05f, 0f);
+            }
+            else
+            {
+                // When using HandheldProfile, we keep the position frozen
+                // The Handheld system (ModifierHandler) will apply its own offsets
+                InBasePose.position = _frozenPosition;
+            }
+            
+            // Apply rotation with smooth input + dynamic tilt + noise (if any)
+            Quaternion baseRot = Quaternion.Euler(_smoothPitch + totalNoiseY, _smoothYaw + totalNoiseX, _currentTilt + jitterRoll);
+            InBasePose.rotation = baseRot;
+            
             InBasePose.fov = _frozenFov;
 
             return InBasePose;
@@ -220,11 +291,12 @@ namespace Metroma.CameraTool.Modules
             if (_boundAction != null && _boundAction.enabled)
                 return _boundAction.ReadValue<Vector2>() * 0.1f;
 
-            // Priority 2: Fallback to Mouse.current.delta
+            // Priority 2: Fallback to Mouse.current.delta (New Input System)
             if (Mouse.current != null)
                 return Mouse.current.delta.ReadValue() * 0.1f;
 
-            return Vector2.zero;
+            // Priority 3: Fallback to Old Input System (Legacy)
+            return new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         }
 
         private void BindLookAction()

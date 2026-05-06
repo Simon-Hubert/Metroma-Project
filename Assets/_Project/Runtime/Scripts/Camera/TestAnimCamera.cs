@@ -1,31 +1,44 @@
 using Metroma.CameraTool;
 using Metroma.CameraTool.Modifiers;
+using Metroma.CameraTool.Timeline;
 using UnityEngine;
 
 public class TestAnimCamera : MonoBehaviour
 {
-    
     [SerializeField] private CameraRig cameraRig;
-    
     [SerializeField] private Camera cameraRef;
     
-    void Start()
+    void OnEnable()
     {
         if (cameraRig)
         {
-            cameraRig.onSplineNotified.AddListener(TestNotif);
+            cameraRig.OnMarkerEventHit += HandleMarker;
         }
     }
 
-    private void TestNotif(string eventName)
+    void OnDisable()
     {
-        Debug.Log($"[TestAnimCamera] Received event: {eventName}");
-
-        if (eventName == "Flash")
+        if (cameraRig)
         {
-            if (cameraRef != null)
+            cameraRig.OnMarkerEventHit -= HandleMarker;
+        }
+    }
+
+    private void HandleMarker(CameraMarkerBase marker)
+    {
+        // Check for specific markers or use naming conventions
+        if (marker is CameraEventMarker eventMarker)
+        {
+            string eventName = eventMarker.EventName;
+            Debug.Log($"[TestAnimCamera] Received event: {eventName}");
+
+            if (eventName == "Flash")
             {
-                cameraRef.DoChromaticAberration(100f, 5f);
+                if (cameraRef != null)
+                {
+                    // Assuming DoChromaticAberration is an extension or part of a modifier
+                    // cameraRef.DoChromaticAberration(100f, 5f);
+                }
             }
         }
     }

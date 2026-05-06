@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using Metroma.CameraTool.Timeline;
+using Metroma.FocusCam;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
@@ -10,7 +11,8 @@ using NaughtyAttributes;
 namespace Metroma.CameraTool.Modules
 {
     /// <summary>
-    /// Module responsible for high-level sequencing: Chapters, PlayableDirectors, and Markers.
+    /// Module responsible for high-level sequencing: FocusCam, PlayableDirectors, and Markers.
+    /// FocusCam is now the central system for cinematic sequencing.
     /// </summary>
     public class SequenceModule : MonoBehaviour, ICameraModule, INotificationReceiver
     {
@@ -18,15 +20,14 @@ namespace Metroma.CameraTool.Modules
 
         [SerializeField] private PlayableDirector playableDirector;
         [SerializeField] private bool playOnStart = true;
-        [SerializeField] private List<CameraChapter> chapters = new List<CameraChapter>();
-
-        [Header("Events (Chapters)")]
-        public UnityEvent<CameraChapter> onChapterStart;
-        public UnityEvent<CameraChapter> onChapterEnd;
 
         [Header("Events (FocusCam)")]
         public UnityEvent onFocusStarted;
         public UnityEvent onFocusEnded;
+
+        [Header("Events (Visibility)")]
+        public UnityEvent<string> onVisibilityEvent;
+        public System.Action<string> OnVisibilityEvent;
 
         /// <summary> C# Delegate triggered when any FocusCam sequence starts. </summary>
         public System.Action OnFocusStarted;
@@ -47,12 +48,9 @@ namespace Metroma.CameraTool.Modules
         #region --- Runtime State ---
 
         private CameraRig _rig;
-        private CameraChapter _activeChapter;
-        private int _selectedChapterIndex = 0;
+        private int _lastMarkerFrame = -1;
+        private INotification _lastNotification;
         
-        private bool _isWaitingForTransitionToPlay = false;
-        private float _transitionWaitTimer = 0f;
-
         #endregion
 
         #region --- Properties ---
@@ -60,24 +58,9 @@ namespace Metroma.CameraTool.Modules
         public int Priority => 5;
         public bool IsActive => true;
         
-        /// <summary> If true, the rail progress is frozen and cannot be modified by the Timeline. </summary>
-        public bool IsProgressLocked { get; set; }
-        private float _lockedProgress = 0f;
-
         /// <summary> True if a FocusCam sequence is currently running. </summary>
         public bool IsPlayingFocus { get; private set; }
 
-        public void LockRail()
-        {
-            IsProgressLocked = true;
-            if (_rig != null && _rig.Rails != null)
-                _lockedProgress = _rig.Rails.GlobalProgress;
-        }
-
-        public void UnlockRail() => IsProgressLocked = false;
-        
-        public List<CameraChapter> Chapters => chapters;
-        public CameraChapter ActiveChapter => _activeChapter;
         public PlayableDirector Director => playableDirector != null ? playableDirector : (playableDirector = GetComponent<PlayableDirector>());
 
         #endregion
@@ -103,123 +86,14 @@ namespace Metroma.CameraTool.Modules
             }
         }
 
-        private void Start()
-        {
-            if (playOnStart && chapters.Count > 0)
-            {
-                PlayChapter(0);
-            }
-
-#if UNITY_EDITOR
-            if (UnityEditor.EditorPrefs.GetBool("AutoTestFocusCam_Pending", false))
-            {
-                UnityEditor.EditorPrefs.SetBool("AutoTestFocusCam_Pending", false);
-                StartCoroutine(DelayedStartTest());
-            }
-#endif
-        }
-
-#if UNITY_EDITOR
-        private IEnumerator DelayedStartTest()
-        {
-            yield return new WaitForSeconds(0.2f);
-            EditorTestFocusTimeline();
-            UnityEditor.Selection.activeGameObject = gameObject;
-            UnityEditor.EditorApplication.ExecuteMenuItem("Window/Sequencing/Timeline");
-        }
-#endif
-
         public void OnUpdate(float InDeltaTime)
         {
-            if (IsProgressLocked)
-            {
-                if (_rig != null && _rig.Rails != null)
-                    _rig.Rails.GlobalProgress = _lockedProgress;
-                return;
-            }
-
-            if (_isWaitingForTransitionToPlay)
-            {
-                _transitionWaitTimer -= InDeltaTime;
-                
-                if (playableDirector)
-                {
-                    playableDirector.time = 0f;
-                    playableDirector.Evaluate();
-                }
-
-                if (_transitionWaitTimer <= 0f)
-                {
-                    _isWaitingForTransitionToPlay = false;
-                }
-            }
-
-            if (playableDirector && playableDirector.state == PlayState.Playing)
-            {
-                double duration = playableDirector.duration;
-                if (duration <= 0.01) duration = (_activeChapter != null && _activeChapter.timeline != null) ? _activeChapter.timeline.duration : 1.0;
-                
-                float progress = Mathf.Clamp01((float)(playableDirector.time / duration));
-
-                _rig.Rails.GlobalProgress = progress;
-            }
+            // FocusCam logic is handled either by the Timeline Mixer or by StandaloneFocusCoroutine
         }
 
         #endregion
 
         #region --- Logic ---
-
-        public void PlayChapter(int InIndex, float InBlendDuration = 1.5f, float InSmoothReturn = 5f)
-        {
-            if (InIndex < 0 || InIndex >= chapters.Count)
-                return;
-
-            CameraChapter chapter = chapters[InIndex];
-            if (!chapter.timeline || !playableDirector)
-                return;
-
-            if (_activeChapter != null)
-                onChapterEnd?.Invoke(_activeChapter);
-
-            _activeChapter = chapter;
-            _selectedChapterIndex = InIndex;
-
-            playableDirector.playableAsset = chapter.timeline;
-            
-            playableDirector.time = 0.05f; 
-            playableDirector.Evaluate();
-            CameraPose targetPose = _rig.GetTrueTargetPose();
-            
-            playableDirector.time = 0f;
-            playableDirector.Evaluate();
-
-            if (InBlendDuration > 0.01f)
-            {
-                _rig.Transitions.StartTransition(targetPose, InBlendDuration, null, InSmoothReturn);
-                
-                _isWaitingForTransitionToPlay = true;
-                _transitionWaitTimer = InBlendDuration;
-                
-                playableDirector.Play();
-            }
-            else
-            {
-                playableDirector.Play();
-                _rig.Transitions.ReturnToRail(1.0f);
-            }
-
-            onChapterStart?.Invoke(chapter);
-            _rig.Internal_NotifyChapterStarted(chapter);
-        }
-
-        public void PlayChapter(string InChapterName, float InBlendDuration = 1.5f, float InSmoothReturn = 5f)
-        {
-            int idx = chapters.FindIndex(c => c.name.Equals(InChapterName, System.StringComparison.OrdinalIgnoreCase));
-            if (idx >= 0)
-            {
-                PlayChapter(idx, InBlendDuration, InSmoothReturn);
-            }
-        }
 
         public void OnNotify(Playable origin, INotification notification, object context)
         {
@@ -232,25 +106,114 @@ namespace Metroma.CameraTool.Modules
             if (_rig == null)
                 return;
 
+            // Frame-based cooldown to prevent double-triggering from multiple receivers
+            if (Time.frameCount == _lastMarkerFrame && notification == _lastNotification)
+                return;
+
+            _lastMarkerFrame = Time.frameCount;
+            _lastNotification = notification;
+
             if (notification is CameraMarkerBase marker)
             {
-                Debug.Log($"[SequenceModule] Received marker notification: {marker.GetType().Name} from {origin.GetGraph().GetResolver()}");
-                if (IsPlayingFocus)
-                {
-                    string markerName = marker.GetType().Name;
-                    if (markerName == "CameraNextChapterMarker" || 
-                        markerName == "CameraRailSwitchMarker" || 
-                        markerName == "CameraFocusCamMarker" || 
-                        markerName == "CameraLookAtSwitchMarker")
-                    {
-                        Debug.LogWarning($"[SequenceModule] Marker '{markerName}' is blocked during a Focus Cam Timeline to prevent structural conflicts.");
-                        return;
-                    }
-                }
-
                 marker.Execute(_rig, origin.GetGraph().GetResolver());
                 _rig.Internal_NotifyMarkerHit(marker);
             }
+            else if (notification is CameraVisibilityMarker visibilityMarker)
+            {
+                GameObject target = visibilityMarker.targetObject.Resolve(origin.GetGraph().GetResolver());
+                if (target != null)
+                {
+                    StartCoroutine(VisibilityCheckCoroutine(target, visibilityMarker.requiredSeconds, visibilityMarker.eventId, visibilityMarker.checkOcclusion));
+                }
+            }
+        }
+
+        private IEnumerator VisibilityCheckCoroutine(GameObject target, float requiredTime, string eventId, bool checkOcclusion)
+        {
+            float visibleTimer = 0f;
+            
+            while (visibleTimer < requiredTime)
+            {
+                if (IsObjectFullyVisible(target, checkOcclusion))
+                {
+                    visibleTimer += Time.deltaTime;
+                }
+                else
+                {
+                    visibleTimer = 0f;
+                }
+                
+                yield return null;
+            }
+
+            // Trigger events
+            onVisibilityEvent?.Invoke(eventId);
+            OnVisibilityEvent?.Invoke(eventId);
+            Debug.Log($"[SequenceModule] Visibility Event Triggered: {eventId}");
+        }
+
+        private bool IsObjectFullyVisible(GameObject target, bool checkOcclusion)
+        {
+            if (target == null || _rig == null || _rig.TargetCamera == null) return false;
+
+            // Get the best bounds (Renderer preferred, then Collider)
+            Bounds bounds = new Bounds();
+            bool boundsFound = false;
+            
+            var renderer = target.GetComponentInChildren<Renderer>();
+            if (renderer != null) 
+            {
+                bounds = renderer.bounds;
+                boundsFound = true;
+            }
+            else 
+            {
+                var collider = target.GetComponentInChildren<Collider>();
+                if (collider != null) 
+                {
+                    bounds = collider.bounds;
+                    boundsFound = true;
+                }
+            }
+
+            if (!boundsFound) return false;
+
+            Camera cam = _rig.TargetCamera;
+            Vector3 center = bounds.center;
+            Vector3 ext = bounds.extents;
+
+            // Check 8 corners of the AABB in viewport space
+            Vector3[] corners = new Vector3[8]
+            {
+                new Vector3(center.x - ext.x, center.y - ext.y, center.z - ext.z),
+                new Vector3(center.x + ext.x, center.y - ext.y, center.z - ext.z),
+                new Vector3(center.x - ext.x, center.y + ext.y, center.z - ext.z),
+                new Vector3(center.x + ext.x, center.y + ext.y, center.z - ext.z),
+                new Vector3(center.x - ext.x, center.y - ext.y, center.z + ext.z),
+                new Vector3(center.x + ext.x, center.y - ext.y, center.z + ext.z),
+                new Vector3(center.x - ext.x, center.y + ext.y, center.z + ext.z),
+                new Vector3(center.x + ext.x, center.y + ext.y, center.z + ext.z)
+            };
+
+            foreach (var corner in corners)
+            {
+                Vector3 viewPos = cam.WorldToViewportPoint(corner);
+                // Is corner outside viewport or behind camera?
+                if (viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1 || viewPos.z <= 0)
+                    return false;
+            }
+
+            // Occlusion check: Linecast from camera to center
+            if (checkOcclusion)
+            {
+                if (Physics.Linecast(cam.transform.position, center, out RaycastHit hit))
+                {
+                    if (hit.collider.gameObject != target && !hit.collider.transform.IsChildOf(target.transform))
+                        return false;
+                }
+            }
+
+            return true;
         }
 
         public void Internal_NotifyFocusStarted()
@@ -258,6 +221,7 @@ namespace Metroma.CameraTool.Modules
             IsPlayingFocus = true;
             onFocusStarted?.Invoke();
             OnFocusStarted?.Invoke();
+            _rig.Internal_NotifyStateChanged(CameraState.TimelineDriven);
         }
 
         public void Internal_NotifyFocusEnded()
@@ -265,6 +229,7 @@ namespace Metroma.CameraTool.Modules
             IsPlayingFocus = false;
             onFocusEnded?.Invoke();
             OnFocusEnded?.Invoke();
+            _rig.Internal_NotifyStateChanged(CameraState.Manual);
         }
 
         /// <summary>
@@ -279,18 +244,12 @@ namespace Metroma.CameraTool.Modules
 
         private System.Collections.IEnumerator StandaloneFocusCoroutine(PlayableDirector InDirector, TimelineAsset InTimeline, float InIn, float InOut, bool InReturnToLastPos, System.Action InStart, System.Action InEnd)
         {
-            CameraPose initialPose = new CameraPose 
-            { 
-                position = _rig.CameraTransform.position, 
-                rotation = _rig.CameraTransform.rotation, 
-                fov = _rig.TargetCamera ? _rig.TargetCamera.fieldOfView : 60f,
-                up = _rig.CameraTransform.up 
-            };
+            CameraPose initialPose = _rig.CurrentPose;
 
             Internal_NotifyFocusStarted();
             InStart?.Invoke();
 
-            CameraPose targetPose = _rig.GetTrueTargetPose();
+            CameraPose targetPose = initialPose; // Fallback
             foreach (var track in InTimeline.GetOutputTracks())
             {
                 if (track is Metroma.FocusCam.FocusCamTrack focusTrack)
@@ -324,11 +283,6 @@ namespace Metroma.CameraTool.Modules
             else
             {
                 _rig.Transitions.SnapToPose(targetPose);
-                if (_rig.CameraTransform != null)
-                {
-                    _rig.CameraTransform.SetPositionAndRotation(targetPose.position, targetPose.rotation);
-                    if (_rig.TargetCamera != null) _rig.TargetCamera.fieldOfView = targetPose.fov;
-                }
             }
 
             _rig.SetControlActive(false);
@@ -336,7 +290,6 @@ namespace Metroma.CameraTool.Modules
 
             InDirector.playableAsset = InTimeline;
 
-            // Ensure the Director's GameObject can forward intrinsic markers to the SequenceModule
             CameraMarkerForwarder forwarder = InDirector.GetComponent<CameraMarkerForwarder>();
             if (forwarder == null)
             {
@@ -344,41 +297,28 @@ namespace Metroma.CameraTool.Modules
             }
             forwarder.TargetModule = this;
 
-            // 1. Bind the intrinsic Timeline marker track
-            if (InTimeline.markerTrack != null)
-            {
-                Debug.Log("[SequenceModule] Found intrinsic MarkerTrack. Binding to rig.");
-                InDirector.SetGenericBinding(InTimeline.markerTrack, _rig.gameObject);
-            }
-            else
-            {
-                Debug.LogWarning("[SequenceModule] Intrinsic MarkerTrack is NULL!");
-            }
-
-            // 2. Bind any additional user-created marker/tool tracks
+            // Bind tracks to rig
+            // BINDING: Ensure we can receive notifications and apply pose
             foreach (var track in InTimeline.GetOutputTracks())
             {
-                Debug.Log($"[SequenceModule] Found track: {track.name} ({track.GetType().Name})");
-                if (track is UnityEngine.Timeline.MarkerTrack)
+                if (track is FocusCamTrack || track is MarkerTrack)
                 {
-                    Debug.Log($"[SequenceModule] Binding user MarkerTrack {track.name} to rig.");
-                    InDirector.SetGenericBinding(track, _rig.gameObject);
-                }
-                else if (track.GetType().Name == "CameraToolTrack" || track.GetType().Name == "FocusCamTrack")
-                {
-                    Debug.Log($"[SequenceModule] Binding Tool/Focus Track {track.name} to rig.");
                     InDirector.SetGenericBinding(track, _rig);
                 }
             }
 
             InDirector.RebuildGraph();
-            InDirector.time = 0; // Ensure it starts from the beginning
+            InDirector.time = 0; 
             InDirector.Play();
-            // Removed InDirector.Evaluate() to prevent swallowing timeline notifications on the first frame
+            InDirector.Evaluate(); // Force first frame
 
             yield return null;
-            while (InDirector.state == PlayState.Playing && InDirector.time < InDirector.duration - 0.02f)
+            // Wait until the entire focus sequence is finished (including chained timelines)
+            while (InDirector != null && IsPlayingFocus)
             {
+                // Safety: if the director is NOT paused and reached the end, we might need to break
+                // but only if no other sub-focus has taken over.
+                // However, Internal_NotifyFocusEnded() will be called by the last coroutine.
                 yield return null;
             }
 
@@ -392,20 +332,10 @@ namespace Metroma.CameraTool.Modules
                 else
                 {
                     _rig.Transitions.SnapToPose(initialPose);
-                    if (_rig.CameraTransform != null)
-                    {
-                        _rig.CameraTransform.SetPositionAndRotation(initialPose.position, initialPose.rotation);
-                        if (_rig.TargetCamera != null) _rig.TargetCamera.fieldOfView = initialPose.fov;
-                    }
                 }
                 
-                // Return full control to Rig's usual evaluation system (Rail, FPS, Timeline)
                 _rig.SetControlActive(true);
-                _rig.Transitions.ReturnToRail(5f);
-            }
-            else
-            {
-                _rig.Transitions.SnapToPose(targetPose);
+                _rig.Transitions.ReturnToRigControl(5f);
             }
 
             Internal_NotifyFocusEnded();
@@ -414,29 +344,22 @@ namespace Metroma.CameraTool.Modules
 
         #endregion
 
-        #region --- Editor Access ---
-
-        public void EditorAddChapter(CameraChapter InChapter) => chapters.Add(InChapter);
-        public void EditorClearChapters() => chapters.Clear();
-
-        #endregion
-
 #if UNITY_EDITOR
         #region --- Debug / Test ---
 
         [Button("🎬 Play Test Focus In-Game")]
-        public GameObject EditorTestFocusTimeline()
+        public void EditorTestFocusTimeline()
         {
             if (!Application.isPlaying)
             {
                 Debug.LogWarning("[SequenceModule] Test Focus only works in Play Mode.");
-                return null;
+                return;
             }
 
             if (debugFocusTimeline == null)
             {
                 Debug.LogError("[SequenceModule] Please assign a 'debugFocusTimeline' asset to test.");
-                return null;
+                return;
             }
 
             if (playableDirector == null)
@@ -445,69 +368,24 @@ namespace Metroma.CameraTool.Modules
             }
 
             if (playableDirector == null)
+                return;
+
+            PlayFocusStandalone(playableDirector, debugFocusTimeline, debugBlendIn, debugBlendOut, true, null, () => 
             {
-                Debug.LogError("[SequenceModule] Critical: No Master PlayableDirector found on the CameraRig.");
-                return null;
-            }
-
-            // 1. Lock the rail progress
-            LockRail();
-
-            // 2. Cache original timeline state
-            PlayableAsset originalTimeline = playableDirector.playableAsset;
-            double originalTime = playableDirector.time;
-            PlayState originalState = playableDirector.state;
-
-            // 3. Hijack the master director
-            playableDirector.playableAsset = debugFocusTimeline;
-            bool shouldReturnToRail = (originalTimeline != null && originalState == PlayState.Playing);
-            
-            // Auto-bind track to CameraRig
-            foreach (var track in debugFocusTimeline.GetOutputTracks())
-            {
-                if (track is Metroma.FocusCam.FocusCamTrack)
-                {
-                    playableDirector.SetGenericBinding(track, _rig);
-                }
-            }
-
-            // 4. Play standalone
-            PlayFocusStandalone(playableDirector, debugFocusTimeline, debugBlendIn, debugBlendOut, shouldReturnToRail, null, () => 
-            {
-                // 5. Restore state
-                if (shouldReturnToRail)
-                {
-                    if (playableDirector != null)
-                    {
-                        playableDirector.playableAsset = originalTimeline;
-                        playableDirector.time = originalTime;
-                        if (originalState == PlayState.Playing) playableDirector.Play();
-                        else playableDirector.Pause();
-                    }
-                    
-                    UnlockRail();
-                    Debug.Log("[SequenceModule] FocusCam test complete. Master Timeline restored.");
-                }
+                Debug.Log("[SequenceModule] FocusCam test complete.");
             });
-
-            return gameObject;
         }
 
         #endregion
 #endif
     }
 
-    /// <summary>
-    /// Forwards Timeline INotifications from an external PlayableDirector to the main SequenceModule.
-    /// This is required because Unity routes intrinsic Timeline markers exclusively to the GameObject hosting the PlayableDirector.
-    /// </summary>
     public class CameraMarkerForwarder : MonoBehaviour, INotificationReceiver
     {
         public SequenceModule TargetModule;
 
         public void OnNotify(Playable origin, INotification notification, object context)
         {
-            Debug.Log($"[CameraMarkerForwarder] Intercepted notification: {notification.GetType().Name}. Forwarding to {TargetModule}");
             if (TargetModule != null)
             {
                 TargetModule.OnNotify(origin, notification, context);
