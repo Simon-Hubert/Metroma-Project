@@ -307,7 +307,6 @@ Shader "Custom/AdLit" {
 				Light mainLight = GetMainLight();
 				lighting += LightingPhysicallyBased(data, mainLight, inputData.normalWS, inputData.viewDirectionWS);
 				
-                #ifdef _ADDITIONAL_LIGHTS
 
                 #if USE_CLUSTER_LIGHT_LOOP
                 UNITY_LOOP for (uint lightIndex = 0; lightIndex < min(URP_FP_DIRECTIONAL_LIGHTS_COUNT, MAX_VISIBLE_LIGHTS); lightIndex++)
@@ -321,8 +320,7 @@ Shader "Custom/AdLit" {
                     Light additionalLight = GetAdditionalLight(lightIndex, inputData.positionWS, half4(1,1,1,1));
 					lighting += LightingPhysicallyBased(data, additionalLight, inputData.normalWS, inputData.viewDirectionWS);
                 LIGHT_LOOP_END
-                
-                #endif
+				
 				return lighting;
 			}
 			

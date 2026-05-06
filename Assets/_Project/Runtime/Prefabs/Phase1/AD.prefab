@@ -2223,6 +2223,88 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1507939255576002601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 343697456919023583}
+  - component: {fileID: 7167630513136153975}
+  - component: {fileID: 8370709887755024102}
+  m_Layer: 0
+  m_Name: Target3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &343697456919023583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507939255576002601}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.7, y: 4.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1827885439909750532}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7167630513136153975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507939255576002601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6742ad2288be5b049bd2050916669f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Target
+  _targetRB: {fileID: 0}
+--- !u!58 &8370709887755024102
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507939255576002601}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
 --- !u!1 &1849746307365956222
 GameObject:
   m_ObjectHideFlags: 0
@@ -2524,6 +2606,70 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &2074639484786107065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1827885439909750532}
+  - component: {fileID: 3973167791668331129}
+  m_Layer: 0
+  m_Name: Targets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1827885439909750532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074639484786107065}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 36.41, y: 5.92, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 726213845659071828}
+  - {fileID: 1750363910898056235}
+  - {fileID: 6964882718967509352}
+  - {fileID: 343697456919023583}
+  m_Father: {fileID: 5451329846650772222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3973167791668331129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074639484786107065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf0bfd63fc93d84c913071b6e41fa51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.TargetManager
+  _targetRB: {fileID: 3388834314268752374}
+  _onValidatedAny:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 193137522313077546}
+        m_TargetAssemblyTypeName: Metroma.ConditionalEvent, Metroma
+        m_MethodName: Evaluate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2218395922572858138
 GameObject:
   m_ObjectHideFlags: 0
@@ -2968,6 +3114,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
   _object: {fileID: 1223910198574568131}
   _active: 1
+--- !u!1 &2804757893583014230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 474057766390545652}
+  - component: {fileID: 2491835959917464871}
+  m_Layer: 0
+  m_Name: CollisionTasse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &474057766390545652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2804757893583014230}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.21, y: 1.77, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1202796413557228937}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &2491835959917464871
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2804757893583014230}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 1.2142849, y: 6.7012978}
+  - {x: 0.48701477, y: 6.8571434}
+  - {x: -0.4077568, y: 6.762148}
+  - {x: -1.4663296, y: 6.471695}
+  - {x: -3.069212, y: 5.8194256}
+  - {x: -5.11965, y: 4.3573017}
+  - {x: -6.3415203, y: 1.939825}
+  - {x: -6.58057, y: -0.21143913}
+  - {x: -6.1415024, y: -2.3789864}
+  - {x: -4.9593964, y: -4.0323296}
+  - {x: -3.6111298, y: -5.4377403}
+  - {x: -2.3453293, y: -6.129757}
+  - {x: -0.40197563, y: -6.6348}
+  - {x: 1.7890911, y: -6.46595}
+  - {x: 3.534649, y: -5.539589}
+  - {x: 4.9818325, y: -4.1723976}
+  - {x: 5.9670734, y: -2.6235714}
+  - {x: 6.541868, y: -0.9052048}
+  - {x: 6.4821453, y: 1.2578411}
+  - {x: 6.196518, y: 2.8272133}
+  - {x: 4.607376, y: 4.8332253}
+  - {x: 2.5893612, y: 6.2063694}
+  - {x: 0.5, y: 6.805195}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &2815784573050750604
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,6 +3392,88 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &3056518029099577274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1750363910898056235}
+  - component: {fileID: 9069598214769192184}
+  - component: {fileID: 5334119842032482419}
+  m_Layer: 0
+  m_Name: Target1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1750363910898056235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056518029099577274}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.89, y: 0.48, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1827885439909750532}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9069598214769192184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056518029099577274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6742ad2288be5b049bd2050916669f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Target
+  _targetRB: {fileID: 0}
+--- !u!58 &5334119842032482419
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056518029099577274}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
 --- !u!1 &3104928767050071157
 GameObject:
   m_ObjectHideFlags: 0
@@ -4052,6 +4376,88 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
   _object: {fileID: 1223910198574568131}
   _active: 0
+--- !u!1 &3558401740550504296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 726213845659071828}
+  - component: {fileID: 2556294986805033991}
+  - component: {fileID: 1090783950482959004}
+  m_Layer: 0
+  m_Name: Target0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &726213845659071828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558401740550504296}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.5, y: 0.32, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1827885439909750532}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2556294986805033991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558401740550504296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6742ad2288be5b049bd2050916669f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Target
+  _targetRB: {fileID: 0}
+--- !u!58 &1090783950482959004
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558401740550504296}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
 --- !u!1 &3694084959744157799
 GameObject:
   m_ObjectHideFlags: 0
@@ -4282,6 +4688,88 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &3856280694109866744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6964882718967509352}
+  - component: {fileID: 8743049128322077508}
+  - component: {fileID: 3079105950167798082}
+  m_Layer: 0
+  m_Name: Target2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6964882718967509352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3856280694109866744}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.4, y: 4.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1827885439909750532}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8743049128322077508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3856280694109866744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6742ad2288be5b049bd2050916669f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Target
+  _targetRB: {fileID: 0}
+--- !u!58 &3079105950167798082
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3856280694109866744}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
 --- !u!1 &4089088015128593177
 GameObject:
   m_ObjectHideFlags: 0
@@ -4846,9 +5334,9 @@ MonoBehaviour:
           Initialized: 0
         AllowAdditivePlays: 1
         RelativePosition: 1
-        DeterminePositionsOnPlay: 0
+        DeterminePositionsOnPlay: 1
         InitialPosition: {x: 0, y: 0, z: 0}
-        DestinationPosition: {x: 2, y: -1, z: 0}
+        DestinationPosition: {x: 0.6, y: -0.5, z: 0}
         InitialPositionTransform: {fileID: 0}
         DestinationPositionTransform: {fileID: 0}
         AnimatePositionCurveX:
@@ -6186,10 +6674,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.CameraController
   _cam: {fileID: 8780215506598114258}
   _view: {fileID: 5790962908096132417}
-  _dampen: 1
-  _f: 1
-  _z: 2
-  _r: 0
+  _dampen: 0
+  _f: 0.5
+  _z: 0.9
+  _r: 1
 --- !u!1 &7429281144408778830
 GameObject:
   m_ObjectHideFlags: 0
@@ -6637,8 +7125,8 @@ MonoBehaviour:
   _cam: {fileID: 8780215506598114258}
   _view: {fileID: 2917634970534685884}
   _dampen: 1
-  _f: 1
-  _z: 2
+  _f: 0.5
+  _z: 1
   _r: 0
 --- !u!1 &8520121446350975075
 GameObject:
@@ -6822,6 +7310,51 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &8979287301884962073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4976182165918082917}
+  - component: {fileID: 4294561009500216763}
+  m_Layer: 0
+  m_Name: Wait 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4976182165918082917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8979287301884962073}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2899668079153871348}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4294561009500216763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8979287301884962073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1129c48e53f61f24889a822b21214186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.WaitForDuration
+  _duration: 1.999999
 --- !u!1001 &1572332531493424142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6866,9 +7399,25 @@ PrefabInstance:
       propertyPath: _onValidated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1692268890357362468, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      propertyPath: _condition
+      value: 2639551511272882264
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692268890357362468, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      propertyPath: 'managedReferences[2639551511272882264]'
+      value: Metroma Metroma.EvaluatableRef
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692268890357362468, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      propertyPath: managedReferences[2639551511272882264]._evaluatable
+      value: 
+      objectReference: {fileID: 3973167791668331129}
     - target: {fileID: 1876116471923354752, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1883725780530250706, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.82
       objectReference: {fileID: 0}
     - target: {fileID: 1909444607559605519, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
       propertyPath: m_LocalScale.x
@@ -6914,6 +7463,10 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 8780215506598114258}
+    - target: {fileID: 4757884151355669817, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      propertyPath: _controllable
+      value: 
+      objectReference: {fileID: 4586418315343263478}
     - target: {fileID: 4801600556589928551, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
       propertyPath: _waitForEnd
       value: 0
@@ -7366,6 +7919,30 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 8780215506598114258}
+    - target: {fileID: 6177711961440332674, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      propertyPath: _duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177711961440332674, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      propertyPath: _curve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177711961440332674, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      propertyPath: _curve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177711961440332674, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      propertyPath: _curve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177711961440332674, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      propertyPath: _curve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177711961440332674, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      propertyPath: _curve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6708342470190510380, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
       propertyPath: FeedbacksList.Array.size
       value: 2
@@ -7970,7 +8547,8 @@ PrefabInstance:
       propertyPath: _waitForEnd
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6465018687503592221, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7698381742259749181, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
@@ -7988,9 +8566,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4462993400655099386, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8292367153809849972}
+    - targetCorrespondingSourceObject: {fileID: 4462993400655099386, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4976182165918082917}
     - targetCorrespondingSourceObject: {fileID: 6806363487278618352, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
       insertIndex: 4
       addedObject: {fileID: 2758317842596065468}
+    - targetCorrespondingSourceObject: {fileID: 6806363487278618352, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1827885439909750532}
     - targetCorrespondingSourceObject: {fileID: 2897797584609617958, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
       insertIndex: 0
       addedObject: {fileID: 8183172611640815487}
@@ -8010,7 +8594,21 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2172340775836036255, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1940007304136644812}
+    - targetCorrespondingSourceObject: {fileID: 726094518554524130, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4586418315343263478}
   m_SourcePrefab: {fileID: 100100000, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+--- !u!114 &193137522313077546 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1692268890357362468, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+  m_PrefabInstance: {fileID: 1572332531493424142}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375058d1676525c4f97bcfead2902c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ConditionalEvent
 --- !u!1 &862360671864053905 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2172340775836036255, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
@@ -8113,6 +8711,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!4 &1150206289275817948 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1883725780530250706, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+  m_PrefabInstance: {fileID: 1572332531493424142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2057874375247462329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 674701892931302327, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
@@ -8129,6 +8732,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b62110f23b8f748898a3bd9e647bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::FixedView
+--- !u!1 &2288276134547699180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 726094518554524130, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+  m_PrefabInstance: {fileID: 1572332531493424142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4586418315343263478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2288276134547699180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c484a8812e55764f82faa3147583692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ToothBrushSnapControllable
+  activeAtStart: 0
+  showDebugLog: 0
+  _isActive: 0
+  OnMoveStartUnity:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMoveEndUnity:
+    m_PersistentCalls:
+      m_Calls: []
+  OnActionStartUnity:
+    m_PersistentCalls:
+      m_Calls: []
+  OnActionEndUnity:
+    m_PersistentCalls:
+      m_Calls: []
+  _distance: 12.36
+  _distanceOverAngle:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.025051117
+      value: 0.35411552
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.84338397
+      value: 0.59682465
+      inSlope: 0.7435325
+      outSlope: 0.7435325
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _center: {fileID: 1150206289275817948}
 --- !u!4 &2321851468228893911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3885150177575850201, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
@@ -8155,6 +8825,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7a73bd637a4e4bb9f541ab9877ee53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Block
+--- !u!50 &3388834314268752374 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 4239438393853900280, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
+  m_PrefabInstance: {fileID: 1572332531493424142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3882218108543369483 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2320027629880986885, guid: 922efb8466d0efd4a94b1f6a2b5bb187, type: 3}
@@ -8410,6 +9085,38 @@ PrefabInstance:
     - target: {fileID: 169260810640303763, guid: 201c565787287194f8b44841672c5cef, type: 3}
       propertyPath: m_Name
       value: BLOCK-RejoindreAmis-Var1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647504069032418775, guid: 201c565787287194f8b44841672c5cef, type: 3}
+      propertyPath: managedReferences[8618242053378146308].value
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034152636380433552, guid: 201c565787287194f8b44841672c5cef, type: 3}
+      propertyPath: _max
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034152636380433552, guid: 201c565787287194f8b44841672c5cef, type: 3}
+      propertyPath: _pos.m_Curve.Array.data[0].inSlope
+      value: 0.30992737
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034152636380433552, guid: 201c565787287194f8b44841672c5cef, type: 3}
+      propertyPath: _pos.m_Curve.Array.data[1].inSlope
+      value: -0.1649486
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034152636380433552, guid: 201c565787287194f8b44841672c5cef, type: 3}
+      propertyPath: _pos.m_Curve.Array.data[0].outSlope
+      value: 0.30992737
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034152636380433552, guid: 201c565787287194f8b44841672c5cef, type: 3}
+      propertyPath: _pos.m_Curve.Array.data[1].inWeight
+      value: 0.40416664
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034152636380433552, guid: 201c565787287194f8b44841672c5cef, type: 3}
+      propertyPath: _pos.m_Curve.Array.data[1].outSlope
+      value: -0.1649486
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034152636380433552, guid: 201c565787287194f8b44841672c5cef, type: 3}
+      propertyPath: _pos.m_Curve.Array.data[0].outWeight
+      value: 0.24583334
       objectReference: {fileID: 0}
     - target: {fileID: 4725002399071047719, guid: 201c565787287194f8b44841672c5cef, type: 3}
       propertyPath: color.a
@@ -8891,6 +9598,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6115357028199278035, guid: 41146f803a7901042be073333e5b3312, type: 3}
+      propertyPath: _dashDistance
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115357028199278035, guid: 41146f803a7901042be073333e5b3312, type: 3}
       propertyPath: _onDeath.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -8994,6 +9705,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8414450917787545520, guid: 41146f803a7901042be073333e5b3312, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5250010581025118931}
+    - targetCorrespondingSourceObject: {fileID: 8414450917787545520, guid: 41146f803a7901042be073333e5b3312, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 474057766390545652}
     - targetCorrespondingSourceObject: {fileID: 181312269020680550, guid: 41146f803a7901042be073333e5b3312, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2473325452605980081}

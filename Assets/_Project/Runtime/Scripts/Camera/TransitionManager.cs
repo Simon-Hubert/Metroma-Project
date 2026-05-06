@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace Metroma
 {
+    [Serializable]
     struct MiniGameTransitionData
     {
         public Camera Camera;
         public Material Material;
         public AView View;
-        public float DurationIn;
-        public float DurationOut;
+        public float Duration;
         public bool IsIn;
     }
     
@@ -33,8 +33,8 @@ namespace Metroma
             _isTransitioning = true;
             ActivateZTest(data.Material);
             float t = 0f;
-            while (t < data.DurationIn) {
-                float p = t / data.DurationIn;
+            while (t < data.Duration) {
+                float p = t / data.Duration;
                 data.Material.SetFloat(Transition, 1-p);
                 t += Time.deltaTime;
                 yield return null;
@@ -46,8 +46,8 @@ namespace Metroma
         IEnumerator TransiOutCoroutine(MiniGameTransitionData data) {
             _isTransitioning = true;
             float t = 0f;
-            while (t < data.DurationOut) {
-                float p = t / data.DurationOut;
+            while (t < data.Duration) {
+                float p = t / data.Duration;
                 data.Material.SetFloat(Transition, p);
                 t += Time.deltaTime;
                 yield return null;
