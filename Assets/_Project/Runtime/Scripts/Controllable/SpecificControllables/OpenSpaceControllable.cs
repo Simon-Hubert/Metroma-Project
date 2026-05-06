@@ -11,7 +11,7 @@ namespace Metroma
         [SerializeField] private AnimationCurve _accelCurve;
         
         [SerializeField] private float _speed = 100;
-        [SerializeField, ReadOnly, ConditionParam] private float _currentSpeed;
+        [SerializeField, ReadOnly] private float _currentSpeed;
         public float GetSpeed { get => _currentSpeed; }
         
         

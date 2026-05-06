@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using NaughtyAttributes;
 
 namespace Metroma.Utils
 {
@@ -13,7 +14,7 @@ namespace Metroma.Utils
         public Vector3 GetIndex(int index) => (points.Count > 1 && index >= 0 && index < points.Count) ? points[index].position : Vector3.zero;
         public int GetNbSegments { get => points.Count > 1 ? points.Count - 1 : 0; }
 
-        private int _currentSegment;
+        [SerializeField, ReadOnly] private int _currentSegment;
         public int CurrentSegment {
             get => _currentSegment;
             set {
@@ -32,7 +33,7 @@ namespace Metroma.Utils
                 }
             }
         }
-        private int _passNext;
+        [SerializeField, ReadOnly] private int _passNext;
         public int GetPassNext { get => _passNext; }
         public void ResetPassNext() => _passNext = 0;
 
@@ -88,20 +89,18 @@ namespace Metroma.Utils
 
             if (lerp < 0f)
             {
-                Debug.Log($"MOVE - previous segment");
                 Vector3 res = GetSegmentStart();
                 CurrentSegment -= 1;
                 return res;
             }
             else if (lerp > 1f)
             {
-                Debug.Log($"MOVE - next segment");
                 Vector3 res = GetSegmentEnd();
                 CurrentSegment += 1;
                 return res;
             }
             else {
-                Debug.Log($"MOVE - projection");
+                _passNext = 0;
                 return GetSegmentStart() + GetSegmentNormal() * dot;
             }
         }
