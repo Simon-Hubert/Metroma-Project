@@ -1,5 +1,73 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9146415242240718979
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f57ea2c1ea04e468a58b3fe66e5560, type: 3}
+  m_Name: "Camera/\U0001F441 FPS Observation"
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.CameraTool.Timeline.CameraFPSMarker
+  m_Time: 3.3666666666666667
+  profile: {fileID: 11400000, guid: a98fe5208dfcc954c9c2355664119696, type: 2}
+  deactivate: 0
+  startPosition: {x: -46.356728, y: 19.479912, z: -2.307182}
+  startRotation: {x: 9.568198, y: 84.29386, z: -0.0012368218}
+  transitionDuration: 1
+  transitionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  exitTransitionDuration: 1
+  exitTransitionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  fpsDuration: 0
 --- !u!114 &-6480847778579751623
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9,17 +77,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2958cf08d9048bc4a88dc2a74e9566db, type: 3}
+  m_Script: {fileID: 11500000, guid: f03002f66b96a264398af1f5776b3e7a, type: 3}
   m_Name: FocusCamClip(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: Metroma.FocusCam::Metroma.FocusCam.FocusCamClip
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.FocusCam.FocusCamClip
   mode: 1
   position: {x: -46.54374, y: 19.444458, z: -2.3343427}
   rotation: {x: 32.407795, y: 88.68428, z: 0.262637}
-  overridePosition: 1
+  overridePosition: 0
   cameraPosition: {x: -8.868177, y: 21.756733, z: -70.47347}
-  overrideFOV: 1
+  overrideFOV: 0
   fov: 60
   roll: 0
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &-5704340795741178673
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -29,17 +99,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2958cf08d9048bc4a88dc2a74e9566db, type: 3}
+  m_Script: {fileID: 11500000, guid: f03002f66b96a264398af1f5776b3e7a, type: 3}
   m_Name: FocusCamClip(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: Metroma.FocusCam::Metroma.FocusCam.FocusCamClip
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.FocusCam.FocusCamClip
   mode: 1
   position: {x: -46.54374, y: 19.444458, z: -2.3343427}
   rotation: {x: 347.85504, y: 291.3143, z: 0.26272002}
-  overridePosition: 1
+  overridePosition: 0
   cameraPosition: {x: -8.874684, y: 21.759504, z: -70.47222}
-  overrideFOV: 1
+  overrideFOV: 0
   fov: 60
   roll: 0
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &-1138755453313176344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -49,17 +121,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2958cf08d9048bc4a88dc2a74e9566db, type: 3}
+  m_Script: {fileID: 11500000, guid: f03002f66b96a264398af1f5776b3e7a, type: 3}
   m_Name: FocusCamClip(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: Metroma.FocusCam::Metroma.FocusCam.FocusCamClip
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.FocusCam.FocusCamClip
   mode: 1
   position: {x: -46.54374, y: 19.444458, z: -2.3343427}
   rotation: {x: 347.85504, y: 291.3143, z: 0.26272002}
-  overridePosition: 1
+  overridePosition: 0
   cameraPosition: {x: -8.874684, y: 21.759504, z: -70.47222}
-  overrideFOV: 1
+  overrideFOV: 0
   fov: 60
   roll: 0
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,17 +164,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2958cf08d9048bc4a88dc2a74e9566db, type: 3}
+  m_Script: {fileID: 11500000, guid: f03002f66b96a264398af1f5776b3e7a, type: 3}
   m_Name: FocusCamClip(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: Metroma.FocusCam::Metroma.FocusCam.FocusCamClip
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.FocusCam.FocusCamClip
   mode: 1
   position: {x: -46.54374, y: 19.444458, z: -2.3343427}
   rotation: {x: 342.35468, y: 23.013292, z: 0.24867019}
-  overridePosition: 1
+  overridePosition: 0
   cameraPosition: {x: -8.869938, y: 21.759844, z: -70.47029}
-  overrideFOV: 1
+  overrideFOV: 0
   fov: 60
   roll: 0
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1435850806687848692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,9 +186,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 278a5430cbefddd48a37dceff7b9ea03, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c5babc2f4880d24bace57156ddc1380, type: 3}
   m_Name: Focus Cam Track
-  m_EditorClassIdentifier: Metroma.FocusCam::Metroma.FocusCam.FocusCamTrack
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.FocusCam.FocusCamTrack
   m_Version: 3
   m_AnimClip: {fileID: 0}
   m_Locked: 0
@@ -159,7 +235,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -172,7 +266,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: FocusCamClip
+    m_DisplayName: ' '
   - m_Version: 1
     m_Start: 0
     m_ClipIn: 0
@@ -184,105 +278,6 @@ MonoBehaviour:
     m_EaseOutDuration: 0
     m_BlendInDuration: 1.8333333333333333
     m_BlendOutDuration: -1
-    m_MixInCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_MixOutCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_BlendInCurveMode: 0
-    m_BlendOutCurveMode: 0
-    m_ExposedParameterNames: []
-    m_AnimationCurves: {fileID: 0}
-    m_Recordable: 0
-    m_PostExtrapolationMode: 0
-    m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 0
-    m_PreExtrapolationTime: 0
-    m_DisplayName: FocusCamClip
-  - m_Version: 1
-    m_Start: 2.3666666666666667
-    m_ClipIn: 0
-    m_Asset: {fileID: 5375930380721204880}
-    m_Duration: 1
-    m_TimeScale: 1
-    m_ParentTrack: {fileID: 1435850806687848692}
-    m_EaseInDuration: 0
-    m_EaseOutDuration: 0
-    m_BlendInDuration: -1
-    m_BlendOutDuration: 1
-    m_MixInCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_MixOutCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_BlendInCurveMode: 0
-    m_BlendOutCurveMode: 0
-    m_ExposedParameterNames: []
-    m_AnimationCurves: {fileID: 0}
-    m_Recordable: 0
-    m_PostExtrapolationMode: 0
-    m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 0
-    m_PreExtrapolationTime: 0
-    m_DisplayName: FocusCamClip
-  - m_Version: 1
-    m_Start: 2.3666666666666667
-    m_ClipIn: 0
-    m_Asset: {fileID: 147559599441919538}
-    m_Duration: 1
-    m_TimeScale: 1
-    m_ParentTrack: {fileID: 1435850806687848692}
-    m_EaseInDuration: 0
-    m_EaseOutDuration: 0
-    m_BlendInDuration: 1
-    m_BlendOutDuration: -1
-    m_MixInCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_MixOutCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_BlendInCurveMode: 0
-    m_BlendOutCurveMode: 0
-    m_ExposedParameterNames: []
-    m_AnimationCurves: {fileID: 0}
-    m_Recordable: 0
-    m_PostExtrapolationMode: 0
-    m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 0
-    m_PreExtrapolationTime: 0
-    m_DisplayName: FocusCamClip
-  - m_Version: 1
-    m_Start: 3.3666666666666667
-    m_ClipIn: 0
-    m_Asset: {fileID: 1955916355353558269}
-    m_Duration: 1.8666666666666663
-    m_TimeScale: 1
-    m_ParentTrack: {fileID: 1435850806687848692}
-    m_EaseInDuration: 0
-    m_EaseOutDuration: 0
-    m_BlendInDuration: -1
-    m_BlendOutDuration: 1.8666666666666658
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
@@ -322,21 +317,90 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: FocusCamClip
+    m_DisplayName: ' '
   - m_Version: 1
-    m_Start: 3.3666666666666667
+    m_Start: 2.3666666666666667
     m_ClipIn: 0
-    m_Asset: {fileID: -5704340795741178673}
-    m_Duration: 2.916666666666667
+    m_Asset: {fileID: 5375930380721204880}
+    m_Duration: 1
     m_TimeScale: 1
     m_ParentTrack: {fileID: 1435850806687848692}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: 1.8666666666666658
-    m_BlendOutDuration: -1
+    m_BlendInDuration: -1
+    m_BlendOutDuration: 1
     m_MixInCurve:
       serializedVersion: 2
       m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: ' '
+  - m_Version: 1
+    m_Start: 2.3666666666666667
+    m_ClipIn: 0
+    m_Asset: {fileID: 147559599441919538}
+    m_Duration: 1
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 1435850806687848692}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -355,7 +419,127 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: FocusCamClip
+    m_DisplayName: ' '
+  - m_Version: 1
+    m_Start: 3.3666666666666667
+    m_ClipIn: 0
+    m_Asset: {fileID: 1955916355353558269}
+    m_Duration: 1.8666666666666663
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 1435850806687848692}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: 1.8666666666666658
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: ' '
+  - m_Version: 1
+    m_Start: 3.3666666666666667
+    m_ClipIn: 0
+    m_Asset: {fileID: -5704340795741178673}
+    m_Duration: 2.916666666666667
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 1435850806687848692}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 1.8666666666666658
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: ' '
   - m_Version: 1
     m_Start: 6.283333333333333
     m_ClipIn: 0
@@ -388,7 +572,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: FocusCamClip
+    m_DisplayName: ' '
   - m_Version: 1
     m_Start: 6.283333333333333
     m_ClipIn: 0
@@ -421,9 +605,10 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: FocusCamClip
+    m_DisplayName: ' '
   m_Markers:
-    m_Objects: []
+    m_Objects:
+    - {fileID: -9146415242240718979}
 --- !u!114 &1538963749676293901
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -433,12 +618,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37c1e8e2b308b69459a7cea92efd65e5, type: 3}
+  m_Script: {fileID: 11500000, guid: f03002f66b96a264398af1f5776b3e7a, type: 3}
   m_Name: FocusCamClip
   m_EditorClassIdentifier: Metroma.CameraTool::Metroma.FocusCam.FocusCamClip
   mode: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
+  overridePosition: 0
+  cameraPosition: {x: 0, y: 0, z: 0}
+  overrideFOV: 0
+  fov: 60
+  roll: 0
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1955916355353558269
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -448,17 +640,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2958cf08d9048bc4a88dc2a74e9566db, type: 3}
+  m_Script: {fileID: 11500000, guid: f03002f66b96a264398af1f5776b3e7a, type: 3}
   m_Name: FocusCamClip(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: Metroma.FocusCam::Metroma.FocusCam.FocusCamClip
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.FocusCam.FocusCamClip
   mode: 1
   position: {x: -46.54374, y: 19.444458, z: -2.3343427}
   rotation: {x: 342.35468, y: 23.01329, z: 0.24867035}
-  overridePosition: 1
+  overridePosition: 0
   cameraPosition: {x: -8.869938, y: 21.759844, z: -70.47029}
-  overrideFOV: 1
+  overrideFOV: 0
   fov: 60
   roll: 0
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &5375930380721204880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -468,17 +662,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2958cf08d9048bc4a88dc2a74e9566db, type: 3}
+  m_Script: {fileID: 11500000, guid: f03002f66b96a264398af1f5776b3e7a, type: 3}
   m_Name: FocusCamClip(Clone)(Clone)
-  m_EditorClassIdentifier: Metroma.FocusCam::Metroma.FocusCam.FocusCamClip
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.FocusCam.FocusCamClip
   mode: 1
   position: {x: -46.54374, y: 19.444458, z: -2.3343427}
   rotation: {x: 10.681462, y: 131.62393, z: 0.21667928}
-  overridePosition: 1
+  overridePosition: 0
   cameraPosition: {x: -8.868612, y: 21.758041, z: -70.475914}
-  overrideFOV: 1
+  overrideFOV: 0
   fov: 60
   roll: 0
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &8535254669069169929
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -488,17 +684,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2958cf08d9048bc4a88dc2a74e9566db, type: 3}
+  m_Script: {fileID: 11500000, guid: f03002f66b96a264398af1f5776b3e7a, type: 3}
   m_Name: FocusCamClip(Clone)
-  m_EditorClassIdentifier: Metroma.FocusCam::Metroma.FocusCam.FocusCamClip
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.FocusCam.FocusCamClip
   mode: 1
   position: {x: -46.54374, y: 19.444458, z: -2.3343427}
   rotation: {x: 10.681462, y: 131.62393, z: 0.21667928}
-  overridePosition: 1
+  overridePosition: 0
   cameraPosition: {x: -8.868612, y: 21.758041, z: -70.475914}
-  overrideFOV: 1
+  overrideFOV: 0
   fov: 60
   roll: 0
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &8640527992012964971
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -508,14 +706,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2958cf08d9048bc4a88dc2a74e9566db, type: 3}
+  m_Script: {fileID: 11500000, guid: f03002f66b96a264398af1f5776b3e7a, type: 3}
   m_Name: FocusCamClip
-  m_EditorClassIdentifier: Metroma.FocusCam::Metroma.FocusCam.FocusCamClip
+  m_EditorClassIdentifier: Metroma.CameraTool::Metroma.FocusCam.FocusCamClip
   mode: 1
   position: {x: -46.54374, y: 19.444458, z: -2.3343427}
   rotation: {x: 359.81827, y: 93.35526, z: 0.22500318}
   overridePosition: 1
-  cameraPosition: {x: -8.867645, y: 21.758738, z: -70.473724}
+  cameraPosition: {x: -46.356728, y: 19.479912, z: -2.307182}
   overrideFOV: 1
   fov: 60
   roll: 0
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}

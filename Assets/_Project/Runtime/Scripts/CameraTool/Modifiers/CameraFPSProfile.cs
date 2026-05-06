@@ -50,7 +50,16 @@ namespace Metroma.CameraTool.Modifiers
         public float rotationMomentum = 0.5f;
 
         [Header("Procedural Motion")]
-        [Tooltip("Optional Handheld Profile to drive the camera motion. If assigned, legacy settings below are ignored.")]
+        [Tooltip("Enable or disable the breathing/sway effect.")]
+        public bool useSway = true;
+        
+        [Tooltip("Enable or disable the high-frequency micro-jitter effect.")]
+        public bool useJitter = true;
+
+        [Tooltip("Enable or disable the dynamic roll/tilt when looking sideways.")]
+        public bool useTilt = true;
+
+        [Tooltip("Optional Handheld Profile to drive the camera motion. If assigned, legacy settings below are ignored (but toggles above still apply to the profile's influence).")]
         public CameraHandheldProfile handheldProfile;
 
         [Header("Legacy Motion (Manual)")]

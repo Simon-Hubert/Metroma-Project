@@ -24,6 +24,9 @@ namespace Metroma.CameraTool.Editor
         private SerializedProperty _tiltAmount;
         private SerializedProperty _tiltReturnSpeed;
         private SerializedProperty _rotationMomentum;
+        private SerializedProperty _useSway;
+        private SerializedProperty _useJitter;
+        private SerializedProperty _useTilt;
         private SerializedProperty _jitterAmount;
         private SerializedProperty _jitterSpeed;
 
@@ -46,6 +49,9 @@ namespace Metroma.CameraTool.Editor
             _tiltAmount = serializedObject.FindProperty("tiltAmount");
             _tiltReturnSpeed = serializedObject.FindProperty("tiltReturnSpeed");
             _rotationMomentum = serializedObject.FindProperty("rotationMomentum");
+            _useSway = serializedObject.FindProperty("useSway");
+            _useJitter = serializedObject.FindProperty("useJitter");
+            _useTilt = serializedObject.FindProperty("useTilt");
             _jitterAmount = serializedObject.FindProperty("jitterAmount");
             _jitterSpeed = serializedObject.FindProperty("jitterSpeed");
         }
@@ -88,27 +94,41 @@ namespace Metroma.CameraTool.Editor
             // --- ✨ JUICE & BREATH ---
             using (new SectionScope("✨ CINEMATIC JUICE", new Color(0.4f, 1f, 0.4f)))
             {
+                EditorGUILayout.PropertyField(_useSway, new GUIContent("USE SWAY (BREATH)"));
+                EditorGUILayout.PropertyField(_useTilt, new GUIContent("USE DYNAMIC TILT (ROLL)"));
+                
+                EditorGUILayout.Space(2);
+                
+                GUI.enabled = _useSway.boolValue || _useJitter.boolValue;
                 EditorGUILayout.PropertyField(_handheldProfile, new GUIContent("HANDHELD PROFILE (ADVANCED)"));
-                if (_handheldProfile.objectReferenceValue != null)
+                if (GUI.enabled && _handheldProfile.objectReferenceValue != null)
                 {
-                    EditorGUILayout.HelpBox("Using dedicated Handheld Profile. Manual settings below are disabled.", MessageType.None);
+                    EditorGUILayout.HelpBox("Using Handheld Profile for Motion. Manual settings below are overridden.", MessageType.None);
                 }
+                GUI.enabled = true;
 
                 DrawSeparator();
 
-                EditorGUILayout.PropertyField(_swayAmount, new GUIContent("SWAY (BREATH)"));
+                GUI.enabled = _useSway.boolValue;
+                EditorGUILayout.PropertyField(_swayAmount, new GUIContent("SWAY INTENSITY"));
                 EditorGUILayout.PropertyField(_swaySpeed, new GUIContent("SWAY SPEED"));
+                GUI.enabled = true;
                 
                 DrawSeparator();
 
-                EditorGUILayout.PropertyField(_tiltAmount, new GUIContent("DYNAMIC ROLL (TILT)"));
+                GUI.enabled = _useTilt.boolValue;
+                EditorGUILayout.PropertyField(_tiltAmount, new GUIContent("TILT AMOUNT"));
                 EditorGUILayout.PropertyField(_tiltReturnSpeed);
+                GUI.enabled = true;
             }
 
             // --- 📳 JITTER ---
             using (new SectionScope("📳 HANDHELD JITTER", new Color(1f, 0.8f, 0.4f)))
             {
-                GUI.enabled = _handheldProfile.objectReferenceValue == null;
+                EditorGUILayout.PropertyField(_useJitter, new GUIContent("USE MICRO-JITTER"));
+                EditorGUILayout.Space(2);
+
+                GUI.enabled = _useJitter.boolValue && _handheldProfile.objectReferenceValue == null;
                 EditorGUILayout.PropertyField(_jitterAmount, new GUIContent("JITTER (SHAKY)"));
                 EditorGUILayout.PropertyField(_jitterSpeed, new GUIContent("JITTER SPEED"));
                 GUI.enabled = true;

@@ -88,16 +88,13 @@ namespace Metroma.FocusCam
             // D. Application finale
             if (totalWeight > 0.001f)
             {
-                // 1. Application de la Position
+                // 1. Application de la Position (Seulement si au moins un clip demande l'override)
                 if (totalPosWeight > 0.001f)
                 {
                     Vector3 finalPos = blendedPosition / totalPosWeight;
                     _targetCamera.transform.position = Vector3.Lerp(_defaultPosition, finalPos, totalWeight);
                 }
-                else
-                {
-                    _targetCamera.transform.position = Vector3.Lerp(_defaultPosition, _defaultPosition, totalWeight);
-                }
+                // SINON : On ne touche pas à la position, on laisse le Rig ou le gameplay gérer.
 
                 // 2. Application de la Rotation
                 _targetCamera.transform.rotation = Quaternion.Slerp(_defaultRotation, blendedRotation, totalWeight);

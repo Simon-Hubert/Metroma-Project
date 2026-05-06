@@ -40,6 +40,11 @@ namespace Metroma.CameraTool.Modules
         private float _tiltVelocity;
         private Vector2 _lookVelocity;
 
+        private float _inTransitionTimer = 0f;
+        private float _inTransitionDuration = 0f;
+        private float _startPitch;
+        private float _startYaw;
+
         // --- Properties ---
 
         public int Priority => 20;
@@ -108,11 +113,23 @@ namespace Metroma.CameraTool.Modules
             _jitterTime += InDeltaTime * _activeProfile.jitterSpeed;
 
             // 2. Dynamic Tilt (Roll) based on horizontal movement
-            float targetTilt = -lookDelta.x * _activeProfile.tiltAmount;
+            float targetTilt = _activeProfile.useTilt ? -lookDelta.x * _activeProfile.tiltAmount : 0f;
             _currentTilt = Mathf.Lerp(_currentTilt, targetTilt, InDeltaTime * _activeProfile.tiltReturnSpeed);
             
             // 3. Momentum tracking
             _lookVelocity = Vector2.Lerp(_lookVelocity, lookDelta, InDeltaTime * (1f - _activeProfile.rotationMomentum) * 10f);
+
+            // 4. Smooth "In" Transition
+            if (_inTransitionTimer < _inTransitionDuration)
+            {
+                _inTransitionTimer += InDeltaTime;
+                float t = Mathf.Clamp01(_inTransitionTimer / _inTransitionDuration);
+                // Use a smooth easing
+                t = t * t * (3f - 2f * t);
+
+                _smoothPitch = Mathf.LerpAngle(_startPitch, _pitch, t);
+                _smoothYaw = Mathf.LerpAngle(_startYaw, _yaw, t);
+            }
         }
 
         // --- Public API ---
@@ -128,7 +145,8 @@ namespace Metroma.CameraTool.Modules
         /// <param name="InDuration">Duration of FPS mode in seconds. 0 = infinite (exit only via DisableFPS).</param>
         /// <param name="InExitDuration">Duration of the transition back to rail.</param>
         /// <param name="InExitCurve">Easing curve for the exit transition.</param>
-        public void EnableFPS(Vector3 InPosition, Quaternion InRotation, CameraFPSProfile InProfile, float InDuration = 0f, float InExitDuration = 1f, AnimationCurve InExitCurve = null)
+        /// <param name="InTransitionInDuration">Duration of the smooth internal rotation transition (default 0 = instant).</param>
+        public void EnableFPS(Vector3 InPosition, Quaternion InRotation, CameraFPSProfile InProfile, float InDuration = 0f, float InExitDuration = 1f, AnimationCurve InExitCurve = null, float InTransitionInDuration = 0.5f)
         {
             if (_isActive)
                 return;
@@ -158,6 +176,20 @@ namespace Metroma.CameraTool.Modules
             _smoothPitch = _pitch;
             _smoothYaw = _yaw;
 
+            // Initialize smooth "In" transition if requested
+            _inTransitionDuration = InTransitionInDuration;
+            _inTransitionTimer = 0f;
+            if (_inTransitionDuration > 0.01f && _rig != null && _rig.TargetCamera != null)
+            {
+                Vector3 currentEuler = _rig.TargetCamera.transform.rotation.eulerAngles;
+                _startPitch = currentEuler.x;
+                if (_startPitch > 180f) _startPitch -= 360f;
+                _startYaw = currentEuler.y;
+                
+                _smoothPitch = _startPitch;
+                _smoothYaw = _startYaw;
+            }
+
             _fpsDuration = InDuration;
             _fpsTimer = InDuration;
 
@@ -172,8 +204,9 @@ namespace Metroma.CameraTool.Modules
             if (_rig != null && _rig.Sequences != null && _rig.Sequences.Director != null)
                 _rig.Sequences.Director.Pause();
 
-            // Handle dedicated Handheld Profile if assigned
-            if (_activeProfile.handheldProfile != null && _rig != null && _rig.TargetCamera != null)
+            // Handle dedicated Handheld Profile if assigned and at least one motion effect is enabled
+            bool wantsHandheld = _activeProfile.useSway || _activeProfile.useJitter;
+            if (wantsHandheld && _activeProfile.handheldProfile != null && _rig != null && _rig.TargetCamera != null)
             {
                 _rig.TargetCamera.SetHandheld(true, _activeProfile.handheldProfile);
             }
@@ -248,29 +281,43 @@ namespace Metroma.CameraTool.Modules
             float totalNoiseY = 0f;
             float jitterRoll = 0f;
 
-            // Only use manual noise if NO dedicated handheld profile is assigned
+            // 1. Procedural Motion (Only if enabled in profile)
             if (_activeProfile.handheldProfile == null)
             {
                 // Natural Breathing (Sine-based Figure-8 pattern)
-                float breatheTime = _noiseTime; 
-                float breatheX = Mathf.Sin(breatheTime * 0.5f) * _activeProfile.swayAmount.x;
-                float breatheY = Mathf.Sin(breatheTime) * _activeProfile.swayAmount.y;
+                if (_activeProfile.useSway)
+                {
+                    float breatheTime = _noiseTime; 
+                    totalNoiseX += Mathf.Sin(breatheTime * 0.5f) * _activeProfile.swayAmount.x;
+                    totalNoiseY += Mathf.Sin(breatheTime) * _activeProfile.swayAmount.y;
+                }
                 
                 // High-frequency Handheld Jitter (Micro-tremors)
-                float jitterX = (Mathf.PerlinNoise(_jitterTime * 1.5f, 0f) - 0.5f) * _activeProfile.jitterAmount;
-                float jitterY = (Mathf.PerlinNoise(0f, _jitterTime * 1.5f) - 0.5f) * _activeProfile.jitterAmount;
+                if (_activeProfile.useJitter)
+                {
+                    float jitterX = (Mathf.PerlinNoise(_jitterTime * 1.5f, 0f) - 0.5f) * _activeProfile.jitterAmount;
+                    float jitterY = (Mathf.PerlinNoise(0f, _jitterTime * 1.5f) - 0.5f) * _activeProfile.jitterAmount;
 
-                totalNoiseX = breatheX + jitterX;
-                totalNoiseY = breatheY + jitterY;
-                jitterRoll = jitterX * 2f;
+                    totalNoiseX += jitterX;
+                    totalNoiseY += jitterY;
+                    jitterRoll = jitterX * 2f;
+                }
 
-                // Apply manual position shift
-                InBasePose.position = _frozenPosition + new Vector3(totalNoiseX * 0.05f, totalNoiseY * 0.05f, 0f);
+                // Apply manual position shift (only if sway or jitter is active)
+                if (_activeProfile.useSway || _activeProfile.useJitter)
+                    InBasePose.position = _frozenPosition + new Vector3(totalNoiseX * 0.05f, totalNoiseY * 0.05f, 0f);
+                else
+                    InBasePose.position = _frozenPosition;
             }
-            else
+            else if ((_activeProfile.useSway || _activeProfile.useJitter) && _activeProfile.handheldProfile != null)
             {
                 // When using HandheldProfile, we keep the position frozen
                 // The Handheld system (ModifierHandler) will apply its own offsets
+                InBasePose.position = _frozenPosition;
+            }
+            else
+            {
+                // Tripod mode or Handheld disabled: perfectly stable
                 InBasePose.position = _frozenPosition;
             }
             

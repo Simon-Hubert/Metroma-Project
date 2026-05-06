@@ -247,6 +247,9 @@ namespace Metroma.CameraTool.Modules
             CameraPose initialPose = _rig.CurrentPose;
 
             Internal_NotifyFocusStarted();
+#if UNITY_EDITOR
+            UnityEditor.Selection.activeObject = InDirector;
+#endif
             InStart?.Invoke();
 
             CameraPose targetPose = initialPose; // Fallback

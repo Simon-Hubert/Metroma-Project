@@ -190,6 +190,9 @@ namespace Metroma.CameraTool.Timeline
             {
                 if (restartIfPlaying) focusDirector.Stop();
                 focusDirector.Play();
+#if UNITY_EDITOR
+                UnityEditor.Selection.activeObject = focusDirector;
+#endif
                 focusDirector.Evaluate();
 
                 // 5. WAIT FOR FINISH (Robust loop)

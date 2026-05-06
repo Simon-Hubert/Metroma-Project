@@ -89,7 +89,7 @@ namespace Metroma.CameraTool.Timeline
             }
             else
             {
-                fpsModule.EnableFPS(targetPose.position, targetPose.rotation, profile, fpsDuration, exitTransitionDuration, exitTransitionCurve);
+                fpsModule.EnableFPS(targetPose.position, targetPose.rotation, profile, fpsDuration, exitTransitionDuration, exitTransitionCurve, 0.5f);
             }
         }
 
@@ -97,7 +97,7 @@ namespace Metroma.CameraTool.Timeline
         {
             yield return new WaitForSeconds(transitionDuration);
 
-            InFPSModule.EnableFPS(InTargetPose.position, InTargetPose.rotation, profile, fpsDuration, exitTransitionDuration, exitTransitionCurve);
+            InFPSModule.EnableFPS(InTargetPose.position, InTargetPose.rotation, profile, fpsDuration, exitTransitionDuration, exitTransitionCurve, transitionDuration > 0.1f ? 0.3f : 0f);
         }
     }
 }
