@@ -39,6 +39,133 @@ Transform:
   - {fileID: 7683861938010027461}
   m_Father: {fileID: 4384977609952780463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2470391101501880939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8421453872975353995}
+  - component: {fileID: 6420475636821518521}
+  - component: {fileID: 1838950542189157565}
+  m_Layer: 0
+  m_Name: pointLight (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 1
+  m_IsActive: 1
+--- !u!4 &8421453872975353995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2470391101501880939}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.09, y: -0, z: 1.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9113946110214356274}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &6420475636821518521
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2470391101501880939}
+  m_Enabled: 1
+  serializedVersion: 12
+  m_Type: 2
+  m_Color: {r: 0.90588236, g: 0.8627451, b: 0.79607844, a: 1}
+  m_Intensity: 1
+  m_Range: 5.2566314
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize2D: {x: 0.5, y: 0.5}
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 2
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
+--- !u!114 &1838950542189157565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2470391101501880939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &3489459236537481414
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +314,133 @@ Transform:
   - {fileID: 4342119500955411891}
   m_Father: {fileID: 4384977609952780463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5500726946156850068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4002956982219693341}
+  - component: {fileID: 5215475748325671068}
+  - component: {fileID: 3219139738746562868}
+  m_Layer: 0
+  m_Name: pointLight (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 1
+  m_IsActive: 1
+--- !u!4 &4002956982219693341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500726946156850068}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.3, y: -0, z: 2.058}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9113946110214356274}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &5215475748325671068
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500726946156850068}
+  m_Enabled: 1
+  serializedVersion: 12
+  m_Type: 2
+  m_Color: {r: 0.9056604, g: 0.8599331, b: 0.79458874, a: 1}
+  m_Intensity: 1
+  m_Range: 5.0235996
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize2D: {x: 0.5, y: 0.5}
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 2
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
+--- !u!114 &3219139738746562868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500726946156850068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &5548319482678463837
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,6 +683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -509,6 +767,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
       propertyPath: m_Name
       value: MESH_single_rod_V03 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -591,6 +853,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Rod_back_V03 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 351aa05ba8bc6e14cada2d154fde9da1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -668,6 +934,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -750,6 +1020,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -836,6 +1110,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Suspended_Seat_V03 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0020db618e525a740bc05eb7d9f741f7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -916,6 +1194,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 351aa05ba8bc6e14cada2d154fde9da1, type: 3}
       propertyPath: m_Name
       value: MESH_Rod_back_V03
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 351aa05ba8bc6e14cada2d154fde9da1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1004,6 +1286,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Rod_back_V03 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 351aa05ba8bc6e14cada2d154fde9da1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1082,6 +1368,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Rod_back_V03 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 351aa05ba8bc6e14cada2d154fde9da1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1118,11 +1408,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.095789e-11
+      value: 1.4191578e-10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00045000025
+      value: -0.0011599993
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1156,9 +1446,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ec6c98f1bd249a742adebce2b758273d, type: 2}
     - target: {fileID: 919132149155446097, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_Name
       value: MESH_Duo_Swingg_door_V03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1230,9 +1528,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 19ab373ec6d644a4f8faed6cd818590b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a21a0723b8ebcf3459b0677436bbf00f, type: 2}
     - target: {fileID: 919132149155446097, guid: 19ab373ec6d644a4f8faed6cd818590b, type: 3}
       propertyPath: m_Name
       value: MESH_advertisement_V03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 19ab373ec6d644a4f8faed6cd818590b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1312,6 +1618,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1389,6 +1699,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 351aa05ba8bc6e14cada2d154fde9da1, type: 3}
       propertyPath: m_Name
       value: MESH_Rod_back_V03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 351aa05ba8bc6e14cada2d154fde9da1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1477,6 +1791,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_advertisement_V03 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 19ab373ec6d644a4f8faed6cd818590b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1550,10 +1868,14 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: e199064ef9329404f8437fab6d226f75, type: 2}
+      objectReference: {fileID: 2100000, guid: 72761a2174af5024ea3d06afb39b4c93, type: 2}
     - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1632,6 +1954,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 646a9f9daebe5f64d80145613d66db6d, type: 3}
       propertyPath: m_Name
       value: MESH_Rod_center_V03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 646a9f9daebe5f64d80145613d66db6d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1717,6 +2043,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1794,6 +2124,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
       propertyPath: m_Name
       value: MESH_single_rod_V03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1873,6 +2207,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_advertisement_V03
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 19ab373ec6d644a4f8faed6cd818590b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1946,10 +2284,14 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a21a0723b8ebcf3459b0677436bbf00f, type: 2}
+      objectReference: {fileID: 2100000, guid: 56e8d8f1f5450ce4c9e6da53ac0e285e, type: 2}
     - target: {fileID: 919132149155446097, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
       propertyPath: m_Name
       value: MESH_step_V03
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2028,6 +2370,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2111,6 +2457,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2192,6 +2542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_single_rod_V03 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2235,7 +2589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00048809272
+      value: -0.0011980918
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2269,9 +2623,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ec6c98f1bd249a742adebce2b758273d, type: 2}
     - target: {fileID: 919132149155446097, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_Name
       value: MESH_Duo_Swingg_door_V03 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2350,6 +2712,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 646a9f9daebe5f64d80145613d66db6d, type: 3}
       propertyPath: m_Name
       value: MESH_Rod_center_V03 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 646a9f9daebe5f64d80145613d66db6d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2433,6 +2799,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2506,9 +2876,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3e7fbba116b20bf44954aabc473dd35f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ecaedd3a04ebb974285d62cc3f4200c6, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 3e7fbba116b20bf44954aabc473dd35f, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ecaedd3a04ebb974285d62cc3f4200c6, type: 2}
     - target: {fileID: 919132149155446097, guid: 3e7fbba116b20bf44954aabc473dd35f, type: 3}
       propertyPath: m_Name
       value: MESH_backdoor_V03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3e7fbba116b20bf44954aabc473dd35f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2588,6 +2970,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2666,6 +3052,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Rod_back_V03 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 351aa05ba8bc6e14cada2d154fde9da1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2743,6 +3133,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
       propertyPath: m_Name
       value: MESH_single_rod_V03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2825,6 +3219,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_single_rod_V03 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2905,6 +3303,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
       propertyPath: m_Name
       value: MESH_single_rod_V03 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2987,6 +3389,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_single_rod_V03
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3068,6 +3474,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_single_rod_V03 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3108,7 +3518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00045
+      value: -0.00116
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3142,9 +3552,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ec6c98f1bd249a742adebce2b758273d, type: 2}
     - target: {fileID: 919132149155446097, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_Name
       value: MESH_Duo_Swingg_door_V03
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3224,6 +3642,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_single_rod_V03 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3302,6 +3724,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_single_rod_V03 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3379,6 +3805,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0020db618e525a740bc05eb7d9f741f7, type: 3}
       propertyPath: m_Name
       value: MESH_Suspended_Seat_V03 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0020db618e525a740bc05eb7d9f741f7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3461,6 +3891,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3547,6 +3981,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3628,6 +4066,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Rod_center_V03
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 646a9f9daebe5f64d80145613d66db6d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3701,10 +4143,14 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a21a0723b8ebcf3459b0677436bbf00f, type: 2}
+      objectReference: {fileID: 2100000, guid: 56e8d8f1f5450ce4c9e6da53ac0e285e, type: 2}
     - target: {fileID: 919132149155446097, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
       propertyPath: m_Name
       value: MESH_step_V03 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3779,10 +4225,14 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a21a0723b8ebcf3459b0677436bbf00f, type: 2}
+      objectReference: {fileID: 2100000, guid: 56e8d8f1f5450ce4c9e6da53ac0e285e, type: 2}
     - target: {fileID: 919132149155446097, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
       propertyPath: m_Name
       value: MESH_step_V03 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3820,11 +4270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.095789e-11
+      value: 1.4191578e-10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00045000025
+      value: -0.0011599993
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3858,9 +4308,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ec6c98f1bd249a742adebce2b758273d, type: 2}
     - target: {fileID: 919132149155446097, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_Name
       value: MESH_Duo_Swingg_door_V03 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3944,6 +4402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Suspended_Seat_V03 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0020db618e525a740bc05eb7d9f741f7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -4025,6 +4487,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Rod_back_V03 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 351aa05ba8bc6e14cada2d154fde9da1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4102,6 +4568,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4181,6 +4651,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Suspended_Seat_V03
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0020db618e525a740bc05eb7d9f741f7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4221,7 +4695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00048809272
+      value: -0.0011980918
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4255,9 +4729,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ec6c98f1bd249a742adebce2b758273d, type: 2}
     - target: {fileID: 919132149155446097, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_Name
       value: MESH_Duo_Swingg_door_V03 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4337,6 +4819,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4377,7 +4863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00048809272
+      value: -0.0011980918
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4411,9 +4897,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ec6c98f1bd249a742adebce2b758273d, type: 2}
     - target: {fileID: 919132149155446097, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
       propertyPath: m_Name
       value: MESH_Duo_Swingg_door_V03 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3b7a1bd924e3ced4c841c4b530a8ccc7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4488,10 +4982,14 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a21a0723b8ebcf3459b0677436bbf00f, type: 2}
+      objectReference: {fileID: 2100000, guid: 56e8d8f1f5450ce4c9e6da53ac0e285e, type: 2}
     - target: {fileID: 919132149155446097, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
       propertyPath: m_Name
       value: MESH_step_V03 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4571,6 +5069,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_single_rod_V03 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4648,10 +5150,14 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: e199064ef9329404f8437fab6d226f75, type: 2}
+      objectReference: {fileID: 2100000, guid: 72761a2174af5024ea3d06afb39b4c93, type: 2}
     - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4734,6 +5240,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Rod_back_V03 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 351aa05ba8bc6e14cada2d154fde9da1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4811,6 +5321,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
       propertyPath: m_Name
       value: MESH_single_rod_V03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5aef34154ee314a48904a67b6b116d47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4890,6 +5404,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_advertisement_V03 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 19ab373ec6d644a4f8faed6cd818590b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4963,10 +5481,14 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a21a0723b8ebcf3459b0677436bbf00f, type: 2}
+      objectReference: {fileID: 2100000, guid: 56e8d8f1f5450ce4c9e6da53ac0e285e, type: 2}
     - target: {fileID: 919132149155446097, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
       propertyPath: m_Name
       value: MESH_step_V03 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5046,9 +5568,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Cage_Metro_02
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 59a484aa2daaf0d4c855c67bff847a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 59a484aa2daaf0d4c855c67bff847a06, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4002956982219693341}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 59a484aa2daaf0d4c855c67bff847a06, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8421453872975353995}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59a484aa2daaf0d4c855c67bff847a06, type: 3}
 --- !u!4 &9113946110214356274 stripped
@@ -5128,6 +5660,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MESH_Duo_Seat_V03 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 015ef9d607347554684fd501a63e7bad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -5204,10 +5740,14 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a21a0723b8ebcf3459b0677436bbf00f, type: 2}
+      objectReference: {fileID: 2100000, guid: 56e8d8f1f5450ce4c9e6da53ac0e285e, type: 2}
     - target: {fileID: 919132149155446097, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
       propertyPath: m_Name
       value: MESH_step_V03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 682ce2deedab11b4f890eab6f711180d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5279,9 +5819,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3e7fbba116b20bf44954aabc473dd35f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ecaedd3a04ebb974285d62cc3f4200c6, type: 2}
     - target: {fileID: 919132149155446097, guid: 3e7fbba116b20bf44954aabc473dd35f, type: 3}
       propertyPath: m_Name
       value: MESH_backdoor_V03
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3e7fbba116b20bf44954aabc473dd35f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
