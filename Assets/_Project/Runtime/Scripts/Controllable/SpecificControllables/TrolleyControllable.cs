@@ -13,8 +13,7 @@ namespace Metroma
         public event Action OnChooseLeft;
         public event Action OnChooseRight;
         
-        protected override void InputMovePerformed(Vector2 move)
-        {
+        protected override void InputMovePerformed(Vector2 move) {
             base.InputMovePerformed(move);
 
             if (Mathf.Abs(move.x) > _deadZone) {
