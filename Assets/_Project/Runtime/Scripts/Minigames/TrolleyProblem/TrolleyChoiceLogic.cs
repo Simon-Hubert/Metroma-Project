@@ -26,12 +26,13 @@ namespace Metroma
         [SerializeField] private TextMeshProUGUI _name;
         [SerializeField] private bool _displayNameRaw;
         [SerializeField] private TextMeshProUGUI _description;
+        [SerializeField] private string _listMark = " -";
+        [SerializeField] private bool _displayDescriptionRaw;
 
         private void Start()
         {
             ResetChoiceValues();
         }
-
 
         [Button]
         private void ResetChoiceValues() {
@@ -39,7 +40,11 @@ namespace Metroma
             _illustration.sprite = _trolleyChoiceSO.illustration;
 
             _name.text = _displayNameRaw ? _trolleyChoiceSO.name : _trolleyChoiceSO.name.ToUpper();
-            
+
+            _description.text = "";
+            foreach (string text in _trolleyChoiceSO.elements) {
+                _description.text += _displayDescriptionRaw ? text : $"{_listMark} {text}\n";
+            }
         }
     }
 }
