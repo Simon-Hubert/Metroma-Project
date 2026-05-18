@@ -6,11 +6,19 @@ namespace Metroma
     public class AdBase : MonoBehaviour
     {
         [SerializeField] private Block[] _blocks;
+        [SerializeField] private bool _activateOnStart;
 
         private int _currentBlock;
 
         public event Action OnAdStarted;
         public event Action OnAdEnded;
+
+        private void Start() {
+            if (_activateOnStart) {
+                StartAd();
+            }
+            
+        }
 
         public virtual void StartAd()
         {

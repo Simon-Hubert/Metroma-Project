@@ -31,10 +31,9 @@ namespace Metroma
         private Vector2 _velocity;
 
         private Coroutine dashRoutine;
-        private Coroutine movementRoutine;
+        private Coroutine lifeRoutine;
 
-        protected override void Start() {
-            base.Start();
+        public void Init() {
             Respawn();
         }
 
@@ -57,7 +56,11 @@ namespace Metroma
 
         public void Respawn() {
             transform.position = _respawnPos.position;
-            StartCoroutine(LifeRoutine());
+            if (lifeRoutine != null) {
+                StopCoroutine(lifeRoutine);
+                lifeRoutine = null;
+            }
+            lifeRoutine = StartCoroutine(LifeRoutine());
         }
         
         public void SetAdditionalForce(Vector2 force) {
@@ -67,15 +70,16 @@ namespace Metroma
         
         protected override void InputMoveStart(Vector2 move) {
             base.InputMoveStart(move);
-            movementRoutine ??= StartCoroutine(MoveRoutine());
+            _moveDirection = move;
         }
-        
+
+        protected override void InputMovePerformed(Vector2 move) {
+            base.InputMovePerformed(move);
+            _moveDirection = move;
+        }
+
         protected override void InputMoveEnd(Vector2 move) {
             base.InputMoveEnd(move);
-            if (movementRoutine != null) {
-                StopCoroutine(movementRoutine);
-            }
-            movementRoutine = null;
             _moveDirection = Vector2.zero;
         }   
 
@@ -97,12 +101,6 @@ namespace Metroma
             }
         }
         
-        IEnumerator MoveRoutine() {
-            while (true) {
-                yield return null;
-                _moveDirection = Inputs.moveDir;
-            }
-        }
 
         IEnumerator LifeRoutine() {
             float t = 0;

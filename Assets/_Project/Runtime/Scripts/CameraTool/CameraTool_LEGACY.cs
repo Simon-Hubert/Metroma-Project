@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -1238,7 +1239,6 @@ namespace Metroma.CameraTool
         }
         #endregion
 
-#if UNITY_EDITOR
         // ── Editor-only API ──────────────────────────────────────────
 
         public List<SplineComputer> EditorSplineRails => splineRails;
@@ -1435,6 +1435,6 @@ namespace Metroma.CameraTool
             
             splineProgress = progress;
         }
-#endif
-    }
 }
+}
+#endif
