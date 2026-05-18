@@ -119,6 +119,544 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &91652919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 91652920}
+  - component: {fileID: 91652921}
+  m_Layer: 0
+  m_Name: EnableCollider (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &91652920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91652919}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1408095894}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &91652921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91652919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06887433ba2fc1247a29057828736437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
+  _object: {fileID: 1965275144}
+  _active: 1
+--- !u!1 &106273762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 106273763}
+  - component: {fileID: 106273764}
+  m_Layer: 0
+  m_Name: IniTooths
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &106273763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106273762}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1408095894}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &106273764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106273762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46be0490d4a557428ef6f98e1f1378c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.BatchInitSequence
+  _initiables:
+  - {fileID: 1637449669}
+  - {fileID: 755906042}
+  - {fileID: 220965869}
+  - {fileID: 1346827892}
+  - {fileID: 914310282}
+  - {fileID: 651217592}
+  - {fileID: 655312870}
+  - {fileID: 1258666842}
+--- !u!1 &220965869 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2168741345426840530, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &220965871
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220965869}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -4.04}
+  m_Radius: 1.01
+--- !u!114 &220965872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220965869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6742ad2288be5b049bd2050916669f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Target
+  _targetRB: {fileID: 0}
+--- !u!114 &220965873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220965869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cced79403a59c439d04eda15e610b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Tooth
+  _amount: 10
+  _colorGradient:
+    serializedVersion: 2
+    key0: {r: 0.7169812, g: 0.6952464, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+--- !u!1 &371057870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 371057871}
+  - component: {fileID: 371057872}
+  m_Layer: 0
+  m_Name: EnableCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &371057871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371057870}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1408095894}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &371057872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371057870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06887433ba2fc1247a29057828736437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
+  _object: {fileID: 448117843}
+  _active: 0
+--- !u!1 &448117843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1670855505236057362, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &651217592 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2109913557932980356, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &651217594
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651217592}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -4.04}
+  m_Radius: 1.01
+--- !u!114 &651217595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651217592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6742ad2288be5b049bd2050916669f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Target
+  _targetRB: {fileID: 0}
+--- !u!114 &651217596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651217592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cced79403a59c439d04eda15e610b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Tooth
+  _amount: 10
+  _colorGradient:
+    serializedVersion: 2
+    key0: {r: 0.7169812, g: 0.6952464, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+--- !u!1 &655312870 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2201114066395598155, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &655312872
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655312870}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -4.04}
+  m_Radius: 1.01
+--- !u!114 &655312873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655312870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6742ad2288be5b049bd2050916669f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Target
+  _targetRB: {fileID: 0}
+--- !u!114 &655312874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655312870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cced79403a59c439d04eda15e610b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Tooth
+  _amount: 10
+  _colorGradient:
+    serializedVersion: 2
+    key0: {r: 0.7169812, g: 0.6952464, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+--- !u!1 &755906042 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5940308638670923709, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &755906044
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755906042}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -4.04}
+  m_Radius: 1.01
+--- !u!114 &755906045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755906042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6742ad2288be5b049bd2050916669f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Target
+  _targetRB: {fileID: 0}
+--- !u!114 &755906046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755906042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cced79403a59c439d04eda15e610b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Tooth
+  _amount: 10
+  _colorGradient:
+    serializedVersion: 2
+    key0: {r: 0.7169812, g: 0.6952464, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!1 &861988628
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,6 +784,468 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &914310282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3005484281136431949, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &914310284
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914310282}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -4.04}
+  m_Radius: 1.01
+--- !u!114 &914310285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914310282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6742ad2288be5b049bd2050916669f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Target
+  _targetRB: {fileID: 0}
+--- !u!114 &914310286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914310282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cced79403a59c439d04eda15e610b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Tooth
+  _amount: 10
+  _colorGradient:
+    serializedVersion: 2
+    key0: {r: 0.7169812, g: 0.6952464, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+--- !u!1 &1258666842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2507429776895140433, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1258666844
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258666842}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.000030517578, y: -4.04}
+  m_Radius: 1.01
+--- !u!114 &1258666845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258666842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6742ad2288be5b049bd2050916669f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Target
+  _targetRB: {fileID: 0}
+--- !u!114 &1258666846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258666842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cced79403a59c439d04eda15e610b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Tooth
+  _amount: 10
+  _colorGradient:
+    serializedVersion: 2
+    key0: {r: 0.7169812, g: 0.6952464, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+--- !u!1 &1346827892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3911934482152491608, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1346827894
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346827892}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -4.04}
+  m_Radius: 1.01
+--- !u!114 &1346827895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346827892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6742ad2288be5b049bd2050916669f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Target
+  _targetRB: {fileID: 0}
+--- !u!114 &1346827896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346827892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cced79403a59c439d04eda15e610b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Tooth
+  _amount: 10
+  _colorGradient:
+    serializedVersion: 2
+    key0: {r: 0.7169812, g: 0.6952464, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+--- !u!4 &1408095894 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4459979353615295528, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1637449669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3730949078643484883, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1637449671
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637449669}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -4.04}
+  m_Radius: 1.01
+--- !u!114 &1637449672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637449669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6742ad2288be5b049bd2050916669f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Target
+  _targetRB: {fileID: 0}
+--- !u!114 &1637449673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637449669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cced79403a59c439d04eda15e610b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Tooth
+  _amount: 10
+  _colorGradient:
+    serializedVersion: 2
+    key0: {r: 0.7169812, g: 0.6952464, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+--- !u!1 &1965275144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1965275145}
+  - component: {fileID: 1965275146}
+  m_Layer: 0
+  m_Name: ToothCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1965275145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965275144}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3578187502552184624}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1965275146
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965275144}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.54, y: 1.57}
+  m_Size: {x: 6.64, y: 2.11}
+  m_Direction: 1
 --- !u!1001 &3578187502552184616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -254,6 +1254,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 193137522313077546, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: managedReferences[2639551511272882264]._evaluatable
+      value: 
+      objectReference: {fileID: 3578187502552184620}
+    - target: {fileID: 445602426338312313, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021856770604521752, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3239541809533296463, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_Name
       value: AD
@@ -298,11 +1310,161 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6599817159264922876, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978295772623609914, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _activateOnStart
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 2074639484786107065, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4459979353615295528, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 371057871}
+    - targetCorrespondingSourceObject: {fileID: 4459979353615295528, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 91652920}
+    - targetCorrespondingSourceObject: {fileID: 4459979353615295528, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 106273763}
+    - targetCorrespondingSourceObject: {fileID: 6944827779698020060, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1965275145}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7809554737439182475, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3578187502552184620}
+    - targetCorrespondingSourceObject: {fileID: 3730949078643484883, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1637449673}
+    - targetCorrespondingSourceObject: {fileID: 3730949078643484883, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1637449672}
+    - targetCorrespondingSourceObject: {fileID: 3730949078643484883, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1637449671}
+    - targetCorrespondingSourceObject: {fileID: 5940308638670923709, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 755906046}
+    - targetCorrespondingSourceObject: {fileID: 5940308638670923709, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 755906045}
+    - targetCorrespondingSourceObject: {fileID: 5940308638670923709, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 755906044}
+    - targetCorrespondingSourceObject: {fileID: 2168741345426840530, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 220965873}
+    - targetCorrespondingSourceObject: {fileID: 2168741345426840530, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 220965872}
+    - targetCorrespondingSourceObject: {fileID: 2168741345426840530, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 220965871}
+    - targetCorrespondingSourceObject: {fileID: 3911934482152491608, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1346827896}
+    - targetCorrespondingSourceObject: {fileID: 3911934482152491608, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1346827895}
+    - targetCorrespondingSourceObject: {fileID: 3911934482152491608, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1346827894}
+    - targetCorrespondingSourceObject: {fileID: 3005484281136431949, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 914310286}
+    - targetCorrespondingSourceObject: {fileID: 3005484281136431949, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 914310285}
+    - targetCorrespondingSourceObject: {fileID: 3005484281136431949, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 914310284}
+    - targetCorrespondingSourceObject: {fileID: 2109913557932980356, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 651217596}
+    - targetCorrespondingSourceObject: {fileID: 2109913557932980356, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 651217595}
+    - targetCorrespondingSourceObject: {fileID: 2109913557932980356, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 651217594}
+    - targetCorrespondingSourceObject: {fileID: 2201114066395598155, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 655312874}
+    - targetCorrespondingSourceObject: {fileID: 2201114066395598155, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 655312873}
+    - targetCorrespondingSourceObject: {fileID: 2201114066395598155, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 655312872}
+    - targetCorrespondingSourceObject: {fileID: 2507429776895140433, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1258666846}
+    - targetCorrespondingSourceObject: {fileID: 2507429776895140433, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1258666845}
+    - targetCorrespondingSourceObject: {fileID: 2507429776895140433, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1258666844}
   m_SourcePrefab: {fileID: 100100000, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+--- !u!50 &3578187502552184617 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3388834314268752374, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3578187502552184618 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 193137522313077546, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375058d1676525c4f97bcfead2902c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ConditionalEvent
+--- !u!1 &3578187502552184619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7809554737439182475, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3578187502552184620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3578187502552184619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf0bfd63fc93d84c913071b6e41fa51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.TargetManager
+  _targetRB: {fileID: 3578187502552184617}
+  _onValidatedAny:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3578187502552184618}
+        m_TargetAssemblyTypeName: Metroma.ConditionalEvent, Metroma
+        m_MethodName: Evaluate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &3578187502552184624 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6944827779698020060, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 3578187502552184616}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

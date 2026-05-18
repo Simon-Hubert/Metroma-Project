@@ -17,7 +17,6 @@ namespace Metroma
             if (_activateOnStart) {
                 StartAd();
             }
-            
         }
 
         public virtual void StartAd()
