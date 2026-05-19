@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Metroma
 {
@@ -14,6 +15,8 @@ namespace Metroma
         private bool _isInit = false;
 
         public bool Validated => _validated;
+        [SerializeField] private UnityEvent _onValidated;
+        [SerializeField] private UnityEvent _onHit;
 
         private void Start() {
             _sr = GetComponent<SpriteRenderer>();
@@ -30,9 +33,11 @@ namespace Metroma
             if (_currentAmount < _amount) {
                 _currentAmount++;
                 _sr.color = _colorGradient.Evaluate((float)_currentAmount / _amount);
+                _onHit?.Invoke();
             }
             else {
                 _validated = true;
+                _onValidated?.Invoke();
             }
         }
     }
