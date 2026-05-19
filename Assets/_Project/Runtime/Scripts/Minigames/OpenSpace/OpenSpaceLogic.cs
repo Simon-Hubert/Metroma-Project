@@ -12,10 +12,25 @@ namespace Metroma
     public class OpenSpaceLogic : MonoBehaviour
     {
         [SerializeField] private OpenSpaceControllable _ctrl;
+        [SerializeField] private SpriteRenderer _ctrlSprite;
+        [Space(7)]
+        [SerializeField] private bool _isLoopActive;
+        public void ActiveLoop(bool isActive) => _isLoopActive = isActive;
         
         [Header("Tracks")]
-        [Space(7)] [SerializeField] private int _trackIndex = 0;
-        public int GetTrackIndex { get => _trackIndex; }
+        [SerializeField, ReadOnly] private int _trackIndex = 0;
+
+        public int TrackIndex
+        {
+            get => _trackIndex;
+            private set
+            {
+                if (_moveTracks == null) return;
+                
+                _trackIndex = Mathf.Clamp(value, 0, _moveTracks.Count - 1);
+                if (_ctrlSprite != null) _ctrlSprite.sortingOrder = _moveTracks[_trackIndex].GetOrderInLayer;
+            }
+        }
         [SerializeField] private bool _noGoBack = false;
         [SerializeField] private List<MoveLine> _moveTracks = new List<MoveLine>();
         
@@ -58,6 +73,7 @@ namespace Metroma
 
         private void Start() {
             _signalsByTrack.Clear();
+            TrackIndex = 0;
             
             foreach (SignalLogic signal in _signals) {
                 if (signal != null) {
@@ -69,41 +85,44 @@ namespace Metroma
             }
         }
 
-        private void FixedUpdate() {
+        private void FixedUpdate()
+        {
+            if (!_isLoopActive) return;
+            
             if (!_inProjection) {
-                Vector3 displace = (_ctrl.GetSpeed * Time.fixedDeltaTime) * _moveTracks[_trackIndex].GetSegmentNormal();
-                _ctrl.transform.position = _moveTracks[_trackIndex].MoveOnLine(_ctrl.transform.position + displace);
+                Vector3 displace = (_ctrl.GetSpeed * Time.fixedDeltaTime) * _moveTracks[TrackIndex].GetSegmentNormal();
+                _ctrl.transform.position = _moveTracks[TrackIndex].MoveOnLine(_ctrl.transform.position + displace);
 
                 CheckLineIndex();
                 CheckSignals();
             }
             else {
-                Vector3 displace = (-_projectionSpeed * Time.fixedDeltaTime) * _moveTracks[_trackIndex].GetSegmentNormal();
-                _ctrl.transform.position = _moveTracks[_trackIndex].MoveOnLine(_ctrl.transform.position + displace);
+                Vector3 displace = (-_projectionSpeed * Time.fixedDeltaTime) * _moveTracks[TrackIndex].GetSegmentNormal();
+                _ctrl.transform.position = _moveTracks[TrackIndex].MoveOnLine(_ctrl.transform.position + displace);
                 
-                if (!_recovering && _moveTracks[_trackIndex].IsAtStart(_ctrl.transform.position))
+                if (!_recovering && _moveTracks[TrackIndex].IsAtStart(_ctrl.transform.position))
                 {
                     _recovering = true;
                     StartCoroutine(ProjectionRecovery(_recoveryTime));
                 }
             }
 
-            Debug.Log($"Is at End : {GetIsAtEnd} | TrackEnd : {GetTrackStateEnd} | Track Current : {GetCurrentTrackState}");
+            // Debug.Log($"Is at End : {GetIsAtEnd} | TrackEnd : {GetTrackStateEnd} | Track Current : {GetCurrentTrackState}");
         }
         
         private void CheckLineIndex()
         {
-            int prevIndex = _trackIndex;
+            int prevIndex = TrackIndex;
             
-            int indexIncrement = _moveTracks[_trackIndex].GetPassNext;
+            int indexIncrement = _moveTracks[TrackIndex].GetPassNext;
             if ((!_noGoBack && indexIncrement != 0) || (_noGoBack && indexIncrement > 0))
             {
-                int lastIndex = _trackIndex;
-                _trackIndex = Mathf.Clamp(_trackIndex + indexIncrement, 0, _moveTracks.Count - 1);
-                if (_trackIndex != lastIndex) _moveTracks[_trackIndex].ResetPassNext();
+                int lastIndex = TrackIndex;
+                TrackIndex = Mathf.Clamp(TrackIndex + indexIncrement, 0, _moveTracks.Count - 1);
+                if (TrackIndex != lastIndex) _moveTracks[TrackIndex].ResetPassNext();
                 
-                if (prevIndex != _trackIndex )
-                    _ctrl.transform.position = indexIncrement < 0 ? _moveTracks[_trackIndex].GetEnd : _moveTracks[_trackIndex].GetStart;
+                if (prevIndex != TrackIndex )
+                    _ctrl.transform.position = indexIncrement < 0 ? _moveTracks[TrackIndex].GetEnd : _moveTracks[TrackIndex].GetStart;
             }
         }
 
@@ -118,15 +137,15 @@ namespace Metroma
                     SignalLogic choosen = null;
 
                     // Si un signal est associé à la Track actuel
-                    if (_signalsByTrack.ContainsKey(_trackIndex)) {
+                    if (_signalsByTrack.ContainsKey(TrackIndex)) {
                         List<SignalLogic> selection = new List<SignalLogic>();
 
-                        foreach (SignalLogic signal in _signalsByTrack[_trackIndex]) {
-                            if (signal.GetSegmentId == _moveTracks[_trackIndex].CurrentSegment) selection.Add(signal);
+                        foreach (SignalLogic signal in _signalsByTrack[TrackIndex]) {
+                            if (signal.GetSegmentId == _moveTracks[TrackIndex].CurrentSegment) selection.Add(signal);
                         }
 
                         if (selection.Count > 0) choosen = selection[Random.Range(0, selection.Count)];
-                        else choosen = _signalsByTrack[_trackIndex][Random.Range(0, _signalsByTrack[_trackIndex].Count)];
+                        else choosen = _signalsByTrack[TrackIndex][Random.Range(0, _signalsByTrack[TrackIndex].Count)];
                     }
                     // Sinon, si un signal est 
                     else if (choosen == null && _signals.Count > 0) choosen = _signals[Random.Range(0, _signals.Count)];
@@ -168,7 +187,7 @@ namespace Metroma
         }
         public void CallProjection(int track)
         {
-            if (_trackIndex == track)
+            if (TrackIndex == track)
             {
                 _inProjection = true;
                 _activateCurrentTime = 0;

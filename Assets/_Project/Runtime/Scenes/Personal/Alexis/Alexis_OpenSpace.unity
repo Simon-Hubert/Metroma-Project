@@ -380,6 +380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.OpenSpaceMoveLine
   _ctrl: {fileID: 381408989}
+  _ctrlSprite: {fileID: 381408987}
+  _isLoopActive: 0
   _trackIndex: 0
   _noGoBack: 1
   _moveTracks:
@@ -3214,6 +3216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce2920d972ba29fa8508bedb28c1cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Utils.MoveLine
+  _orderInLayer: 0
   points:
   - {fileID: 1016636087}
   - {fileID: 775122487}
@@ -3827,6 +3830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce2920d972ba29fa8508bedb28c1cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Utils.MoveLine
+  _orderInLayer: 1
   points:
   - {fileID: 1882996919}
   - {fileID: 194389306}
@@ -6552,6 +6556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.AdBase
   _blocks: []
+  _activateOnStart: 0
 --- !u!1 &1684559678
 GameObject:
   m_ObjectHideFlags: 0
@@ -7700,7 +7705,19 @@ MonoBehaviour:
   _callEventIfCancellation: 0
   _onTransitionEnded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 151523174}
+        m_TargetAssemblyTypeName: Metroma.OpenSpaceLogic, Metroma
+        m_MethodName: ActiveLoop
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _cam: {fileID: 0}
   _targetView: {fileID: 0}
   _duration: 0
@@ -7765,7 +7782,19 @@ MonoBehaviour:
     rid: 6083326399976046671
   _onValidated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 151523174}
+        m_TargetAssemblyTypeName: Metroma.OpenSpaceLogic, Metroma
+        m_MethodName: ActiveLoop
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   references:
     version: 2
     RefIds:
