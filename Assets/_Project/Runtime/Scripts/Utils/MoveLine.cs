@@ -6,6 +6,8 @@ namespace Metroma.Utils
 {
     public class MoveLine : MonoBehaviour
     {
+        [SerializeField] private int _orderInLayer = 0;
+        public int GetOrderInLayer { get => _orderInLayer; }
         [SerializeField] public List<Transform> points;
 
         public Vector3 GetStart { get => points.Count > 1 ? points[0].position : Vector3.zero; }
@@ -14,6 +16,7 @@ namespace Metroma.Utils
         public Vector3 GetIndex(int index) => (points.Count > 1 && index >= 0 && index < points.Count) ? points[index].position : Vector3.zero;
         public int GetNbSegments { get => points.Count > 1 ? points.Count - 1 : 0; }
 
+        [Space(7)]
         [SerializeField, ReadOnly] private int _currentSegment;
         public int CurrentSegment {
             get => _currentSegment;
