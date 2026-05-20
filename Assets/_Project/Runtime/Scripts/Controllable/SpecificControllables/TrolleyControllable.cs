@@ -9,21 +9,20 @@ namespace Metroma
     {
         [SerializeField, Range(0, 1)] private float _deadZone;
         [SerializeField, ReadOnly] private Direction _direction;
-
-        public event Action OnChooseLeft;
-        public event Action OnChooseRight;
+        
+        public event Action<Direction> OnChooseDirection;
         
         protected override void InputMovePerformed(Vector2 move) {
             base.InputMovePerformed(move);
 
             if (Mathf.Abs(move.x) > _deadZone) {
                 if (move.x > 0 && _direction != Direction.RIGHT) {
-                    OnChooseRight?.Invoke();
                     _direction = Direction.RIGHT;
+                    OnChooseDirection?.Invoke(_direction);
                 }
-                else if (_direction != Direction.LEFT) {
-                    OnChooseLeft?.Invoke();
+                else if (move.x < 0 && _direction != Direction.LEFT) {
                     _direction = Direction.LEFT;
+                    OnChooseDirection?.Invoke(_direction);
                 }
             }
             else {

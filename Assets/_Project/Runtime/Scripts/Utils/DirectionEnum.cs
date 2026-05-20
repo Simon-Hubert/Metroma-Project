@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace Metroma.Utils
 {
-    public enum Direction
+    [Flags, Serializable] public enum Direction
     {
         NONE = 0,
         UP = 1 << 0,
