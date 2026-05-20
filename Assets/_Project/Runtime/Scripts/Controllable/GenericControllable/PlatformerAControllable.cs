@@ -125,8 +125,9 @@ namespace Metroma
             
             MoveStateCheck();
             GroundCheck();
-            
-            rb2D.linearVelocity = (Vector2.up * rb2D.linearVelocity.y) + Vector2.right * (currentDir * accelerationValue * maxSpeed);
+
+            Vector2 velocity = Vector2.up * rb2D.linearVelocity.y + Vector2.right * (currentDir * accelerationValue * maxSpeed);
+            rb2D.linearVelocity = velocity;
             
             WallCheck();
         }
