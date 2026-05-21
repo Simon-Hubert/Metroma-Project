@@ -599,6 +599,14 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 531506805443311008, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: _choiceOffset.y
+      value: -2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 531506805443311008, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: _choiceHookingOffset.y
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 556922641837150853, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
       propertyPath: m_Name
       value: BLOCK-TrolleyProblem-Var1
@@ -608,16 +616,40 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: a5f4ddf8bc954579693e87fc8bdae5d0, type: 3}
     - target: {fileID: 1784004706318856747, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784004706318856747, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784004706318856747, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784004706318856747, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.67
+      value: -6.6
       objectReference: {fileID: 0}
     - target: {fileID: 1891933487005045846, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
       propertyPath: m_text
       value: PLACEHOLDER
       objectReference: {fileID: 0}
     - target: {fileID: 2675927593501861136, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675927593501861136, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675927593501861136, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675927593501861136, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.63
+      value: -6.4
       objectReference: {fileID: 0}
     - target: {fileID: 2855770726969934701, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
       propertyPath: m_text
@@ -703,13 +735,65 @@ PrefabInstance:
       propertyPath: _gapBetweenChoices
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4845332128455406689, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: _dilemmas.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4845332128455406689, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: _dilemmas.Array.data[0].choiceA
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b0719190cb8a1642aee4f33be4e341a, type: 2}
+    - target: {fileID: 4845332128455406689, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: _dilemmas.Array.data[0].choiceB
+      value: 
+      objectReference: {fileID: 11400000, guid: 9fd5dcb72d71b0648bf693398587cdad, type: 2}
+    - target: {fileID: 4845332128455406689, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: _dilemmas.Array.data[1].choiceA
+      value: 
+      objectReference: {fileID: 11400000, guid: 5692ef68532a523439688ee995e04b4b, type: 2}
+    - target: {fileID: 4845332128455406689, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: _dilemmas.Array.data[1].choiceB
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d3acf34c19ea6549aff9ce8fc2e18cc, type: 2}
+    - target: {fileID: 4845332128455406689, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: _dilemmas.Array.data[2].choiceA
+      value: 
+      objectReference: {fileID: 11400000, guid: d02e13174c077f546acd1fd01d0975d8, type: 2}
+    - target: {fileID: 4845332128455406689, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: _dilemmas.Array.data[2].choiceB
+      value: 
+      objectReference: {fileID: 11400000, guid: bb389f1d112d1cc4997d34d918d72cf5, type: 2}
+    - target: {fileID: 4845332128455406689, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: _dilemmas.Array.data[3].choiceA
+      value: 
+      objectReference: {fileID: 11400000, guid: b6ab143ba66307d49b9a16fa4f25d23d, type: 2}
+    - target: {fileID: 4845332128455406689, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: _dilemmas.Array.data[3].choiceB
+      value: 
+      objectReference: {fileID: 11400000, guid: 222736c44eb66074ea54764f649d4631, type: 2}
+    - target: {fileID: 4845332128455406689, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: _dilemmas.Array.data[4].choiceA
+      value: 
+      objectReference: {fileID: 11400000, guid: 1a9c08c3578c1d4468192f9a230914be, type: 2}
+    - target: {fileID: 4845332128455406689, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: _dilemmas.Array.data[4].choiceB
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c450cdc59fd888428d0d8e875efd9b5, type: 2}
     - target: {fileID: 4914017271436161661, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5181201875642314627, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: m_Anchor.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181201875642314627, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181201875642314627, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.36150026
+      value: -0.5070002
       objectReference: {fileID: 0}
     - target: {fileID: 5863136558913263694, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
       propertyPath: m_text
@@ -740,8 +824,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8793155695712532664, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793155695712532664, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.40150023
+      value: -0.58099985
       objectReference: {fileID: 0}
     - target: {fileID: 9024022534524367974, guid: 70fef200a1a97cc12954657bd57e10c2, type: 3}
       propertyPath: m_GravityScale
