@@ -19,11 +19,10 @@ namespace Metroma
         [SerializeField, MinMaxSlider(0, 1)] private Vector2 _startRange;
 
         private void Start() {
-            _citruses = _citruses.OrderBy(go => go.GetComponent<SpriteRenderer>().sortingOrder).ToArray();
-            Play();
+            _citruses = _citruses.OrderByDescending(go => go.GetComponent<SpriteRenderer>().sortingOrder).ToArray();
         }
         
-        private void Play() {
+        public void Play() {
             Debug.Log($"{_citruses.Length}");
             for (int i = 0; i < _citruses.Length; i++) {
                 Debug.Log($"{i}, {_citruses[i]}");

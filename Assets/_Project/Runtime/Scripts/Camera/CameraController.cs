@@ -13,6 +13,7 @@ namespace Metroma
         [SerializeField, ShowIf("_dampen")] private float _f = 1;
         [SerializeField, ShowIf("_dampen")] private float _z = 2;
         [SerializeField, ShowIf("_dampen")] private float _r = 0;
+        [SerializeField] private bool _fixPlane;
         
         
         private CameraConfiguration _current;
@@ -26,6 +27,7 @@ namespace Metroma
 
         private void Update() {
             if (_dampen) {
+                Debug.Log($"{_current.Pivot.z}");
                 _current = _smoother.Smooth(_current, _view.GetConfiguration());
                 CameraHelpers.ApplyConfiguration(_cam, _current);
             }
