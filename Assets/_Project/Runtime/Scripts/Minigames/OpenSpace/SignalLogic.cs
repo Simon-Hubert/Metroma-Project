@@ -4,13 +4,19 @@ using UnityEngine;
 
 namespace Metroma
 {
+    public enum SignalState
+    {
+        Idle = 0,
+        Alert = 1,
+        Active = 2
+    }
+    
     public class SignalLogic : MonoBehaviour
     {
         [Header("Sprites")]
-        [SerializeField] private SpriteRenderer _spriteRender;
-        [SerializeField] private Sprite _spriteIdle;
-        [SerializeField] private Sprite _spriteAlert;
-        [SerializeField] private Sprite _spriteActive;
+        [SerializeField] private Sprite _objectIdle;
+        [SerializeField] private Sprite _objectAlert;
+        [SerializeField] private Sprite _objectActive;
 
         [Header("Id")]
         [SerializeField, Min(0)] private int _trackId;
@@ -20,17 +26,17 @@ namespace Metroma
 
         private void Start()
         {
-            if (_spriteRender != null && _spriteIdle == null) _spriteIdle = _spriteRender.sprite;
+            
         }
 
         public IEnumerator ActiveSignal(OpenSpaceLogic opLogic, float alertDur, float reactionDur, float activeDur) {
-            _spriteRender.sprite = _spriteAlert;
+            //_spriteRender.sprite = _spriteAlert;
             while (alertDur > 0) {
                 alertDur -= Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
             
-            _spriteRender.sprite = _spriteActive;
+            //_spriteRender.sprite = _spriteActive;
             while (activeDur > 0) {
                 if (reactionDur > 0) {
                     reactionDur -= Time.fixedDeltaTime;
@@ -48,9 +54,13 @@ namespace Metroma
                 yield return new WaitForFixedUpdate();
             }
             
-            _spriteRender.sprite = _spriteIdle;
+            //_spriteRender.sprite = _spriteIdle;
             opLogic.CallSignalEnded();
             yield break;
+        }
+
+        private void SwitchObject(SignalState state) {
+            
         }
     }
 }

@@ -14,17 +14,23 @@ namespace Metroma
         [SerializeField] private OpenSpaceControllable _ctrl;
         [SerializeField] private SpriteRenderer _ctrlSprite;
         [Space(7)]
-        [SerializeField] private bool _isLoopActive;
-        public void ActiveLoop(bool isActive) => _isLoopActive = isActive;
+        [SerializeField, ReadOnly] private bool _isLoopActive;
+        [Button]
+        public void ActiveLoop() => _isLoopActive = !_isLoopActive;
+        public void ActiveLoop(bool isActive) {
+            _isLoopActive = isActive;
+            if (_isLoopActive) {
+                _trackIndex = 0;
+                _ctrl.transform.position = _moveTracks[_trackIndex].GetStart;
+            }
+        }
         
         [Header("Tracks")]
         [SerializeField, ReadOnly] private int _trackIndex = 0;
 
-        public int TrackIndex
-        {
+        public int TrackIndex {
             get => _trackIndex;
-            private set
-            {
+            private set {
                 if (_moveTracks == null) return;
                 
                 _trackIndex = Mathf.Clamp(value, 0, _moveTracks.Count - 1);
@@ -64,8 +70,7 @@ namespace Metroma
         [SerializeField, Min(0), Tooltip("Duration of the projection window")] private Vector2 _activeTime;
         [SerializeField, Tooltip("Will use the X value only")] private bool _useActiveDelta = false;
 
-        private void OnValidate()
-        {
+        private void OnValidate() {
             if (_activateDelay.y < _activateDelay.x) _activateDelay.y = _activateDelay.x;
             if (_alertingTime.y < _alertingTime.x) _alertingTime.y = _alertingTime.x;
             if (_activeTime.y < _activeTime.x) _activeTime.y = _activeTime.x;
@@ -85,8 +90,7 @@ namespace Metroma
             }
         }
 
-        private void FixedUpdate()
-        {
+        private void FixedUpdate() {
             if (!_isLoopActive) return;
             
             if (!_inProjection) {
@@ -100,8 +104,7 @@ namespace Metroma
                 Vector3 displace = (-_projectionSpeed * Time.fixedDeltaTime) * _moveTracks[TrackIndex].GetSegmentNormal();
                 _ctrl.transform.position = _moveTracks[TrackIndex].MoveOnLine(_ctrl.transform.position + displace);
                 
-                if (!_recovering && _moveTracks[TrackIndex].IsAtStart(_ctrl.transform.position))
-                {
+                if (!_recovering && _moveTracks[TrackIndex].IsAtStart(_ctrl.transform.position)) {
                     _recovering = true;
                     StartCoroutine(ProjectionRecovery(_recoveryTime));
                 }
@@ -110,13 +113,11 @@ namespace Metroma
             // Debug.Log($"Is at End : {GetIsAtEnd} | TrackEnd : {GetTrackStateEnd} | Track Current : {GetCurrentTrackState}");
         }
         
-        private void CheckLineIndex()
-        {
+        private void CheckLineIndex() {
             int prevIndex = TrackIndex;
             
             int indexIncrement = _moveTracks[TrackIndex].GetPassNext;
-            if ((!_noGoBack && indexIncrement != 0) || (_noGoBack && indexIncrement > 0))
-            {
+            if ((!_noGoBack && indexIncrement != 0) || (_noGoBack && indexIncrement > 0)) {
                 int lastIndex = TrackIndex;
                 TrackIndex = Mathf.Clamp(TrackIndex + indexIncrement, 0, _moveTracks.Count - 1);
                 if (TrackIndex != lastIndex) _moveTracks[TrackIndex].ResetPassNext();
@@ -126,8 +127,7 @@ namespace Metroma
             }
         }
 
-        private void CheckSignals()
-        {
+        private void CheckSignals() {
             // Si le timer doit descendre et qu'aucun signal se joue
             if (!_signalPlaying && _activateCurrentTime > 0f) {
                 _activateCurrentTime -= Time.fixedDeltaTime;
@@ -180,15 +180,12 @@ namespace Metroma
         }
         
         [Button]
-        public void CallProjection()
-        { 
+        public void CallProjection() { 
             _inProjection = true;
             _activateCurrentTime = 0;
         }
-        public void CallProjection(int track)
-        {
-            if (TrackIndex == track)
-            {
+        public void CallProjection(int track) {
+            if (TrackIndex == track) {
                 _inProjection = true;
                 _activateCurrentTime = 0;
             }
@@ -201,12 +198,9 @@ namespace Metroma
         public bool IsCtrlMoving() => _ctrl.GetSpeed != 0;
         
         private void OnDrawGizmos() {
-            for (int i = 0; i < _moveTracks.Count; i++)
-            {
-                if (_moveTracks[i] != null)
-                {
-                    switch (i % 4)
-                    {
+            for (int i = 0; i < _moveTracks.Count; i++) {
+                if (_moveTracks[i] != null) {
+                    switch (i % 4) {
                         case 0 : Gizmos.color = Color.red; break;
                         case 1 : Gizmos.color = Color.orange; break;
                         case 2 : Gizmos.color = Color.yellow; break;
