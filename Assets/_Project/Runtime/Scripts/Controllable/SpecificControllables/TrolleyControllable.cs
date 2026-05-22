@@ -29,5 +29,12 @@ namespace Metroma
                 _direction = Direction.NONE;
             }
         }
+
+        protected override void InputMoveEnd(Vector2 move)
+        {
+            base.InputMoveEnd(move);
+            
+            _direction = Direction.NONE;
+        }
     }
 }
