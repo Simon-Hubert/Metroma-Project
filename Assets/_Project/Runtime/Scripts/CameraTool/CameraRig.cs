@@ -234,8 +234,10 @@ namespace Metroma.CameraTool
                     cam.transform.rotation = InPose.rotation;
                     cam.fieldOfView = InPose.fov;
                     
+#if UNITY_EDITOR
                     UnityEditor.EditorUtility.SetDirty(cam.transform);
                     UnityEditor.SceneView.RepaintAll();
+#endif
                 }
                 else
                 {
