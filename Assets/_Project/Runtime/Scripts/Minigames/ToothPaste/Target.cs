@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Metroma
 {
@@ -7,12 +8,14 @@ namespace Metroma
     public class Target : MonoBehaviour
     {
         public bool Validated { get; private set; }
+        private Tooth _tooth;
         public Rigidbody2D _targetRB;
 
         public static event Action OnValidated;
 
         private void Awake() {
             TargetManager.Handle(this);
+            _tooth = GetComponent<Tooth>();
         }
 
         private void OnDestroy() {
@@ -25,9 +28,12 @@ namespace Metroma
 
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.attachedRigidbody == _targetRB) {
-                Validated = true;
-                Debug.Log("Validated");
-                OnValidated?.Invoke();
+                Debug.Log("Hit");
+                _tooth.OnHit();
+                if (_tooth.Validated) {
+                    Validated = true;
+                    OnValidated?.Invoke();
+                }
             }
         }
     }
