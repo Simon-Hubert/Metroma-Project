@@ -9,7 +9,7 @@ namespace Metroma
         private List<ASequencable> _sequence = new List<ASequencable>();
         public event Action SequenceEnded;
 
-        private void Start() {
+        private void Awake() {
             //TODO faire ce setup in editor
             foreach (Transform child in transform) {
                 ASequencable sequencable = child.GetComponent<ASequencable>();
