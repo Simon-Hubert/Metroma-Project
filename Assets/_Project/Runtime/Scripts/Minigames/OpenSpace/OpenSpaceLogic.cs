@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
@@ -16,7 +17,7 @@ namespace Metroma
         [Space(7)]
         [SerializeField, ReadOnly] private bool _isLoopActive;
         [Button]
-        public void ActiveLoop() => _isLoopActive = !_isLoopActive;
+        public void ActiveLoop() => ActiveLoop(!_isLoopActive);
         public void ActiveLoop(bool isActive) {
             _isLoopActive = isActive;
             if (_isLoopActive) {
@@ -51,10 +52,13 @@ namespace Metroma
         [SerializeField, Min(0)] private float _recoveryTime = 1f;
         
         [Header("Signals")]
-        [SerializeField] private bool projectedIfOnTrack = true;
-        public bool GetProjectedIfOnTrack { get => projectedIfOnTrack; }
-        [SerializeField] private List<SignalLogic> _signals;
-        [SerializedDictionary] private Dictionary<int, List<SignalLogic>> _signalsByTrack = new Dictionary<int, List<SignalLogic>>();
+        [SerializeField] private bool _projectedIfOnTrack = false;
+        public bool GetProjectedIfOnTrack { get => _projectedIfOnTrack; }
+        [SerializeField] private bool _callAllSignals = false;
+        [Space(7)]
+        [SerializeField] private List<AOPSignal> _signals;
+        [SerializeField, ReadOnly] private List<AOPSignal> _signalsAlwaysCalled;
+        [SerializeField] private Dictionary<int, List<AOPSignal>> _signalsByTrack = new Dictionary<int, List<AOPSignal>>();
         private bool _signalPlaying;
         
         [Header("Delays")]
@@ -77,19 +81,29 @@ namespace Metroma
         }
 
         private void Start() {
+            SortSignals();
+        }
+        [Button]
+        private void SortSignals() {
             _signalsByTrack.Clear();
+            _signalsAlwaysCalled.Clear();
             TrackIndex = 0;
             
-            foreach (SignalLogic signal in _signals) {
+            foreach (AOPSignal signal in _signals) {
                 if (signal != null) {
-                    if (!_signalsByTrack.ContainsKey(signal.GetTrackId))
-                        _signalsByTrack.Add(signal.GetTrackId, new List<SignalLogic>());
-                    
-                    _signalsByTrack[signal.GetTrackId].Add(signal);
+                    if (signal.IsAlwaysCalled()) {
+                        _signalsAlwaysCalled.Add(signal);
+                    }
+                    else {
+                        if (!_signalsByTrack.ContainsKey(signal.GetTrackId()))
+                            _signalsByTrack.Add(signal.GetTrackId(), new List<AOPSignal>());
+                        
+                        _signalsByTrack[signal.GetTrackId()].Add(signal);
+                    }
                 }
             }
         }
-
+        
         private void FixedUpdate() {
             if (!_isLoopActive) return;
             
@@ -134,34 +148,53 @@ namespace Metroma
 
                 // Si le timer atteint 0, appel de signal
                 if (_activateCurrentTime <= 0f) {
-                    SignalLogic choosen = null;
+                    AOPSignal choosen = null;
+                    AOPSignal[] signalToCall = Array.Empty<AOPSignal>();
 
-                    // Si un signal est associé à la Track actuel
-                    if (_signalsByTrack.ContainsKey(TrackIndex)) {
-                        List<SignalLogic> selection = new List<SignalLogic>();
+                    if (_callAllSignals) {
+                        signalToCall = _signals.ToArray();
+                    }
+                    else {
+                        // Si un signal est associé à la Track actuel
+                        if (_signalsByTrack.ContainsKey(TrackIndex)) {
+                            List<AOPSignal> selection = new List<AOPSignal>();
 
-                        foreach (SignalLogic signal in _signalsByTrack[TrackIndex]) {
-                            if (signal.GetSegmentId == _moveTracks[TrackIndex].CurrentSegment) selection.Add(signal);
+                            foreach (AOPSignal signal in _signalsByTrack[TrackIndex]) {
+                                if (signal.GetSegmentId() == _moveTracks[TrackIndex].CurrentSegment) selection.Add(signal);
+                            }
+
+                            if (selection.Count > 0) choosen = selection[Random.Range(0, selection.Count)];
+                            else choosen = _signalsByTrack[TrackIndex][Random.Range(0, _signalsByTrack[TrackIndex].Count)];
                         }
-
-                        if (selection.Count > 0) choosen = selection[Random.Range(0, selection.Count)];
-                        else choosen = _signalsByTrack[TrackIndex][Random.Range(0, _signalsByTrack[TrackIndex].Count)];
-                    }
-                    // Sinon, si un signal est 
-                    else if (choosen == null && _signals.Count > 0) choosen = _signals[Random.Range(0, _signals.Count)];
-
-                    // Si un signal a
-                    if (choosen != null) {
-                        float alert = _useAlertingDelta ? Random.Range(_alertingTime.x, _alertingTime.y) : _alertingTime.x;;
-                        float active = _useActiveDelta ? Random.Range(_activeTime.x, _activeTime.y) : _activeTime.x;
+                        // Sinon, si il y a un signal, prendre aléatoirement
+                        else if (choosen == null && _signals.Count > 0) choosen = _signals[Random.Range(0, _signals.Count)];
                         
-                        StartCoroutine(choosen.ActiveSignal(this, alert, _reactionTime, active));
-                        _signalPlaying = true;
+                        
+                        // S'il y a un signal, l'appeler
+                        if (choosen != null) {
+                            signalToCall = new AOPSignal[_signalsAlwaysCalled.Count + 1];
+                            Array.Copy(_signalsAlwaysCalled.ToArray(), signalToCall, _signalsAlwaysCalled.Count);
+                            signalToCall[^1] = choosen;
+                        }
+                        else {
+                            signalToCall = _signalsAlwaysCalled.ToArray();
+                        }
                     }
-                    else Debug.LogWarning($"OpenSpaceLogic '{name}' : No SignalLogic designed, check if there is any SignalLogic associated with this script");
+                    
+                    float alert = _useAlertingDelta ? Random.Range(_alertingTime.x, _alertingTime.y) : _alertingTime.x;;
+                    float active = _useActiveDelta ? Random.Range(_activeTime.x, _activeTime.y) : _activeTime.x;
+
+                    if (signalToCall.Length > 0)
+                    {
+                        foreach (AOPSignal signal in signalToCall) {
+                            if (signal != null) signal.ActiveSignal(this, alert, _reactionTime, active);
+                        }
+                        _signalPlaying = true;
+                        
+                    }
                 }
             }
-            // Si le timer doit se reset parcequ'il a atteint 0 et qu'acun signal se joue
+            // Si le timer doit se reset parce qu'il a atteint 0 et qu'acun signal se joue
             else if (!_signalPlaying && _activateCurrentTime <= 0f) {
                 _activateCurrentTime = _useDelayDelta ? Random.Range(_activateDelay.x, _activateDelay.y) : _activateDelay.x;
             }
@@ -185,9 +218,8 @@ namespace Metroma
             _activateCurrentTime = 0;
         }
         public void CallProjection(int track) {
-            if (TrackIndex == track) {
-                _inProjection = true;
-                _activateCurrentTime = 0;
+            if (!GetProjectedIfOnTrack || TrackIndex == track) {
+                CallProjection();
             }
         }
         public void CallSignalEnded() { 
