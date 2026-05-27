@@ -10,28 +10,36 @@ namespace Metroma.Editor
 {
     public class SequenceContextMenu
     {
-        [MenuItem("CONTEXT/Sequence/Add Sequence/ActivateObject")]
+        [MenuItem("CONTEXT/Sequence/Add Sequence/ActivateObject"), MenuItem("GameObject/Sequence/Add Sequence/ActivateObject")]
         private static void AddActivateObject(MenuCommand cmd) => AddSequenceChild(cmd, typeof(ActivateObject));
 
-        [MenuItem("CONTEXT/Sequence/Add Sequence/EnableBehaviour")]
+        [MenuItem("CONTEXT/Sequence/Add Sequence/EnableBehaviour"), MenuItem("GameObject/Sequence/Add Sequence/EnableBehaviour")]
         private static void AddEnableBehaviour(MenuCommand cmd) => AddSequenceChild(cmd, typeof(EnableBehaviour));
 
-        [MenuItem("CONTEXT/Sequence/Add Sequence/PlayFeedBack")]
+        [MenuItem("CONTEXT/Sequence/Add Sequence/PlayFeedBack"), MenuItem("GameObject/Sequence/Add Sequence/PlayFeedBack")]
         private static void AddPlayFeedBack(MenuCommand cmd) => AddSequenceChild(cmd, typeof(PlayFeedBack));
 
-        [MenuItem("CONTEXT/Sequence/Add Sequence/TransiSequencable")]
+        [MenuItem("CONTEXT/Sequence/Add Sequence/TransiSequencable"), MenuItem("GameObject/Sequence/Add Sequence/TransiSequencable")]
         private static void AddTransiSequencable(MenuCommand cmd) => AddSequenceChild(cmd, typeof(TransiSequencable));
 
-        [MenuItem("CONTEXT/Sequence/Add Sequence/WaitForDuration")]
+        [MenuItem("CONTEXT/Sequence/Add Sequence/WaitForDuration"), MenuItem("GameObject/Sequence/Add Sequence/WaitForDuration")]
         private static void AddWaitForDuration(MenuCommand cmd) => AddSequenceChild(cmd, typeof(WaitForDuration));
 
-        [MenuItem("CONTEXT/Sequence/Add Sequence/Sequence")]
+        [MenuItem("CONTEXT/Sequence/Add Sequence/Sequence"), MenuItem("GameObject/Sequence/Add Sequence/Sequence")]
         private static void AddSequenceScript(MenuCommand cmd) => AddSequenceChild(cmd, typeof(Sequence));
         
         private static void AddSequenceChild(MenuCommand command, System.Type type)
         {
             Sequence sequence = command.context as Sequence;
-            if (sequence == null) return;
+            if (sequence == null)
+            {
+                sequence = (command.context as GameObject)?.GetComponent<Sequence>();
+                if (sequence == null)
+                {
+                    Debug.LogError($"$[SequenceMenu] Can't find Sequence component on Object : {command.context}");
+                    return;
+                }
+            }
 
             GameObject child = new GameObject(type.Name);
             child.transform.SetParent(sequence.transform);
