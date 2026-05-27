@@ -20,6 +20,8 @@ namespace Metroma
 
         private void Start() {
             _citruses = _citruses.OrderByDescending(go => go.GetComponent<SpriteRenderer>().sortingOrder).ToArray();
+            _startZ += transform.position.z;
+            _endZ += transform.position.z;
         }
         
         public void Play() {

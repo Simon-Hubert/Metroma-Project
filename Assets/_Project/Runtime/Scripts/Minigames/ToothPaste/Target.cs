@@ -28,6 +28,7 @@ namespace Metroma
 
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.attachedRigidbody == _targetRB) {
+                Debug.Log("Hit");
                 _tooth.OnHit();
                 if (_tooth.Validated) {
                     Validated = true;

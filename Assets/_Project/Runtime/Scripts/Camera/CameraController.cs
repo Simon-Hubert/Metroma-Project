@@ -1,5 +1,6 @@
 using System;
 using NaughtyAttributes;
+using SMath;
 using UnityEngine;
 using static UnityEngine.Mathf;
 
@@ -13,22 +14,33 @@ namespace Metroma
         [SerializeField, ShowIf("_dampen")] private float _f = 1;
         [SerializeField, ShowIf("_dampen")] private float _z = 2;
         [SerializeField, ShowIf("_dampen")] private float _r = 0;
-        [SerializeField] private bool _fixPlane;
+        [SerializeField, ShowIf("_dampen")] private bool _fixPlane;
+        private float _saveZ;
         
         
         private CameraConfiguration _current;
         private SecondDegreeSmoother _smoother;
+        private SecondOrderDynamics<Vector2> _dynamics2D;
         
 
         private void Start() {
             _smoother = new SecondDegreeSmoother(_f, _z, _r);
             _current = CameraHelpers.GetConfigOfCam(_cam);
+            if (_fixPlane) {
+                _saveZ = _current.Pivot.z;
+                _dynamics2D = new SecondOrderDynamics<Vector2>(_f, _z, _r, _current.Pivot ,new Linear2D());
+            }
         }
 
         private void Update() {
             if (_dampen) {
-                Debug.Log($"{_current.Pivot.z}");
-                _current = _smoother.Smooth(_current, _view.GetConfiguration());
+                if (!_fixPlane) {
+                    _current = _smoother.Smooth(_current, _view.GetConfiguration());
+                }
+                else {
+                    _current.Pivot = _dynamics2D.Update(Time.deltaTime, new Vector2(_view.GetConfiguration().Pivot.x, _view.GetConfiguration().Pivot.y));
+                    _current.Pivot.z = _saveZ;
+                }
                 CameraHelpers.ApplyConfiguration(_cam, _current);
             }
             else {
