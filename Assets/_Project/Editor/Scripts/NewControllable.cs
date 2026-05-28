@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Metroma.Editor
 {
-    public static class ScriptCreation
+    public static class AControllableCreation
     {
         [MenuItem("Assets/Create/Metroma/Script/new AControllable", false, 80)]
         public static void CreateScript()
