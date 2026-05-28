@@ -8,6 +8,8 @@ namespace Metroma
     {
         [SerializeField] private float _gravity;
         [SerializeField] private float _upForce;
+        public float vel { get; private set; }
+        
         private Rigidbody2D _rb;
 
         protected override void Start() {
@@ -18,7 +20,8 @@ namespace Metroma
         protected override void FixedUpdate() {
             base.FixedUpdate();
             if (!IsActive) return;
-            _rb.linearVelocity += -Vector2.up * (_gravity * Time.deltaTime);
+            _rb.linearVelocity += -Vector2.up * (_gravity * Time.fixedDeltaTime);
+            vel = _rb.linearVelocity.y;
         }
 
         /*protected override void InputAction(bool action) {
