@@ -19,6 +19,8 @@ Shader "Custom/AdLit" {
 		[Toggle(_GLOSSINESS_FROM_BASE_ALPHA)] _GlossSource ("Glossiness Source, from Albedo Alpha (if on) vs from Specular (if off)", Float) = 0
 		_Smoothness("Smoothness", Range(0.0, 1.0)) = 0.5
 		
+		_LightFactor("Light Factor", Range(0.0,1.0)) = 0.0
+		
 		_Transition("Transition", Range(0.0,1.0)) = 0.5
 		_FormatX("FormatX", Float) = 16
 		_FormatY("FormatY", Float) = 9
@@ -48,6 +50,7 @@ Shader "Custom/AdLit" {
 		float _FormatX;
 		float _FormatY;
 		float _Transition;
+		float _LightFactor;
 		CBUFFER_END
 		ENDHLSL
 
@@ -335,6 +338,7 @@ Shader "Custom/AdLit" {
 				InputData inputData;
 				InitializeInputData(IN, surfaceData.normalTS, inputData);
 				half4 color = lerp(half4(surfaceData.albedo,1), half4(LightLoop(surfaceData, inputData),1),_Transition);
+				color = lerp(half4(surfaceData.albedo,1), color, _LightFactor);
 				color.rgb = MixFog(color.rgb, inputData.fogCoord);
 				
 				float width = lerp(1,_FormatX/2/15,_Transition);
