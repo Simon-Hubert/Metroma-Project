@@ -29,7 +29,6 @@ namespace Metroma
         public Vector2 SetHingeAnchorOffset { set => _hj2D.anchor = value; } 
         
         [Header("Visual")]
-        [SerializeField] private SpriteRenderer _background;
         [SerializeField] private SpriteRenderer _illustration;
         [Space(10)]
         [SerializeField] private TextMeshProUGUI _name;
@@ -47,7 +46,6 @@ namespace Metroma
         private void ResetChoiceValues() {
             if (!_trolleyChoiceSO) Debug.LogWarning($"{name}'s TrolleyChoiceLogic : no TrolleyChoiceSO found");
             
-            if (_trolleyChoiceSO) _background.sprite = _trolleyChoiceSO.background;
             _illustration.sprite = _trolleyChoiceSO ? _trolleyChoiceSO.illustration : null;
 
             if (_trolleyChoiceSO) {
