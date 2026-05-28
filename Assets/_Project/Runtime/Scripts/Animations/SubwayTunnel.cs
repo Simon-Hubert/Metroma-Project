@@ -15,18 +15,14 @@ namespace Metroma
         [SerializeField, ReadOnly] private Vector3 _initPos;
 
         [SerializeField, ReadOnly] private bool _isActive;
-        public bool ActiveAnimation {
-            get => _isActive;
-            private set {
-                if (value) Init();
-
-                _isActive = value;
-            }
+        public void ActiveLoop(bool active) => _isActive = active;
+        public void ActiveLoopWithInit(bool active) {
+            _isActive = active;
+            Init();
         }
-        [Button] public void Editor_ActiveAnimation() => ActiveAnimation = !_isActive;
-        
+
         private void Start() {
-            
+            Init();
         }
 
         private void FixedUpdate()
@@ -42,6 +38,7 @@ namespace Metroma
             _initPos = transform.position;
             _direction = transform.right;
             _progression = 0.5f;
+            SetPos(_progression);
         }
         private void SetPos(float progression) {
             progression -= 0.5f;
