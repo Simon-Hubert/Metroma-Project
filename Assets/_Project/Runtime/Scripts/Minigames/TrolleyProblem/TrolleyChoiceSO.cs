@@ -8,7 +8,6 @@ namespace Metroma
     [Serializable]
     public class TrolleyChoiceSO : ScriptableObject {
         public string id;
-        public Sprite background;
         public Sprite illustration;
 
         public string name;

@@ -42,7 +42,7 @@ namespace Metroma
         [SerializeField, Min(0)] private float _rbRopeEndMass = 1f;
         [SerializeField, Min(0)] private float _rbRopeEndGravityScale = 1f;
         
-        [Header("Parts SpringJoints Oprions")]
+        [Header("Parts SpringJoints Options")]
         [SerializeField, Min(0)] private float _sjDampingRatio = 0f;
         [SerializeField, Min(0)] private float _sjFrequency = 3f;
         [SerializeField] private JointBreakAction2D _sjBreakAction = JointBreakAction2D.Disable;
