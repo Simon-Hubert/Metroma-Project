@@ -77,9 +77,10 @@ Transform:
   m_Children:
   - {fileID: 7650103929706137894}
   - {fileID: 314825590027797099}
-  - {fileID: 8582091303214773048}
+  - {fileID: 5689605934220736948}
   - {fileID: 3098446363365614503}
   - {fileID: 4725025165914688058}
+  - {fileID: 4093668063917085470}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1611451964664244274
@@ -98,7 +99,7 @@ MonoBehaviour:
   _endSequence: {fileID: 2924761161013059311}
   _endCondition: {fileID: 1671126952503482422}
   _controllable: {fileID: 3180122358370316584}
-  _transitionIn: {fileID: 4854149796744985068}
+  _transitionIn: {fileID: 9001900052525999985}
   _allowInputsBeforeStart: 0
 --- !u!114 &1671126952503482422
 MonoBehaviour:
@@ -117,6 +118,7 @@ MonoBehaviour:
   _onValidated:
     m_PersistentCalls:
       m_Calls: []
+  _evaluateEveryFrames: 1
   references:
     version: 2
     RefIds:
@@ -124,24 +126,72 @@ MonoBehaviour:
       type: {class: NumberComparison, ns: Metroma, asm: Metroma}
       data:
         _a:
-          rid: 6083326399976046678
-    - rid: 6083326399976046678
-      type: {class: IntGreater, ns: Metroma, asm: Metroma}
+          rid: 6083326898649694279
+    - rid: 6083326898649694279
+      type: {class: IntGreaterOrEqual, ns: Metroma, asm: Metroma}
       data:
         a:
-          rid: 6083326399976046681
+          rid: 6083326898649694282
         b:
-          rid: 6083326399976046684
-    - rid: 6083326399976046681
+          rid: 6083326898649694283
+    - rid: 6083326898649694282
       type: {class: IntReference, ns: Metroma, asm: Metroma}
       data:
-        _value: {fileID: 0}
-        _variableName: GetTrackStateEnd
-    - rid: 6083326399976046684
+        _value: {fileID: 4845332128455406689}
+        _variableName: _dilemmaIndex
+    - rid: 6083326898649694283
       type: {class: IntReference, ns: Metroma, asm: Metroma}
       data:
-        _value: {fileID: 0}
-        _variableName: GetCurrentTrackState
+        _value: {fileID: 4845332128455406689}
+        _variableName: GetDilemmasEndIndex
+--- !u!1 &1242195488368884599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4093668063917085470}
+  - component: {fileID: 709183101208416293}
+  m_Layer: 0
+  m_Name: CamPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4093668063917085470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242195488368884599}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4598693552388901513}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &709183101208416293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242195488368884599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b62110f23b8f748898a3bd9e647bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.FixedView
+  _yaw: 0
+  _pitch: 0
+  _roll: 0
+  _fov: 60
 --- !u!1 &1701547110748503959
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +753,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &5783371680716383647
+--- !u!1 &5648176056087667405
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -711,8 +761,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8582091303214773048}
-  - component: {fileID: 4854149796744985068}
+  - component: {fileID: 5689605934220736948}
+  - component: {fileID: 9001900052525999985}
   m_Layer: 0
   m_Name: TransitionIn
   m_TagString: Untagged
@@ -720,33 +770,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8582091303214773048
+--- !u!4 &5689605934220736948
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5783371680716383647}
+  m_GameObject: {fileID: 5648176056087667405}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8582091303214773048}
+  - {fileID: 104064567934680553}
   m_Father: {fileID: 4598693552388901513}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4854149796744985068
+--- !u!114 &9001900052525999985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5783371680716383647}
+  m_GameObject: {fileID: 5648176056087667405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 800f665955f40604da9ae2bd7ae64d3d, type: 3}
+  m_Script: {fileID: 11500000, guid: ab5d8acf5297cc7499d8966be2ddd2d5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ViewTransition
+  m_EditorClassIdentifier: Metroma::Metroma.Transitions.ParallelTransition
   _callEventIfCancellation: 1
   _onTransitionEnded:
     m_PersistentCalls:
@@ -763,12 +815,186 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _a: {fileID: 4854149796744985068}
+  _b: {fileID: 6633654402001359053}
+--- !u!1 &5740079292812257147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 104064567934680553}
+  - component: {fileID: 6633654402001359053}
+  m_Layer: 0
+  m_Name: CameraColorTransition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &104064567934680553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5740079292812257147}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -55.1, y: -11, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5689605934220736948}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6633654402001359053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5740079292812257147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61cfec8a51140f1429b9884e22aae58f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.CameraColorTransition
+  _callEventIfCancellation: 0
+  _onTransitionEnded:
+    m_PersistentCalls:
+      m_Calls: []
   _cam: {fileID: 0}
-  _targetView: {fileID: 0}
-  _duration: 0
+  _duration: 1
+  _useGradient: 0
+  _gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  _toColor: {r: 1, g: 0.62352943, b: 0.6156863, a: 1}
   _curve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &5783371680716383647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8582091303214773048}
+  - component: {fileID: 4854149796744985068}
+  m_Layer: 0
+  m_Name: CameraView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8582091303214773048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783371680716383647}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5689605934220736948}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4854149796744985068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783371680716383647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800f665955f40604da9ae2bd7ae64d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ViewTransition
+  _callEventIfCancellation: 1
+  _onTransitionEnded:
+    m_PersistentCalls:
+      m_Calls: []
+  _cam: {fileID: 0}
+  _targetView: {fileID: 709183101208416293}
+  _duration: 1
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -6061,7 +6287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3174845777693751346, guid: b2e627ecfc6e2b3b0b44d73c1d4df466, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.9749999
+      value: -0.9750004
       objectReference: {fileID: 0}
     - target: {fileID: 5677578126129033889, guid: b2e627ecfc6e2b3b0b44d73c1d4df466, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6362,7 +6588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3174845777693751346, guid: b2e627ecfc6e2b3b0b44d73c1d4df466, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.9749999
+      value: -0.9750004
       objectReference: {fileID: 0}
     - target: {fileID: 3201455546406898817, guid: b2e627ecfc6e2b3b0b44d73c1d4df466, type: 3}
       propertyPath: m_Distance

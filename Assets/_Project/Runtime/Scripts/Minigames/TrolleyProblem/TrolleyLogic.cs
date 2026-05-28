@@ -29,7 +29,8 @@ namespace Metroma
     {
         [SerializeField] private TrolleyControllable _ctrl;
         [SerializeField] private List<Dilemma> _dilemmas;
-        [SerializeField, ReadOnly] private int _dilemmaIndex = 0;
+        [SerializeField, ReadOnly, ConditionParam] private int _dilemmaIndex = 0;
+        [ConditionParam] public int GetDilemmasEndIndex { get => _dilemmas.Count; }
         [SerializeField, ReadOnly] private TrolleyState _trolleyState;
         
         private Direction _ctrlDir = Direction.NONE;
@@ -138,6 +139,9 @@ namespace Metroma
             }
             catch (Exception e) {
                 Debug.LogException(e);
+            }
+            finally {
+                _dilemmaIndex = _dilemmas.Count;
             }
         }
 
