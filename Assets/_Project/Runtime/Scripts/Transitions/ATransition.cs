@@ -14,7 +14,7 @@ namespace Metroma.Transitions
         protected CancellationTokenSource cancelTokenSource;
         
         protected abstract Awaitable TransitionAsync(CancellationToken cancelToken);
-        
+
         public async Awaitable PlayAsync(CancellationToken cancelToken) {
             try {
                 await TransitionAsync(cancelToken);
