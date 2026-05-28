@@ -24,6 +24,7 @@ namespace Metroma
                 _trackIndex = 0;
                 _ctrl.transform.position = _moveTracks[_trackIndex].GetStart;
             }
+            Debug.Log($"OpenSpaceLogic : Change Active State to {_isLoopActive}");
         }
         
         [Header("Tracks")]
@@ -74,6 +75,9 @@ namespace Metroma
         [SerializeField, Min(0), Tooltip("Duration of the projection window")] private Vector2 _activeTime;
         [SerializeField, Tooltip("Will use the X value only")] private bool _useActiveDelta = false;
 
+        [Header("Tempo - GP Validation")]
+        [SerializeField] private ConditionalEvent _condition;
+        
         private void OnValidate() {
             if (_activateDelay.y < _activateDelay.x) _activateDelay.y = _activateDelay.x;
             if (_alertingTime.y < _alertingTime.x) _alertingTime.y = _alertingTime.x;
@@ -123,8 +127,8 @@ namespace Metroma
                     StartCoroutine(ProjectionRecovery(_recoveryTime));
                 }
             }
-
-            // Debug.Log($"Is at End : {GetIsAtEnd} | TrackEnd : {GetTrackStateEnd} | Track Current : {GetCurrentTrackState}");
+            
+            if (GetIsAtEnd) _condition.Evaluate();
         }
         
         private void CheckLineIndex() {
