@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 namespace Metroma.Editor
 {
     public class AdToolWindow : EditorWindow
-    {
+    {/*
         private AdBase             _ad;
         private SerializedObject   _adObj;
         private SerializedProperty _blocks;
@@ -292,6 +292,6 @@ namespace Metroma.Editor
                 
                 Debug.Log($"[AdTool] Edit Mode → Sauvegarde Disque + Reload bloc {index}");
             }
-        }
+        }*/ 
     }
 }

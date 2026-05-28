@@ -1,65 +1,102 @@
+using System;
 using System.Threading;
 using Metroma.CameraTool;
 using Metroma.Transitions;
+using NaughtyAttributes;
 using UnityEngine.Timeline;
 using UnityEngine;
 using UnityEngine.Playables;
 
 namespace Metroma.Interfacing
 {
+    [Serializable]
+    public struct PhaseData
+    {
+        public Camera AdCam;
+        public ATransition TransiIn;
+        public AdBase Ad;
+        public ATransition TransiOut;
+    }
+    
     public class Director : MonoBehaviour
     {
-        [SerializeField] private PlayableDirector _director;
-        [SerializeField] private TimelineAsset _timelineIntro;
-        [SerializeField] private TimelineAsset _timeline11;
-        [SerializeField] private ATransition _Phase11TransiIn;
-        [SerializeField] private ATransition _Phase11TransiOut;
-        [SerializeField] private AdBase _ad;
-        [SerializeField] private Camera _adCam;
         [SerializeField] private Camera _irlCam;
+        [SerializeField] private FPSControllable _fpsControllable;
+        [SerializeField] private PhaseData _phase1;
+        [SerializeField] private PhaseData _phase2;
 
+        [Header("PhaseSecific")]
+        [SerializeField] private Animator _animMetro;
+        [SerializeField] private Animator _animMec;
+        [SerializeField, AnimatorParam("_animMetro")] private string _triggerAller;
+        [SerializeField, AnimatorParam("_animMetro")] private string _triggerRetour;
+        [SerializeField, AnimatorParam("_animMec")] private string _triggerMec;
+
+        delegate void OnEndDelegate();
+        
+        private bool phase1Played;
+        private bool phase2Played;
         private RenderTexture _temp;
         
-        private void Start() {
-            _Phase11TransiIn.OnTransitionEnd += StartAd;
-            CameraRig.Active.Sequences.PlayFocusStandalone(
-                _director,
-                _timelineIntro,
-                0f,
-                0f,
-                false,
-                null,
-                () =>
-                {
-                    CameraRig.Active.SetControlActive(false);
-                    _ = _Phase11TransiIn.PlayAsync(CancellationToken.None);
-                }
-                );
+        private void StartPhase(PhaseData phase, OnEndDelegate endDelegate = null) {
+            _fpsControllable.enabled = false;
+            phase.Ad.OnAdEnded += () =>
+            {
+                EndAdPhase(phase);
+            };
+            
+            phase.TransiIn.OnTransitionEnd += () =>
+            {
+                _temp = phase.AdCam.targetTexture;
+                phase.AdCam.targetTexture = null;
+                _irlCam.enabled = false;
+                phase.Ad.StartAd();
+            };
+            
+            _ = phase.TransiIn.PlayAsync(CancellationToken.None);
+        }
+
+        private void EndAdPhase(PhaseData phase, OnEndDelegate endDelegate = null) {
+            phase.AdCam.targetTexture = _temp;
+            _irlCam.enabled = true;
+            phase.TransiOut.OnTransitionEnd += () =>
+            {
+                _fpsControllable.enabled = true;
+                _fpsControllable.Reset();
+                if (endDelegate != null) endDelegate();
+            };
+            _ = phase.TransiOut.PlayAsync(CancellationToken.None);
             
         }
 
-        private void StartAd() {
-            _ad.OnAdEnded += OnAdEnded;
-            _temp = _adCam.targetTexture;
-            _adCam.targetTexture = null;
-            _irlCam.enabled = false;
-            _ad.StartAd();
+        public void Start() {
+            _animMetro.SetTrigger(_triggerAller);
+            _animMec.SetTrigger(_triggerMec);
+        }
+
+        private void InterPhase() {
+            _ = InterPhaseAsync();
+        }
+
+        private async Awaitable InterPhaseAsync() {
+            _animMetro.SetTrigger(_triggerRetour);
+            await Awaitable.WaitForSecondsAsync(5f);
+            _animMetro.SetTrigger(_triggerAller);
         }
         
-        private void OnAdEnded() {
-            _adCam.targetTexture = _temp;
-            _irlCam.enabled = true;
-            _Phase11TransiOut.OnTransitionEnd += () =>
-            {
-                CameraRig.Active.Sequences.PlayFocusStandalone(
-                    _director,
-                    _timeline11,
-                    0f,
-                    0f,
-                    false
-                );
-            };
-            _ = _Phase11TransiOut.PlayAsync(CancellationToken.None);
+        [Button]
+        public void StartPhase1() {
+            if (phase1Played) return;
+            StartPhase(_phase1, InterPhase);
+            phase1Played = true;
         }
+
+        [Button]
+        public void StartPhase2() {
+            if (phase2Played) return;
+            StartPhase(_phase2);
+            phase2Played = true;
+        }
+        
     }
 }
