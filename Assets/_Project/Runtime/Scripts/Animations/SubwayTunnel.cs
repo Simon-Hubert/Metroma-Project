@@ -15,17 +15,26 @@ namespace Metroma
         [SerializeField, ReadOnly] private Vector3 _initPos;
 
         [SerializeField, ReadOnly] private bool _isActive;
-        public void ActiveLoop(bool active) => _isActive = active;
-        public void ActiveLoopWithInit(bool active) {
-            _isActive = active;
+
+        public void ActiveLoop()
+        {
+            _isActive = true;
+        }
+        public void ActiveLoopWithInit() {
+            _isActive = true;
             Init();
         }
+
+        public void DeactiveLoop(){
+            _isActive = false;
+        }
+
 
         private void Start() {
             Init();
         }
 
-        private void FixedUpdate()
+        public void FixedUpdate()   
         {
             if (!_isActive) return;
             
