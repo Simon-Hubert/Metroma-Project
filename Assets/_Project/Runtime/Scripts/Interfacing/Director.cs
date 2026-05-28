@@ -31,6 +31,8 @@ namespace Metroma.Interfacing
         [SerializeField, AnimatorParam("_animMetro")] private string _triggerAller;
         [SerializeField, AnimatorParam("_animMetro")] private string _triggerRetour;
         [SerializeField, AnimatorParam("_animMec")] private string _triggerMec;
+        [SerializeField] private GameObject _irlAd1;
+        [SerializeField] private GameObject _irlAd2;
 
         delegate void OnEndDelegate();
         
@@ -42,7 +44,7 @@ namespace Metroma.Interfacing
             _fpsControllable.enabled = false;
             phase.Ad.OnAdEnded += () =>
             {
-                EndAdPhase(phase);
+                EndAdPhase(phase, endDelegate);
             };
             
             phase.TransiIn.OnTransitionEnd += () =>
@@ -75,12 +77,15 @@ namespace Metroma.Interfacing
         }
 
         private void InterPhase() {
+            Debug.Log("InterPhase Started");
             _ = InterPhaseAsync();
         }
 
         private async Awaitable InterPhaseAsync() {
-            _animMetro.SetTrigger(_triggerRetour);
-            await Awaitable.WaitForSecondsAsync(5f);
+            _animMetro.SetTrigger(_triggerRetour);  
+            await Awaitable.WaitForSecondsAsync(25f);
+            _irlAd1.SetActive(false);
+            _irlAd2.SetActive(true);
             _animMetro.SetTrigger(_triggerAller);
         }
         
