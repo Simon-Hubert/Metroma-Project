@@ -2357,6 +2357,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 377947600041761418, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 572169563}
+    - targetCorrespondingSourceObject: {fileID: 7611512330999713959, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 278986765}
   m_SourcePrefab: {fileID: 100100000, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
 --- !u!4 &278986760 stripped
 Transform:
@@ -2379,6 +2382,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5687e22e2b23ed489adf7f665f88668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.AdBase
+--- !u!1 &278986763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7611512330999713959, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 278986759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &278986764 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3557666819605844197, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 278986759}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f46ceda0902d08c49948f950d43ccb14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.PlaneControllable
+--- !u!114 &278986765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278986763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ed8dbc132f0fd4b9cdb1e1b697edd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.AnglePositionner
+  _plane: {fileID: 278986764}
+  _velocityRange: {x: -8, y: 10}
+  _angleRange: {x: -15, y: 15}
 --- !u!4 &280268050 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1795406008279734137, guid: c18c5582e8de03241b3ad7fa05d99f22, type: 3}
@@ -12761,7 +12795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.PlaySoundSequence
   _source: {fileID: 2028580465}
-  _active: 1
+  _active: 0
   _waitUntilFinishPlay: 0
 --- !u!4 &1946728605 stripped
 Transform:
