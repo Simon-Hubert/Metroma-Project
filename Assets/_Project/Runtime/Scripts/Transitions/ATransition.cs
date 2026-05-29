@@ -7,7 +7,7 @@ namespace Metroma.Transitions
 {
     public abstract class ATransition : MonoBehaviour
     {
-        [SerializeField] private bool _callEventIfCancellation;
+        [SerializeField] private bool _callEventIfCancellation = true;
         public event Action OnTransitionStart;
         [SerializeField] private UnityEvent _onTransitionStarted;
         

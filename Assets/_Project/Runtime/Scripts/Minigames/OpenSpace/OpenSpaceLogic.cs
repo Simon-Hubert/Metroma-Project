@@ -5,6 +5,7 @@ using AYellowpaper.SerializedCollections;
 using UnityEngine;
 using Metroma.Utils;
 using NaughtyAttributes;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -48,6 +49,15 @@ namespace Metroma
 
         [Header("Projection")]
         [SerializeField, ReadOnly] private bool _inProjection = false;
+        private bool InProjection {
+            get => _inProjection;
+            set {
+                _inProjection = value;
+
+                if (_inProjection) _onProjection?.Invoke();
+            }
+        }
+        [SerializeField] public UnityEvent _onProjection;
         [SerializeField, ReadOnly] private bool _recovering = false;
         [SerializeField, Min(0.1f)] private float _projectionSpeed = 30f;
         [SerializeField, Min(0)] private float _recoveryTime = 1f;
@@ -61,8 +71,18 @@ namespace Metroma
         [SerializeField, ReadOnly] private List<AOPSignal> _signalsAlwaysCalled;
         [SerializeField] private Dictionary<int, List<AOPSignal>> _signalsByTrack = new Dictionary<int, List<AOPSignal>>();
         private bool _signalPlaying;
-        
-        [Header("Delays")]
+        public bool SignalPlaying {
+            get => _signalPlaying;
+            set {
+                _signalPlaying = value;
+                
+                if (_signalPlaying) _onSignalPlaying?.Invoke();
+                else _onSignalStop?.Invoke();
+            }
+        }
+        [SerializeField] public UnityEvent _onSignalPlaying;
+        [SerializeField] public UnityEvent _onSignalStop;
+
         [SerializeField, Min(0), Tooltip("Time Between each alert")] private Vector2 _activateDelay;
         [SerializeField, Tooltip("Will use the X value only")] private bool _useDelayDelta = true;
         private float _activateCurrentTime = 0f;
@@ -111,7 +131,7 @@ namespace Metroma
         private void FixedUpdate() {
             if (!_isLoopActive) return;
             
-            if (!_inProjection) {
+            if (!InProjection) {
                 Vector3 displace = (_ctrl.GetSpeed * Time.fixedDeltaTime) * _moveTracks[TrackIndex].GetSegmentNormal();
                 _ctrl.transform.position = _moveTracks[TrackIndex].MoveOnLine(_ctrl.transform.position + displace);
 
@@ -139,15 +159,16 @@ namespace Metroma
                 int lastIndex = TrackIndex;
                 TrackIndex = Mathf.Clamp(TrackIndex + indexIncrement, 0, _moveTracks.Count - 1);
                 if (TrackIndex != lastIndex) _moveTracks[TrackIndex].ResetPassNext();
-                
-                if (prevIndex != TrackIndex )
+
+                if (prevIndex != TrackIndex) {
                     _ctrl.transform.position = indexIncrement < 0 ? _moveTracks[TrackIndex].GetEnd : _moveTracks[TrackIndex].GetStart;
+                }
             }
         }
 
         private void CheckSignals() {
             // Si le timer doit descendre et qu'aucun signal se joue
-            if (!_signalPlaying && _activateCurrentTime > 0f) {
+            if (!SignalPlaying && _activateCurrentTime > 0f) {
                 _activateCurrentTime -= Time.fixedDeltaTime;
 
                 // Si le timer atteint 0, appel de signal
@@ -193,13 +214,13 @@ namespace Metroma
                         foreach (AOPSignal signal in signalToCall) {
                             if (signal != null) signal.ActiveSignal(this, alert, _reactionTime, active);
                         }
-                        _signalPlaying = true;
+                        SignalPlaying = true;
                         
                     }
                 }
             }
             // Si le timer doit se reset parce qu'il a atteint 0 et qu'acun signal se joue
-            else if (!_signalPlaying && _activateCurrentTime <= 0f) {
+            else if (!SignalPlaying && _activateCurrentTime <= 0f) {
                 _activateCurrentTime = _useDelayDelta ? Random.Range(_activateDelay.x, _activateDelay.y) : _activateDelay.x;
             }
             
@@ -211,14 +232,14 @@ namespace Metroma
                 duration -= Time.fixedDeltaTime;
             }
             
-            _inProjection = false;
+            InProjection = false;
             _recovering = false;
             _moveTracks[_trackIndex].ResetPassNext();
         }
         
         [Button]
         public void CallProjection() { 
-            _inProjection = true;
+            InProjection = true;
             _activateCurrentTime = 0;
         }
         public void CallProjection(int track) {
@@ -227,7 +248,7 @@ namespace Metroma
             }
         }
         public void CallSignalEnded() { 
-            _signalPlaying = false;
+            SignalPlaying = false;
             _activateCurrentTime = 0;
         } 
 
@@ -239,8 +260,8 @@ namespace Metroma
                     switch (i % 4) {
                         case 0 : Gizmos.color = Color.red; break;
                         case 1 : Gizmos.color = Color.orange; break;
-                        case 2 : Gizmos.color = Color.yellow; break;
-                        case 3 : Gizmos.color = Color.greenYellow; break;
+                        case 2 : Gizmos.color = Color.green; break;
+                        case 3 : Gizmos.color = Color.blue; break;
                     }
 
                     for (int j = 0; j < _moveTracks[i].GetNbSegments; j++) {

@@ -16,17 +16,26 @@ namespace Metroma.Editor
             string fullPath = Path.Combine(path, fileName);
 
             string scriptContent = 
-                @"using System.Threading;
+                @"using System;
+using System.Threading;
 using Metroma.Transitions;
 using UnityEngine;
 
 namespace Metroma
 {
-        public class NewTransition : ATransition
+    public class NewTransition : ATransition
     {
-        protected override Awaitable TransitionAsync(CancellationToken cancelToken)
+        protected override async Awaitable TransitionAsync(CancellationToken cancelToken)
         {
-            throw new System.NotImplementedException();
+            try {
+
+            }
+            catch (OperationCanceledException) {
+
+            }
+            finally {
+                
+            }
         }
     }
 }";

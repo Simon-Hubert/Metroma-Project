@@ -10,14 +10,14 @@ namespace Metroma
         public void Change() {
             if (!_child) Debug.LogWarning("ChangeParent : _child is not set", this);
             else {
-                _child.SetParent(_parent);
+                _child.SetParent(_parent, true);
             }
         }
 
         public void SetNoParent() {
             if (!_child) Debug.LogWarning("ChangeParent : _child is not set", this);
             else {
-                _child.SetParent(null);
+                _child.SetParent(null, true);
             }
         }
     }
