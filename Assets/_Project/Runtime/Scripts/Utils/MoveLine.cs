@@ -15,7 +15,7 @@ namespace Metroma.Utils
 
         public Vector3 GetIndex(int index) => (points.Count > 1 && index >= 0 && index < points.Count) ? points[index].position : Vector3.zero;
         public int GetNbSegments { get => points.Count > 1 ? points.Count - 1 : 0; }
-
+        
         [Space(7)]
         [SerializeField, ReadOnly] private int _currentSegment;
         public int CurrentSegment {
