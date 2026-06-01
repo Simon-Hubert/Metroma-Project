@@ -32,7 +32,7 @@ namespace Metroma
             }
         }
 
-        private void Update() {
+        private void LateUpdate() {
             if (_dampen) {
                 if (!_fixPlane) {
                     _current = _smoother.Smooth(_current, _view.GetConfiguration());
