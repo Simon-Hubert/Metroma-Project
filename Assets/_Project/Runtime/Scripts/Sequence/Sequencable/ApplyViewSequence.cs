@@ -12,14 +12,19 @@ namespace Metroma
         [SerializeField, ShowIf("_forDuration")] private float _duration;
         
         public override async Awaitable ExecuteAsync() {
+            if (!RequirementsValidated()) return;
             CameraHelpers.ApplyConfiguration(_cam, _view.GetConfiguration());
             if (_forDuration) {
                 await Awaitable.WaitForSecondsAsync(_duration);
             }
         }
 
+        public override bool RequirementsValidated() {
+            return _view && _cam;
+        }
+
         private void OnValidate() {
-            if (!_view || !_cam) return;
+            if (!RequirementsValidated()) return;
             name = $"Apply {_view.name} to {_cam.name}";
         }
     }

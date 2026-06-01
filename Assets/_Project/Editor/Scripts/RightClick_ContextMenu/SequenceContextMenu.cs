@@ -10,10 +10,13 @@ namespace Metroma.Editor
 {
     public class SequenceContextMenu
     {
+        [MenuItem("CONTEXT/Sequence/Add Sequence/Spline"), MenuItem("GameObject/Sequence/Add Sequence/Spline")]
+        private static void AddSpline(MenuCommand cmd) => AddSequenceChild(cmd, typeof(SplineSequence));
+        
         [MenuItem("CONTEXT/Sequence/Add Sequence/CutToBlack"), MenuItem("GameObject/Sequence/Add Sequence/CutToBlack")]
         private static void AddCutToBlack(MenuCommand cmd) => AddSequenceChild(cmd, typeof(CutToBlackSequence));
         
-        [MenuItem("CONTEXT/Sequence/Add Sequence/ApplyView"), MenuItem("GameObject/Sequence/Add Sequence/CutToBlack")]
+        [MenuItem("CONTEXT/Sequence/Add Sequence/ApplyView"), MenuItem("GameObject/Sequence/Add Sequence/ApplyView")]
         private static void AddApplyView(MenuCommand cmd) => AddSequenceChild(cmd, typeof(ApplyViewSequence));
         
         [MenuItem("CONTEXT/Sequence/Add Sequence/ActivateObject"), MenuItem("GameObject/Sequence/Add Sequence/ActivateObject")]
