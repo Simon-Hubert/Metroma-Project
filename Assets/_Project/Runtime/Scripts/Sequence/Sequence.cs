@@ -31,5 +31,16 @@ namespace Metroma
                 SequenceEnded?.Invoke();
             }
         }
+        
+        
+#if UNITY_EDITOR
+        public override InspectorColor GetInspectorColor() {
+            return new InspectorColor
+            {
+                Background = new Color(1f,0,0),
+                Text = new Color(0.3f,0f,0f),
+            };
+        }
+#endif
     }
 }
