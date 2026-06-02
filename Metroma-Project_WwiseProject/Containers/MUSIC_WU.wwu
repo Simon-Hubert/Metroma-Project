@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{D1606C90-0A36-4784-B148-3C2CF923763C}" SchemaVersion="133">
+	<Containers>
+		<WorkUnit Name="MUSIC_WU" ID="{D1606C90-0A36-4784-B148-3C2CF923763C}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="2"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<PropertyContainer Name="MUSIC_AM" ID="{F11DD9D0-1748-44EB-9F08-E3E81936C0F2}" ShortID="172329963">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="MUSIC" ID="{74FDD9A4-ED52-4357-A371-0085FE6872C3}" WorkUnitID="{7B4CF33E-CFE5-4312-B49D-F2A35B3718C9}"/>
+						</Reference>
+					</ReferenceList>
+				</PropertyContainer>
+			</ChildrenList>
+		</WorkUnit>
+	</Containers>
+</WwiseDocument>

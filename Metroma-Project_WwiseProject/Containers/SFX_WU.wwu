@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{BD419662-B33B-49A1-904E-C5B8B0460435}" SchemaVersion="133">
+	<Containers>
+		<WorkUnit Name="SFX_WU" ID="{BD419662-B33B-49A1-904E-C5B8B0460435}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="10"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<PropertyContainer Name="SFX_AM" ID="{4395D6FB-33A2-4D2A-93AB-78337CC8AD53}" ShortID="688801189">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFX" ID="{4B823C48-291E-4A7D-B68D-6FC2541272B5}" WorkUnitID="{3D477281-2032-40A4-B50A-0613AF201746}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<PropertyContainer Name="SFX_Phase_1_AM" ID="{8CA92FB2-6775-42E1-9C4D-A5B189EC3072}" ShortID="962787635">
+							<PropertyList>
+								<Property Name="OverrideOutput" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_Phase_1" ID="{D8FC47B0-2CA2-4E98-8D25-CB2C22E58D88}" WorkUnitID="{3D477281-2032-40A4-B50A-0613AF201746}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<PropertyContainer Name="SFX_P1_Subway" ID="{80418A70-5842-4E90-B323-02187A78C552}" ShortID="547717895">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_P1_Subway" ID="{09CA806E-AB12-48C1-B544-B03A10D30DAB}" WorkUnitID="{3D477281-2032-40A4-B50A-0613AF201746}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+								<PropertyContainer Name="SFX_P1_MG_Drink" ID="{CEFF6407-B2A2-49F5-AFC4-E4908AC405C7}" ShortID="776573562">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_P1_MG_Drink" ID="{C7C614EA-CEDC-4BC9-957B-9C11D485648F}" WorkUnitID="{3D477281-2032-40A4-B50A-0613AF201746}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+								<PropertyContainer Name="SFX_P1_MG_Noyade" ID="{104EB1C4-1ABA-4733-8409-AA53ACF3E9B7}" ShortID="272317947">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_P1_MG_Noyade" ID="{584B6A90-BD89-4072-93AA-369FDA380CB7}" WorkUnitID="{3D477281-2032-40A4-B50A-0613AF201746}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+								<PropertyContainer Name="SFX_P1_MG_Plane" ID="{414852F4-62DC-4CBA-ACE9-BFC962E5C394}" ShortID="1007488706">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_P1_MG_Plane" ID="{9EEAB33D-E2D6-4800-8A62-F9FE41574534}" WorkUnitID="{3D477281-2032-40A4-B50A-0613AF201746}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+							</ChildrenList>
+						</PropertyContainer>
+						<PropertyContainer Name="SFX_Phase_2_AM" ID="{14E686A4-3EC9-485A-8076-ABA132706121}" ShortID="733306021">
+							<PropertyList>
+								<Property Name="OverrideOutput" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_Phase_2" ID="{4F7E97DC-37B9-4086-BF0F-1F846E42A4B8}" WorkUnitID="{3D477281-2032-40A4-B50A-0613AF201746}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<PropertyContainer Name="SFX_P2_Subway" ID="{F9CA11B3-2D5E-47B9-83BE-3D5B09D0950D}" ShortID="1060040807">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_P2_Subway" ID="{555665E6-3770-4DFA-BAD7-8E3D704DD6FF}" WorkUnitID="{3D477281-2032-40A4-B50A-0613AF201746}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+								<PropertyContainer Name="SFX_P2_MG_OpenSpace" ID="{060E538D-9FC9-44E4-9D13-E6F2646B5190}" ShortID="609648096">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_P2_MG_OpenSpace" ID="{47D6DCD8-B2A5-4B46-AF59-37167ACDA093}" WorkUnitID="{3D477281-2032-40A4-B50A-0613AF201746}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+								<PropertyContainer Name="SFX_P2_MG_TrolleyProblem" ID="{F9CC1C2F-444B-4F8C-BFB6-BBB796D4143A}" ShortID="502138695">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_P2_MG_TrolleyProblem" ID="{D4181CA6-A9C2-4C26-BE55-8371502C6480}" WorkUnitID="{3D477281-2032-40A4-B50A-0613AF201746}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+							</ChildrenList>
+						</PropertyContainer>
+					</ChildrenList>
+				</PropertyContainer>
+			</ChildrenList>
+		</WorkUnit>
+	</Containers>
+</WwiseDocument>

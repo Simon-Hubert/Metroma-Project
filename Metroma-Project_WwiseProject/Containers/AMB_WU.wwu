@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}" SchemaVersion="133">
+	<Containers>
+		<WorkUnit Name="AMB_WU" ID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="4"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<PropertyContainer Name="AMB_AM" ID="{E0E3C23D-7962-44D8-AF71-0BA03C743AEB}" ShortID="913097823">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="AMB" ID="{133059F5-B25E-4DEE-94F6-DF966A869049}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<PropertyContainer Name="AMB_Phase_1_AM" ID="{EB90F2F4-1EC1-4B73-B238-A00220240220}" ShortID="171356168">
+							<PropertyList>
+								<Property Name="OverrideOutput" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="AMB_Phase_1" ID="{38360061-B56E-4AD1-BA08-A94345F6707F}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<PropertyContainer Name="AMB_P1_Subway" ID="{FE4C4CED-5A53-43BF-924D-2504F9575BBE}" ShortID="361861180">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="AMB_P1_Subway" ID="{326A10E7-9508-4678-982B-CB085239AA07}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+								<PropertyContainer Name="AMB_P1_MG_Drink" ID="{7D86D33E-AF04-4F9C-BCFC-4C384A934F91}" ShortID="113202971">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="AMB_P1_MG_Drink" ID="{C99A0DEB-B467-4691-AE2A-5A81BC3FD983}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+								<PropertyContainer Name="AMB_P1_MG_Noyade" ID="{CC0AEC72-0085-4E7F-9ED7-7E7676BA27FE}" ShortID="45492476">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="AMB_P1_MG_Noyade" ID="{D35DCA72-ABF5-4A8A-B963-9A8E7489DEAA}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+								<PropertyContainer Name="AMB_P1_MG_Plane" ID="{A843DE9B-BE75-418E-BD0D-BC425EEC44DA}" ShortID="110909513">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+							</ChildrenList>
+						</PropertyContainer>
+						<PropertyContainer Name="AMB_Phase_2_AM" ID="{D96F85B0-B89C-468E-8089-CC78CEC13C02}" ShortID="302027546">
+							<PropertyList>
+								<Property Name="OverrideOutput" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="AMB_Phase_2" ID="{98F58F20-4B10-4FAF-A932-6F78E0A827C8}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<PropertyContainer Name="AMB_P2_Subway" ID="{BA82317E-A4CB-4C70-8068-5AB327E23541}" ShortID="772262961">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="AMB_P2_Subway" ID="{182341C3-0D96-4BC1-96D1-A2CBF6DCFEFC}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+								<PropertyContainer Name="AMB_P2_MG_OpenSpace" ID="{CB7E1F66-C214-4586-8B30-7AEB485F8898}" ShortID="704569375">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="AMB_P2_MG_OpenSpace" ID="{C66F6397-F55E-4D8D-92EB-A4C4A4E45711}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+								<PropertyContainer Name="AMB_P2_MG_TrolleyProblem" ID="{4812D6CD-953B-4052-85F4-3282EB250F5E}" ShortID="755068215">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="AMB_P2_MG_TrolleyProblem" ID="{1A464362-B35F-4EE0-9161-F1E37AEDEA50}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+										</Reference>
+									</ReferenceList>
+								</PropertyContainer>
+							</ChildrenList>
+						</PropertyContainer>
+					</ChildrenList>
+				</PropertyContainer>
+			</ChildrenList>
+		</WorkUnit>
+	</Containers>
+</WwiseDocument>
