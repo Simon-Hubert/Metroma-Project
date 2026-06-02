@@ -17,14 +17,16 @@ namespace Metroma.Editor
             if(null == instanceGameObject) return;
             ASequencable sequencable = instanceGameObject.GetComponent<ASequencable>();
             if (null == sequencable) return;
+            
             Texture texture = Texture2D.whiteTexture;
             Color save = GUI.color;
-            GUI.color = new Color(0.2196079f,0.2196079f, 0.2196079f, 1);
+            InspectorColor color = sequencable.GetInspectorColor();
+            GUI.color = color.Background;
             GUI.DrawTexture(selectionRect, texture, ScaleMode.StretchToFill, false);
             GUI.color = save;
+            
             float offset = 0f;
             if (!sequencable.RequirementsValidated()) {
-                
                 offset = selectionRect.height;
                 Rect rect = selectionRect;
                 rect.width = offset;
@@ -32,8 +34,11 @@ namespace Metroma.Editor
                 selectionRect.width -= offset;
                 GUI.DrawTexture(rect,EditorGUIUtility.FindTexture("console.warnicon.sml") );
             }
+
+            GUI.color = color.Text;
             GUI.Label(selectionRect, sequencable.name);
-            
+            GUI.color = save;
+
         }
     }
 }
