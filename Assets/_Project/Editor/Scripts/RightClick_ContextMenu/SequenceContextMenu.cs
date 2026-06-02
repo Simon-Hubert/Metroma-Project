@@ -10,6 +10,9 @@ namespace Metroma.Editor
 {
     public class SequenceContextMenu
     {
+        [MenuItem("CONTEXT/Sequence/Add Sequence/InvokeEvent"), MenuItem("GameObject/Sequence/Add Sequence/InvokeEvent")]
+        private static void AddInvokeEvent(MenuCommand cmd) => AddSequenceChild(cmd, typeof(UnityEventSequence));
+        
         [MenuItem("CONTEXT/Sequence/Add Sequence/Spline"), MenuItem("GameObject/Sequence/Add Sequence/Spline")]
         private static void AddSpline(MenuCommand cmd) => AddSequenceChild(cmd, typeof(SplineSequence));
         

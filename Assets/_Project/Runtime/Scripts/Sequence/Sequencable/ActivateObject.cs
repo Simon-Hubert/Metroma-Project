@@ -15,5 +15,15 @@ namespace Metroma
         public override bool RequirementsValidated() {
             return _object;
         }
+        
+#if UNITY_EDITOR
+        public override InspectorColor GetInspectorColor() {
+            return new InspectorColor
+            {
+                Background = ColorHelpers.ColorFromOKLCH(BackgroundLightness, CHROMA, 47f),
+                Text = ColorHelpers.ColorFromOKLCH(TextLightness, CHROMA, 47f),
+            };
+        }
+#endif
     }
 }
