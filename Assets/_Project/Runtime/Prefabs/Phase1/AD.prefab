@@ -677,6 +677,9 @@ MonoBehaviour:
   - {fileID: 919676733968150080}
   - {fileID: 420234802111322406}
   _activateOnStart: 0
+  _onAdEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3777496903041618138
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,7 +691,7 @@ GameObject:
   - component: {fileID: 7627726876805026709}
   - component: {fileID: 141963506847900203}
   m_Layer: 0
-  m_Name: Wait for 3,5 sec
+  m_Name: Wait for 3.5 sec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3097,6 +3100,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -3.630001
       objectReference: {fileID: 0}
+    - target: {fileID: 5218549252733591335, guid: 5b656b66766afd94e9476b286c720326, type: 3}
+      propertyPath: m_Name
+      value: Deactivate Chara
+      objectReference: {fileID: 0}
     - target: {fileID: 5627112575458934267, guid: 5b656b66766afd94e9476b286c720326, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3540,6 +3547,10 @@ PrefabInstance:
       propertyPath: _transitionIn
       value: 
       objectReference: {fileID: 4165515676487758289}
+    - target: {fileID: 8601931035695725141, guid: 3d8fc7aa6f7dce3469514e12feeb5728, type: 3}
+      propertyPath: m_Name
+      value: Activate CamController
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
