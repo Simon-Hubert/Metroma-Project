@@ -1379,6 +1379,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.Nuag
   _speed: 30
   _duration: 1.5
+--- !u!1 &3442724330103213407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1138555920252473417}
+  - component: {fileID: 2944676280392345672}
+  m_Layer: 0
+  m_Name: AnimCurveTransition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1138555920252473417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3442724330103213407}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.04984665, y: -14.717022, z: 34.11862}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6497216303158190646}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2944676280392345672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3442724330103213407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e64bc87fe74d424f89b32a25b2456f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.AnimCurveTransition
+  _callEventIfCancellation: 1
+  _onTransitionStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTransitionEnded:
+    m_PersistentCalls:
+      m_Calls: []
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _duration: 5
+  _resetValueAtEnd: 0
 --- !u!1 &3534216653825018677
 GameObject:
   m_ObjectHideFlags: 0
@@ -3132,6 +3209,7 @@ Transform:
   - {fileID: 999231118773013443}
   - {fileID: 6032740372350025041}
   - {fileID: 2414383648614339573}
+  - {fileID: 1138555920252473417}
   m_Father: {fileID: 8948517497682033838}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7959916458544653897
@@ -3158,6 +3236,7 @@ MonoBehaviour:
   - {fileID: 3843784979821586118}
   - {fileID: 5416595733281954677}
   - {fileID: 0}
+  - {fileID: 2944676280392345672}
 --- !u!1 &7319943740866133968
 GameObject:
   m_ObjectHideFlags: 0
