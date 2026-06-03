@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Metroma
 {
@@ -13,6 +14,8 @@ namespace Metroma
         public event Action OnAdStarted;
         public event Action OnAdEnded;
 
+        [SerializeField] private UnityEvent _onAdEnded;
+        
         private void Start() {
             if (_activateOnStart) {
                 StartAd();
@@ -29,6 +32,7 @@ namespace Metroma
         protected virtual void End()
         {
             OnAdEnded?.Invoke();
+            _onAdEnded?.Invoke();
         }
 
         private void GoNextBlock() {

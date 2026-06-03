@@ -17,6 +17,10 @@ namespace Metroma
             }
         }
 
+        public void Execute() {
+            _ = ExecuteAsync();
+        }
+        
         public override async Awaitable ExecuteAsync() {
             try {
                 foreach (ASequencable element in _sequence) {
