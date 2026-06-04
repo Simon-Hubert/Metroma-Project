@@ -35,9 +35,19 @@ namespace Metroma
         }
 
         private void OnValidate() {
-            if (!RequirementsValidated()) {
-                name = $"Move {_objectToMove.name} from {_A.name} to {_B.name}";
-            }
+            if (!RequirementsValidated()) return;
+            name = $"Move {_objectToMove.name} from {_A.name} to {_B.name}";
+            
         }
+        
+#if UNITY_EDITOR
+        public override InspectorColor GetInspectorColor() {
+            return new InspectorColor
+            {
+                Background = ColorHelpers.ColorFromOKLCH(BackgroundLightness, CHROMA, 275f),
+                Text = ColorHelpers.ColorFromOKLCH(TextLightness, CHROMA, 275f),
+            };
+        }
+#endif
     }
 }
