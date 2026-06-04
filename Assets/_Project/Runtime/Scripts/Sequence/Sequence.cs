@@ -12,11 +12,16 @@ namespace Metroma
         private void Awake() {
             //TODO faire ce setup in editor
             foreach (Transform child in transform) {
+                if (!child.gameObject.activeInHierarchy) continue;
                 ASequencable sequencable = child.GetComponent<ASequencable>();
                 if(sequencable) _sequence.Add(sequencable);
             }
         }
 
+        public void Execute() {
+            _ = ExecuteAsync();
+        }
+        
         public override async Awaitable ExecuteAsync() {
             try {
                 foreach (ASequencable element in _sequence) {
@@ -31,5 +36,16 @@ namespace Metroma
                 SequenceEnded?.Invoke();
             }
         }
+        
+        
+#if UNITY_EDITOR
+        public override InspectorColor GetInspectorColor() {
+            return new InspectorColor
+            {
+                Background = new Color(1f,0,0),
+                Text = new Color(0.3f,0f,0f),
+            };
+        }
+#endif
     }
 }
