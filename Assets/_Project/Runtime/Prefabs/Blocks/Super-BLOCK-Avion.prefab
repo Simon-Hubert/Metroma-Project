@@ -1131,10 +1131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BLOCK-Avion-Decollage
       objectReference: {fileID: 0}
-    - target: {fileID: 8342290343137531651, guid: 4384ee637d8f9114eab9a48fb71c7528, type: 3}
-      propertyPath: _anim
-      value: 
-      objectReference: {fileID: 6546215794291094197}
     - target: {fileID: 8403058929250754438, guid: 4384ee637d8f9114eab9a48fb71c7528, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -1186,9 +1182,17 @@ PrefabInstance:
       value: BLOCK-Avion
       objectReference: {fileID: 0}
     - target: {fileID: 7959916458544653897, guid: 2e2f4c33ccbd9ed4dba9c99cd460c605, type: 3}
-      propertyPath: '_trans.Array.data[3]'
+      propertyPath: _trans.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959916458544653897, guid: 2e2f4c33ccbd9ed4dba9c99cd460c605, type: 3}
+      propertyPath: '_trans.Array.data[2]'
       value: 
       objectReference: {fileID: 2790310257439844623}
+    - target: {fileID: 8455373177880579643, guid: 2e2f4c33ccbd9ed4dba9c99cd460c605, type: 3}
+      propertyPath: _trans.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8948517497682033838, guid: 2e2f4c33ccbd9ed4dba9c99cd460c605, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.7
@@ -1229,8 +1233,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 7959916458544653897, guid: 2e2f4c33ccbd9ed4dba9c99cd460c605, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 237906908895185216, guid: 2e2f4c33ccbd9ed4dba9c99cd460c605, type: 3}
+    - {fileID: 8480969199187125949, guid: 2e2f4c33ccbd9ed4dba9c99cd460c605, type: 3}
+    - {fileID: 2488193900805359566, guid: 2e2f4c33ccbd9ed4dba9c99cd460c605, type: 3}
+    - {fileID: 3442724330103213407, guid: 2e2f4c33ccbd9ed4dba9c99cd460c605, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8948517497682033838, guid: 2e2f4c33ccbd9ed4dba9c99cd460c605, type: 3}
       insertIndex: 1
@@ -1261,17 +1270,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6497216303158190646, guid: 2e2f4c33ccbd9ed4dba9c99cd460c605, type: 3}
   m_PrefabInstance: {fileID: 8216047781845424893}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6546215794291094197 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2944676280392345672, guid: 2e2f4c33ccbd9ed4dba9c99cd460c605, type: 3}
-  m_PrefabInstance: {fileID: 8216047781845424893}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e64bc87fe74d424f89b32a25b2456f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.AnimCurveTransition
 --- !u!4 &8676398702764906629 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 751398875612185208, guid: 2e2f4c33ccbd9ed4dba9c99cd460c605, type: 3}
