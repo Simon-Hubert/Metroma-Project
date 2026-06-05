@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -58,6 +59,10 @@ namespace Metroma
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
+        }
+
+        private void OnEnable() {
+            Reset();
         }
 
         private void Update()

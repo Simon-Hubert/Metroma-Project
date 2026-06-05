@@ -27,5 +27,16 @@ namespace Metroma
             if (!RequirementsValidated()) return;
             name = $"Apply {_view.name} to {_cam.name}";
         }
+
+#if UNITY_EDITOR
+        public override InspectorColor GetInspectorColor() {
+            return new InspectorColor
+            {
+                Background = ColorHelpers.ColorFromOKLCH(BackgroundLightness, CHROMA, 0f),
+                Text = ColorHelpers.ColorFromOKLCH(TextLightness, CHROMA, 0f),
+            };
+        }
+#endif
+        
     }
 }
