@@ -1037,6 +1037,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a6b54c05adf8aa8459dca8dbec0bb623, type: 3}
   m_PrefabInstance: {fileID: 749125548}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &125960094 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7288144633331819200, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7a73bd637a4e4bb9f541ab9877ee53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Block
 --- !u!1 &129800860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1506,17 +1517,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a6b54c05adf8aa8459dca8dbec0bb623, type: 3}
   m_PrefabInstance: {fileID: 162473542}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &163379408 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1511508613873033700, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-  m_PrefabInstance: {fileID: 2097875079}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b7a73bd637a4e4bb9f541ab9877ee53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Block
 --- !u!1001 &166400830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2168,11 +2168,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a6b54c05adf8aa8459dca8dbec0bb623, type: 3}
   m_PrefabInstance: {fileID: 265968639}
-  m_PrefabAsset: {fileID: 0}
---- !u!20 &272980854 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 8780215506598114258, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 1892318346}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &276779830
 GameObject:
@@ -5690,11 +5685,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6b54c05adf8aa8459dca8dbec0bb623, type: 3}
---- !u!4 &750134086 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-  m_PrefabInstance: {fileID: 2097875079}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &768054995
 GameObject:
   m_ObjectHideFlags: 0
@@ -11907,17 +11897,6 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!114 &1518878634 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2066008932770194604, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-  m_PrefabInstance: {fileID: 2097875079}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b7a73bd637a4e4bb9f541ab9877ee53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Block
 --- !u!1001 &1522830571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14774,11 +14753,11 @@ PrefabInstance:
     - target: {fileID: 6978295772623609914, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: '_blocks.Array.data[0]'
       value: 
-      objectReference: {fileID: 163379408}
+      objectReference: {fileID: 2103988200}
     - target: {fileID: 6978295772623609914, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: '_blocks.Array.data[1]'
       value: 
-      objectReference: {fileID: 1518878634}
+      objectReference: {fileID: 125960094}
     - target: {fileID: 6978295772623609914, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: _onAdEnded.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -15868,10 +15847,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 4308822024032949018, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
     - {fileID: 7023305033327621157, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6569986643040112752, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 750134086}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
 --- !u!4 &1892318347 stripped
@@ -17227,67 +17203,17 @@ MonoBehaviour:
   _pitch: 0
   _roll: 0
   _fov: 60
---- !u!1001 &2097875079
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1892318347}
-    m_Modifications:
-    - target: {fileID: 62460574306366286, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-      propertyPath: m_Name
-      value: Super-BLOCK-Avion-Rework
-      objectReference: {fileID: 0}
-    - target: {fileID: 2402785459729515152, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-      propertyPath: _cam
-      value: 
-      objectReference: {fileID: 272980854}
-    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -37.63965
-      objectReference: {fileID: 0}
-    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.1242304
-      objectReference: {fileID: 0}
-    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 22.872925
-      objectReference: {fileID: 0}
-    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+--- !u!114 &2103988200 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7887691706324019080, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7a73bd637a4e4bb9f541ab9877ee53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Block
 --- !u!1 &2112909396
 GameObject:
   m_ObjectHideFlags: 0
