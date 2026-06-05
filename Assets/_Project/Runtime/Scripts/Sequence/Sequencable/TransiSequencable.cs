@@ -8,10 +8,13 @@ namespace Metroma
     {
         [SerializeField] private ATransition _trans;
         private readonly CancellationTokenSource _source = new CancellationTokenSource();
-        
+        [SerializeField] private bool _waitForEnd = true;
         
         public override async Awaitable ExecuteAsync() {
-            await _trans.PlayAsync(_source.Token);
+            if (_waitForEnd)
+                await _trans.PlayAsync(_source.Token);
+            else
+                _ = _trans.PlayAsync(_source.Token);
         }
 
         public void Cancel() {
