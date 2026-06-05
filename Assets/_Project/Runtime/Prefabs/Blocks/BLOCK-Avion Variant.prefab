@@ -689,7 +689,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4231430417585452185}
-  - component: {fileID: 7317759997483657944}
   - component: {fileID: 2532204098626787511}
   m_Layer: 0
   m_Name: SeriesMoveCam
@@ -714,27 +713,6 @@ Transform:
   - {fileID: 7022897543065784610}
   m_Father: {fileID: 6398385551325477981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7317759997483657944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 480197399503301616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99573f6d47bf757c4a68f10fd0de3b82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Transitions.SeriesTransition
-  _callEventIfCancellation: 1
-  _onTransitionStarted:
-    m_PersistentCalls:
-      m_Calls: []
-  _onTransitionEnded:
-    m_PersistentCalls:
-      m_Calls: []
-  _a: {fileID: 2532204098626787511}
-  _b: {fileID: 0}
 --- !u!114 &2532204098626787511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1030,7 +1008,7 @@ MonoBehaviour:
   - {fileID: 3694169288868516565}
   - {fileID: 6817724140980968732}
   - {fileID: 5403582946992165551}
-  - {fileID: 7317759997483657944}
+  - {fileID: 0}
 --- !u!1 &705894177524420209
 GameObject:
   m_ObjectHideFlags: 0
@@ -3965,6 +3943,65 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &2854569928454397022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1135384558747593963}
+  - component: {fileID: 824465995216179290}
+  m_Layer: 0
+  m_Name: Invoke Event with 1 binds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1135384558747593963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854569928454397022}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 173650343660349275}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &824465995216179290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854569928454397022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69bcb5ae2dda1d84585899ae21a338d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UnityEventSequence
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Metroma.CameraController, Metroma
+        m_MethodName: ChangeView
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 561667999024233424}
+          m_ObjectArgumentAssemblyTypeName: Metroma.AView, Metroma
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2867908156415710836
 GameObject:
   m_ObjectHideFlags: 0
@@ -13125,8 +13162,16 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 156591467750667131, guid: 48fc56d369b527842b92071d06081335, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2865751427263960077}
+    - targetCorrespondingSourceObject: {fileID: 732182688649401944, guid: 48fc56d369b527842b92071d06081335, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1135384558747593963}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48fc56d369b527842b92071d06081335, type: 3}
+--- !u!4 &173650343660349275 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 732182688649401944, guid: 48fc56d369b527842b92071d06081335, type: 3}
+  m_PrefabInstance: {fileID: 594987900708106499}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &751398875612185208 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 156591467750667131, guid: 48fc56d369b527842b92071d06081335, type: 3}

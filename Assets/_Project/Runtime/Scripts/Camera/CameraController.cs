@@ -48,6 +48,8 @@ namespace Metroma
             }
             
         }
+        
+        public void ChangeView(AView view) => _view = view;
     }
     
     
