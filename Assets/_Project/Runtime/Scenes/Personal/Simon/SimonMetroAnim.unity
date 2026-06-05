@@ -506,11 +506,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a6b54c05adf8aa8459dca8dbec0bb623, type: 3}
   m_PrefabInstance: {fileID: 803054926}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &92985710 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5887764398274410841, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 278986759}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &104786165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -902,53 +897,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec4a7de4bba0aeb44a37c3ddc32f4cc3, type: 3}
   m_PrefabInstance: {fileID: 227257044}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &232320292
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 232320293}
-  - component: {fileID: 232320294}
-  m_Layer: 0
-  m_Name: PlaySound
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &232320293
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232320292}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1389476016}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &232320294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232320292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fb42c5dc99a8c2fcaa3b3c88c551be9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.PlaySoundSequence
-  _source: {fileID: 1734955192}
-  _active: 1
-  _waitUntilFinishPlay: 0
 --- !u!4 &240195442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6665202851420073150, guid: c18c5582e8de03241b3ad7fa05d99f22, type: 3}
@@ -997,7 +945,7 @@ PrefabInstance:
     - target: {fileID: 1333865578542672129, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: managedReferences[5174335361436090451].DestinationPositionTransform
       value: 
-      objectReference: {fileID: 716977446}
+      objectReference: {fileID: 0}
     - target: {fileID: 1473104129869352880, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.1
@@ -1009,7 +957,7 @@ PrefabInstance:
     - target: {fileID: 2329657484681669246, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: managedReferences[2639552009422504029].Destination
       value: 
-      objectReference: {fileID: 521850641}
+      objectReference: {fileID: 0}
     - target: {fileID: 3112554167408992642, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_LocalPosition.x
       value: -32.6
@@ -1029,7 +977,7 @@ PrefabInstance:
     - target: {fileID: 3711115891487820133, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: _transitionIn
       value: 
-      objectReference: {fileID: 1119259142}
+      objectReference: {fileID: 0}
     - target: {fileID: 3872598290405483503, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1057,7 +1005,7 @@ PrefabInstance:
     - target: {fileID: 4954442665718281171, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: _endCondition
       value: 
-      objectReference: {fileID: 572169563}
+      objectReference: {fileID: 0}
     - target: {fileID: 5042164011498922313, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_LocalPosition.y
       value: 13.200012
@@ -1165,7 +1113,7 @@ PrefabInstance:
     - target: {fileID: 6428984638335311292, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: _onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 572169563}
+      objectReference: {fileID: 0}
     - target: {fileID: 6428984638335311292, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: _onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Evaluate
@@ -1222,6 +1170,14 @@ PrefabInstance:
       propertyPath: _activateOnStart
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6978295772623609914, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: '_blocks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 925505532}
+    - target: {fileID: 6978295772623609914, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: '_blocks.Array.data[1]'
+      value: 
+      objectReference: {fileID: 925505531}
     - target: {fileID: 6978295772623609914, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: _onAdEnded.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2348,22 +2304,11 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 4308822024032949018, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
     - {fileID: 1586030028885395141, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+    - {fileID: 7023305033327621157, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3382725293562832588, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 232320293}
-    - targetCorrespondingSourceObject: {fileID: 3382725293562832588, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1200221092}
-    - targetCorrespondingSourceObject: {fileID: 3382725293562832588, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1885213482}
-    - targetCorrespondingSourceObject: {fileID: 2807068449858864111, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1765787630}
-    - targetCorrespondingSourceObject: {fileID: 5887764398274410841, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2119921965}
+    - targetCorrespondingSourceObject: {fileID: 6569986643040112752, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 925505530}
     - targetCorrespondingSourceObject: {fileID: 7418331269319834463, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1019026553}
@@ -2373,13 +2318,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7485541030830024986, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1449113204}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 377947600041761418, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 572169563}
-    - targetCorrespondingSourceObject: {fileID: 7611512330999713959, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 278986765}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
 --- !u!4 &278986760 stripped
 Transform:
@@ -2402,37 +2341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5687e22e2b23ed489adf7f665f88668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.AdBase
---- !u!1 &278986763 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7611512330999713959, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 278986759}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &278986764 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3557666819605844197, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 278986759}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f46ceda0902d08c49948f950d43ccb14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.PlaneControllable
---- !u!114 &278986765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 278986763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7ed8dbc132f0fd4b9cdb1e1b697edd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.AnglePositionner
-  _plane: {fileID: 278986764}
-  _velocityRange: {x: -8, y: 10}
-  _angleRange: {x: -15, y: 15}
 --- !u!4 &280268050 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1795406008279734137, guid: c18c5582e8de03241b3ad7fa05d99f22, type: 3}
@@ -4134,16 +4042,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3776334116097938565, guid: d73d6d3f6e1136f40957685f15938718, type: 3}
   m_PrefabInstance: {fileID: 520052027}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &520052029 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4638909492473601848, guid: d73d6d3f6e1136f40957685f15938718, type: 3}
-  m_PrefabInstance: {fileID: 520052027}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &521850641 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5234679518987692005, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 278986759}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &531668196
 GameObject:
   m_ObjectHideFlags: 0
@@ -4409,65 +4307,6 @@ Transform:
   - {fileID: 2088103238}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &572169559 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 377947600041761418, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 278986759}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &572169563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572169559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 375058d1676525c4f97bcfead2902c92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ConditionalEvent
-  _condition:
-    rid: 2639552031174426747
-  _onValidated:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _evaluateEveryFrames: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: 2639552031174426747
-      type: {class: NumberComparison, ns: Metroma, asm: Metroma}
-      data:
-        _a:
-          rid: 2639552031174426749
-    - rid: 2639552031174426749
-      type: {class: IntGreater, ns: Metroma, asm: Metroma}
-      data:
-        a:
-          rid: 2639552031174426752
-        b:
-          rid: 2639552031174426751
-    - rid: 2639552031174426751
-      type: {class: Int, ns: Metroma, asm: Metroma}
-      data:
-        value: 6
-    - rid: 2639552031174426752
-      type: {class: IntReference, ns: Metroma, asm: Metroma}
-      data:
-        _value: {fileID: 1562891619}
-        _variableName: _value
 --- !u!1 &630613173
 GameObject:
   m_ObjectHideFlags: 0
@@ -4807,11 +4646,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a6b54c05adf8aa8459dca8dbec0bb623, type: 3}
   m_PrefabInstance: {fileID: 887158994}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &716977446 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7040882146207483023, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 278986759}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &726445574
 PrefabInstance:
@@ -5816,6 +5650,94 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6b54c05adf8aa8459dca8dbec0bb623, type: 3}
+--- !u!1001 &925505529
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 278986760}
+    m_Modifications:
+    - target: {fileID: 62460574306366286, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+      propertyPath: m_Name
+      value: Super-BLOCK-Avion-Rework
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402785459729515152, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 278986761}
+    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+--- !u!4 &925505530 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7433029292854993659, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+  m_PrefabInstance: {fileID: 925505529}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &925505531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2066008932770194604, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+  m_PrefabInstance: {fileID: 925505529}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7a73bd637a4e4bb9f541ab9877ee53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Block
+--- !u!114 &925505532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1511508613873033700, guid: d97488ceced73d1e596a9f804184d527, type: 3}
+  m_PrefabInstance: {fileID: 925505529}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7a73bd637a4e4bb9f541ab9877ee53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Block
 --- !u!1 &926241849
 GameObject:
   m_ObjectHideFlags: 0
@@ -6448,11 +6370,6 @@ PrefabInstance:
 --- !u!4 &1003665745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3776334116097938565, guid: d73d6d3f6e1136f40957685f15938718, type: 3}
-  m_PrefabInstance: {fileID: 1003665744}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1003665746 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4638909492473601848, guid: d73d6d3f6e1136f40957685f15938718, type: 3}
   m_PrefabInstance: {fileID: 1003665744}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1008947337
@@ -7270,17 +7187,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &1119259142 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4443409404754098251, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 278986759}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a04d8d5317ffa349b61a570a710cba0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Transitions.ManyParallelTransition
 --- !u!1 &1133647519
 GameObject:
   m_ObjectHideFlags: 0
@@ -7434,11 +7340,6 @@ MonoBehaviour:
   UnityOnWatching:
     m_PersistentCalls:
       m_Calls: []
---- !u!4 &1149367590 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2807068449858864111, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 278986759}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1153787864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7714,53 +7615,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6b54c05adf8aa8459dca8dbec0bb623, type: 3}
---- !u!1 &1200221091
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1200221092}
-  - component: {fileID: 1200221093}
-  m_Layer: 0
-  m_Name: PlaySound (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1200221092
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1200221091}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1389476016}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1200221093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1200221091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fb42c5dc99a8c2fcaa3b3c88c551be9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.PlaySoundSequence
-  _source: {fileID: 1003665746}
-  _active: 1
-  _waitUntilFinishPlay: 0
 --- !u!4 &1200534897 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a6b54c05adf8aa8459dca8dbec0bb623, type: 3}
@@ -8896,11 +8750,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec4a7de4bba0aeb44a37c3ddc32f4cc3, type: 3}
   m_PrefabInstance: {fileID: 1389387162}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1389476016 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3382725293562832588, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 278986759}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1396528772
 GameObject:
@@ -10880,17 +10729,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6b54c05adf8aa8459dca8dbec0bb623, type: 3}
---- !u!114 &1562891619 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6428984638335311292, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 278986759}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4247d907ca85fb4698095b5bf4e1f81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ButtonMashControllable
 --- !u!1 &1566834391
 GameObject:
   m_ObjectHideFlags: 0
@@ -11658,53 +11496,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a6b54c05adf8aa8459dca8dbec0bb623, type: 3}
   m_PrefabInstance: {fileID: 1632996574}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1765787629
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1765787630}
-  - component: {fileID: 1765787631}
-  m_Layer: 0
-  m_Name: PlaySound
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1765787630
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765787629}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1149367590}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1765787631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765787629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fb42c5dc99a8c2fcaa3b3c88c551be9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.PlaySoundSequence
-  _source: {fileID: 520052029}
-  _active: 1
-  _waitUntilFinishPlay: 0
 --- !u!1001 &1767532061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12121,53 +11912,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6b54c05adf8aa8459dca8dbec0bb623, type: 3}
---- !u!1 &1885213481
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1885213482}
-  - component: {fileID: 1885213483}
-  m_Layer: 0
-  m_Name: PlaySound (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1885213482
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885213481}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1389476016}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1885213483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885213481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fb42c5dc99a8c2fcaa3b3c88c551be9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.PlaySoundSequence
-  _source: {fileID: 378348467}
-  _active: 0
-  _waitUntilFinishPlay: 0
 --- !u!4 &1894081392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7192009722710695882, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
@@ -12786,53 +12530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a035a8377dcd84e9cca28bb7b0baa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Sequence
---- !u!1 &2119921964
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2119921965}
-  - component: {fileID: 2119921966}
-  m_Layer: 0
-  m_Name: PlaySound (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2119921965
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119921964}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.621159, y: -12.170006, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 92985710}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2119921966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119921964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fb42c5dc99a8c2fcaa3b3c88c551be9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.PlaySoundSequence
-  _source: {fileID: 1003665746}
-  _active: 0
-  _waitUntilFinishPlay: 0
 --- !u!4 &2143183353 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a6b54c05adf8aa8459dca8dbec0bb623, type: 3}
