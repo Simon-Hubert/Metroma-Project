@@ -10,7 +10,7 @@ namespace Metroma
         [SerializeField] private float _duration = 1.2f;
         private float _t;
         
-        [SerializeField] private VisualEffect _vfx;
+        [SerializeField] private ParticleSystem _vfx;
 
         private void OnEnable() {
             _t = 0;
@@ -28,7 +28,9 @@ namespace Metroma
         {
             if (other.tag == "Player")
             {
-                _vfx.transform.position = transform.position;
+                _vfx.transform.position = transform.position + Vector3.left;
+                _vfx.transform.rotation = Quaternion.Euler(other.transform.position - transform.position);
+                
                 _vfx.Play();
                 gameObject.SetActive(false);
             }
