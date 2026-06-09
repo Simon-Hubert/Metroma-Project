@@ -12,7 +12,7 @@ namespace Metroma
         private void Awake() {
             //TODO faire ce setup in editor
             foreach (Transform child in transform) {
-                if (!child.gameObject.activeInHierarchy) continue;
+                if (!child.gameObject.activeSelf) continue;
                 ASequencable sequencable = child.GetComponent<ASequencable>();
                 if(sequencable) _sequence.Add(sequencable);
             }
