@@ -157,7 +157,7 @@ namespace Metroma
                 {
                     var getMethod = propInfo.GetGetMethod(true);
                     if (getMethod != null)
-                        _getter = (Func<int>)Delegate.CreateDelegate(typeof(Func<float>), _value, getMethod);
+                        _getter = (Func<int>)Delegate.CreateDelegate(typeof(Func<int>), _value, getMethod);
                 }
                 else
                 {

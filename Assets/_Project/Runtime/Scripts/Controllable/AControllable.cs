@@ -123,7 +123,7 @@ namespace Metroma
             if (showDebugLog) Debug.Log($"Controllable {name} : Action Start -> value : {action}");
         }
         protected virtual void InputActionPerformed(bool action) {
-            if (showDebugLog) Debug.Log($"Controllable {name} : Move Performed -> value : {action}");
+            if (showDebugLog) Debug.Log($"Controllable {name} : Action Performed -> value : {action}");
         }
         protected virtual void InputActionEnd(bool action) {
             OnActionEndUnity.Invoke();

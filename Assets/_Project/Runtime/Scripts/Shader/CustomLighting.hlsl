@@ -51,14 +51,28 @@ void AdditionalLights_float(float3 SpecColor, float Smoothness, float3 WorldPosi
     WorldNormal = normalize(WorldNormal);
     WorldView = SafeNormalize(WorldView);
     int pixelLightCount = GetAdditionalLightsCount();
-    LIGHT_LOOP_BEGIN(pixelLightCount)
-        Light light = GetAdditionalLight(0, WorldPosition);
+    
+    #if USE_CLUSTER_LIGHT_LOOP
+    InputData inputData = (InputData)0;
+    inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(ScreenPosition);
+    inputData.positionWS = WorldPosition;
+    inputData.normalWS = WorldNormal;
+    inputData.viewDirectionWS = GetWorldSpaceNormalizeViewDir(WorldPosition);
+    #endif
+    
+    for(int i = 0; i < pixelLightCount; i++) {
+        #if !USE_CLUSTER_LIGHT_LOOP
+            int lightIndex = GetPerObjectLightIndex(i);
+        #else
+            int lightIndex = i;
+        #endif
+        Light light = GetAdditionalPerObjectLight(lightIndex, WorldPosition);
         half3 attenuatedLightColor = light.color * (light.distanceAttenuation * light.shadowAttenuation);
         diffuseColor += LightingLambert(attenuatedLightColor, light.direction, WorldNormal);
         specularColor += LightingSpecular(attenuatedLightColor, light.direction, WorldNormal, WorldView, float4(SpecColor, 0), Smoothness); 
-    LIGHT_LOOP_END
+    }
 #endif
-
+    
     Diffuse = diffuseColor;
     Specular = specularColor;
 }

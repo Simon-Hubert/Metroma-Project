@@ -14,9 +14,8 @@ namespace Metroma
         [SerializeField, ShowIf("_dampen")] private float _f = 1;
         [SerializeField, ShowIf("_dampen")] private float _z = 2;
         [SerializeField, ShowIf("_dampen")] private float _r = 0;
-        [SerializeField, ShowIf("_dampen")] private bool _fixPlane;
-        private float _saveZ;
-        
+
+        private bool _cut = false;
         
         private CameraConfiguration _current;
         private SecondDegreeSmoother _smoother;
@@ -25,64 +24,64 @@ namespace Metroma
 
         private void Start() {
             _smoother = new SecondDegreeSmoother(_f, _z, _r);
-            _current = CameraHelpers.GetConfigOfCam(_cam);
-            if (_fixPlane) {
-                _saveZ = _current.Pivot.z;
-                _dynamics2D = new SecondOrderDynamics<Vector2>(_f, _z, _r, _current.Pivot ,new Linear2D());
-            }
+            _current = _view.GetConfiguration();
         }
 
-        private void Update() {
-            if (_dampen) {
-                if (!_fixPlane) {
-                    _current = _smoother.Smooth(_current, _view.GetConfiguration());
-                }
-                else {
-                    _current.Pivot = _dynamics2D.Update(Time.deltaTime, new Vector2(_view.GetConfiguration().Pivot.x, _view.GetConfiguration().Pivot.y));
-                    _current.Pivot.z = _saveZ;
-                }
-                CameraHelpers.ApplyConfiguration(_cam, _current);
+        private void LateUpdate() {
+            if (_dampen && !_cut) {
+                _current = _smoother.Smooth(_current, _view.GetConfiguration());
             }
             else {
-                CameraHelpers.ApplyConfiguration(_cam, _view.GetConfiguration());
+                _cut = false;
+                _current = _view.GetConfiguration();
             }
+            CameraHelpers.ApplyConfiguration(_cam, _current);
             
+        }
+        
+        public void ChangeView(AView view) => _view = view;
+
+        public void CutToView(AView view) {
+            _view = view;
+            _cut = true;
         }
     }
     
-    
-    public class SecondDegreeSmoother
+    public class SecondDegreeSmoother 
     {
         private CameraConfiguration _lastPos;
         private CameraConfiguration _speed;
 
         private Vector2 _lastYawVector;
         private Vector2 _yawSpeed;
-    
-        private float _f, _z, _r; 
+
+        private readonly float _f;
+        private readonly float _z;
+        private readonly float _r; 
         private float _k1, _k2, _k3;
         
         public SecondDegreeSmoother(float f, float z, float r) {
             _f = f;
             _z = z;
             _r = r;
-            _k1 = _z / (PI * _f);
-            _k2 = 1 / ((2 * PI * _f) * (2 * PI * _f));
-            _k3 = _r * _z / (2 * PI * _f);
         }
 
         public CameraConfiguration Smooth(CameraConfiguration current, CameraConfiguration target) {
+            _k1 = _z / (PI * _f);
+            _k2 = 1 / ((2 * PI * _f) * (2 * PI * _f));
+            _k3 = _r * _z / (2 * PI * _f);
+        
         
             CameraConfiguration lastSpeed = (target - _lastPos) / Time.deltaTime;
             _lastPos = target;
         
             Vector2 yawVector =  new Vector2(
-                Cos(target.Yaw * Deg2Rad),
-                Sin(target.Yaw * Deg2Rad));
+                Mathf.Cos(target.Yaw * Deg2Rad),
+                Mathf.Sin(target.Yaw * Deg2Rad));
         
             Vector2 currentYawVector =  new Vector2(
-                Cos(target.Yaw * Deg2Rad),
-                Sin(target.Yaw * Deg2Rad));
+                Mathf.Cos(target.Yaw * Deg2Rad),
+                Mathf.Sin(target.Yaw * Deg2Rad));
 
 
             Vector2 lastYawSpeed = (yawVector - _lastYawVector) / Time.deltaTime;
@@ -99,5 +98,6 @@ namespace Metroma
             return current;
         }
     }
+
 
 }

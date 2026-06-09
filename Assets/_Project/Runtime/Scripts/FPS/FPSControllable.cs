@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,7 +6,7 @@ namespace Metroma
 {
     public class FPSControllable : MonoBehaviour
     {
-       [Header("References")]
+        [Header("References")]
         [SerializeField] private Transform _cameraTransform;
 
         [Header("Look Settings")]
@@ -22,20 +23,28 @@ namespace Metroma
         private Vector2 _lookInput;
         private float _pitch;
         private float _yaw;
+        private float _roll;
+        private float _yawOrigin, _pitchOrigin;
 
+        public void Reset() {
+            _yaw = 0;
+            _pitch = 0;
+        }
+        
         private void Awake()
         {
             if (_cameraTransform == null && Camera.main != null)
             {
                 _cameraTransform = Camera.main.transform;
             }
-
-            _yaw = transform.eulerAngles.y;
-
+            
             if (_cameraTransform != null)
             {
-                _pitch = _cameraTransform.localEulerAngles.x;
-
+                _yawOrigin = _cameraTransform.eulerAngles.y;
+                _roll = _cameraTransform.eulerAngles.z;
+                _pitchOrigin = _cameraTransform.localEulerAngles.x;
+                
+    
                 if (_pitch > 180f)
                 {
                     _pitch -= 360f;
@@ -52,6 +61,10 @@ namespace Metroma
             }
         }
 
+        private void OnEnable() {
+            Reset();
+        }
+
         private void Update()
         {
             RotateCamera();
@@ -59,7 +72,7 @@ namespace Metroma
 
         public void Look(InputAction.CallbackContext context)
         {
-            Debug.Log(context.ReadValue<Vector2>());
+            //Debug.Log(context.ReadValue<Vector2>());
             _lookInput = context.ReadValue<Vector2>();
         }
 
@@ -87,7 +100,7 @@ namespace Metroma
             _pitch = Mathf.Clamp(_pitch, _minVerticalAngle, _maxVerticalAngle);
             _yaw = Mathf.Clamp(_yaw, _minHorizontalAngle, _maxHorizontalAngle);
             
-            _cameraTransform.localRotation = Quaternion.Euler(_pitch, _yaw, 0f);
+            _cameraTransform.localRotation = Quaternion.Euler(_pitchOrigin + _pitch, _yawOrigin + _yaw + 180f, _roll);
         }
 
     }
