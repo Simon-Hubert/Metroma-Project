@@ -79,7 +79,7 @@ namespace Metroma.UI.Panels
         private void OnOptionClicked()
         {
             Debug.Log("[PauseMenuPanel] Ouverture des Options...");
-            UIManager.Instance.OpenPanel<OptionsPanel>();
+            UIManager.Instance.OpenPanel<PauseOptionsPanel>();
         }
 
         private void OnMainMenuClicked()
