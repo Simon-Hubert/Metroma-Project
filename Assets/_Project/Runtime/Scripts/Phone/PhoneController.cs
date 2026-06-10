@@ -29,23 +29,26 @@ namespace Metroma.UI
 
         [Header("Vibration Settings")]
         [SerializeField, Tooltip("Durée d'une seule secousse.")]
-        private float ShakeDuration = 0.4f;
+        private float ShakeDuration = 1f;
         
         [SerializeField, Tooltip("Force de la secousse.")]
-        private float ShakeIntensity = 0.05f;
+        private float ShakeIntensity =  0.009f;
         
         [SerializeField, Tooltip("Fréquence du moteur (ex: 50 Hz).")]
         private float ShakeSpeed = 50f;
         
         [SerializeField, Tooltip("Nombre de répétitions (ex: 2 pour une notification, 10 pour un appel).")]
-        private int RepeatCount = 2;
+        private int RepeatCount = 3;
         
         [SerializeField, Tooltip("Pause entre chaque secousse (en secondes).")]
-        private float PauseBetweenShakes = 0.2f;
+        private float PauseBetweenShakes = 0.5f;
 
         private Coroutine AnimationCoroutine;
         private Coroutine ShakeCoroutine;
         private bool bIsVisible = false;
+        
+        private Vector3 PreShakePosition;
+        private Quaternion PreShakeRotation;
         
         public event Action OnPhoneShown;
         public event Action OnPhoneHidden;
@@ -59,7 +62,6 @@ namespace Metroma.UI
                 PhoneTransform = transform;
             }
             
-            // Set initial state
             if (EnableMovement)
             {
                 PhoneTransform.localPosition = HiddenLocalPosition;
@@ -113,11 +115,41 @@ namespace Metroma.UI
         public void VibratePhone()
         {
             if (ShakeCoroutine != null)
+            {
                 StopCoroutine(ShakeCoroutine);
+                PhoneTransform.localPosition = PreShakePosition;
+                PhoneTransform.localRotation = PreShakeRotation;
+            }
+            else
+            {
+                PreShakePosition = PhoneTransform.localPosition;
+                PreShakeRotation = PhoneTransform.localRotation;
+            }
                 
             ShakeCoroutine = StartCoroutine(ShakeRoutine());
             
             OnPhoneVibrated?.Invoke();
+        }
+
+
+        public void StopVibration()
+        {
+            if (ShakeCoroutine != null)
+            {
+                StopCoroutine(ShakeCoroutine);
+                ShakeCoroutine = null;
+
+                if (EnableMovement)
+                {
+                    PhoneTransform.localPosition = bIsVisible ? VisibleLocalPosition : HiddenLocalPosition;
+                }
+                else
+                {
+                    PhoneTransform.localPosition = PreShakePosition;
+                }
+                
+                PhoneTransform.localRotation = PreShakeRotation;
+            }
         }
 
 
