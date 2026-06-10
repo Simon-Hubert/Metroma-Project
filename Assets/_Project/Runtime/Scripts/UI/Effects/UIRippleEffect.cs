@@ -66,12 +66,23 @@ namespace Metroma.UI.Effects
                 CircleSpriteCache = GenerateCircleSprite(128);
         }
 
+#if UNITY_EDITOR
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStatics()
+        {
+            RipplePool.Clear();
+            PoolContainer = null;
+            CircleSpriteCache = null;
+        }
+#endif
+
         private void OnDisable()
         {
             foreach (RippleInstance inst in ActiveRipples)
             {
                 if (inst.Obj != null)
                 {
+                    inst.Obj.SetActive(false);
                     RipplePool.Enqueue(inst);
                 }
             }
