@@ -27,7 +27,7 @@ namespace Metroma
 
         private void OnValidate() {
             if (!RequirementsValidated()) return;
-            name = $"Animate Wiggle on {_anchor.Target.name}";
+            name = $"Animate Wiggle on {_anchor.name}";
         }
         
 #if UNITY_EDITOR
