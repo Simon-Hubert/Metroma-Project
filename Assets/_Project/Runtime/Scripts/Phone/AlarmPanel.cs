@@ -32,6 +32,9 @@ namespace Metroma.UI.Panels
         {
             base.Show();
             
+            if (InteractButton != null)
+                InteractButton.gameObject.SetActive(true);
+            
             AlarmManager.OnMinuteChanged += UpdateTimeDisplay;
             
             if (AlarmManager.Instance != null)
@@ -65,10 +68,10 @@ namespace Metroma.UI.Panels
                 
             StopPhoneVibration();
             
-            // On prévient le reste du jeu (ou la cinématique) que le joueur a interagi
-            OnAlarmInteracted?.Invoke();
+            if (InteractButton != null)
+                InteractButton.gameObject.SetActive(false);
             
-            UIManager.Instance.CloseCurrentPanel();
+            OnAlarmInteracted?.Invoke();
         }
         
 
