@@ -18,7 +18,7 @@ namespace Metroma
 
         private void OnValidate() {
             if (!RequirementsValidated()) return;
-            name = (_active ? "Activate" : "Deactivate") + $"{_anchor.Target.name}";
+            name = (_active ? "Activate" : "Deactivate") + $" {_anchor.name}";
         }
         
 #if UNITY_EDITOR
