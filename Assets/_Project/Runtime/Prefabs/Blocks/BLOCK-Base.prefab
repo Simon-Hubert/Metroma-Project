@@ -139,6 +139,8 @@ MonoBehaviour:
   _endSequence: {fileID: 5403533321267427389}
   _endCondition: {fileID: 4424642623868204153}
   _controllable: {fileID: 0}
+  _transitionIn: {fileID: 0}
+  _allowInputsBeforeStart: 0
 --- !u!114 &4424642623868204153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +155,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.ConditionalEvent
   _condition:
     rid: 8618242051757310059
+  _onValidated:
+    m_PersistentCalls:
+      m_Calls: []
+  _evaluateEveryFrames: 0
   references:
     version: 2
     RefIds:
