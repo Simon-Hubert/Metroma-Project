@@ -16,6 +16,11 @@ namespace Metroma
 
         [SerializeField, ReadOnly] private bool _isActive;
 
+        public void SetSpeed(float newSpeed)
+        {
+            speed = newSpeed;
+        }
+
         public void ActiveLoop()
         {
             _isActive = true;

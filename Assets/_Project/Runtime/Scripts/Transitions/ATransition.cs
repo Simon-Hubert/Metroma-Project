@@ -18,6 +18,10 @@ namespace Metroma.Transitions
         
         protected abstract Awaitable TransitionAsync(CancellationToken cancelToken);
 
+        public void Play() {
+            _ = PlayAsync(CancellationToken.None);
+        }
+
         public async Awaitable PlayAsync(CancellationToken cancelToken) {
             try {
                 OnTransitionStart?.Invoke();

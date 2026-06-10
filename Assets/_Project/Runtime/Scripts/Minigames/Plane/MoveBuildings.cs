@@ -18,8 +18,7 @@ namespace Metroma
     
     public class MoveBuildings : MonoBehaviour
     {
-        [SerializeField] private ButtonMashControllable _ctrl;
-        [SerializeField] private int _progressLimit;
+        [SerializeReference] private AnimCurveTransition _animTransition;
         [SerializeField] private float _speed;
         
         [SerializeField] private List<ParalaxeDecor> _paralaxes = new List<ParalaxeDecor>();
@@ -37,14 +36,14 @@ namespace Metroma
         }
 
         private void FixedUpdate() {
-            if (!_ctrl || !_ctrl.IsActive) return;
-
+            if (!_animTransition) return;
+            
             float delta = Time.fixedDeltaTime;
             for (int i = 0; i < _paralaxes.Count; i++) {
                 ParalaxeDecor decor = _paralaxes[i];
                 
-                decor.progression = Mathf.Repeat(decor.progression + (_speed * delta * decor.paralaxe * ((float)_ctrl.Value / _progressLimit)), decor.separation);
-                decor.transform.position = decor.initPos + new Vector3(decor.progression, 0, 0);
+                decor.progression = Mathf.Repeat(decor.progression + (_speed * delta * decor.paralaxe * _animTransition.GetValue), decor.separation);
+                decor.transform.position = new Vector3(decor.initPos.x + decor.progression, decor.transform.position.y, decor.transform.position.z);
 
                 _paralaxes[i] = decor;
             }

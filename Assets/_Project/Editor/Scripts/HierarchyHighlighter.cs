@@ -18,16 +18,15 @@ namespace Metroma.Editor
             ASequencable sequencable = instanceGameObject.GetComponent<ASequencable>();
             if (null == sequencable) return;
             
-            Texture texture = Texture2D.whiteTexture;
+            Texture texture = EditorGUIUtility.whiteTexture;
             Color save = GUI.color;
             InspectorColor color = sequencable.GetInspectorColor();
             GUI.color = color.Background;
             GUI.DrawTexture(selectionRect, texture, ScaleMode.StretchToFill, false);
             GUI.color = save;
-            
-            float offset = 0f;
+
             if (!sequencable.RequirementsValidated()) {
-                offset = selectionRect.height;
+                float offset = selectionRect.height;
                 Rect rect = selectionRect;
                 rect.width = offset;
                 selectionRect.x += offset;

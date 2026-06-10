@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Metroma
@@ -13,9 +14,14 @@ namespace Metroma
         }
 
         public override bool RequirementsValidated() {
-            return _object;
+            return _object != null;
         }
-        
+
+        public void OnValidate() {
+            if (!RequirementsValidated()) return;
+            name = (_active ? "Activate" : "Deactivate") + $" {_object.name}";
+        }
+
 #if UNITY_EDITOR
         public override InspectorColor GetInspectorColor() {
             return new InspectorColor

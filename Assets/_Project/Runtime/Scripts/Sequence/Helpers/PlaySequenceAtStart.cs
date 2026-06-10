@@ -7,7 +7,12 @@ namespace Metroma
         [SerializeField] private Sequence _sequence;
         
         void Start() {
-            _ = _sequence.ExecuteAsync();
+            _ = StartAsync();
+        }
+
+        async Awaitable StartAsync() {
+            await Awaitable.NextFrameAsync(); 
+            _sequence.Execute();
         }
     }
 }

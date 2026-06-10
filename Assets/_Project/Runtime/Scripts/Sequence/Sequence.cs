@@ -12,11 +12,16 @@ namespace Metroma
         private void Awake() {
             //TODO faire ce setup in editor
             foreach (Transform child in transform) {
+                if (!child.gameObject.activeSelf) continue;
                 ASequencable sequencable = child.GetComponent<ASequencable>();
                 if(sequencable) _sequence.Add(sequencable);
             }
         }
 
+        public void Execute() {
+            _ = ExecuteAsync();
+        }
+        
         public override async Awaitable ExecuteAsync() {
             try {
                 foreach (ASequencable element in _sequence) {
