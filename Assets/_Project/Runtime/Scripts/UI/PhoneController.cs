@@ -28,9 +28,20 @@ namespace Metroma.UI
         [SerializeField] private AnimationCurve AnimationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
         [Header("Vibration Settings")]
-        [SerializeField] private float ShakeDuration = 0.4f;
-        [SerializeField] private float ShakeIntensity = 0.05f;
-        [SerializeField] private float ShakeSpeed = 50f;
+        [SerializeField, Tooltip("Durée d'une seule secousse.")]
+        private float ShakeDuration = 0.4f;
+        
+        [SerializeField, Tooltip("Force de la secousse.")]
+        private float ShakeIntensity = 0.05f;
+        
+        [SerializeField, Tooltip("Fréquence du moteur (ex: 50 Hz).")]
+        private float ShakeSpeed = 50f;
+        
+        [SerializeField, Tooltip("Nombre de répétitions (ex: 2 pour une notification, 10 pour un appel).")]
+        private int RepeatCount = 2;
+        
+        [SerializeField, Tooltip("Pause entre chaque secousse (en secondes).")]
+        private float PauseBetweenShakes = 0.2f;
 
         private Coroutine AnimationCoroutine;
         private Coroutine ShakeCoroutine;
@@ -58,9 +69,6 @@ namespace Metroma.UI
         }
 
 
-        /// <summary>
-        /// Fait apparaître le téléphone à l'écran.
-        /// </summary>
         public void ShowPhone()
         {
             if (bIsVisible)
@@ -78,11 +86,8 @@ namespace Metroma.UI
             
             OnPhoneShown?.Invoke();
         }
+        
 
-
-        /// <summary>
-        /// Range le téléphone.
-        /// </summary>
         public void HidePhone()
         {
             if (!bIsVisible)
@@ -104,9 +109,7 @@ namespace Metroma.UI
         }
 
 
-        /// <summary>
-        /// Déclenche un effet de tremblement visuel du téléphone et un événement.
-        /// </summary>
+        [Button("Test Vibration")]
         public void VibratePhone()
         {
             if (ShakeCoroutine != null)
@@ -139,19 +142,46 @@ namespace Metroma.UI
 
         private IEnumerator ShakeRoutine()
         {
-            float Elapsed = 0f;
             Vector3 BasePosition = PhoneTransform.localPosition;
-
-            while (Elapsed < ShakeDuration)
+            Quaternion BaseRotation = PhoneTransform.localRotation;
+            
+            for (int i = 0; i < RepeatCount; i++)
             {
-                Elapsed += Time.unscaledDeltaTime;
+                float Elapsed = 0f;
+                float NextShakeUpdate = 0f;
+                Vector3 TargetOffset = Vector3.zero;
+                float TargetRotOffset = 0f;
                 
-                float OffsetX = Mathf.Sin(Elapsed * ShakeSpeed) * ShakeIntensity;
-                float OffsetY = Mathf.Cos(Elapsed * ShakeSpeed * 1.2f) * ShakeIntensity;
+                while (Elapsed < ShakeDuration)
+                {
+                    Elapsed += Time.unscaledDeltaTime;
+                    
+                    if (Elapsed >= NextShakeUpdate)
+                    {
+                        NextShakeUpdate = Elapsed + (1f / ShakeSpeed);
+                        
+                        TargetOffset = new Vector3(
+                            UnityEngine.Random.Range(-ShakeIntensity, ShakeIntensity),
+                            UnityEngine.Random.Range(-ShakeIntensity * 0.2f, ShakeIntensity * 0.2f),
+                            0f
+                        );
+                        
+                        TargetRotOffset = UnityEngine.Random.Range(-ShakeIntensity * 20f, ShakeIntensity * 20f);
+                    }
+                    
+                    PhoneTransform.localPosition = BasePosition + TargetOffset;
+                    PhoneTransform.localRotation = BaseRotation * Quaternion.Euler(0f, 0f, TargetRotOffset);
+                    
+                    yield return null;
+                }
                 
-                PhoneTransform.localPosition = BasePosition + new Vector3(OffsetX, OffsetY, 0f);
+                PhoneTransform.localPosition = BasePosition;
+                PhoneTransform.localRotation = BaseRotation;
                 
-                yield return null;
+                if (i < RepeatCount - 1)
+                {
+                    yield return new WaitForSecondsRealtime(PauseBetweenShakes);
+                }
             }
 
             if (EnableMovement)
@@ -162,6 +192,7 @@ namespace Metroma.UI
             {
                 PhoneTransform.localPosition = BasePosition;
             }
+            PhoneTransform.localRotation = BaseRotation;
         }
     }
 }

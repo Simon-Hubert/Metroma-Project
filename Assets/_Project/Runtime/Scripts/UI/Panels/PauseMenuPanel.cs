@@ -29,12 +29,14 @@ namespace Metroma.UI.Panels
         public override void Show()
         {
             base.Show();
+            Effects.UIParallax.bIsGlobalParallaxPaused = true;
             OnPauseMenuOpened?.Invoke();
         }
 
         public override void Hide()
         {
             base.Hide();
+            Effects.UIParallax.bIsGlobalParallaxPaused = false;
             OnPauseMenuClosed?.Invoke();
         }
 
