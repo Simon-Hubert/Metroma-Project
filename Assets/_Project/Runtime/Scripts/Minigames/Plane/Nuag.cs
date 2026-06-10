@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.VFX;
 
 namespace Metroma
@@ -11,6 +12,7 @@ namespace Metroma
         private float _t;
         
         [SerializeField] private ParticleSystem _vfx;
+        [SerializeField] private UnityEvent _onHit;
 
         private void OnEnable() {
             _t = 0;
@@ -32,6 +34,7 @@ namespace Metroma
                 _vfx.transform.rotation = Quaternion.Euler(other.transform.position - transform.position);
                 
                 _vfx.Play();
+                _onHit?.Invoke();
                 gameObject.SetActive(false);
             }
         }
