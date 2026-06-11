@@ -119,97 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &2253065
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2253066}
-  - component: {fileID: 2253067}
-  m_Layer: 0
-  m_Name: Show sleep_placeholder (UnityEngine.Sprite) for 2 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2253066
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2253065}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2253067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2253065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa0f447641556e4aaeb1a54e7b4672d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ShowImageSequence
-  _sprite: {fileID: 21300000, guid: bb6f1d90721ab1f40b861c1ba2b27b54, type: 3}
-  _duration: 2
---- !u!1 &4555005
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4555006}
-  - component: {fileID: 4555007}
-  m_Layer: 0
-  m_Name: Cut to black for 1 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4555006
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4555005}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4555007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4555005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 1
 --- !u!1001 &20378239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -654,54 +563,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4384977609952780463, guid: 91b25b3f1f105d44ba41b934282649ca, type: 3}
   m_PrefabInstance: {fileID: 456806386}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &49570558
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 49570559}
-  - component: {fileID: 49570560}
-  m_Layer: 0
-  m_Name: Apply IRL Cut 1 to Main Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &49570559
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49570558}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &49570560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49570558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae844d2617f897a44b09a80b24ec162c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ApplyViewSequence
-  _cam: {fileID: 1114130016}
-  _view: {fileID: 1975400061}
-  _forDuration: 1
-  _duration: 4
 --- !u!1 &55654760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,97 +999,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9145006159481103163, guid: 1e1bf72912305b44abddc1c82feddec5, type: 3}
   m_PrefabInstance: {fileID: 71240199}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &75588084
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 75588085}
-  - component: {fileID: 75588086}
-  m_Layer: 0
-  m_Name: Deactivate MainCamWiggle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &75588085
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75588084}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &75588086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75588084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988a4fdea5644404abdfc6bdab98a727, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CamWiggleSequence
-  _anchor: {fileID: 11400000, guid: 9f5b3bc3555c12d45bb8b43db1c6708a, type: 2}
-  _active: 0
---- !u!1 &77183512
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 77183513}
-  - component: {fileID: 77183514}
-  m_Layer: 0
-  m_Name: Cut to black for 0,75 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &77183513
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 77183512}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &77183514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 77183512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 0.75
 --- !u!1001 &80288042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1582,54 +1352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7a73bd637a4e4bb9f541ab9877ee53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Block
---- !u!1 &141113547
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 141113548}
-  - component: {fileID: 141113549}
-  m_Layer: 0
-  m_Name: Apply Telephone View to Main Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &141113548
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141113547}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.057565942, z: -0, w: 0.99834174}
-  m_LocalPosition: {x: 18.589998, y: 2.3899999, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: -6.6, z: 0}
---- !u!114 &141113549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141113547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae844d2617f897a44b09a80b24ec162c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ApplyViewSequence
-  _cam: {fileID: 1114130016}
-  _view: {fileID: 1847957444}
-  _forDuration: 1
-  _duration: 4
 --- !u!1001 &149048869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2175,54 +1897,6 @@ Transform:
   - {fileID: 1128676565}
   m_Father: {fileID: 338745660}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &197648419
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 197648420}
-  - component: {fileID: 197648421}
-  m_Layer: 0
-  m_Name: Apply IRL Cut 2 to Main Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &197648420
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 197648419}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &197648421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 197648419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae844d2617f897a44b09a80b24ec162c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ApplyViewSequence
-  _cam: {fileID: 1114130016}
-  _view: {fileID: 1661647634}
-  _forDuration: 1
-  _duration: 3
 --- !u!1001 &198888322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2347,51 +2021,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5998799817533820398, guid: 0480b7b732ffb3f42a1fbc054b82a498, type: 3}
   m_PrefabInstance: {fileID: 200002675}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &215163295
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 215163296}
-  - component: {fileID: 215163297}
-  m_Layer: 0
-  m_Name: Cut to black for 0,5 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &215163296
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215163295}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &215163297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215163295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 0.5
 --- !u!1001 &218321456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2557,65 +2186,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1764435761}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &262870038
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 262870039}
-  - component: {fileID: 262870040}
-  m_Layer: 0
-  m_Name: Invoke Event with 1 binds
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &262870039
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262870038}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &262870040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262870038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bcb5ae2dda1d84585899ae21a338d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.UnityEventSequence
-  _event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1082478324}
-        m_TargetAssemblyTypeName: Metroma.SubwayTunnel, Metroma
-        m_MethodName: SetSpeed
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 30
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &266659156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2786,52 +2356,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1316499146073618377, guid: 446affba2cefcb1409eaaa0a3bc1a16d, type: 3}
   m_PrefabInstance: {fileID: 274964567}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &276779830
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 276779831}
-  - component: {fileID: 276779832}
-  m_Layer: 0
-  m_Name: Show sleep_placeholder (UnityEngine.Sprite) for 1 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &276779831
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276779830}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &276779832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276779830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa0f447641556e4aaeb1a54e7b4672d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ShowImageSequence
-  _sprite: {fileID: 21300000, guid: bb6f1d90721ab1f40b861c1ba2b27b54, type: 3}
-  _duration: 1
 --- !u!1001 &279427881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2894,52 +2418,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3198006576346093428, guid: 7fd14d483aa19e74f859ed1116a524d5, type: 3}
   m_PrefabInstance: {fileID: 279427881}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &283697059
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 283697060}
-  - component: {fileID: 283697061}
-  m_Layer: 0
-  m_Name: Deactivate FPSController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &283697060
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283697059}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &283697061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283697059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06887433ba2fc1247a29057828736437, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
-  _object: {fileID: 1133647519}
-  _active: 0
 --- !u!1 &284756740
 GameObject:
   m_ObjectHideFlags: 0
@@ -3887,51 +3365,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5998799817533820398, guid: 0480b7b732ffb3f42a1fbc054b82a498, type: 3}
   m_PrefabInstance: {fileID: 345575466}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &349066705
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 349066706}
-  - component: {fileID: 349066707}
-  m_Layer: 0
-  m_Name: Cut to black for 0,5 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &349066706
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349066705}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &349066707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349066705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 0.5
 --- !u!1001 &351794249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4483,7 +3916,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1897443623}
+  - {fileID: 978222133}
   - {fileID: 55654761}
   m_Father: {fileID: 968366126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5083,52 +4516,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5819794732455758292, guid: f422bce4b4eb39346a71e0cfabb68e6e, type: 3}
   m_PrefabInstance: {fileID: 421778413}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &423346387
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 423346388}
-  - component: {fileID: 423346389}
-  m_Layer: 0
-  m_Name: Show work_placeholder (UnityEngine.Sprite) for 0,5 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &423346388
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423346387}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &423346389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423346387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa0f447641556e4aaeb1a54e7b4672d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ShowImageSequence
-  _sprite: {fileID: 21300000, guid: 3564e2122f0fd8b42b15883eb1401061, type: 3}
-  _duration: 0.5
 --- !u!1 &424264995
 GameObject:
   m_ObjectHideFlags: 0
@@ -5164,54 +4551,6 @@ Transform:
   - {fileID: 978955690}
   m_Father: {fileID: 42736827}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &447755197
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 447755198}
-  - component: {fileID: 447755199}
-  m_Layer: 0
-  m_Name: Apply Telephone View to Main Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &447755198
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447755197}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.057565942, z: -0, w: 0.99834174}
-  m_LocalPosition: {x: 18.589998, y: 2.3899999, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: -6.6, z: 0}
---- !u!114 &447755199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447755197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae844d2617f897a44b09a80b24ec162c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ApplyViewSequence
-  _cam: {fileID: 1114130016}
-  _view: {fileID: 1847957444}
-  _forDuration: 1
-  _duration: 3
 --- !u!1001 &448583239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5715,52 +5054,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 42736826}
   m_SourcePrefab: {fileID: 100100000, guid: 91b25b3f1f105d44ba41b934282649ca, type: 3}
---- !u!1 &468557581
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 468557582}
-  - component: {fileID: 468557583}
-  m_Layer: 0
-  m_Name: Show work_placeholder (UnityEngine.Sprite) for 1 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &468557582
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468557581}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &468557583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468557581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa0f447641556e4aaeb1a54e7b4672d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ShowImageSequence
-  _sprite: {fileID: 21300000, guid: 3564e2122f0fd8b42b15883eb1401061, type: 3}
-  _duration: 1
 --- !u!1001 &487161338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6849,54 +6142,6 @@ Transform:
   - {fileID: 1643568259}
   m_Father: {fileID: 1553471700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &605701232
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 605701233}
-  - component: {fileID: 605701234}
-  m_Layer: 0
-  m_Name: Apply IRL Cut 3-5 to Main Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &605701233
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605701232}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &605701234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605701232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae844d2617f897a44b09a80b24ec162c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ApplyViewSequence
-  _cam: {fileID: 1114130016}
-  _view: {fileID: 2097298951}
-  _forDuration: 1
-  _duration: 2
 --- !u!1001 &616980533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7064,54 +6309,6 @@ Transform:
   - {fileID: 332392724}
   m_Father: {fileID: 1687608749}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &633632599
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 633632600}
-  - component: {fileID: 633632601}
-  m_Layer: 0
-  m_Name: Apply IRL Cut 2-5 to Main Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &633632600
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633632599}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &633632601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633632599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae844d2617f897a44b09a80b24ec162c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ApplyViewSequence
-  _cam: {fileID: 1114130016}
-  _view: {fileID: 1289239378}
-  _forDuration: 1
-  _duration: 3
 --- !u!1 &637623384
 GameObject:
   m_ObjectHideFlags: 0
@@ -8027,51 +7224,6 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!1 &790580976
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 790580977}
-  - component: {fileID: 790580978}
-  m_Layer: 0
-  m_Name: Cut to black for 1 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &790580977
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 790580976}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &790580978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 790580976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 1
 --- !u!1 &798320165
 GameObject:
   m_ObjectHideFlags: 0
@@ -8656,51 +7808,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5998799817533820398, guid: 0480b7b732ffb3f42a1fbc054b82a498, type: 3}
   m_PrefabInstance: {fileID: 832332231}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &835737269
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 835737270}
-  - component: {fileID: 835737271}
-  m_Layer: 0
-  m_Name: Cut to black for 0,5 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &835737270
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 835737269}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &835737271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 835737269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 0.5
 --- !u!1001 &866957566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9369,6 +8476,154 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 103893022250367072, guid: 9aba7c4f4c4748343903dcad795919f6, type: 3}
   m_PrefabInstance: {fileID: 975552769}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &978222132
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 393688179}
+    m_Modifications:
+    - target: {fileID: 295208601477582371, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 1114130016}
+    - target: {fileID: 295208601477582371, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _view
+      value: 
+      objectReference: {fileID: 1203607051}
+    - target: {fileID: 522472846258140382, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 1114130016}
+    - target: {fileID: 522472846258140382, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _view
+      value: 
+      objectReference: {fileID: 2097298951}
+    - target: {fileID: 545320712673581121, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 1114130016}
+    - target: {fileID: 545320712673581121, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _view
+      value: 
+      objectReference: {fileID: 1847957444}
+    - target: {fileID: 595291730247713516, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 1114130016}
+    - target: {fileID: 595291730247713516, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _view
+      value: 
+      objectReference: {fileID: 1847957444}
+    - target: {fileID: 948008499845269257, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 1114130016}
+    - target: {fileID: 948008499845269257, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _view
+      value: 
+      objectReference: {fileID: 1975400061}
+    - target: {fileID: 1991581124287065448, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 1114130016}
+    - target: {fileID: 1991581124287065448, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _view
+      value: 
+      objectReference: {fileID: 1661647634}
+    - target: {fileID: 2982864421572255026, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _wiggleAmplitude.y
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982864421572255026, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _wiggleAmplitude.z
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227108696960321188, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 1114130016}
+    - target: {fileID: 3227108696960321188, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _view
+      value: 
+      objectReference: {fileID: 93950231}
+    - target: {fileID: 3983344734465017752, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: m_Name
+      value: Apply Telephone View to Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197107222065682207, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 1114130016}
+    - target: {fileID: 4197107222065682207, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _view
+      value: 
+      objectReference: {fileID: 1847957444}
+    - target: {fileID: 4660308209423495736, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.0820217
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660308209423495736, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.97470045
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660308209423495736, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -136.38365
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660308209423495736, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660308209423495736, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660308209423495736, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660308209423495736, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660308209423495736, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660308209423495736, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660308209423495736, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481911878368869320, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 1114130016}
+    - target: {fileID: 5481911878368869320, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _view
+      value: 
+      objectReference: {fileID: 1289239378}
+    - target: {fileID: 6991894068900818094, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: m_Name
+      value: INTRO
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 7804755163535285417, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+    - {fileID: 8487339531016926293, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+--- !u!4 &978222133 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4660308209423495736, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+  m_PrefabInstance: {fileID: 978222132}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &978955689
 GameObject:
@@ -10541,51 +9796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34652b7d58394ff43ba8677e19b026d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.SubwayTunnel
---- !u!1 &1098961454
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1098961455}
-  - component: {fileID: 1098961456}
-  m_Layer: 0
-  m_Name: Cut to black for 0,75 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1098961455
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098961454}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1098961456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098961454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 0.75
 --- !u!1 &1114130014
 GameObject:
   m_ObjectHideFlags: 0
@@ -11828,52 +11038,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.CamWiggleSequence
   _anchor: {fileID: 11400000, guid: 9f5b3bc3555c12d45bb8b43db1c6708a, type: 2}
   _active: 1
---- !u!1 &1196950662
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1196950663}
-  - component: {fileID: 1196950664}
-  m_Layer: 0
-  m_Name: Show work_placeholder (UnityEngine.Sprite) for 2 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1196950663
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196950662}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1196950664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196950662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa0f447641556e4aaeb1a54e7b4672d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ShowImageSequence
-  _sprite: {fileID: 21300000, guid: 3564e2122f0fd8b42b15883eb1401061, type: 3}
-  _duration: 2
 --- !u!1001 &1197310738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12270,51 +11434,6 @@ Transform:
   - {fileID: 1192725432}
   m_Father: {fileID: 1553471700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1240461251
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1240461252}
-  - component: {fileID: 1240461253}
-  m_Layer: 0
-  m_Name: Cut to black for 1 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1240461252
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240461251}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1240461253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240461251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 1
 --- !u!1001 &1241841201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12389,54 +11508,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8811704052192752930, guid: 75ee9cd437ec1ef4999dc2a597b4b958, type: 3}
   m_PrefabInstance: {fileID: 1241841201}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1268023309
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1268023310}
-  - component: {fileID: 1268023311}
-  m_Layer: 0
-  m_Name: Apply IRL Cut 3 to Main Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1268023310
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268023309}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1268023311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268023309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae844d2617f897a44b09a80b24ec162c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ApplyViewSequence
-  _cam: {fileID: 1114130016}
-  _view: {fileID: 1203607051}
-  _forDuration: 1
-  _duration: 2
 --- !u!1001 &1269580241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14830,51 +13901,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 103893022250367072, guid: 9aba7c4f4c4748343903dcad795919f6, type: 3}
   m_PrefabInstance: {fileID: 1605211520}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1613914076
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1613914077}
-  - component: {fileID: 1613914078}
-  m_Layer: 0
-  m_Name: Cut to black for 0,5 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1613914077
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613914076}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1613914078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613914076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 0.5
 --- !u!1001 &1619885771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15061,51 +14087,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2126423861657335746, guid: 3ee6cb70f17de6d41a40234b0c6ba3d0, type: 3}
   m_PrefabInstance: {fileID: 1643568258}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1645396067
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1645396068}
-  - component: {fileID: 1645396069}
-  m_Layer: 0
-  m_Name: Cut to black for 0,75 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1645396068
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645396067}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1645396069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645396067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 0.75
 --- !u!1001 &1647829154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15476,51 +14457,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1897868481535806261, guid: 122b7d38054ea494f8d254b9fb7b5eff, type: 3}
   m_PrefabInstance: {fileID: 1680995438}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1681690046
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1681690047}
-  - component: {fileID: 1681690048}
-  m_Layer: 0
-  m_Name: Cut to black for 0,75 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1681690047
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681690046}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1681690048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681690046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 0.75
 --- !u!4 &1687608749 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3187318578730996884, guid: 91b25b3f1f105d44ba41b934282649ca, type: 3}
@@ -17089,51 +16025,6 @@ Transform:
   - {fileID: 866957567}
   m_Father: {fileID: 170432614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1833071092
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1833071093}
-  - component: {fileID: 1833071094}
-  m_Layer: 0
-  m_Name: Cut to black for 0,5 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1833071093
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833071092}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1833071094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833071092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 0.5
 --- !u!1 &1847957442
 GameObject:
   m_ObjectHideFlags: 0
@@ -17182,52 +16073,6 @@ MonoBehaviour:
   _pitch: 0
   _roll: 0
   _fov: 60
---- !u!1 &1855891792
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1855891793}
-  - component: {fileID: 1855891794}
-  m_Layer: 0
-  m_Name: Show sleep_placeholder (UnityEngine.Sprite) for 0,5 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1855891793
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855891792}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1855891794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855891792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa0f447641556e4aaeb1a54e7b4672d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ShowImageSequence
-  _sprite: {fileID: 21300000, guid: bb6f1d90721ab1f40b861c1ba2b27b54, type: 3}
-  _duration: 0.5
 --- !u!1001 &1861677432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18850,83 +17695,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2126423861657335746, guid: 3ee6cb70f17de6d41a40234b0c6ba3d0, type: 3}
   m_PrefabInstance: {fileID: 1895713941}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1897443622
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1897443623}
-  - component: {fileID: 1897443624}
-  m_Layer: 0
-  m_Name: INTRO
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1897443623
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1897443622}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 262870039}
-  - {fileID: 283697060}
-  - {fileID: 141113548}
-  - {fileID: 4555006}
-  - {fileID: 49570559}
-  - {fileID: 790580977}
-  - {fileID: 1196950663}
-  - {fileID: 1240461252}
-  - {fileID: 2003361456}
-  - {fileID: 1991002526}
-  - {fileID: 2253066}
-  - {fileID: 1934212616}
-  - {fileID: 447755198}
-  - {fileID: 1681690047}
-  - {fileID: 197648420}
-  - {fileID: 2046401664}
-  - {fileID: 468557582}
-  - {fileID: 1645396068}
-  - {fileID: 633632600}
-  - {fileID: 77183513}
-  - {fileID: 276779831}
-  - {fileID: 1098961455}
-  - {fileID: 2112909397}
-  - {fileID: 349066706}
-  - {fileID: 1268023310}
-  - {fileID: 1613914077}
-  - {fileID: 423346388}
-  - {fileID: 835737270}
-  - {fileID: 605701233}
-  - {fileID: 1833071093}
-  - {fileID: 1855891793}
-  - {fileID: 215163296}
-  - {fileID: 75588085}
-  m_Father: {fileID: 393688179}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1897443624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1897443622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92a035a8377dcd84e9cca28bb7b0baa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Sequence
 --- !u!1 &1902418353
 GameObject:
   m_ObjectHideFlags: 0
@@ -19138,51 +17906,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &1934212615
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1934212616}
-  - component: {fileID: 1934212617}
-  m_Layer: 0
-  m_Name: Cut to black for 1 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1934212616
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1934212615}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1934212617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1934212615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 1
 --- !u!4 &1946728605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3776334116097938565, guid: d73d6d3f6e1136f40957685f15938718, type: 3}
@@ -19496,51 +18219,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 103893022250367072, guid: 9aba7c4f4c4748343903dcad795919f6, type: 3}
   m_PrefabInstance: {fileID: 1987823276}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1991002525
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1991002526}
-  - component: {fileID: 1991002527}
-  m_Layer: 0
-  m_Name: Cut to black for 1 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1991002526
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991002525}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1991002527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991002525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 1
 --- !u!1 &1995946666
 GameObject:
   m_ObjectHideFlags: 0
@@ -19586,54 +18264,6 @@ Transform:
   - {fileID: 198888323}
   m_Father: {fileID: 424264996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2003361455
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2003361456}
-  - component: {fileID: 2003361457}
-  m_Layer: 0
-  m_Name: Apply IRL Cut 1-5 to Main Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2003361456
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003361455}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2003361457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003361455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae844d2617f897a44b09a80b24ec162c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ApplyViewSequence
-  _cam: {fileID: 1114130016}
-  _view: {fileID: 93950231}
-  _forDuration: 1
-  _duration: 4
 --- !u!1 &2009256229
 GameObject:
   m_ObjectHideFlags: 0
@@ -19914,51 +18544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b62110f23b8f748898a3bd9e647bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.FixedView
---- !u!1 &2046401663
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2046401664}
-  - component: {fileID: 2046401665}
-  m_Layer: 0
-  m_Name: Cut to black for 0,75 sec
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2046401664
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2046401663}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2046401665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2046401663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb180d7d62a850449c050c570188283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
-  _duration: 0.75
 --- !u!1001 &2052745982
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20199,54 +18784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7a73bd637a4e4bb9f541ab9877ee53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Block
---- !u!1 &2112909396
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2112909397}
-  - component: {fileID: 2112909398}
-  m_Layer: 0
-  m_Name: Apply Telephone View to Main Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2112909397
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112909396}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.057565942, z: -0, w: 0.99834174}
-  m_LocalPosition: {x: 18.589998, y: 2.3899999, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1897443623}
-  m_LocalEulerAnglesHint: {x: 0, y: -6.6, z: 0}
---- !u!114 &2112909398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112909396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae844d2617f897a44b09a80b24ec162c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ApplyViewSequence
-  _cam: {fileID: 1114130016}
-  _view: {fileID: 1847957444}
-  _forDuration: 1
-  _duration: 2
 --- !u!1001 &2117015567
 PrefabInstance:
   m_ObjectHideFlags: 0
