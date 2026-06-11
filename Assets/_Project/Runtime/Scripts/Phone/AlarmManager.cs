@@ -106,12 +106,21 @@ namespace Metroma.Core
 
         private void CheckAlarm()
         {
-            if (!bIsAlarmSet || bIsRinging) return;
+            if (!bIsAlarmSet || bIsRinging)
+                return;
 
             if (CurrentHour == AlarmHour && CurrentMinute == AlarmMinute)
             {
                 TriggerAlarm();
             }
+        }
+
+        public void SetTime(int hour, int minute)
+        {
+            CurrentHour = hour;
+            CurrentMinute = minute;
+            InternalSeconds = 0f;
+            OnMinuteChanged?.Invoke(CurrentHour, CurrentMinute);
         }
 
         public void ForceTriggerAlarm(int forceHour, int forceMinute)
