@@ -67,6 +67,9 @@ namespace Metroma
         }
 
         public CameraConfiguration Smooth(CameraConfiguration current, CameraConfiguration target) {
+            if (Time.deltaTime <= 0f)
+                return current;
+
             _k1 = _z / (PI * _f);
             _k2 = 1 / ((2 * PI * _f) * (2 * PI * _f));
             _k3 = _r * _z / (2 * PI * _f);
