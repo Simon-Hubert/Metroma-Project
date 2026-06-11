@@ -51,7 +51,7 @@ namespace Metroma
         }
 
         private void FixedUpdate() {
-            float angle = Vector2.SignedAngle(Vector2.down, _ctrl.GetDirection);
+            float angle = Vector2.SignedAngle(Vector2.up, _ctrl.GetDirection);
 
             SpriteDirection dir = GetDir(angle);
             if (dir != GetDir(_currentDir)) {
@@ -75,7 +75,7 @@ namespace Metroma
                 }
             }
 
-            _ctrlSpriteRenderer.transform.localScale = new Vector3( (dir == SpriteDirection.UP || dir == SpriteDirection.DOWN) ? 1 : Mathf.Sign(angle), 1, 1);
+            _ctrlSpriteRenderer.transform.localScale = new Vector3( (dir == SpriteDirection.UP || dir == SpriteDirection.DOWN) ? 1 : -Mathf.Sign(angle), 1, 1);
             
             _currentDir = angle;
         }
