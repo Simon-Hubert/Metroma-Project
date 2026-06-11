@@ -1909,6 +1909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &96711156
@@ -2097,8 +2098,13 @@ MonoBehaviour:
   _phoneCamera: {fileID: 1422490843}
   _alarmHour: 10
   _alarmMinute: 2
-  _requirePlayerInteraction: 1
-  _autoStopDuration: 5
+  _requirePlayerInteraction: 0
+  _totalSequenceDuration: 5
+  _ringingTimeRatio: 0.444
+  _durationBeforeAlarm: 3.5
+  _delayAfterStop: 1
+  _startHour: 6
+  _startMinute: 58
 --- !u!1 &143518830
 GameObject:
   m_ObjectHideFlags: 0
@@ -4866,6 +4872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &348979533
@@ -15262,6 +15269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &1195516705
@@ -17033,6 +17041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &1297326912
@@ -17916,6 +17925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &1365975437
