@@ -12,6 +12,7 @@ namespace Metroma
             if (!RequirementsValidated()) return;
             _anchor.Target.enabled = _activate;
             _anchor.Target.PositionWiggleProperties.AmplitudeMax = _wiggleAmplitude;
+            _anchor.Target.Initialization();
         }
         
         public override bool RequirementsValidated() {
