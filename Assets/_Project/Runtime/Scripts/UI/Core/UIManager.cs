@@ -50,9 +50,6 @@ namespace Metroma.UI
 
         private void LateUpdate()
         {
-            // Sécurité AAA anti-perte de focus :
-            // Si l'utilisateur clique dans le vide, l'EventSystem perd le focus.
-            // La manette devient alors inutilisable. On force le retour sur le dernier bouton.
             if (EventSystem.current != null && EventSystem.current.currentSelectedGameObject == null)
             {
                 if (PanelStack.Count > 0)
@@ -65,8 +62,6 @@ namespace Metroma.UI
 
         private void RegisterAllChildPanels()
         {
-            // On cherche tous les UIPanels de la scène, peu importe sur quel Canvas ils sont !
-            // Cela permet d'avoir un Canvas 3D (Main Menu) et un Canvas 2D (Pause Menu) séparés.
             UIPanel[] Panels = FindObjectsOfType<UIPanel>(true);
             foreach (UIPanel Panel in Panels)
             {
@@ -98,7 +93,6 @@ namespace Metroma.UI
                 {
                     UIPanel CurrentTop = PanelStack.Peek();
                     
-                    // Mémorise le dernier bouton cliqué avant de changer de page
                     if (EventSystem.current != null)
                         CurrentTop.LastSelected = EventSystem.current.currentSelectedGameObject;
                     
@@ -114,7 +108,6 @@ namespace Metroma.UI
                 PanelToOpen.Show();
                 PanelToOpen.OnFocus();
                 
-                // Force le focus de la manette sur le nouveau panel
                 SetFocusToPanel(PanelToOpen);
                 
                 OnPanelOpened?.Invoke(PanelType);
@@ -148,7 +141,6 @@ namespace Metroma.UI
                 
                 PreviousTop.OnFocus();
                 
-                // Restaure le focus de la manette (sur le bouton quitté précédemment)
                 RestoreFocusToPanel(PreviousTop);
             }
         }

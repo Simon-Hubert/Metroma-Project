@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 namespace Metroma.UI.Effects
 {
     [RequireComponent(typeof(RectTransform))]
-    public class UIRippleEffect : MonoBehaviour, IPointerDownHandler
+    public class UIRippleEffect : MonoBehaviour, IPointerDownHandler, ISubmitHandler
     {
 
         // --- Settings ---
@@ -121,6 +121,25 @@ namespace Metroma.UI.Effects
                 );
 
                 SpawnRipple(LocalPoint, new Vector2(CircleStartSize, CircleStartSize), CircleSpriteCache, false, Image.Type.Simple);
+            }
+        }
+
+        // --- Gamepad / Keyboard Handling ---
+
+        public void OnSubmit(BaseEventData eventData)
+        {
+            Selectable selfSelectable = GetComponentInParent<Selectable>();
+
+            if (selfSelectable != null)
+            {
+                Image TargetImage = selfSelectable.GetComponent<Image>();
+                Sprite TargetSprite = (TargetImage != null && TargetImage.sprite != null) ? TargetImage.sprite : CircleSpriteCache;
+                RectTransform TargetRect = selfSelectable.GetComponent<RectTransform>();
+
+                Vector2 StartSize = TargetRect.rect.size;
+                Vector3 SpawnPos = transform.InverseTransformPoint(TargetRect.position);
+
+                SpawnRipple((Vector2)SpawnPos, StartSize, TargetSprite, true, TargetImage != null ? TargetImage.type : Image.Type.Simple);
             }
         }
 

@@ -43,6 +43,8 @@ namespace Metroma.Core
         [SerializeField, Tooltip("Déclenché quand le joueur éteint l'alarme (Pratique pour couper un AudioSource)")]
         private UnityEngine.Events.UnityEvent OnAlarmStopped;
 
+        public static event Action OnAlarmRinging;
+
 
         private void Awake()
         {
@@ -112,6 +114,14 @@ namespace Metroma.Core
             }
         }
 
+        public void ForceTriggerAlarm(int forceHour, int forceMinute)
+        {
+            CurrentHour = forceHour;
+            CurrentMinute = forceMinute;
+            OnMinuteChanged?.Invoke(CurrentHour, CurrentMinute);
+            TriggerAlarm();
+        }
+
         [Button("Test Force Trigger Alarm")]
         private void TriggerAlarm()
         {
@@ -120,10 +130,12 @@ namespace Metroma.Core
             bIsAlarmSet = false;
             
             OnAlarmStarted?.Invoke();
+            OnAlarmRinging?.Invoke();
 
-            if (UIManager.Instance != null)
+            AlarmPanel panel = FindObjectOfType<AlarmPanel>(true);
+            if (panel != null)
             {
-                UIManager.Instance.OpenPanel<AlarmPanel>();
+                panel.ShowAlarmButton();
             }
 
             PhoneController phone = FindObjectOfType<PhoneController>(true);

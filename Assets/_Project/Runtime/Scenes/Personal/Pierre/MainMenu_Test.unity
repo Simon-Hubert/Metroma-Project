@@ -306,6 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &47594867
@@ -547,6 +548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &61971924
@@ -665,6 +667,7 @@ GameObject:
   m_Component:
   - component: {fileID: 88461985}
   - component: {fileID: 88461986}
+  - component: {fileID: 88461987}
   m_Layer: 5
   m_Name: SfxVolumeSlider
   m_TagString: Untagged
@@ -745,6 +748,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &88461987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88461984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7bad2172e56414d83563fa3c63b12c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
+  HoverScale: 1.05
+  PressScale: 0.9
+  ClickDelay: 0.8
+  SpringForce: 250
+  Damping: 15
 --- !u!1 &90730284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,6 +1839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &236462575
@@ -2024,6 +2045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &236545551
@@ -3017,6 +3039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &340103951
@@ -3195,6 +3218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &341347088
@@ -3548,6 +3572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &373245962
@@ -4659,7 +4684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Panels.OptionsPanel
   FadeDuration: 0.25
   bIsPopup: 0
-  FirstSelected: {fileID: 61971924}
+  FirstSelected: {fileID: 907188359}
   LastSelected: {fileID: 0}
   BackButton: {fileID: 61971924}
   MainMixer: {fileID: 0}
@@ -5266,6 +5291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &634666210
@@ -5940,6 +5966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &775709318
@@ -6138,6 +6165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 907188358}
   - component: {fileID: 907188359}
+  - component: {fileID: 907188360}
   m_Layer: 5
   m_Name: MasterVolumeSlider
   m_TagString: Untagged
@@ -6218,6 +6246,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &907188360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907188357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7bad2172e56414d83563fa3c63b12c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
+  HoverScale: 1.05
+  PressScale: 0.9
+  ClickDelay: 0.8
+  SpringForce: 250
+  Damping: 15
 --- !u!1 &922838359
 GameObject:
   m_ObjectHideFlags: 0
@@ -6535,7 +6580,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083126774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.3461e-10}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6543,7 +6588,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.000015736, y: -25}
+  m_AnchoredPosition: {x: -0, y: -46}
   m_SizeDelta: {x: 187, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1083126776
@@ -8102,6 +8147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &1444650638
@@ -9707,10 +9753,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba812376454310246a24ce62a664bd19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.UI.Panels.AlarmPanel
-  FadeDuration: 0.25
-  bIsPopup: 0
-  FirstSelected: {fileID: 2032810434}
-  LastSelected: {fileID: 0}
   TimeText: {fileID: 234294966}
   InteractButton: {fileID: 2032810434}
 --- !u!225 &1803559464
@@ -9912,6 +9954,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1899405144}
   - component: {fileID: 1899405145}
+  - component: {fileID: 1899405146}
   m_Layer: 5
   m_Name: MusicVolumeSlider
   m_TagString: Untagged
@@ -9992,6 +10035,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1899405146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899405143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7bad2172e56414d83563fa3c63b12c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
+  HoverScale: 1.05
+  PressScale: 0.9
+  ClickDelay: 0.8
+  SpringForce: 250
+  Damping: 15
 --- !u!1 &1931655985
 GameObject:
   m_ObjectHideFlags: 0
@@ -10734,6 +10794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyButton
   HoverScale: 1.05
   PressScale: 0.9
+  ClickDelay: 0.3
   SpringForce: 250
   Damping: 15
 --- !u!114 &2032810434
@@ -11413,8 +11474,8 @@ Transform:
   m_GameObject: {fileID: 919132149612713363}
   serializedVersion: 2
   m_LocalRotation: {x: 0.14151745, y: -0.69280076, z: -0.69280076, w: -0.14151745}
-  m_LocalPosition: {x: 1.7472973, y: 0.09999985, z: -3.4645329}
-  m_LocalScale: {x: 1.042, y: 1.43, z: 1.4299998}
+  m_LocalPosition: {x: 1.78, y: 0.1, z: -3.56}
+  m_LocalScale: {x: 1.23, y: 1.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1998692883}

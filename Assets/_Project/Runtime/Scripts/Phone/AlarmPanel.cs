@@ -6,7 +6,7 @@ using Metroma.Core;
 
 namespace Metroma.UI.Panels
 {
-    public class AlarmPanel : UIPanel
+    public class AlarmPanel : MonoBehaviour
     {
         [Header("UI Elements")]
         [SerializeField, Tooltip("Texte affichant l'heure in-game actuelle.")]
@@ -16,25 +16,30 @@ namespace Metroma.UI.Panels
         private Button InteractButton;
 
         public static event System.Action OnAlarmInteracted;
+        public static bool IsInteractionAllowed = true;
+        public static Camera CurrentEventCamera;
+
+        private CanvasGroup _canvasGroup;
+        private Canvas _parentCanvas;
 
 
-        public override void Initialize()
+        private void Start()
         {
-            bIsPopup = false;
-            
-            base.Initialize();
+            _canvasGroup = GetComponent<CanvasGroup>();
+            _parentCanvas = GetComponentInParent<Canvas>();
 
             if (InteractButton != null)
+            {
                 InteractButton.onClick.AddListener(OnInteractClicked);
-        }
+                InteractButton.gameObject.SetActive(false);
+            }
 
-        public override void Show()
-        {
-            base.Show();
-            
-            if (InteractButton != null)
-                InteractButton.gameObject.SetActive(true);
-            
+            if (_canvasGroup != null)
+            {
+                _canvasGroup.interactable = false;
+                _canvasGroup.blocksRaycasts = false;
+            }
+
             AlarmManager.OnMinuteChanged += UpdateTimeDisplay;
             
             if (AlarmManager.Instance != null)
@@ -43,12 +48,53 @@ namespace Metroma.UI.Panels
             }
         }
 
-        public override void Hide()
+        public void ShowAlarmButton()
         {
-            base.Hide();
-            AlarmManager.OnMinuteChanged -= UpdateTimeDisplay;
+            if (InteractButton != null)
+            {
+                InteractButton.gameObject.SetActive(true);
+                InteractButton.interactable = IsInteractionAllowed;
+
+                if (IsInteractionAllowed)
+                {
+                    FocusButtonForGamepad();
+                    UpdateWorldSpaceCamera();
+                    EnableCanvasInteraction();
+                }
+            }
         }
 
+        private void FocusButtonForGamepad()
+        {
+            if (UnityEngine.EventSystems.EventSystem.current != null)
+            {
+                UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(InteractButton.gameObject);
+            }
+        }
+
+        private void EnableCanvasInteraction()
+        {
+            if (_canvasGroup != null)
+            {
+                _canvasGroup.interactable = true;
+                _canvasGroup.blocksRaycasts = true;
+            }
+        }
+
+        private void UpdateWorldSpaceCamera()
+        {
+            if (_parentCanvas != null && _parentCanvas.renderMode == RenderMode.WorldSpace)
+            {
+                if (CurrentEventCamera != null)
+                {
+                    _parentCanvas.worldCamera = CurrentEventCamera;
+                }
+                else if (Camera.main != null)
+                {
+                    _parentCanvas.worldCamera = Camera.main;
+                }
+            }
+        }
 
         private void UpdateTimeDisplay(int hour, int minute)
         {
@@ -58,9 +104,24 @@ namespace Metroma.UI.Panels
             }
         }
 
-
-        private void OnInteractClicked()
+        private async void OnInteractClicked()
         {
+            if (InteractButton != null)
+            {
+                var juicy = InteractButton.GetComponent<Metroma.UI.Effects.JuicyButton>();
+                if (juicy != null)
+                {
+                    await juicy.PlayClickEffectAsync();
+                }
+                InteractButton.gameObject.SetActive(false);
+            }
+
+            if (_canvasGroup != null)
+            {
+                _canvasGroup.interactable = false;
+                _canvasGroup.blocksRaycasts = false;
+            }
+
             Debug.Log("[AlarmPanel] Alarme arrêtée par le joueur !");
             
             if (AlarmManager.Instance != null)
@@ -74,7 +135,6 @@ namespace Metroma.UI.Panels
             OnAlarmInteracted?.Invoke();
         }
         
-
         private void StopPhoneVibration()
         {
             PhoneController phone = FindObjectOfType<PhoneController>(true);

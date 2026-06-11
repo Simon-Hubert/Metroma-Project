@@ -23,6 +23,9 @@ namespace Metroma.UI.Effects
         private Vector2 TargetOffset;
         private Vector2 LastMousePos;
 
+        private bool _isUsingMouse = true;
+        private GameObject _lastSelectedObj;
+
 
         private void Start()
         {
@@ -33,27 +36,62 @@ namespace Metroma.UI.Effects
             }
         }
 
-
         private void Update()
         {
-            if (RectTrans == null || Mouse.current == null || bIsGlobalParallaxPaused)
+            if (RectTrans == null || bIsGlobalParallaxPaused)
                 return;
 
-            Vector2 MousePos = Mouse.current.position.ReadValue();
-
-            if (Vector2.SqrMagnitude(MousePos - LastMousePos) < 0.5f)
+            Vector2 InputPos = new Vector2(Screen.width / 2f, Screen.height / 2f);
+            
+            if (Mouse.current != null)
             {
-                Vector2 CurrentTarget = BasePosition + TargetOffset;
-                if (Vector2.SqrMagnitude(RectTrans.anchoredPosition - CurrentTarget) < 0.1f)
+                Vector2 currentMousePos = Mouse.current.position.ReadValue();
+                if ((currentMousePos - LastMousePos).sqrMagnitude > 2f)
                 {
-                    return;
+                    _isUsingMouse = true;
                 }
+
+                LastMousePos = currentMousePos;
             }
 
-            LastMousePos = MousePos;
-            
-            float NormalizedX = Mathf.Clamp((MousePos.x / Screen.width) * 2f - 1f, -1f, 1f);
-            float NormalizedY = Mathf.Clamp((MousePos.y / Screen.height) * 2f - 1f, -1f, 1f);
+            GameObject currentSelected = UnityEngine.EventSystems.EventSystem.current != null ? UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject : null;
+            if (currentSelected != null && currentSelected != _lastSelectedObj)
+            {
+                _isUsingMouse = false;
+                _lastSelectedObj = currentSelected;
+            }
+
+            if (_isUsingMouse && Mouse.current != null)
+            {
+                InputPos = LastMousePos;
+            }
+            else if (currentSelected != null)
+            {
+                RectTransform selectedRect = currentSelected.GetComponent<RectTransform>();
+                if (selectedRect != null)
+                {
+                    Canvas rootCanvas = currentSelected.GetComponentInParent<Canvas>();
+                    Camera eventCam = (rootCanvas != null && rootCanvas.renderMode != RenderMode.ScreenSpaceOverlay) 
+                        ? (rootCanvas.worldCamera != null ? rootCanvas.worldCamera : Camera.main) 
+                        : null;
+                    
+                    if (eventCam != null)
+                    {
+                        InputPos = RectTransformUtility.WorldToScreenPoint(eventCam, selectedRect.position);
+                    }
+                    else
+                    {
+                        InputPos = selectedRect.position;
+                    }
+                }
+            }
+            else if (Mouse.current != null)
+            {
+                InputPos = LastMousePos;
+            }
+
+            float NormalizedX = Mathf.Clamp((InputPos.x / Screen.width) * 2f - 1f, -1f, 1f);
+            float NormalizedY = Mathf.Clamp((InputPos.y / Screen.height) * 2f - 1f, -1f, 1f);
 
             TargetOffset = new Vector2(-NormalizedX * ParallaxStrength, -NormalizedY * ParallaxStrength);
             Vector2 TargetPosition = BasePosition + TargetOffset;
