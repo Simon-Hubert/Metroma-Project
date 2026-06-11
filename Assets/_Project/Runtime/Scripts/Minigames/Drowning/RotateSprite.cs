@@ -43,6 +43,11 @@ namespace Metroma
                     return SpriteDirection.DOWN;
             }
         }
+        
+        [Header("SpinTrail")]
+        [SerializeField] private Transform _trail;
+        [SerializeField] private float _trailDistance = -5f;
+        [SerializeField] private Vector2 _trailOffset;
 
         private void Start()
         {
@@ -51,9 +56,10 @@ namespace Metroma
         }
 
         private void FixedUpdate() {
-            float angle = Vector2.SignedAngle(Vector2.up, _ctrl.GetDirection);
+            float signedAngle = Vector2.SignedAngle(Vector2.up, _ctrl.GetDirection);
+            float angle = Vector2.Angle(Vector2.up, _ctrl.GetDirection);
 
-            SpriteDirection dir = GetDir(angle);
+            SpriteDirection dir = GetDir(signedAngle);
             if (dir != GetDir(_currentDir)) {
                 switch (dir) {
                     case SpriteDirection.UP:
@@ -75,9 +81,10 @@ namespace Metroma
                 }
             }
 
-            _ctrlSpriteRenderer.transform.localScale = new Vector3( (dir == SpriteDirection.UP || dir == SpriteDirection.DOWN) ? 1 : -Mathf.Sign(angle), 1, 1);
+            _ctrlSpriteRenderer.transform.localScale = new Vector3( (dir == SpriteDirection.UP || dir == SpriteDirection.DOWN) ? 1 : -Mathf.Sign(signedAngle), 1, 1);
+            _trail.localPosition = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * angle) * _trailDistance, -Mathf.Cos(Mathf.Deg2Rad * angle) * _trailDistance) + _trailOffset;
             
-            _currentDir = angle;
+            _currentDir = signedAngle;
         }
     }
 }

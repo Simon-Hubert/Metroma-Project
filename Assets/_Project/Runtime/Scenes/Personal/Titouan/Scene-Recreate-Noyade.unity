@@ -307,6 +307,44 @@ Transform:
   - {fileID: 1902572950}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &673213243
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Disc Transparent (instance)
+  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _StencilComp: 2
+    - _StencilID: 0
+    - _StencilOp: 0
+    - _StencilOpPass: 1
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _ZOffsetFactor: 0
+    - _ZOffsetUnits: 0
+    - _ZTest: 4
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1001 &740243724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -372,45 +410,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 442020300}
     m_Modifications:
+    - target: {fileID: 1736788325669115182, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_Time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736788325669115182, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2915677448243441975, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
-      propertyPath: _upSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: bc5268d167af76449ac736b4d9724464, type: 3}
+      propertyPath: _trailOffset
+      value: -6
+      objectReference: {fileID: 0}
     - target: {fileID: 2915677448243441975, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
-      propertyPath: _downSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 7c163bf6c9d89984e8f79d5d3a776d1f, type: 3}
-    - target: {fileID: 2915677448243441975, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
-      propertyPath: _sideSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 6b73c5e98e5e3c64baf10cfed2013136, type: 3}
-    - target: {fileID: 2915677448243441975, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
-      propertyPath: _upSideSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 366b00273a8c04b49bcb155529af980e, type: 3}
-    - target: {fileID: 2915677448243441975, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
-      propertyPath: _downSideSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: eeb740f284199354dabb44b924618652, type: 3}
+      propertyPath: _trailOffset.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3342508931520350789, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3380787075811631969, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 1671670721}
-    - target: {fileID: 3598861588442628716, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3598861588442628716, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3598861588442628716, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 673213243}
     - target: {fileID: 3638102020545529732, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
       propertyPath: m_Name
       value: BLOCK-Noyade-Rework
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825964385632023617, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: maxSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8066018838531851540, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -452,91 +482,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8359318305405102077, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
---- !u!21 &1638865056
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Disc Transparent (instance)
-  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _StencilComp: 2
-    - _StencilID: 0
-    - _StencilOp: 0
-    - _StencilOpPass: 1
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _ZOffsetFactor: 0
-    - _ZOffsetUnits: 0
-    - _ZTest: 4
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
---- !u!21 &1671670721
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Disc Transparent (instance)
-  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _StencilComp: 2
-    - _StencilID: 0
-    - _StencilOp: 0
-    - _StencilOpPass: 1
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _ZOffsetFactor: 0
-    - _ZOffsetUnits: 0
-    - _ZTest: 4
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!114 &1902572949 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8323259656736698077, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
@@ -680,6 +630,63 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1001 &5170139759734450254
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3377921962003901824, guid: 82f9864c28b5a104082535ae57fa07b6, type: 3}
+      propertyPath: m_Name
+      value: VFX_Scared_Droplets
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460647060540937310, guid: 82f9864c28b5a104082535ae57fa07b6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.16597
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460647060540937310, guid: 82f9864c28b5a104082535ae57fa07b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -37.22519
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460647060540937310, guid: 82f9864c28b5a104082535ae57fa07b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 76.93412
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460647060540937310, guid: 82f9864c28b5a104082535ae57fa07b6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460647060540937310, guid: 82f9864c28b5a104082535ae57fa07b6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460647060540937310, guid: 82f9864c28b5a104082535ae57fa07b6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460647060540937310, guid: 82f9864c28b5a104082535ae57fa07b6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460647060540937310, guid: 82f9864c28b5a104082535ae57fa07b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460647060540937310, guid: 82f9864c28b5a104082535ae57fa07b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460647060540937310, guid: 82f9864c28b5a104082535ae57fa07b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 82f9864c28b5a104082535ae57fa07b6, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -688,3 +695,4 @@ SceneRoots:
   - {fileID: 740243724}
   - {fileID: 2125530244}
   - {fileID: 442020300}
+  - {fileID: 5170139759734450254}
