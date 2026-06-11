@@ -28,7 +28,10 @@ namespace Metroma
         }
         
         private void Update() {
-            _toMove.position = _dynamics.Update(Time.deltaTime, _targetPos);
+            if (Time.deltaTime > 0f)
+            {
+                _toMove.position = _dynamics.Update(Time.deltaTime, _targetPos);
+            }
         }
 
         private void OnDrawGizmos() {

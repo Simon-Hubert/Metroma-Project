@@ -496,6 +496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.Nuag
   _speed: 30
   _duration: 2
+  _sr: {fileID: 0}
   _vfx: {fileID: 8283403858134926963}
   _onHit:
     m_PersistentCalls:
@@ -1333,6 +1334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.Nuag
   _speed: 30
   _duration: 2
+  _sr: {fileID: 0}
   _vfx: {fileID: 8283403858134926963}
   _onHit:
     m_PersistentCalls:
@@ -1558,6 +1560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.Nuag
   _speed: 30
   _duration: 2
+  _sr: {fileID: 0}
   _vfx: {fileID: 8283403858134926963}
   _onHit:
     m_PersistentCalls:
@@ -2846,7 +2849,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.ObstacleManager
   _maxRange: {x: -10, y: 10}
-  _intervalRange: {x: 0.1851852, y: 0.66666687}
+  _maxZRange: {x: 0, y: 0}
+  _nuagParSec: {x: 0, y: 0}
+  _colorOverDepth:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  _collisionThreshhold: 0
 --- !u!1 &1858327409848463455
 GameObject:
   m_ObjectHideFlags: 0
@@ -4300,6 +4335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.Nuag
   _speed: 30
   _duration: 2
+  _sr: {fileID: 0}
   _vfx: {fileID: 8283403858134926963}
   _onHit:
     m_PersistentCalls:
@@ -5215,97 +5251,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &3600857048449662284
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8733186194246839080}
-  - component: {fileID: 3954539791741134000}
-  m_Layer: 0
-  m_Name: Square
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8733186194246839080
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3600857048449662284}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 3927612517463525880}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3954539791741134000
-SpriteRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3600857048449662284}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 555543122, guid: 05c01d87c6dcd1643ab199395a8fd3ed, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
 --- !u!1 &3698612453717978995
 GameObject:
   m_ObjectHideFlags: 0
@@ -5397,153 +5342,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &3721433553514733602
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3927612517463525880}
-  - component: {fileID: 8854763108028490700}
-  - component: {fileID: 2206976427683059639}
-  - component: {fileID: 5061915243225090512}
-  - component: {fileID: 3709391142633045937}
-  m_Layer: 0
-  m_Name: Nuag
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &3927612517463525880
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3721433553514733602}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8733186194246839080}
-  m_Father: {fileID: 3324426916629054252}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8854763108028490700
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3721433553514733602}
-  m_Mesh: {fileID: 43100795730674332, guid: a3d1f56cebf202c448b6fb479f61a9dc, type: 2}
---- !u!23 &2206976427683059639
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3721433553514733602}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 35eb9f982684e7745b8ef050ccf0604b, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -1
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5061915243225090512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3721433553514733602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 119c7965ba195ad42846ec8093d0e2fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Nuag
-  _speed: 30
-  _duration: 2
-  _vfx: {fileID: 8283403858134926963}
-  _onHit:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!58 &3709391142633045937
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3721433553514733602}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -1, y: 0}
-  m_Radius: 1
 --- !u!1 &3722890736023688504
 GameObject:
   m_ObjectHideFlags: 0
@@ -5879,6 +5677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.Nuag
   _speed: 30
   _duration: 2
+  _sr: {fileID: 0}
   _vfx: {fileID: 8283403858134926963}
   _onHit:
     m_PersistentCalls:
@@ -6456,6 +6255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.Nuag
   _speed: 30
   _duration: 2
+  _sr: {fileID: 0}
   _vfx: {fileID: 8283403858134926963}
   _onHit:
     m_PersistentCalls:
@@ -6732,6 +6532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.Nuag
   _speed: 30
   _duration: 2
+  _sr: {fileID: 0}
   _vfx: {fileID: 8283403858134926963}
   _onHit:
     m_PersistentCalls:
@@ -7000,6 +6801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.Nuag
   _speed: 30
   _duration: 2
+  _sr: {fileID: 0}
   _vfx: {fileID: 8283403858134926963}
   _onHit:
     m_PersistentCalls:
@@ -9533,6 +9335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.Nuag
   _speed: 30
   _duration: 2
+  _sr: {fileID: 0}
   _vfx: {fileID: 8283403858134926963}
   _onHit:
     m_PersistentCalls:
@@ -9915,6 +9718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.Nuag
   _speed: 30
   _duration: 2
+  _sr: {fileID: 0}
   _vfx: {fileID: 8283403858134926963}
   _onHit:
     m_PersistentCalls:
@@ -10110,6 +9914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.Nuag
   _speed: 30
   _duration: 2
+  _sr: {fileID: 0}
   _vfx: {fileID: 8283403858134926963}
   _onHit:
     m_PersistentCalls:
@@ -13339,4 +13144,70 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4456855540096558, guid: 709dc1eb3f884fbcfa5b7d08393217d6, type: 3}
   m_PrefabInstance: {fileID: 911710809415876877}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6102449996294914078
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3324426916629054252}
+    m_Modifications:
+    - target: {fileID: 1337508516116498894, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+      propertyPath: _vfx
+      value: 
+      objectReference: {fileID: 8283403858134926963}
+    - target: {fileID: 7075699508917864934, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075699508917864934, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075699508917864934, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075699508917864934, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075699508917864934, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075699508917864934, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075699508917864934, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075699508917864934, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075699508917864934, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075699508917864934, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427968406307545148, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+      propertyPath: m_Name
+      value: Nuag
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+--- !u!4 &3927612517463525880 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7075699508917864934, guid: c76e6cc672fcda04bb9b89c2bbb94c6f, type: 3}
+  m_PrefabInstance: {fileID: 6102449996294914078}
   m_PrefabAsset: {fileID: 0}
