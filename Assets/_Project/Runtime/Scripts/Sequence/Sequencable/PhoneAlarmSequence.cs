@@ -97,7 +97,7 @@ namespace Metroma
 
             await _ringSource.Awaitable;
 
-            // Alarme sonne (On fige le temps pendant qu'elle sonne !)
+            // Alarme sonne
             if (AlarmManager.Instance != null)
             {
                 AlarmManager.Instance.TimeSpeedMultiplier = 0f;
