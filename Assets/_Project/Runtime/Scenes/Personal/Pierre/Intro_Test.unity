@@ -2776,7 +2776,6 @@ GameObject:
   - component: {fileID: 196220908}
   - component: {fileID: 196220907}
   - component: {fileID: 196220906}
-  - component: {fileID: 196220905}
   m_Layer: 0
   m_Name: = PausePanel =
   m_TagString: Untagged
@@ -2804,47 +2803,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &196220905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196220903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7342ef72d245e6646a8e44015959f885, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.UIRippleEffect
-  RippleColor: {r: 1, g: 1, b: 1, a: 0.5}
-  Speed: 2
-  AlphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  CircleMaxScale: 7
-  CircleStartSize: 7
-  ShapeMaxScale: 1.3
 --- !u!114 &196220906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13685,6 +13643,7 @@ GameObject:
   - component: {fileID: 1092673643}
   - component: {fileID: 1092673645}
   - component: {fileID: 1092673644}
+  - component: {fileID: 1092673646}
   m_Layer: 0
   m_Name: PhoneBackground
   m_TagString: Untagged
@@ -13749,6 +13708,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092673642}
   m_CullTransparentMesh: 1
+--- !u!114 &1092673646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092673642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7342ef72d245e6646a8e44015959f885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.UIRippleEffect
+  RippleColor: {r: 1, g: 1, b: 1, a: 0.5}
+  Speed: 2
+  AlphaCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CircleMaxScale: 7
+  CircleStartSize: 7
+  ShapeMaxScale: 1.3
 --- !u!1 &1098961454
 GameObject:
   m_ObjectHideFlags: 0
@@ -25699,6 +25699,7 @@ GameObject:
   - component: {fileID: 2038894735}
   - component: {fileID: 2038894737}
   - component: {fileID: 2038894736}
+  - component: {fileID: 2038894738}
   m_Layer: 0
   m_Name: PhoneBack
   m_TagString: Untagged
@@ -25764,6 +25765,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038894734}
   m_CullTransparentMesh: 1
+--- !u!114 &2038894738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038894734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb5f6b1b61c53e047a2f355f56e173bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UI.Effects.JuicyEntrance
+  _entranceType: 1
+  _slideOffset: 1000
+  SpringForce: 250
+  Damping: 15
 --- !u!1 &2046401663
 GameObject:
   m_ObjectHideFlags: 0
