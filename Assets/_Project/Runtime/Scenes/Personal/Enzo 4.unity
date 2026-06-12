@@ -409,8 +409,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 457225ac8b3f99447b2aa07e9e69f39a, type: 3}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 8014651913881567542, guid: 37b9a177032c9bc469d222c81fce17c6, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 5218549252733591335, guid: 37b9a177032c9bc469d222c81fce17c6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1762588182230271601, guid: 37b9a177032c9bc469d222c81fce17c6, type: 3}
       insertIndex: -1
@@ -557,6 +559,17 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &973689692 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3072264601945304655, guid: 37b9a177032c9bc469d222c81fce17c6, type: 3}
+  m_PrefabInstance: {fileID: 677070517}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7a73bd637a4e4bb9f541ab9877ee53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Block
 --- !u!1 &1164372212
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.AdBase
   _blocks:
-  - {fileID: 0}
+  - {fileID: 973689692}
   _activateOnStart: 1
   _onAdEnded:
     m_PersistentCalls:
