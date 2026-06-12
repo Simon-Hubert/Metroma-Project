@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.VFX;
+using Random = UnityEngine.Random;
 
 namespace Metroma
 {
@@ -10,6 +11,8 @@ namespace Metroma
         [SerializeField] private float _speed = 9f;
         [SerializeField] private float _duration = 1.2f;
         [SerializeField] private SpriteRenderer _sr;
+
+        [SerializeField] private Sprite[] _sprites;
         private Collider2D _col;
         private float _t;
         
@@ -18,6 +21,7 @@ namespace Metroma
 
         private void OnEnable() {
             _t = 0;
+            _sr.sprite = _sprites[Random.Range(0, _sprites.Length)];
         }
 
         private void Start() {
