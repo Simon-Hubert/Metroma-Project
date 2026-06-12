@@ -67,4 +67,14 @@ namespace Metroma
             return true;
         }
     }
+
+    [Serializable]
+    public class EvaluatableRef : ICondition
+    {
+        [SerializeField] private AEvaluatable _evaluatable;
+        
+        public bool Evaluate() {
+            return _evaluatable.Evaluate();
+        }
+    }
 }

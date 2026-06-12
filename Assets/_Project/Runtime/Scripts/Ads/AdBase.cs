@@ -1,16 +1,26 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Metroma
 {
     public class AdBase : MonoBehaviour
     {
         [SerializeField] private Block[] _blocks;
+        [SerializeField] private bool _activateOnStart;
 
         private int _currentBlock;
 
         public event Action OnAdStarted;
         public event Action OnAdEnded;
+
+        [SerializeField] private UnityEvent _onAdEnded;
+        
+        private void Start() {
+            if (_activateOnStart) {
+                StartAd();
+            }
+        }
 
         public virtual void StartAd()
         {
@@ -22,6 +32,7 @@ namespace Metroma
         protected virtual void End()
         {
             OnAdEnded?.Invoke();
+            _onAdEnded?.Invoke();
         }
 
         private void GoNextBlock() {
