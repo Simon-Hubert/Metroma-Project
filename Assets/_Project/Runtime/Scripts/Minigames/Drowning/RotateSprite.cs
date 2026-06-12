@@ -1,5 +1,6 @@
 using System;
 using NaughtyAttributes;
+using SMath;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Serialization;
@@ -48,11 +49,19 @@ namespace Metroma
         [SerializeField] private Transform _trail;
         [SerializeField] private float _trailDistance = -5f;
         [SerializeField] private Vector2 _trailOffset;
+        
+        private SecondOrderDynamics<Vector2> _dynamics;
+        [Space(10)]
+        [SerializeField] private float _smoothF = 0.5f;
+        [SerializeField] private float _smoothZ = 1f;
+        [SerializeField] private float _smoothR = 0f;
+        
 
         private void Start()
         {
             _ctrlSpriteRenderer.sprite = _downSprite;
             _ctrlSpriteRenderer.transform.localScale = Vector3.one;
+            _dynamics = new SecondOrderDynamics<Vector2>(_smoothF, _smoothZ, _smoothR, Vector2.up * _trailDistance + _trailOffset, new Linear2D());
         }
 
         private void FixedUpdate() {
@@ -82,7 +91,14 @@ namespace Metroma
             }
 
             _ctrlSpriteRenderer.transform.localScale = new Vector3( (dir == SpriteDirection.UP || dir == SpriteDirection.DOWN) ? 1 : -Mathf.Sign(signedAngle), 1, 1);
-            _trail.localPosition = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * angle) * _trailDistance, -Mathf.Cos(Mathf.Deg2Rad * angle) * _trailDistance) + _trailOffset;
+            
+            Vector2 effectPosSmooth = _dynamics.Update(Time.fixedDeltaTime,
+                new Vector2(-Mathf.Sin(Mathf.Deg2Rad * angle) * _trailDistance,
+                    -Mathf.Cos(Mathf.Deg2Rad * angle) * _trailDistance) + _trailOffset);
+            Vector2 effectPos = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * angle) * _trailDistance, -Mathf.Cos(Mathf.Deg2Rad * angle) * _trailDistance) + _trailOffset;
+            
+            _trail.localPosition = effectPos;
+            _trail.rotation = Quaternion.Euler(0, 0, -angle);
             
             _currentDir = signedAngle;
         }
