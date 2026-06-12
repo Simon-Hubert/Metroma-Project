@@ -12,12 +12,12 @@ namespace Metroma
         [SerializeField, Tooltip("La caméra qui filme le téléphone (à activer)")]
         private Camera _phoneCamera;
 
-        [Header("Alarm Settings")]
-        [SerializeField, Tooltip("Heure de l'alarme")]
-        private int _alarmHour = 10;
+        [Header("Starting Time")]
+        [SerializeField, Tooltip("Heure à laquelle l'horloge va commencer (ex: 06)")]
+        private int _startHour = 6;
         
-        [SerializeField, Tooltip("Minute de l'alarme")]
-        private int _alarmMinute = 0;
+        [SerializeField, Tooltip("Minute à laquelle l'horloge va commencer (ex: 59). L'alarme sonnera automatiquement 1 minute plus tard !")]
+        private int _startMinute = 59;
 
         [Header("Interaction")]
         [SerializeField, Tooltip("Le joueur doit-il interagir avec l'alarme pour la couper ?")]
@@ -39,13 +39,6 @@ namespace Metroma
         [NaughtyAttributes.ShowIf("_requirePlayerInteraction")]
         [SerializeField, Tooltip("Délai (en secondes) à attendre après l'arrêt manuel de l'alarme avant de passer à la suite")]
         private float _delayAfterStop = 1f;
-
-        [Header("Starting Time")]
-        [SerializeField, Tooltip("Heure à laquelle l'horloge va commencer (ex: 06)")]
-        private int _startHour = 6;
-        
-        [SerializeField, Tooltip("Minute à laquelle l'horloge va commencer (ex: 58)")]
-        private int _startMinute = 58;
 
         private AwaitableCompletionSource _completionSource;
         private AwaitableCompletionSource _ringSource;
@@ -69,9 +62,14 @@ namespace Metroma
                 AlarmPanel.CurrentEventCamera = _phoneCamera;
             }
 
+            AlarmPanel panel = FindObjectOfType<AlarmPanel>(true);
+            if (panel != null)
+            {
+                panel.SetSleepMode();
+            }
+
             AlarmPanel.IsInteractionAllowed = _requirePlayerInteraction;
 
-            // Lancement programme de l'Alarme
             _ringSource = new AwaitableCompletionSource();
             AlarmManager.OnAlarmRinging += OnAlarmStartedToRing;
 
@@ -80,18 +78,16 @@ namespace Metroma
             if (AlarmManager.Instance != null)
             {
                 int startTotalMinutes = _startHour * 60 + _startMinute;
-                int alarmTotalMinutes = _alarmHour * 60 + _alarmMinute;
-
-                if (alarmTotalMinutes < startTotalMinutes) 
-                    alarmTotalMinutes += 24 * 60;
-
-                int minutesDiff = alarmTotalMinutes - startTotalMinutes;
-                float gameSecondsDiff = minutesDiff * 60f;
+                int alarmTotalMinutes = startTotalMinutes + 1;
                 
+                int alarmHour = (alarmTotalMinutes / 60) % 24;
+                int alarmMinute = alarmTotalMinutes % 60;
+
+                float gameSecondsDiff = 60f;
                 float requiredSpeed = gameSecondsDiff / timeBeforeAlarm;
 
                 AlarmManager.Instance.SetTime(_startHour, _startMinute);
-                AlarmManager.Instance.SetAlarm(_alarmHour, _alarmMinute);
+                AlarmManager.Instance.SetAlarm(alarmHour, alarmMinute);
                 AlarmManager.Instance.TimeSpeedMultiplier = requiredSpeed;
             }
             else
@@ -101,7 +97,12 @@ namespace Metroma
 
             await _ringSource.Awaitable;
 
-            // Alarme sonne
+            // Alarme sonne (On fige le temps pendant qu'elle sonne !)
+            if (AlarmManager.Instance != null)
+            {
+                AlarmManager.Instance.TimeSpeedMultiplier = 0f;
+            }
+
             _completionSource = new AwaitableCompletionSource();
             
             if (_requirePlayerInteraction)
@@ -209,7 +210,11 @@ namespace Metroma
 
         private void OnValidate() 
         {
-            name = $"Phone Alarm ({_alarmHour:D2}:{_alarmMinute:D2}) with Cam Switch";
+            int alarmTotalMinutes = (_startHour * 60 + _startMinute) + 1;
+            int alarmHour = (alarmTotalMinutes / 60) % 24;
+            int alarmMinute = alarmTotalMinutes % 60;
+            
+            name = $"Phone Alarm ({alarmHour:D2}:{alarmMinute:D2}) with Cam Switch";
         }
         
 #if UNITY_EDITOR
