@@ -21,19 +21,20 @@ namespace Metroma
 
         private void Start() {
             _dynamics = new SecondOrderDynamics<Vector3>(_f, _z, _r, _from.position, new Linear3D());
+            UpdateTargetPos(0);
         }
 
         public void UpdateTargetPos(int value) {
             _targetPos = Vector3.Lerp(_from.position, _to.position, _pos.Evaluate((float)value / _max));
         }
         
-        private void Update() {
+        private void FixedUpdate() {
             if (Time.deltaTime > 0f)
             {
-                _toMove.position = _dynamics.Update(Time.deltaTime, _targetPos);
+                _toMove.position = _dynamics.Update(Time.fixedDeltaTime, _targetPos);
             }
         }
-
+        
         private void OnDrawGizmos() {
             Gizmos.color = Color.cyan;
             Gizmos.DrawLine(_from.position, _to.position);
