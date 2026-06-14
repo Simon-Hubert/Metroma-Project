@@ -1,5 +1,4 @@
-//radial gauss pour chaque particule
-// La fusion du liquide se fait ensuite au seuillage dans Metaball2DComposite.
+//radial gauss pour chaque particule, additif. la fusion se fait au seuil ensuite.
 Shader "Instanced/Metaball2DAccum"
 {
     Properties
@@ -41,15 +40,16 @@ Shader "Instanced/Metaball2DAccum"
 
             CBUFFER_START(UnityPerMaterial)
                 float _size;
+                float _simZ; // Z du verre, sinon decale en perspective
             CBUFFER_END
 
             struct Particle
             {
                 float pressure;
                 float density;
-                float3 currentForce;
-                float3 velocity;
-                float3 position;
+                float2 currentForce;
+                float2 velocity;
+                float2 position;
             };
 
             #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
@@ -59,14 +59,14 @@ Shader "Instanced/Metaball2DAccum"
             void setup()
             {
             #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-                float3 pos = _particlesBuffer[unity_InstanceID].position;
+                float2 pos = _particlesBuffer[unity_InstanceID].position;
                 float s = _size;
 
-                // Quad plat dans le plan XY, centre sur la particule (jeu 2D)
+                // un quad plat centre sur la particule, au Z du verre
                 unity_ObjectToWorld._11_21_31_41 = float4(s, 0, 0, 0);
                 unity_ObjectToWorld._12_22_32_42 = float4(0, s, 0, 0);
                 unity_ObjectToWorld._13_23_33_43 = float4(0, 0, s, 0);
-                unity_ObjectToWorld._14_24_34_44 = float4(pos.xy, 0, 1);
+                unity_ObjectToWorld._14_24_34_44 = float4(pos.xy, _simZ, 1);
 
                 unity_WorldToObject = unity_ObjectToWorld;
                 unity_WorldToObject._14_24_34 *= -1;
@@ -86,11 +86,11 @@ Shader "Instanced/Metaball2DAccum"
 
             half4 frag(Varyings input) : SV_Target
             {
-                // distance radiale 0 (centre) -> 1 (bord du quad)
+                // 0 au centre -> 1 au bord
                 float2 d = input.uv * 2.0 - 1.0;
                 float r2 = dot(d, d);
-                
-                // falloff lisse a support compact (0 au bord, max au centre)
+
+                // degrade doux : max au centre, 0 au bord si j'ai bien compris
                 float falloff = saturate(1.0 - r2);
                 float contribution = falloff * falloff;
                 return half4(contribution, 0, 0, contribution);

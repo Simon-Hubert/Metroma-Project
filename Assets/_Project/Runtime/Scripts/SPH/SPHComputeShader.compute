@@ -1,64 +1,221 @@
-#pragma kernel Integrate //deplace les particules avec leurs forces
-#pragma kernel ComputeForces //calcule les forces pour chaque particules
-#pragma kernel ComputeDensityPressure //calule la pression et la densité des particules
+//mourir, si le décès était un script c'est celui là je pense
+
+//fonction du compute shader comme en c++ un peu
+#pragma kernel Integrate
+#pragma kernel ComputeForces
+#pragma kernel ComputeDensityPressure
 #pragma kernel HashParticles
 #pragma kernel BitonicSort
 #pragma kernel CalculateCellOffsets
+#pragma kernel ApplyFrameMotion
 
 struct Particle
 {
     float pressure;
     float density;
-    float3 currentForce;
-    float3 velocity;
-    float3 position;
+    float2 currentForce; // en vrai c'est l'acceleration, pas la force (flemme de renommer)
+    float2 velocity;
+    float2 position;
 };
 
 RWStructuredBuffer<Particle> _particles;
-
 RWStructuredBuffer<uint> _particleIndices;
 RWStructuredBuffer<uint> _particlesCellIndices;
 RWStructuredBuffer<uint> _cellOffsets;
 
+//coordonnée du collider
+StructuredBuffer<float2> _boundaryPoints;
+uint _boundaryCount;
+uint _boundaryClosed;
 
-//Params physique des particules
+// Params physiques
 float _particleMass;
 float _viscosity;
-float _gasContant;
+float _gasConstant;
 float _restDensity;
 float _boundDamping;
 
-//bullshit de maths pour simplifier les calculs avec le radius de la particule
-float _radius;
-float _radius2;
-float _radius3;
-float _radius4;
-float _radius5;
+// h + bullshit de maths precalcule cote CPU (constantes des noyaux SPH)
+float _h;          // rayon de lissage
+float _h2;
+float _poly6;
+float _spikyGrad;
+float _viscLap;
 
-float _pi;
-uint _particleLenght;
+uint _particleLenght; // taille des buffers (puissance de 2)
+uint _activeCount;    // les actives = [0, activeCount), le reste c'est du padding
 float _timestep;
-float3 _boxSize;
-float3 _spherePos;
-float _sphereRadius;
-Z
-StructuredBuffer<float2> _boundaryPoints; // sommets du collider en espace monde
-uint _boundaryCount;                      // nombre de points valides
-uint _boundaryClosed;                     // 1 = polygone fermé (Polygon), 0 = chaine ouverte (Edge)
+float2 _gravity;
+float2 _boxSize;      // bullshit de l'ancien systeme grosse flemme de clean deso
+float2 _frameOffset;  // deplacement du verre (l'eau le suit)
 
 int block;
 int dim;
 
-// Point le plus proche sur le segment [a,b]
+#define EMPTY 0xFFFFFFFF
+
+int2 GetCell(float2 position)
+{
+    return int2(floor(position / _h));
+}
+
+uint HashCell(int2 cell)
+{
+    int n = 73856093 * cell.x + 19349663 * cell.y;
+    // modulo non-negatif sinon un index negatif caste en uint = boum (OOB, crash GPU, c du vécu....)
+    n %= (int)_particleLenght;
+    if (n < 0) n += (int)_particleLenght;
+    return (uint)n;
+}
+
+// Noyaux SPH 2D. A appeler uniquement quand r < h, pas bien compris mais ça marche c cool
+float Poly6(float r2)        { float x = _h2 - r2; return _poly6 * x * x * x; }
+float SpikyGradient(float r) { float x = _h - r;  return _spikyGrad * x * x; }
+float ViscLaplacian(float r) { return _viscLap * (_h - r); }
+
+[numthreads(256,1,1)]
+void HashParticles(uint3 id : SV_DISPATCHTHREADID)
+{
+    if (id.x >= _particleLenght) return;
+    _cellOffsets[id.x] = EMPTY;
+    uint particleIndex = _particleIndices[id.x];
+    _particlesCellIndices[particleIndex] = HashCell(GetCell(_particles[particleIndex].position));
+}
+
+[numthreads(256,1,1)]
+void BitonicSort(uint3 id : SV_DISPATCHTHREADID)
+{
+    uint i = id.x + id.y * 256 * 1024;
+    uint j = i ^ block;
+
+    if (j < i || i >= _particleLenght || j >= _particleLenght) return;
+
+    uint keyI = _particleIndices[i];
+    uint keyJ = _particleIndices[j];
+    float valI = _particlesCellIndices[keyI];
+    float valJ = _particlesCellIndices[keyJ];
+
+    float diff = (valI - valJ) * ((i & dim) == 0 ? 1 : -1);
+    if (diff > 0)
+    {
+        _particleIndices[i] = keyJ;
+        _particleIndices[j] = keyI;
+    }
+}
+
+[numthreads(256,1,1)]
+void CalculateCellOffsets(uint3 id : SV_DISPATCHTHREADID)
+{
+    if (id.x >= _particleLenght) return;
+    uint particleIndex = _particleIndices[id.x];
+    uint cellIndex = _particlesCellIndices[particleIndex];
+    InterlockedMin(_cellOffsets[cellIndex], id.x);
+}
+
+[numthreads(256,1,1)]
+void ComputeDensityPressure(uint3 id : SV_DISPATCHTHREADID)
+{
+    if (id.x >= _particleLenght) return;
+    uint particleIndex = _particleIndices[id.x];
+    if (particleIndex >= _activeCount) return; // padding, on touche pas
+
+    float2 origin = _particles[particleIndex].position;
+    int2 cell = GetCell(origin);
+    float density = 0.0;
+
+    // les 9 cellules autour
+    for (int x = -1; x <= 1; x++)
+    {
+        for (int y = -1; y <= 1; y++)
+        {
+            uint hash = HashCell(cell + int2(x, y));
+            uint it = _cellOffsets[hash];
+
+            while (it < _particleLenght)
+            {
+                uint b = _particleIndices[it];
+                if (_particlesCellIndices[b] != hash) break;
+
+                if (b < _activeCount)
+                {
+                    float2 diff = origin - _particles[b].position;
+                    float r2 = dot(diff, diff);
+                    if (r2 < _h2)
+                        density += _particleMass * Poly6(r2);
+                }
+                it++;
+            }
+        }
+    }
+
+    density = max(density, 1e-6);
+    _particles[particleIndex].density = density;
+    _particles[particleIndex].pressure = max(_gasConstant * (density - _restDensity), 0.0);
+}
+
+[numthreads(256,1,1)]
+void ComputeForces(uint3 id : SV_DISPATCHTHREADID)
+{
+    if (id.x >= _particleLenght) return;
+    uint i = _particleIndices[id.x];
+    if (i >= _activeCount) return;
+
+    float2 origin = _particles[i].position;
+    float densI = _particles[i].density;
+    float presI = _particles[i].pressure;
+    float2 velI = _particles[i].velocity;
+    int2 cell = GetCell(origin);
+
+    float2 pressureForce = float2(0, 0);
+    float2 viscForce = float2(0, 0);
+
+    for (int x = -1; x <= 1; x++)
+    {
+        for (int y = -1; y <= 1; y++)
+        {
+            uint hash = HashCell(cell + int2(x, y));
+            uint it = _cellOffsets[hash];
+
+            while (it < _particleLenght)
+            {
+                uint b = _particleIndices[it];
+                if (_particlesCellIndices[b] != hash) break;
+
+                if (b < _activeCount && b != i)
+                {
+                    float2 diff = origin - _particles[b].position;
+                    float r = length(diff);
+                    if (r < _h && r > 1e-6)
+                    {
+                        float2 dir = diff / r;
+                        float densB = _particles[b].density;
+                        float presB = _particles[b].pressure;
+
+                        // pression : ca repousse (SpikyGradient est negatif, du coup ca pousse vers dir)
+                        pressureForce += -dir * _particleMass * (presI + presB) / (2.0 * densB) * SpikyGradient(r);
+
+                        // viscosite : ca aligne les vitesses des voisins
+                        viscForce += _viscosity * _particleMass * (_particles[b].velocity - velI) / densB * ViscLaplacian(r);
+                    }
+                }
+                it++;
+            }
+        }
+    }
+
+    // accel = forces internes / densite + gravite
+    _particles[i].currentForce = (pressureForce + viscForce) / densI + _gravity;
+}
+
+// Collisions contre les segments du verre
 float2 ClosestPointOnSegment(float2 p, float2 a, float2 b)
 {
     float2 ab = b - a;
-    float denom = max(dot(ab, ab), 1e-8f);
+    float denom = max(dot(ab, ab), 1e-8);
     float t = saturate(dot(p - a, ab) / denom);
     return a + t * ab;
 }
 
-// Test point-dans-polygone (ray casting) pour le containment d'un collider ferme
 bool PointInPolygon(float2 p)
 {
     bool inside = false;
@@ -68,238 +225,42 @@ bool PointInPolygon(float2 p)
         float2 vi = _boundaryPoints[i];
         float2 vj = _boundaryPoints[j];
         if (((vi.y > p.y) != (vj.y > p.y)) &&
-            (p.x < (vj.x - vi.x) * (p.y - vi.y) / (vj.y - vi.y + 1e-8f) + vi.x))
-        {
+            (p.x < (vj.x - vi.x) * (p.y - vi.y) / (vj.y - vi.y + 1e-8) + vi.x))
             inside = !inside;
-        }
     }
     return inside;
 }
 
-int3 GetCell(float3 position)
-{
-    float3 halfBoxSize = _boxSize / 2.0f;
-    return int3((position.x + halfBoxSize.x) / _radius, (position.y + halfBoxSize.y) / _radius, (position.z + halfBoxSize.z) / _radius);
-}
-
-inline uint HashCell (in int3 cellIndex)
-{
-    const uint p1 = 7385093;
-    const uint p2 = 19349663;
-    const uint p3 = 83492791;
-
-    int n = p1 * cellIndex.x + p2 * cellIndex.y + p3 * cellIndex.z;
-
-    n %= (int)_particleLenght;
-    if (n < 0) n += (int)_particleLenght;
-    return (uint)n;
-}
-
-[numthreads(256,1,1)]
-void HashParticles(uint3 id: SV_DISPATCHTHREADID)
-{
-    _cellOffsets[id.x] = 999999999;
-    uint particleIndex = _particleIndices[id.x];
-    _particlesCellIndices[particleIndex] = HashCell(GetCell(_particles[particleIndex].position));
-}
-
-[numthreads(256,1,1)]
-void BitonicSort(uint3 id: SV_DISPATCHTHREADID)
-{
-    uint i = id.x + id.y *256 *1024;
-    uint j = i ^ block;
-
-    if (j < i || i >= _particleLenght || j >= _particleLenght)
-        return;
-
-    uint keyI = _particleIndices[i];
-    uint keyJ = _particleIndices[j];
-    float valI = _particlesCellIndices[keyI];
-    float valJ = _particlesCellIndices[keyJ];
-
-    float diff = (valI - valJ) * ((i&dim) == 0 ? 1 : -1);
-    if (diff > 0)
-    {
-        _particleIndices[i] = keyJ;
-        _particleIndices[j] = keyI;
-    }
-}
-
-[numthreads(256,1,1)]
-void CalculateCellOffsets(uint3 id: SV_DISPATCHTHREADID)
-{
-    uint particleIndex = _particleIndices[id.x];
-    uint cellIndex = _particlesCellIndices[particleIndex];
-
-    InterlockedMin(_cellOffsets[cellIndex], id.x);
-}
-
-float StdKernel(float distanceSquared)
-{
-    float x = 1.0f - distanceSquared / _radius2;
-    return 315.f / (64.f * _pi * _radius3) * x * x * x;
-}
-
-float SpikyKernelFirstDerivative(float distance)
-{
-    float x = 1.0f - distance / _radius;
-    return -45.f / (_pi * _radius4) * x * x;
-}
-
-float SpikyKernelSecondDerivative(float distance)
-{
-    // Btw, it derives 'distance' not 'radius' (h)
-    float x = 1.0f - distance / _radius;
-    return 90.f / (_pi * _radius5) * x;
-}
-
-float3 SpikyKernelGradient(float distance, float3 direction)
-{
-    return SpikyKernelFirstDerivative(distance) * direction;
-}
-
-[numthreads(256, 1, 1)]
-void ComputeDensityPressure(uint3 id: SV_DISPATCHTHREADID)
-{
-    if (id.x >= (uint)_particleLenght) return;
-
-    uint particleIndex = _particleIndices[id.x];
-
-    int3 cellIndex = GetCell(_particles[particleIndex].position);
-    float3 origin = _particles[particleIndex].position;
-    float sum = 0;
-
-    for (int i = -2; i <= 2; i++)
-    {
-        for (int j = -2; j <= 2; j++)
-        {
-            for (int k = -2; k <= 2; k++)
-            {
-                int3 neighborCellIndex = cellIndex + int3(i, j, k);
-                uint neighborCellHash = HashCell(neighborCellIndex);
-                uint neighborIt = _cellOffsets[neighborCellHash];
-
-                while (neighborIt < _particleLenght)
-                {
-                    uint particleIndexB = _particleIndices[neighborIt];
-
-                    if (_particlesCellIndices[particleIndexB] != neighborCellHash) break;
-
-                    Particle particleB = _particles[particleIndexB];
-
-                    float3 direction = origin - particleB.position;
-                    float r2 = dot(direction, direction);
-
-                    if (r2 * 0.004f < _radius2 * 0.004f) 
-                    {
-                        sum += StdKernel(r2 * 0.004f);
-                    }
-
-                    neighborIt++;
-                }
-            }
-        }
-    }
-
-    _particles[particleIndex].density = sum * _particleMass + 0.000001f;
-    _particles[particleIndex].pressure = _gasContant * (_particles[particleIndex].density - _restDensity);
-
-    if (_particles[particleIndex].pressure <= 0) 
-        _particles[particleIndex].pressure = 0;
-}
-
-[numthreads(256,1,1)]
-void ComputeForces(uint3 id: SV_DISPATCHTHREADID)
-{
-    if (id.x >= (uint)_particleLenght) return;
-
-    uint particleIndex = _particleIndices[id.x];
-
-    int3 cellIndex = GetCell(_particles[particleIndex].position);
-
-    float3 origin = _particles[particleIndex].position;
-    float density2 = _particles[particleIndex].density * _particles[particleIndex].density;
-    float mass2 = _particleMass * _particleMass;
-    float3 pressure = float3(0,0,0);
-    float3 viscosity = float3(0,0,0);
-
-    for (int i = -2; i <= 2; i++)
-    {
-        for (int j = -2; j <= 2; j++)
-        {
-            for (int k = -2; k <= 2; k++)
-            {
-                int3 neighborCellIndex = cellIndex + int3(i, j, k);
-                uint neighborCellHash = HashCell(neighborCellIndex);
-                uint neighborIt = _cellOffsets[neighborCellHash];
-                
-                while (neighborIt < _particleLenght)
-                {
-                    uint particleIndexB = _particleIndices[neighborIt];
-                    if (_particlesCellIndices[particleIndexB] != neighborCellHash) break;
-
-                    Particle particleB = _particles[particleIndexB];
-
-                    if (origin.x == particleB.position.x && origin.y == particleB.position.y && origin.z == particleB.position.z)
-                    {
-                        neighborIt++;
-                        continue;
-                    }
-
-                    float dist = distance(particleB.position, origin);
-                    if (dist < _radius * 2)
-                    {
-                        float3 pressureGradientDirection = normalize(_particles[particleIndex].position - particleB.position);
-
-                        float3 pressureContribution = mass2 * SpikyKernelGradient(dist, pressureGradientDirection);
-                        pressureContribution *= (_particles[particleIndex].pressure / density2 + particleB.pressure / (particleB.density * particleB.density));
-
-                        float3 viscosityContribution = _viscosity * mass2 * (particleB.velocity - _particles[particleIndex].velocity) / particleB.density;
-                        viscosityContribution *= SpikyKernelSecondDerivative(dist);
-
-                        pressure += pressureContribution;
-                        viscosity += viscosityContribution;
-                    }
-                    
-                    neighborIt++;
-                }
-            }
-        }
-    }
-
-    _particles[particleIndex].currentForce = float3(0, -9.81 * _particleMass, 0) - pressure + viscosity;
-}
-
-//repousse l aparticule quand collide avec le collider
 void ResolveWall(inout float2 pos, inout float2 vel, float2 closest, float2 inwardNormal)
 {
-    pos = closest + inwardNormal * _radius;
+    pos = closest + inwardNormal * _h * 0.25; // petite marge pour pas coller au mur
     float vn = dot(vel, inwardNormal);
-    if (vn < 0.0f) // ne corrige que si la particule fonce dans le collider
-    {
-        vel -= (1.0f - _boundDamping) * vn * inwardNormal;
-    }
+    if (vn < 0.0)
+        vel -= (1.0 - _boundDamping) * vn * inwardNormal; // amortit que la normale, garde le glissement
+}
+
+// L'eau suit le verre : on decale tout du deplacement du conteneur
+[numthreads(256,1,1)]
+void ApplyFrameMotion(uint3 id : SV_DISPATCHTHREADID)
+{
+    if (id.x >= _particleLenght) return;
+    if (id.x >= _activeCount) return;
+    _particles[id.x].position += _frameOffset;
 }
 
 [numthreads(256,1,1)]
-void Integrate(uint3 id: SV_DISPATCHTHREADID) //call une fois pour chaque particules
+void Integrate(uint3 id : SV_DISPATCHTHREADID) //call une fois pour chaque particules
 {
-    if (id.x >= (uint)_particleLenght)
-        return;
+    if (id.x >= _particleLenght) return;
+    if (id.x >= _activeCount) return; // padding : on les laisse trql
 
-    float3 velocity = _particles[id.x].velocity + ((_particles[id.x].currentForce / _particleMass) * _timestep);
-    float3 position = _particles[id.x].position + velocity * _timestep;
-    
-    velocity.z = 0.0f;
-    position.z = 0.0f;
-
-    float2 p = position.xy;
-    float2 v = velocity.xy;
+    float2 velocity = _particles[id.x].velocity + _particles[id.x].currentForce * _timestep;
+    float2 p = _particles[id.x].position + velocity * _timestep;
+    float2 v = velocity;
 
     if (_boundaryCount >= 2)
     {
-        // Cherche le segment le plus proche du collider
-        float minDist = 1e20f;
+        float minDist = 1e20;
         float2 bestClosest = p;
         uint segCount = _boundaryClosed ? _boundaryCount : (_boundaryCount - 1);
 
@@ -309,39 +270,31 @@ void Integrate(uint3 id: SV_DISPATCHTHREADID) //call une fois pour chaque partic
             float2 b = _boundaryPoints[(s + 1) % _boundaryCount];
             float2 c = ClosestPointOnSegment(p, a, b);
             float d = distance(p, c);
-            if (d < minDist)
-            {
-                minDist = d;
-                bestClosest = c;
-            }
+            if (d < minDist) { minDist = d; bestClosest = c; }
         }
 
-        // Normale qui pointe vers l'interieur du fluide
         float2 toP = p - bestClosest;
-        float2 n = (minDist > 1e-6f) ? normalize(toP) : float2(0, 1);
+        float2 n = (minDist > 1e-6) ? normalize(toP) : float2(0, 1);
 
         bool inside = _boundaryClosed ? PointInPolygon(p) : true;
-        if (_boundaryClosed && !inside)
-            n = -n; // dehors : la normale doit ramener la particule a l'interieur
+        if (_boundaryClosed && !inside) n = -n;
 
-        // Collision si trop proche d'une paroi, ou carrement sorti du polygone
-        if (minDist < _radius || (_boundaryClosed && !inside))
-        {
+        // rayon de collision = h/4 : particule "physique" petite, donc l'eau deborde par le haut sans souci
+        float collisionRadius = _h * 0.25;
+        if (minDist < collisionRadius || (_boundaryClosed && !inside))
             ResolveWall(p, v, bestClosest, n);
-        }
     }
     else
     {
-        // Fallback
-        float2 topRight = _boxSize.xy / 2.0f;
-        float2 bottomLeft = -_boxSize.xy / 2.0f;
-
-        if (p.x - _radius < bottomLeft.x) { v.x *= _boundDamping; p.x = bottomLeft.x + _radius; }
-        if (p.y - _radius < bottomLeft.y) { v.y *= _boundDamping; p.y = bottomLeft.y + _radius; }
-        if (p.x + _radius > topRight.x)   { v.x *= _boundDamping; p.x = topRight.x - _radius; }
-        if (p.y + _radius > topRight.y)   { v.y *= _boundDamping; p.y = topRight.y - _radius; }
+        float2 topRight = _boxSize / 2.0;
+        float2 bottomLeft = -_boxSize / 2.0;
+        float rr = _h * 0.25;
+        if (p.x - rr < bottomLeft.x) { v.x *= _boundDamping; p.x = bottomLeft.x + rr; }
+        if (p.y - rr < bottomLeft.y) { v.y *= _boundDamping; p.y = bottomLeft.y + rr; }
+        if (p.x + rr > topRight.x)   { v.x *= _boundDamping; p.x = topRight.x - rr; }
+        if (p.y + rr > topRight.y)   { v.y *= _boundDamping; p.y = topRight.y - rr; }
     }
 
-    _particles[id.x].velocity = float3(v, 0.0f);
-    _particles[id.x].position = float3(p, 0.0f);
+    _particles[id.x].velocity = v;
+    _particles[id.x].position = p;
 }

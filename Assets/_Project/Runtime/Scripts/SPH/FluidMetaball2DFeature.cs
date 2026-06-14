@@ -66,7 +66,8 @@ namespace Metroma
         public override void Create()
         {
             m_ScriptablePass = new FluidMetaballPass();
-            m_ScriptablePass.renderPassEvent = RenderPassEvent.AfterRenderingTransparents;
+            // avant les transparents, sinon le Quad de scene lit un champ pas encore pret
+            m_ScriptablePass.renderPassEvent = RenderPassEvent.BeforeRenderingTransparents;
         }
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)

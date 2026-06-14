@@ -57,9 +57,9 @@ Shader "Instanced/GridTestParticleShader"
             {
                 float pressure;
                 float density;
-                float3 currentForce;
-                float3 velocity;
-                float3 position;
+                float2 currentForce;
+                float2 velocity;
+                float2 position;
             };
 
             #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
@@ -69,13 +69,13 @@ Shader "Instanced/GridTestParticleShader"
             void setup()
             {
             #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-                float3 pos = _particlesBuffer[unity_InstanceID].position;
+                float2 pos = _particlesBuffer[unity_InstanceID].position;
                 float size = _size;
 
                 unity_ObjectToWorld._11_21_31_41 = float4(size, 0, 0, 0);
                 unity_ObjectToWorld._12_22_32_42 = float4(0, size, 0, 0);
                 unity_ObjectToWorld._13_23_33_43 = float4(0, 0, size, 0);
-                unity_ObjectToWorld._14_24_34_44 = float4(pos.xyz, 1);
+                unity_ObjectToWorld._14_24_34_44 = float4(pos.xy, 0, 1);
                 
                 unity_WorldToObject = unity_ObjectToWorld;
                 unity_WorldToObject._14_24_34 *= -1;
