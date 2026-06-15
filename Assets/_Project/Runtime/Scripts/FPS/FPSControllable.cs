@@ -67,7 +67,10 @@ namespace Metroma
 
         private void Update()
         {
-            RotateCamera();
+            if (Time.timeScale > 0f)
+            {
+                RotateCamera();
+            }
         }
 
         public void Look(InputAction.CallbackContext context)
