@@ -120,15 +120,6 @@ namespace Metroma.Inputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Look"",
-                    ""type"": ""Value"",
-                    ""id"": ""409733c1-5e37-4abf-a26c-5112509e452d"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -299,6 +290,28 @@ namespace Metroma.Inputs
                 },
                 {
                     ""name"": """",
+                    ""id"": ""6f5ea616-5c70-4fa9-841a-338dc7d678ab"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d8adca2-9e60-4f5e-8603-55fe2835b53f"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f5b8646c-7607-43da-ba96-75b62cf6ae9a"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -321,23 +334,56 @@ namespace Metroma.Inputs
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8d246f0a-f6cc-465a-92e9-cbf6aaa7a7fd"",
-                    ""path"": ""<Pointer>/delta"",
+                    ""id"": ""3c7954de-ce88-4010-93e2-c4d9eb5cf4fc"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
+                    ""groups"": "";Keyboard&mouse"",
+                    ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cdca9507-6ffd-432e-a43e-cdd2b1402062"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""id"": ""8967287c-cf1b-4b5c-8054-987f1a868737"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c378e198-59d5-494a-89d6-5e2fe5fb7833"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94561f40-675f-43a4-af76-9f8fd966b076"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5946779-37c0-498c-b5a9-a5e6cc86e8a5"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -696,7 +742,6 @@ namespace Metroma.Inputs
             m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
             m_Gameplay_Menu = m_Gameplay.FindAction("Menu", throwIfNotFound: true);
             m_Gameplay_Action = m_Gameplay.FindAction("Action", throwIfNotFound: true);
-            m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_Move = m_Menu.FindAction("Move", throwIfNotFound: true);
@@ -788,7 +833,6 @@ namespace Metroma.Inputs
         private readonly InputAction m_Gameplay_Move;
         private readonly InputAction m_Gameplay_Menu;
         private readonly InputAction m_Gameplay_Action;
-        private readonly InputAction m_Gameplay_Look;
         /// <summary>
         /// Provides access to input actions defined in input action map "Gameplay".
         /// </summary>
@@ -812,10 +856,6 @@ namespace Metroma.Inputs
             /// Provides access to the underlying input action "Gameplay/Action".
             /// </summary>
             public InputAction @Action => m_Wrapper.m_Gameplay_Action;
-            /// <summary>
-            /// Provides access to the underlying input action "Gameplay/Look".
-            /// </summary>
-            public InputAction @Look => m_Wrapper.m_Gameplay_Look;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -851,9 +891,6 @@ namespace Metroma.Inputs
                 @Action.started += instance.OnAction;
                 @Action.performed += instance.OnAction;
                 @Action.canceled += instance.OnAction;
-                @Look.started += instance.OnLook;
-                @Look.performed += instance.OnLook;
-                @Look.canceled += instance.OnLook;
             }
 
             /// <summary>
@@ -874,9 +911,6 @@ namespace Metroma.Inputs
                 @Action.started -= instance.OnAction;
                 @Action.performed -= instance.OnAction;
                 @Action.canceled -= instance.OnAction;
-                @Look.started -= instance.OnLook;
-                @Look.performed -= instance.OnLook;
-                @Look.canceled -= instance.OnLook;
             }
 
             /// <summary>
@@ -1104,13 +1138,6 @@ namespace Metroma.Inputs
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnAction(InputAction.CallbackContext context);
-            /// <summary>
-            /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnLook(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Menu" which allows adding and removing callbacks.

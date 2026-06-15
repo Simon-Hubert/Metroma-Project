@@ -67,10 +67,14 @@ namespace Metroma
         }
 
         public CameraConfiguration Smooth(CameraConfiguration current, CameraConfiguration target) {
+            if (Time.deltaTime <= 0f)
+                return current;
+
             _k1 = _z / (PI * _f);
             _k2 = 1 / ((2 * PI * _f) * (2 * PI * _f));
             _k3 = _r * _z / (2 * PI * _f);
-        
+
+            float k2_stable = Max(_k2, 1.1f * (Time.deltaTime * Time.deltaTime / 4 + Time.deltaTime * _k1 / 2));
         
             CameraConfiguration lastSpeed = (target - _lastPos) / Time.deltaTime;
             _lastPos = target;
@@ -87,10 +91,10 @@ namespace Metroma
             Vector2 lastYawSpeed = (yawVector - _lastYawVector) / Time.deltaTime;
             _lastYawVector = yawVector;
         
-            _yawSpeed += Time.deltaTime * (yawVector + _k3 * lastYawSpeed - currentYawVector - _k1 * _yawSpeed) / _k2;
+            _yawSpeed += Time.deltaTime * (yawVector + _k3 * lastYawSpeed - currentYawVector - _k1 * _yawSpeed) / k2_stable;
         
             current += Time.deltaTime * _speed;
-            _speed += Time.deltaTime * (target + _k3 * lastSpeed - current - _k1 * _speed) / _k2;
+            _speed += Time.deltaTime * (target + _k3 * lastSpeed - current - _k1 * _speed) / k2_stable;
 
             currentYawVector += _yawSpeed * Time.deltaTime;
             current.Yaw = Atan2(currentYawVector.y, currentYawVector.x) * Rad2Deg;
