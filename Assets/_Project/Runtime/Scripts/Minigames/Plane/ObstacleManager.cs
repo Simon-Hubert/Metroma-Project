@@ -34,7 +34,7 @@ namespace Metroma
             _nextTime = Random.Range(1f/_nuagParSec.x, 1f/_nuagParSec.y);
             Nuag current =_children[_currentIndex];
             _currentIndex++;
-            _currentIndex = _currentIndex % _children.Length-1;
+            _currentIndex = _currentIndex % (_children.Length-1);
             current.gameObject.SetActive(true);
             float height = Random.Range(_maxRange.x, _maxRange.y);
             float z = Random.Range(_maxZRange.x, _maxZRange.y);
