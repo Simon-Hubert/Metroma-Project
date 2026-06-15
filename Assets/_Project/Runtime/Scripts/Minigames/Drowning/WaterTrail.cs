@@ -11,7 +11,6 @@ namespace Metroma
         [SerializeField] private TrailRenderer _trail;
         [SerializeField] private float _startAlpha;
         [SerializeField] private float _endAlpha;
-        [Space(7)]
         
 
         private void FixedUpdate()

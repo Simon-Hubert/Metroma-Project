@@ -24,7 +24,7 @@ namespace Metroma
             _sr.sprite = _sprites[Random.Range(0, _sprites.Length)];
         }
 
-        private void Start() {
+        private void Awake() {
             _col = GetComponent<Collider2D>();
         }
         
@@ -41,6 +41,7 @@ namespace Metroma
         }
 
         public void SetColliderActive(bool active) {
+            if (!_col) return;
             _col.enabled = active;
         }
         
