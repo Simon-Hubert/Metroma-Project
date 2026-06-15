@@ -137,52 +137,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1 &1673545721422348167
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7981377882229075065}
-  - component: {fileID: 39861454376962443}
-  m_Layer: 0
-  m_Name: Deactivate PlaySound
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7981377882229075065
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1673545721422348167}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1276535422562295521}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &39861454376962443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1673545721422348167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06887433ba2fc1247a29057828736437, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
-  _object: {fileID: 0}
-  _active: 0
 --- !u!1 &2520808062560124124
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +569,7 @@ GameObject:
   - component: {fileID: 6923907043636011369}
   - component: {fileID: 3854408471748510862}
   m_Layer: 0
-  m_Name: Wait for 1,5 sec
+  m_Name: Wait for 1.5 sec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -649,52 +603,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.WaitForDuration
   _duration: 1.5
---- !u!1 &5493925791896507256
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6706552502482861356}
-  - component: {fileID: 3294724311680273728}
-  m_Layer: 0
-  m_Name: Activate PlaySound
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6706552502482861356
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5493925791896507256}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1851618737774836674}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3294724311680273728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5493925791896507256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06887433ba2fc1247a29057828736437, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
-  _object: {fileID: 0}
-  _active: 1
 --- !u!1 &5871886092796788605
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,52 +1289,6 @@ Transform:
   - {fileID: 2164207366952070421}
   m_Father: {fileID: 8066018838531851540}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8601931035695725141
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3251069129507035366}
-  - component: {fileID: 4649928390318258169}
-  m_Layer: 0
-  m_Name: ActivateObj
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3251069129507035366
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8601931035695725141}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1276535422562295521}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4649928390318258169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8601931035695725141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06887433ba2fc1247a29057828736437, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
-  _object: {fileID: 0}
-  _active: 1
 --- !u!1001 &1392471381616960672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1675,23 +1537,9 @@ PrefabInstance:
       addedObject: {fileID: 5740465817815250848}
     - targetCorrespondingSourceObject: {fileID: 156591467750667131, guid: 48fc56d369b527842b92071d06081335, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6706552502482861356}
-    - targetCorrespondingSourceObject: {fileID: 156591467750667131, guid: 48fc56d369b527842b92071d06081335, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6923907043636011369}
-    - targetCorrespondingSourceObject: {fileID: 732182688649401944, guid: 48fc56d369b527842b92071d06081335, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7981377882229075065}
-    - targetCorrespondingSourceObject: {fileID: 732182688649401944, guid: 48fc56d369b527842b92071d06081335, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3251069129507035366}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48fc56d369b527842b92071d06081335, type: 3}
---- !u!4 &1276535422562295521 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 732182688649401944, guid: 48fc56d369b527842b92071d06081335, type: 3}
-  m_PrefabInstance: {fileID: 1990052767424841913}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1851618737774836674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 156591467750667131, guid: 48fc56d369b527842b92071d06081335, type: 3}
