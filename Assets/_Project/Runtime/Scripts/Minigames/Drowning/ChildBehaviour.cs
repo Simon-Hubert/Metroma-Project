@@ -94,7 +94,8 @@ namespace Metroma
 
                 yield return new WaitForFixedUpdate();
             }
-            
+
+            _manager.OutChild();
             gameObject.SetActive(false);
             yield break;
         }
