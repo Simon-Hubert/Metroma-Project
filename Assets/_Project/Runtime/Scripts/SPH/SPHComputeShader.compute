@@ -1,0 +1,300 @@
+//mourir, si le décès était un script c'est celui là je pense
+
+//fonction du compute shader comme en c++ un peu
+#pragma kernel Integrate
+#pragma kernel ComputeForces
+#pragma kernel ComputeDensityPressure
+#pragma kernel HashParticles
+#pragma kernel BitonicSort
+#pragma kernel CalculateCellOffsets
+#pragma kernel ApplyFrameMotion
+
+struct Particle
+{
+    float pressure;
+    float density;
+    float2 currentForce; // en vrai c'est l'acceleration, pas la force (flemme de renommer)
+    float2 velocity;
+    float2 position;
+};
+
+RWStructuredBuffer<Particle> _particles;
+RWStructuredBuffer<uint> _particleIndices;
+RWStructuredBuffer<uint> _particlesCellIndices;
+RWStructuredBuffer<uint> _cellOffsets;
+
+//coordonnée du collider
+StructuredBuffer<float2> _boundaryPoints;
+uint _boundaryCount;
+uint _boundaryClosed;
+
+// Params physiques
+float _particleMass;
+float _viscosity;
+float _gasConstant;
+float _restDensity;
+float _boundDamping;
+
+// h + bullshit de maths precalcule cote CPU (constantes des noyaux SPH)
+float _h;          // rayon de lissage
+float _h2;
+float _poly6;
+float _spikyGrad;
+float _viscLap;
+
+uint _particleLenght; // taille des buffers (puissance de 2)
+uint _activeCount;    // les actives = [0, activeCount), le reste c'est du padding
+float _timestep;
+float2 _gravity;
+float2 _boxSize;      // bullshit de l'ancien systeme grosse flemme de clean deso
+float2 _frameOffset;  // deplacement du verre (l'eau le suit)
+
+int block;
+int dim;
+
+#define EMPTY 0xFFFFFFFF
+
+int2 GetCell(float2 position)
+{
+    return int2(floor(position / _h));
+}
+
+uint HashCell(int2 cell)
+{
+    int n = 73856093 * cell.x + 19349663 * cell.y;
+    // modulo non-negatif sinon un index negatif caste en uint = boum (OOB, crash GPU, c du vécu....)
+    n %= (int)_particleLenght;
+    if (n < 0) n += (int)_particleLenght;
+    return (uint)n;
+}
+
+// Noyaux SPH 2D. A appeler uniquement quand r < h, pas bien compris mais ça marche c cool
+float Poly6(float r2)        { float x = _h2 - r2; return _poly6 * x * x * x; }
+float SpikyGradient(float r) { float x = _h - r;  return _spikyGrad * x * x; }
+float ViscLaplacian(float r) { return _viscLap * (_h - r); }
+
+[numthreads(256,1,1)]
+void HashParticles(uint3 id : SV_DISPATCHTHREADID)
+{
+    if (id.x >= _particleLenght) return;
+    _cellOffsets[id.x] = EMPTY;
+    uint particleIndex = _particleIndices[id.x];
+    _particlesCellIndices[particleIndex] = HashCell(GetCell(_particles[particleIndex].position));
+}
+
+[numthreads(256,1,1)]
+void BitonicSort(uint3 id : SV_DISPATCHTHREADID)
+{
+    uint i = id.x + id.y * 256 * 1024;
+    uint j = i ^ block;
+
+    if (j < i || i >= _particleLenght || j >= _particleLenght) return;
+
+    uint keyI = _particleIndices[i];
+    uint keyJ = _particleIndices[j];
+    float valI = _particlesCellIndices[keyI];
+    float valJ = _particlesCellIndices[keyJ];
+
+    float diff = (valI - valJ) * ((i & dim) == 0 ? 1 : -1);
+    if (diff > 0)
+    {
+        _particleIndices[i] = keyJ;
+        _particleIndices[j] = keyI;
+    }
+}
+
+[numthreads(256,1,1)]
+void CalculateCellOffsets(uint3 id : SV_DISPATCHTHREADID)
+{
+    if (id.x >= _particleLenght) return;
+    uint particleIndex = _particleIndices[id.x];
+    uint cellIndex = _particlesCellIndices[particleIndex];
+    InterlockedMin(_cellOffsets[cellIndex], id.x);
+}
+
+[numthreads(256,1,1)]
+void ComputeDensityPressure(uint3 id : SV_DISPATCHTHREADID)
+{
+    if (id.x >= _particleLenght) return;
+    uint particleIndex = _particleIndices[id.x];
+    if (particleIndex >= _activeCount) return; // padding, on touche pas
+
+    float2 origin = _particles[particleIndex].position;
+    int2 cell = GetCell(origin);
+    float density = 0.0;
+
+    // les 9 cellules autour
+    for (int x = -1; x <= 1; x++)
+    {
+        for (int y = -1; y <= 1; y++)
+        {
+            uint hash = HashCell(cell + int2(x, y));
+            uint it = _cellOffsets[hash];
+
+            while (it < _particleLenght)
+            {
+                uint b = _particleIndices[it];
+                if (_particlesCellIndices[b] != hash) break;
+
+                if (b < _activeCount)
+                {
+                    float2 diff = origin - _particles[b].position;
+                    float r2 = dot(diff, diff);
+                    if (r2 < _h2)
+                        density += _particleMass * Poly6(r2);
+                }
+                it++;
+            }
+        }
+    }
+
+    density = max(density, 1e-6);
+    _particles[particleIndex].density = density;
+    _particles[particleIndex].pressure = max(_gasConstant * (density - _restDensity), 0.0);
+}
+
+[numthreads(256,1,1)]
+void ComputeForces(uint3 id : SV_DISPATCHTHREADID)
+{
+    if (id.x >= _particleLenght) return;
+    uint i = _particleIndices[id.x];
+    if (i >= _activeCount) return;
+
+    float2 origin = _particles[i].position;
+    float densI = _particles[i].density;
+    float presI = _particles[i].pressure;
+    float2 velI = _particles[i].velocity;
+    int2 cell = GetCell(origin);
+
+    float2 pressureForce = float2(0, 0);
+    float2 viscForce = float2(0, 0);
+
+    for (int x = -1; x <= 1; x++)
+    {
+        for (int y = -1; y <= 1; y++)
+        {
+            uint hash = HashCell(cell + int2(x, y));
+            uint it = _cellOffsets[hash];
+
+            while (it < _particleLenght)
+            {
+                uint b = _particleIndices[it];
+                if (_particlesCellIndices[b] != hash) break;
+
+                if (b < _activeCount && b != i)
+                {
+                    float2 diff = origin - _particles[b].position;
+                    float r = length(diff);
+                    if (r < _h && r > 1e-6)
+                    {
+                        float2 dir = diff / r;
+                        float densB = _particles[b].density;
+                        float presB = _particles[b].pressure;
+
+                        // pression : ca repousse (SpikyGradient est negatif, du coup ca pousse vers dir)
+                        pressureForce += -dir * _particleMass * (presI + presB) / (2.0 * densB) * SpikyGradient(r);
+
+                        // viscosite : ca aligne les vitesses des voisins
+                        viscForce += _viscosity * _particleMass * (_particles[b].velocity - velI) / densB * ViscLaplacian(r);
+                    }
+                }
+                it++;
+            }
+        }
+    }
+
+    // accel = forces internes / densite + gravite
+    _particles[i].currentForce = (pressureForce + viscForce) / densI + _gravity;
+}
+
+// Collisions contre les segments du verre
+float2 ClosestPointOnSegment(float2 p, float2 a, float2 b)
+{
+    float2 ab = b - a;
+    float denom = max(dot(ab, ab), 1e-8);
+    float t = saturate(dot(p - a, ab) / denom);
+    return a + t * ab;
+}
+
+bool PointInPolygon(float2 p)
+{
+    bool inside = false;
+    uint count = _boundaryCount;
+    for (uint i = 0, j = count - 1; i < count; j = i, i++)
+    {
+        float2 vi = _boundaryPoints[i];
+        float2 vj = _boundaryPoints[j];
+        if (((vi.y > p.y) != (vj.y > p.y)) &&
+            (p.x < (vj.x - vi.x) * (p.y - vi.y) / (vj.y - vi.y + 1e-8) + vi.x))
+            inside = !inside;
+    }
+    return inside;
+}
+
+void ResolveWall(inout float2 pos, inout float2 vel, float2 closest, float2 inwardNormal)
+{
+    pos = closest + inwardNormal * _h * 0.25; // petite marge pour pas coller au mur
+    float vn = dot(vel, inwardNormal);
+    if (vn < 0.0)
+        vel -= (1.0 - _boundDamping) * vn * inwardNormal; // amortit que la normale, garde le glissement
+}
+
+// L'eau suit le verre : on decale tout du deplacement du conteneur
+[numthreads(256,1,1)]
+void ApplyFrameMotion(uint3 id : SV_DISPATCHTHREADID)
+{
+    if (id.x >= _particleLenght) return;
+    if (id.x >= _activeCount) return;
+    _particles[id.x].position += _frameOffset;
+}
+
+[numthreads(256,1,1)]
+void Integrate(uint3 id : SV_DISPATCHTHREADID) //call une fois pour chaque particules
+{
+    if (id.x >= _particleLenght) return;
+    if (id.x >= _activeCount) return; // padding : on les laisse trql
+
+    float2 velocity = _particles[id.x].velocity + _particles[id.x].currentForce * _timestep;
+    float2 p = _particles[id.x].position + velocity * _timestep;
+    float2 v = velocity;
+
+    if (_boundaryCount >= 2)
+    {
+        float minDist = 1e20;
+        float2 bestClosest = p;
+        uint segCount = _boundaryClosed ? _boundaryCount : (_boundaryCount - 1);
+
+        for (uint s = 0; s < segCount; s++)
+        {
+            float2 a = _boundaryPoints[s];
+            float2 b = _boundaryPoints[(s + 1) % _boundaryCount];
+            float2 c = ClosestPointOnSegment(p, a, b);
+            float d = distance(p, c);
+            if (d < minDist) { minDist = d; bestClosest = c; }
+        }
+
+        float2 toP = p - bestClosest;
+        float2 n = (minDist > 1e-6) ? normalize(toP) : float2(0, 1);
+
+        bool inside = _boundaryClosed ? PointInPolygon(p) : true;
+        if (_boundaryClosed && !inside) n = -n;
+
+        // rayon de collision = h/4 : particule "physique" petite, donc l'eau deborde par le haut sans souci
+        float collisionRadius = _h * 0.25;
+        if (minDist < collisionRadius || (_boundaryClosed && !inside))
+            ResolveWall(p, v, bestClosest, n);
+    }
+    else
+    {
+        float2 topRight = _boxSize / 2.0;
+        float2 bottomLeft = -_boxSize / 2.0;
+        float rr = _h * 0.25;
+        if (p.x - rr < bottomLeft.x) { v.x *= _boundDamping; p.x = bottomLeft.x + rr; }
+        if (p.y - rr < bottomLeft.y) { v.y *= _boundDamping; p.y = bottomLeft.y + rr; }
+        if (p.x + rr > topRight.x)   { v.x *= _boundDamping; p.x = topRight.x - rr; }
+        if (p.y + rr > topRight.y)   { v.y *= _boundDamping; p.y = topRight.y - rr; }
+    }
+
+    _particles[id.x].velocity = v;
+    _particles[id.x].position = p;
+}
