@@ -246,7 +246,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1596a8c1b31ab7d498b5649e51e3acf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.FluidMetaball2D
-  _sph: {fileID: 9172340108736853825}
+  _glasses:
+  - sph: {fileID: 5430761996342984309}
+    color: {r: 0.2627451, g: 0.74509805, b: 1, a: 1}
+  - sph: {fileID: 7045904799148310131}
+    color: {r: 1, g: 0.59607846, b: 0.2627451, a: 1}
+  - sph: {fileID: 8979811779313624834}
+    color: {r: 0.41960785, g: 0.11372549, b: 0.21568628, a: 1}
   _cam: {fileID: 8780215506598114258}
   _accumMaterial: {fileID: 2100000, guid: 20f36876f470c914e90d10d4de244296, type: 2}
   _blobSize: 0.35
@@ -738,6 +744,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37b9a177032c9bc469d222c81fce17c6, type: 3}
+--- !u!114 &5430761996342984309 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1629377490505701795, guid: 37b9a177032c9bc469d222c81fce17c6, type: 3}
+  m_PrefabInstance: {fileID: 6755759475231746006}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6287f224c41a742a70d9d44264b246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.SPH
+--- !u!114 &7045904799148310131 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4326079521538087333, guid: 37b9a177032c9bc469d222c81fce17c6, type: 3}
+  m_PrefabInstance: {fileID: 6755759475231746006}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6287f224c41a742a70d9d44264b246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.SPH
 --- !u!4 &7715175203503055440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3949808100975396230, guid: 37b9a177032c9bc469d222c81fce17c6, type: 3}
@@ -754,9 +782,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7a73bd637a4e4bb9f541ab9877ee53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Block
---- !u!114 &9172340108736853825 stripped
+--- !u!114 &8979811779313624834 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2489353465532846231, guid: 37b9a177032c9bc469d222c81fce17c6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2404909344214843604, guid: 37b9a177032c9bc469d222c81fce17c6, type: 3}
   m_PrefabInstance: {fileID: 6755759475231746006}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
