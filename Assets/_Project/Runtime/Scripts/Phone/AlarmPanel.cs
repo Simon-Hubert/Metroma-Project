@@ -25,6 +25,10 @@ namespace Metroma.UI.Panels
         [SerializeField, Tooltip("Le sprite affiché quand l'alarme sonne (réveil).")]
         private Sprite AwakeBackgroundSprite;
 
+        [Header("Lighting Automation")]
+        [SerializeField, Tooltip("Liste des lumières (Lights) à allumer quand l'alarme sonne, et à éteindre en veille.")]
+        private System.Collections.Generic.List<Light> AlarmLights;
+
         [Header("Text Automation")]
         [SerializeField, Tooltip("Couleur du texte de l'heure en mode veille.")]
         private Color SleepTimeColor = new Color(0.5f, 0.5f, 0.5f, 1f);
@@ -80,6 +84,14 @@ namespace Metroma.UI.Panels
             if (TimeText != null)
                 TimeText.color = AwakeTimeColor;
 
+            if (AlarmLights != null)
+            {
+                foreach (Light light in AlarmLights)
+                {
+                    if (light != null) light.enabled = true;
+                }
+            }
+
             OnAwakeModeEntered?.Invoke();
             
             if (InteractButton != null)
@@ -106,6 +118,14 @@ namespace Metroma.UI.Panels
                 
             if (TimeText != null)
                 TimeText.color = SleepTimeColor;
+
+            if (AlarmLights != null)
+            {
+                foreach (Light light in AlarmLights)
+                {
+                    if (light != null) light.enabled = false;
+                }
+            }
                 
             OnSleepModeEntered?.Invoke();
         }
