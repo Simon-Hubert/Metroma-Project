@@ -23,6 +23,7 @@ namespace Metroma
         private void Start() {
             _children = (from Transform obj in transform select obj.GetComponent<Nuag>()).ToArray();
             foreach (Nuag child in _children) {
+                if (child == null) continue;
                 child.gameObject.SetActive(false);
             }
         }
@@ -34,7 +35,7 @@ namespace Metroma
             _nextTime = Random.Range(1f/_nuagParSec.x, 1f/_nuagParSec.y);
             Nuag current =_children[_currentIndex];
             _currentIndex++;
-            _currentIndex = _currentIndex % _children.Length;
+            _currentIndex = _currentIndex % (_children.Length-1);
             current.gameObject.SetActive(true);
             float height = Random.Range(_maxRange.x, _maxRange.y);
             float z = Random.Range(_maxZRange.x, _maxZRange.y);
