@@ -3,11 +3,12 @@ Shader "Custom/Metaball2DScene"
 {
     Properties
     {
-        _LiquidColor("Liquid Color", Color) = (0.2, 0.6, 1, 1)
-        _RimColor("Rim Color", Color) = (0.7, 0.9, 1, 1)
+        // la couleur vient du champ (par verre) ; ici on regle juste le style commun
         _Threshold("Threshold", Range(0, 4)) = 0.6
         _EdgeSoftness("Edge Softness", Range(0.001, 1)) = 0.05
         _RimWidth("Rim Width", Range(0.001, 1)) = 0.12
+        _RimBoost("Rim Brightness", Range(1, 3)) = 1.4
+        _Opacity("Opacity", Range(0, 1)) = 1
         [IntRange] _DebugMode("Debug Mode (0/1/2)", Range(0, 2)) = 0
     }
 
@@ -29,11 +30,11 @@ Shader "Custom/Metaball2DScene"
             SAMPLER(sampler_MetaballField);
 
             CBUFFER_START(UnityPerMaterial)
-                float4 _LiquidColor;
-                float4 _RimColor;
                 float _Threshold;
                 float _EdgeSoftness;
                 float _RimWidth;
+                float _RimBoost;
+                float _Opacity;
                 float _DebugMode;
             CBUFFER_END
 
@@ -56,17 +57,20 @@ Shader "Custom/Metaball2DScene"
             half4 frag(Varyings IN) : SV_Target
             {
                 float2 uv = IN.screenPos.xy / IN.screenPos.w;
-                float field = SAMPLE_TEXTURE2D(_MetaballField, sampler_MetaballField, uv).r;
+                float4 f = SAMPLE_TEXTURE2D(_MetaballField, sampler_MetaballField, uv);
+                float density = f.a; // poids accumule = la "matiere" du liquide
 
                 if (_DebugMode == 2) return half4(1, 0, 1, 0.5);
-                if (_DebugMode == 1) { float f = saturate(field); return half4(f, f, f, 1); }
+                if (_DebugMode == 1) { float g = saturate(density); return half4(g, g, g, 1); }
 
-                float alpha = smoothstep(_Threshold - _EdgeSoftness, _Threshold + _EdgeSoftness, field);
+                float alpha = smoothstep(_Threshold - _EdgeSoftness, _Threshold + _EdgeSoftness, density);
                 if (alpha <= 0.0) return half4(0, 0, 0, 0);
 
-                float rim = smoothstep(_Threshold, _Threshold + _RimWidth, field);
-                float3 color = lerp(_RimColor.rgb, _LiquidColor.rgb, rim);
-                return half4(color, alpha * _LiquidColor.a);
+                // couleur moyenne
+                float3 baseCol = f.rgb / max(density, 1e-4);
+                float rim = smoothstep(_Threshold, _Threshold + _RimWidth, density);
+                float3 color = lerp(baseCol * _RimBoost, baseCol, rim); // bord plus clair
+                return half4(color, alpha * _Opacity);
             }
             ENDHLSL
         }

@@ -32,12 +32,7 @@ namespace Metroma
         [SerializeField] private float _minDistance = 5f;
         [SerializeField] private float _timeToEscape = 1f;
         [SerializeField] private float _speedToEScape = 100f;
-        
-        // [SerializeField] private float _ejectionDistance;
-        // [SerializeField] private float _ejectionSpeed;
-        // [Space(5)]
-        // [SerializeField] private float _jumpHeight;
-        // [SerializeField] private AnimationCurve _jumpCurve;
+
 
         private void OnValidate() {
             if (!_manager && transform.parent) {
@@ -84,40 +79,20 @@ namespace Metroma
         {
             float time = _timeToEscape;
 
-            Vector2 start = transform.position;
-            Vector2 end = (Vector2)transform.position + dir * (_timeToEscape * _speedToEScape);
+            Vector3 start = transform.position;
+            Vector3 end = transform.position + (Vector3)(dir * (_timeToEscape * _speedToEScape));
 
             while (time > 0f)
             {
                 time -= Time.fixedDeltaTime;
-                transform.position = Vector2.Lerp(start, end, 1 - (time / _timeToEscape));
+                transform.position = Vector3.Lerp(start, end, 1 - (time / _timeToEscape));
 
                 yield return new WaitForFixedUpdate();
             }
-            
+
+            _manager.OutChild();
             gameObject.SetActive(false);
             yield break;
         }
-        
-        // private IEnumerator OutAnimCoroutine(Vector2 dir) {
-        //     float totalTime = _ejectionDistance / _ejectionSpeed;
-        //     float time = totalTime;
-        //
-        //     Vector2 start = transform.position;
-        //     Vector2 end = start + (dir * _ejectionDistance);
-        //
-        //     while (time > 0f) {
-        //         time -= Time.fixedDeltaTime;
-        //         float prog = 1 - (time / totalTime);
-        //
-        //         float height = _jumpCurve.Evaluate(prog) * _jumpHeight;
-        //
-        //         transform.position = Vector2.Lerp(start, end, prog) + (Vector2.up * height);
-        //         yield return new WaitForFixedUpdate();
-        //     }
-        //
-        //     gameObject.SetActive(false);
-        //     yield break;
-        // }
     }
 }

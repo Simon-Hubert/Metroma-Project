@@ -30,11 +30,16 @@ namespace Metroma
                  "Valid window = [validationTime - tolerance ; validationTime + tolerance].")]
         [Min(0f)] public float Tolerance;
 
-        public QTEStep(QTEInputType expectedInput, float validationTime, float tolerance)
+        [Tooltip("Optional: Transform to use as an anchor for the QTE UI. " +
+        "If null, the QTE will be anchored to the Controllable's transform.")]
+        public Transform _uiAnchorPosition;
+
+        public QTEStep(QTEInputType expectedInput, float validationTime, float tolerance, Transform transform)
         {
             this.ExpectedInput = expectedInput;
             this.ValidationTime = validationTime;
             this.Tolerance = tolerance;
+            this._uiAnchorPosition = transform;
         }
 
         public float WindowStart => Mathf.Max(0f, ValidationTime - Tolerance); //Zone de validation
@@ -46,6 +51,25 @@ namespace Metroma
         [Header("QTE Sequence")]
         [Tooltip("Ordered list of inputs that make up the QTE")]
         [SerializeField] private List<QTEStep> _steps = new List<QTEStep>();
+        [Button, ContextMenu("CopyFirstAnchorPositionToAllSteps")]
+        private void CopyFirstAnchorPositionToAllSteps() 
+        {
+            if(_steps.Count == 0 || _steps[0]._uiAnchorPosition == null) return;
+            for(int i = 1; i < _steps.Count; i++)
+            {
+                QTEStep qteStep = _steps[i];
+                qteStep._uiAnchorPosition = _steps[0]._uiAnchorPosition;
+            }
+        }
+        [Button, ContextMenu("ApplyDefaultAnchorPositionToAllSteps")]
+        private void ApplyDefaultAnchorPositionToAllSteps() 
+        {
+            for(int i = 0; i < _steps.Count; i++)
+            {
+                QTEStep qteStep = _steps[i];
+                qteStep._uiAnchorPosition = transform;
+            }
+        }
 
         [Header("Settings")]
         [Tooltip("Automatically start the QTE when the Controllable becomes active.")]
@@ -56,11 +80,13 @@ namespace Metroma
         [Tooltip("If true, pressing the right input before the window opens fails the QTE. " +
                  "If false, an early press is ignored (the player can press again later).")]
         [SerializeField] private bool _failOnEarlyInput = true;
+        
+        [Header("UI")]
 
         //Debug
         [Header("Runtime (read only)")]
         [SerializeField, ReadOnly] private bool _isRunning;
-        [SerializeField, ReadOnly] private int _currentIndex = -1;
+        [ConditionParam, SerializeField, ReadOnly] private int _currentIndex = -1;
         [SerializeField, ReadOnly] private float _stepElapsed;
 
         [Foldout("Events")] public UnityEvent<int> OnStepValidated;
@@ -70,7 +96,7 @@ namespace Metroma
         
         public bool IsRunning => _isRunning;
         public int CurrentIndex => _currentIndex;
-        public int StepCount => _steps.Count;
+        [ConditionParam] public int StepCount => _steps.Count;
         public QTEStep CurrentStep => _steps[_currentIndex];
 
         public float CurrentStepProgress
@@ -84,9 +110,9 @@ namespace Metroma
         }
 
         #region Sequence building
-        public void AddStep(QTEInputType input, float validationTime, float tolerance)
+        public void AddStep(QTEInputType input, float validationTime, float tolerance, Transform anchor)
         {
-            _steps.Add(new QTEStep(input, validationTime, tolerance));
+            _steps.Add(new QTEStep(input, validationTime, tolerance, anchor));
         }
 
         public void AddStep(QTEStep step) => _steps.Add(step);
@@ -210,9 +236,9 @@ namespace Metroma
         private void Complete()
         {
             _isRunning = false;
-            _currentIndex = -1;
             if (showDebugLog) Debug.Log($"QTE {name} : completed.");
             OnQTECompleted?.Invoke();
+            _currentIndex = -1;
         }
 
         private void Fail()

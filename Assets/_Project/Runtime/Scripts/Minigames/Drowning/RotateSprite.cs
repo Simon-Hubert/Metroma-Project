@@ -50,12 +50,17 @@ namespace Metroma
         [SerializeField] private float _trailDistance = -5f;
         [SerializeField] private Vector2 _trailOffset;
         
+        [Header("Swirls")]
+        [SerializeField] private Transform _swirls;
+        [SerializeField] private float _swirlsDistance = -7f;
+        [SerializeField] private Vector2 _swirlsOffset;
+        
         private SecondOrderDynamics<Vector2> _dynamics;
         [Space(10)]
         [SerializeField] private float _smoothF = 0.5f;
         [SerializeField] private float _smoothZ = 1f;
         [SerializeField] private float _smoothR = 0f;
-        
+
 
         private void Start()
         {
@@ -91,14 +96,16 @@ namespace Metroma
             }
 
             _ctrlSpriteRenderer.transform.localScale = new Vector3( (dir == SpriteDirection.UP || dir == SpriteDirection.DOWN) ? 1 : -Mathf.Sign(signedAngle), 1, 1);
+
+            _trail.localPosition = _dynamics.Update(Time.fixedDeltaTime,
+                new Vector2(
+                    -Mathf.Sin(Mathf.Deg2Rad * signedAngle) * _trailDistance,
+                    Mathf.Cos(Mathf.Deg2Rad * signedAngle) * _trailDistance) + _trailOffset);
             
-            Vector2 effectPosSmooth = _dynamics.Update(Time.fixedDeltaTime,
-                new Vector2(-Mathf.Sin(Mathf.Deg2Rad * angle) * _trailDistance,
-                    -Mathf.Cos(Mathf.Deg2Rad * angle) * _trailDistance) + _trailOffset);
-            Vector2 effectPos = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * angle) * _trailDistance, -Mathf.Cos(Mathf.Deg2Rad * angle) * _trailDistance) + _trailOffset;
-            
-            _trail.localPosition = effectPos;
-            _trail.rotation = Quaternion.Euler(0, 0, -angle);
+            _swirls.localPosition =  new Vector2(
+                Mathf.Sin(Mathf.Deg2Rad * signedAngle) * _swirlsDistance, 
+                -Mathf.Cos(Mathf.Deg2Rad * signedAngle) * _swirlsDistance) + _swirlsOffset;
+            _swirls.rotation = Quaternion.Euler(0, 0, signedAngle);
             
             _currentDir = signedAngle;
         }
