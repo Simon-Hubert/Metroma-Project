@@ -44,6 +44,7 @@ namespace Metroma
             }
 
 #pragma warning disable 0672
+#if !UNITY_6000_0_OR_NEWER
             public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
             {
                 Camera cam = renderingData.cameraData.camera;
@@ -58,6 +59,7 @@ namespace Metroma
                     CommandBufferPool.Release(cmd);
                 }
             }
+#endif
 #pragma warning restore 0672
         }
 

@@ -29,12 +29,33 @@ namespace Metroma.UI.Panels
         [SerializeField, Tooltip("Liste des lumières (Lights) à allumer quand l'alarme sonne, et à éteindre en veille.")]
         private System.Collections.Generic.List<Light> AlarmLights;
 
-        [Header("Text Automation")]
+        [Header("Text & Icon Automation")]
+        [SerializeField, Tooltip("Texte affichant la date in-game.")]
+        private TMP_Text DateText;
+        
+        [SerializeField, Tooltip("Composant Image de l'icône sur l'écran.")]
+        private Image IconImage;
+
+        [Space(10)]
         [SerializeField, Tooltip("Couleur du texte de l'heure en mode veille.")]
         private Color SleepTimeColor = new Color(0.5f, 0.5f, 0.5f, 1f);
         
         [SerializeField, Tooltip("Couleur du texte de l'heure quand l'alarme sonne.")]
         private Color AwakeTimeColor = Color.white;
+
+        [Space(10)]
+        [SerializeField, Tooltip("Couleur du texte de la date en mode veille.")]
+        private Color SleepDateColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+        
+        [SerializeField, Tooltip("Couleur du texte de la date quand l'alarme sonne.")]
+        private Color AwakeDateColor = Color.white;
+
+        [Space(10)]
+        [SerializeField, Tooltip("Couleur de l'icône en mode veille.")]
+        private Color SleepIconColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+        
+        [SerializeField, Tooltip("Couleur de l'icône quand l'alarme sonne.")]
+        private Color AwakeIconColor = Color.white;
 
         [Header("UI States (Cinematic)")]
         [SerializeField, Tooltip("Déclenché quand le téléphone attend l'alarme (écran sombre, juste l'heure)")]
@@ -84,6 +105,12 @@ namespace Metroma.UI.Panels
             if (TimeText != null)
                 TimeText.color = AwakeTimeColor;
 
+            if (DateText != null)
+                DateText.color = AwakeDateColor;
+                
+            if (IconImage != null)
+                IconImage.color = AwakeIconColor;
+
             if (AlarmLights != null)
             {
                 foreach (Light light in AlarmLights)
@@ -101,9 +128,9 @@ namespace Metroma.UI.Panels
 
                 if (IsInteractionAllowed)
                 {
-                    FocusButtonForGamepad();
-                    UpdateWorldSpaceCamera();
                     EnableCanvasInteraction();
+                    UpdateWorldSpaceCamera();
+                    FocusButtonForGamepad();
                 }
             }
         }
@@ -119,6 +146,12 @@ namespace Metroma.UI.Panels
             if (TimeText != null)
                 TimeText.color = SleepTimeColor;
 
+            if (DateText != null)
+                DateText.color = SleepDateColor;
+                
+            if (IconImage != null)
+                IconImage.color = SleepIconColor;
+
             if (AlarmLights != null)
             {
                 foreach (Light light in AlarmLights)
@@ -132,7 +165,8 @@ namespace Metroma.UI.Panels
 
         private void FocusButtonForGamepad()
         {
-            if (UnityEngine.EventSystems.EventSystem.current != null)
+            // Vérifie si une manette est branchée pour donner le focus
+            if (UnityEngine.InputSystem.Gamepad.current != null && UnityEngine.EventSystems.EventSystem.current != null)
             {
                 UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(InteractButton.gameObject);
             }
