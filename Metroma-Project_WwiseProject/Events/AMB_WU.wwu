@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{E866A9C4-A0B3-464A-85D1-C745F038AA19}" SchemaVersion="133">
+	<Events>
+		<WorkUnit Name="AMB_WU" ID="{E866A9C4-A0B3-464A-85D1-C745F038AA19}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="4"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="AMB_Subway_Stop_LP_Play" ID="{2D761ECE-647F-4B00-A8B1-A1105CBC6808}">
+					<ChildrenList>
+						<Action Name="" ID="{59084420-5CB6-41CA-92B3-55FACFF55E42}" ShortID="556381201">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AMB_Subway_Stop_LP" ID="{06656080-D309-4266-8E2E-CF015FB2DF06}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="AMB_Subway_Moving_LP_Play" ID="{44AD2F83-D970-4C01-8AB8-C3958B941E87}">
+					<ChildrenList>
+						<Action Name="" ID="{CC9B3A11-8A3F-40B9-ADA1-D0068E2E99BE}" ShortID="300453945">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AMB_Subway_Moving_LP" ID="{E68B0E2C-6012-4882-B861-8990C384A283}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="AMB_Subway_Moving_LP_Stop" ID="{AD5799EA-3E48-4621-8865-A6C68932D5C8}">
+					<ChildrenList>
+						<Action Name="" ID="{71C28826-E7AB-434F-8CBD-ABAE56214B07}" ShortID="51732358">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AMB_Subway_Moving_LP" ID="{E68B0E2C-6012-4882-B861-8990C384A283}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="AMB_Subway_Stop_LP_Stop" ID="{1E0558D2-9A18-4B90-B568-3BE7E54F8FE9}">
+					<ChildrenList>
+						<Action Name="" ID="{533CCD90-890B-4A2F-A9A8-3E5EF35707AB}" ShortID="728954813">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AMB_Subway_Stop_LP" ID="{06656080-D309-4266-8E2E-CF015FB2DF06}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="AMB_Subway_2_Play" ID="{32D4F1E0-040D-4416-BAD1-A3A75ACB8BF3}">
+					<ChildrenList>
+						<Action Name="" ID="{C98B469C-95BF-4AFC-8AF6-BBE7BEF0EE19}" ShortID="876390225">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AMB_Subway_2" ID="{8CAB74BD-0782-4915-9626-F2AC2C9B4F20}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="AMB_MG_Drink_LP_Play" ID="{10918C05-87D8-465A-9D37-62B7CC08E55E}">
+					<ChildrenList>
+						<Action Name="" ID="{8482A2B8-4420-4B8C-A09E-8C7BEF4D6438}" ShortID="245576395">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AMB_MG_Drink_LP" ID="{AC6B4CAD-29B1-413E-96C2-096721D738DA}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="AMB_Intro_Int_Appart_LP_Play" ID="{388D4480-1C4A-410C-971F-077FD0C80B6A}">
+					<ChildrenList>
+						<Action Name="" ID="{EE4B044F-450D-4ADD-87DB-070FB5C44FA7}" ShortID="1005323860">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AMB_Intro_Int_Appart_LP" ID="{B718D9F4-8DEF-4801-A827-516293E7AA12}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="AMB_Intro_Int_Appart_LP_Stop" ID="{40332CFF-6F7B-4C11-86F3-E36832348FBC}">
+					<ChildrenList>
+						<Action Name="" ID="{B4A5DFAA-5B21-4383-95B5-B8AD669F4536}" ShortID="218304512">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AMB_Intro_Int_Appart_LP" ID="{B718D9F4-8DEF-4801-A827-516293E7AA12}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="AMB_MG_Drink_LP_Stop" ID="{D43596F1-E365-4697-911B-B49379EDD8A3}">
+					<ChildrenList>
+						<Action Name="" ID="{67E570D4-02CE-466B-B847-DF053994D992}" ShortID="262710406">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AMB_MG_Drink_LP" ID="{AC6B4CAD-29B1-413E-96C2-096721D738DA}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
