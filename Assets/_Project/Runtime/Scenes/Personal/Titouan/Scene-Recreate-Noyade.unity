@@ -250,6 +250,44 @@ Transform:
   - {fileID: 1902572950}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &512935334
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Disc Transparent (instance)
+  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _StencilComp: 2
+    - _StencilID: 0
+    - _StencilOp: 0
+    - _StencilOpPass: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _ZOffsetFactor: 0
+    - _ZOffsetUnits: 0
+    - _ZTest: 4
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!4 &559017464 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4006718623362505294, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
@@ -368,44 +406,6 @@ TrailRenderer:
   m_CorrespondingSourceObject: {fileID: 1736788325669115182, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
   m_PrefabInstance: {fileID: 1310431943}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &782057457
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Disc Transparent (instance)
-  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _StencilComp: 2
-    - _StencilID: 0
-    - _StencilOp: 0
-    - _StencilOpPass: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _ZOffsetFactor: 0
-    - _ZOffsetUnits: 0
-    - _ZTest: 4
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!114 &799767580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 514045491848180348, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
@@ -1058,6 +1058,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.1999998
       objectReference: {fileID: 0}
+    - target: {fileID: 2915677448243441975, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: _ctrl
+      value: 
+      objectReference: {fileID: 1765297068}
     - target: {fileID: 3638102020545529732, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
       propertyPath: m_Name
       value: BLOCK-Noyade-Rework
@@ -1162,6 +1166,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8323259656736698077, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: _controllable
+      value: 
+      objectReference: {fileID: 1765297068}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1359,6 +1367,17 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198671705615726118, guid: cd8a919d250921a47b55356e13bc37f4, type: 3}
   m_PrefabInstance: {fileID: 1631638406}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1765297068 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1035421081807895657, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+  m_PrefabInstance: {fileID: 1310431943}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c074290df0dd6f04eb2cb4cd3b4d05d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.SharkControllable
 --- !u!1 &1846639198
 GameObject:
   m_ObjectHideFlags: 0
