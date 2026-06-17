@@ -9,6 +9,8 @@ namespace Metroma
     {
         [SerializeField] private float _speed = 9f;
         [SerializeField] private float _duration = 1.2f;
+        [SerializeField] private SpriteRenderer _sr;
+        private Collider2D _col;
         private float _t;
         
         [SerializeField] private ParticleSystem _vfx;
@@ -18,6 +20,10 @@ namespace Metroma
             _t = 0;
         }
 
+        private void Start() {
+            _col = GetComponent<Collider2D>();
+        }
+        
         void Update() {
             transform.position += Vector3.left * (_speed * Time.deltaTime);
             _t += Time.deltaTime;
@@ -25,6 +31,15 @@ namespace Metroma
                 gameObject.SetActive(false);
             }
         }
+
+        public void SetColor(Color color) {
+            _sr.color = color;
+        }
+
+        public void SetColliderActive(bool active) {
+            _col.enabled = active;
+        }
+        
 
         private void OnTriggerEnter2D(Collider2D other)
         {
