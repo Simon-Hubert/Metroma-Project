@@ -37,7 +37,7 @@ namespace Metroma.UI
         [SerializeField, Tooltip("Fréquence du moteur (ex: 50 Hz).")]
         private float ShakeSpeed = 50f;
         
-        [SerializeField, Tooltip("Nombre de répétitions (ex: 2 pour une notification, 10 pour un appel).")]
+        [SerializeField, Tooltip("Nombre de répétitions (ex: 2 pour une notification). Si réglé sur 0, la vibration est infinie jusqu'à StopVibration() !")]
         private int RepeatCount = 3;
         
         [SerializeField, Tooltip("Pause entre chaque secousse (en secondes).")]
@@ -177,7 +177,8 @@ namespace Metroma.UI
             Vector3 BasePosition = PhoneTransform.localPosition;
             Quaternion BaseRotation = PhoneTransform.localRotation;
             
-            for (int i = 0; i < RepeatCount; i++)
+            int i = 0;
+            while (RepeatCount <= 0 || i < RepeatCount)
             {
                 float Elapsed = 0f;
                 float NextShakeUpdate = 0f;
@@ -210,10 +211,13 @@ namespace Metroma.UI
                 PhoneTransform.localPosition = BasePosition;
                 PhoneTransform.localRotation = BaseRotation;
                 
-                if (i < RepeatCount - 1)
+                i++;
+                if (RepeatCount > 0 && i >= RepeatCount)
                 {
-                    yield return new WaitForSecondsRealtime(PauseBetweenShakes);
+                    break;
                 }
+                
+                yield return new WaitForSecondsRealtime(PauseBetweenShakes);
             }
 
             if (EnableMovement)
