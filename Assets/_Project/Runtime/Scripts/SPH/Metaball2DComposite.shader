@@ -54,26 +54,28 @@ Shader "Hidden/Metaball2DComposite"
 
             half4 frag(Varyings input) : SV_Target
             {
-                float field = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv).r;
+                float4 f = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv);
+                float density = f.a; // le poids
 
                 //bullshit de debug
                 if (_DebugMode == 2)
                     return half4(1, 0, 1, 0.5);
                 if (_DebugMode == 1)
                 {
-                    float f = saturate(field);
+                    float f = saturate(density);
                     return half4(f, f, f, 1);
                 }
 
                 // lissage
                 float alpha = smoothstep(_Threshold - _EdgeSoftness,
-                                         _Threshold + _EdgeSoftness, field);
+                                         _Threshold + _EdgeSoftness, density);
                 if (alpha <= 0.0)
                     return half4(0, 0, 0, 0);
 
-                // contour
-                float rim = smoothstep(_Threshold, _Threshold + _RimWidth, field);
-                float3 color = lerp(_RimColor.rgb, _LiquidColor.rgb, rim);
+                // couleur moyenne du verre (RGB / poids) + contour plus clair
+                float3 baseCol = f.rgb / max(density, 1e-4);
+                float rim = smoothstep(_Threshold, _Threshold + _RimWidth, density);
+                float3 color = lerp(_RimColor.rgb, baseCol, rim);
 
                 return half4(color, alpha * _LiquidColor.a);
             }

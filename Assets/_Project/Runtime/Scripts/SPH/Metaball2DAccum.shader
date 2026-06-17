@@ -41,6 +41,7 @@ Shader "Instanced/Metaball2DAccum"
             CBUFFER_START(UnityPerMaterial)
                 float _size;
                 float _simZ; // Z du verre, sinon decale en perspective
+                float4 _blobColor; // couleur
             CBUFFER_END
 
             struct Particle
@@ -93,7 +94,8 @@ Shader "Instanced/Metaball2DAccum"
                 // degrade doux : max au centre, 0 au bord si j'ai bien compris
                 float falloff = saturate(1.0 - r2);
                 float contribution = falloff * falloff;
-                return half4(contribution, 0, 0, contribution);
+                // RGB = couleur * poids , A = poids (densite)
+                return half4(_blobColor.rgb * contribution, contribution);
             }
             ENDHLSL
         }

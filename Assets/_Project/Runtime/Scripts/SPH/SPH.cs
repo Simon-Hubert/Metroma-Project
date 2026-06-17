@@ -103,6 +103,9 @@ namespace Metroma
 
         private void Awake()
         {
+            // copie perso du compute : sinon plusieurs verres se marchent dessus (buffers partages)
+            _shader = Instantiate(_shader);
+
             _paddedCount = Mathf.NextPowerOfTwo(Mathf.Max(256, _maxParticles));
             _maxParticles = Mathf.Min(_maxParticles, _paddedCount);
 
@@ -439,6 +442,7 @@ namespace Metroma
             _particlesCellIndices?.Release();
             _cellOffsets?.Release();
             _boundaryBuffer?.Release();
+            if (_shader != null) Destroy(_shader); // on degage la copie du compute
         }
 
         private void OnDrawGizmos()

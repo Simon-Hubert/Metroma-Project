@@ -23,6 +23,7 @@ namespace Metroma
         private void Start() {
             _children = (from Transform obj in transform select obj.GetComponent<Nuag>()).ToArray();
             foreach (Nuag child in _children) {
+                if (child == null) continue;
                 child.gameObject.SetActive(false);
             }
         }

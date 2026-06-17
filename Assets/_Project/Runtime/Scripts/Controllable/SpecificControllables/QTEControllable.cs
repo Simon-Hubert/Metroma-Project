@@ -16,6 +16,13 @@ namespace Metroma
         MoveRight = 4
     }
     
+    public enum QTEResult
+    {
+        None = -1,
+        Succeeded = 1,
+        Failed = 0
+    }
+    
     [Serializable]
     public struct QTEStep //Un qte
     {
@@ -30,11 +37,16 @@ namespace Metroma
                  "Valid window = [validationTime - tolerance ; validationTime + tolerance].")]
         [Min(0f)] public float Tolerance;
 
-        public QTEStep(QTEInputType expectedInput, float validationTime, float tolerance)
+        [Tooltip("Optional: Transform to use as an anchor for the QTE UI. " +
+        "If null, the QTE will be anchored to the Controllable's transform.")]
+        public Transform _uiAnchorPosition;
+
+        public QTEStep(QTEInputType expectedInput, float validationTime, float tolerance, Transform transform)
         {
             this.ExpectedInput = expectedInput;
             this.ValidationTime = validationTime;
             this.Tolerance = tolerance;
+            this._uiAnchorPosition = transform;
         }
 
         public float WindowStart => Mathf.Max(0f, ValidationTime - Tolerance); //Zone de validation
@@ -46,6 +58,25 @@ namespace Metroma
         [Header("QTE Sequence")]
         [Tooltip("Ordered list of inputs that make up the QTE")]
         [SerializeField] private List<QTEStep> _steps = new List<QTEStep>();
+        [Button, ContextMenu("CopyFirstAnchorPositionToAllSteps")]
+        private void CopyFirstAnchorPositionToAllSteps() 
+        {
+            if(_steps.Count == 0 || _steps[0]._uiAnchorPosition == null) return;
+            for(int i = 1; i < _steps.Count; i++)
+            {
+                QTEStep qteStep = _steps[i];
+                qteStep._uiAnchorPosition = _steps[0]._uiAnchorPosition;
+            }
+        }
+        [Button, ContextMenu("ApplyDefaultAnchorPositionToAllSteps")]
+        private void ApplyDefaultAnchorPositionToAllSteps() 
+        {
+            for(int i = 0; i < _steps.Count; i++)
+            {
+                QTEStep qteStep = _steps[i];
+                qteStep._uiAnchorPosition = transform;
+            }
+        }
 
         [Header("Settings")]
         [Tooltip("Automatically start the QTE when the Controllable becomes active.")]
@@ -56,12 +87,21 @@ namespace Metroma
         [Tooltip("If true, pressing the right input before the window opens fails the QTE. " +
                  "If false, an early press is ignored (the player can press again later).")]
         [SerializeField] private bool _failOnEarlyInput = true;
+        
+        [Header("UI")]
+        [SerializeField] private QTEReticle _reticlePrefab;
+        [Tooltip("Optional parent for the spawned reticles. Defaults to this transform.")]
+        [SerializeField] private Transform _reticleParent;
+
+        private QTEReticle _activeReticle;
 
         //Debug
         [Header("Runtime (read only)")]
         [SerializeField, ReadOnly] private bool _isRunning;
-        [SerializeField, ReadOnly] private int _currentIndex = -1;
+        [ConditionParam, SerializeField, ReadOnly] private int _currentIndex = -1;
         [SerializeField, ReadOnly] private float _stepElapsed;
+        [SerializeField, ReadOnly] private bool _bumped;
+        [SerializeField, ReadOnly] private QTEResult _result = QTEResult.None;
 
         [Foldout("Events")] public UnityEvent<int> OnStepValidated;
         [Foldout("Events")] public UnityEvent<int> OnStepFailed;
@@ -70,7 +110,9 @@ namespace Metroma
         
         public bool IsRunning => _isRunning;
         public int CurrentIndex => _currentIndex;
-        public int StepCount => _steps.Count;
+        [ConditionParam] public int StepCount => _steps.Count;
+        [ConditionParam] public int Result => (int)_result;
+        public QTEResult ResultState => _result;
         public QTEStep CurrentStep => _steps[_currentIndex];
 
         public float CurrentStepProgress
@@ -84,9 +126,9 @@ namespace Metroma
         }
 
         #region Sequence building
-        public void AddStep(QTEInputType input, float validationTime, float tolerance)
+        public void AddStep(QTEInputType input, float validationTime, float tolerance, Transform anchor)
         {
-            _steps.Add(new QTEStep(input, validationTime, tolerance));
+            _steps.Add(new QTEStep(input, validationTime, tolerance, anchor));
         }
 
         public void AddStep(QTEStep step) => _steps.Add(step);
@@ -106,9 +148,11 @@ namespace Metroma
 
             _isRunning = true;
             _currentIndex = 0;
-            _stepElapsed = 0f;
+            _result = QTEResult.None;
 
             if (showDebugLog) Debug.Log($"QTE {name} : started ({_steps.Count} steps).");
+
+            EnterStep();
         }
 
         [Button]
@@ -117,6 +161,24 @@ namespace Metroma
             _isRunning = false;
             _currentIndex = -1;
             _stepElapsed = 0f;
+            if (_activeReticle != null) _activeReticle.Hide();
+            _activeReticle = null;
+        }
+
+        private void EnterStep()
+        {
+            _stepElapsed = 0f;
+            _bumped = false;
+            _activeReticle = null;
+
+            if (_reticlePrefab == null) return;
+
+            Transform anchor = CurrentStep._uiAnchorPosition != null ? CurrentStep._uiAnchorPosition : transform;
+            Transform parent = _reticleParent != null ? _reticleParent : transform;
+
+            _activeReticle = Instantiate(_reticlePrefab, anchor.position, Quaternion.identity, parent);
+            _activeReticle.Show(anchor.position);
+            _activeReticle.SetApproach(0f);
         }
 
         protected override void Update()
@@ -125,6 +187,15 @@ namespace Metroma
             if (!_isRunning || !IsActive) return;
 
             _stepElapsed += Time.deltaTime;
+
+            float validation = Mathf.Max(0.0001f, CurrentStep.ValidationTime);
+            if (_activeReticle != null) _activeReticle.SetApproach(_stepElapsed / validation);
+
+            if (!_bumped && _stepElapsed >= CurrentStep.ValidationTime)
+            {
+                _bumped = true;
+                if (_activeReticle != null) _activeReticle.Bump();
+            }
 
             if (_stepElapsed > CurrentStep.WindowEnd)
             {
@@ -191,11 +262,12 @@ namespace Metroma
                 Debug.Log($"QTE {name} : step {_currentIndex} ({CurrentStep.ExpectedInput}) validated at {_stepElapsed:0.00}s.");
 
             OnStepValidated?.Invoke(_currentIndex);
+            if (_activeReticle != null) _activeReticle.PlaySuccess();
 
             _currentIndex++;
-            _stepElapsed = 0f;
 
             if (_currentIndex >= _steps.Count) Complete();
+            else EnterStep();
         }
 
         private void FailStep(string reason)
@@ -204,20 +276,23 @@ namespace Metroma
                 Debug.Log($"QTE {name} : step {_currentIndex} ({CurrentStep.ExpectedInput}) failed -> {reason}.");
 
             OnStepFailed?.Invoke(_currentIndex);
+            if (_activeReticle != null) _activeReticle.PlayFail();
             Fail();
         }
 
         private void Complete()
         {
             _isRunning = false;
-            _currentIndex = -1;
+            _result = QTEResult.Succeeded;
             if (showDebugLog) Debug.Log($"QTE {name} : completed.");
             OnQTECompleted?.Invoke();
+            _currentIndex = -1;
         }
 
         private void Fail()
         {
             _isRunning = false;
+            _result = QTEResult.Failed;
             _currentIndex = -1;
             OnQTEFailed?.Invoke();
         }
