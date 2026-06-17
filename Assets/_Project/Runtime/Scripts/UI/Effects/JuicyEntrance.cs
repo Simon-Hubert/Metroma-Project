@@ -44,10 +44,21 @@ namespace Metroma.UI.Effects
             {
                 _baseScale = transform.localScale;
             }
+
+            // Sécurité : si l'objet a été sauvegardé avec un scale de 0 dans l'éditeur, on force à 1
+            if (_baseScale == Vector3.zero)
+            {
+                _baseScale = Vector3.one;
+            }
         }
 
 
         private void OnEnable()
+        {
+            Play();
+        }
+
+        public void Play()
         {
             _currentValue = 0f;
             _velocity = 0f;
