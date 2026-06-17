@@ -64,9 +64,9 @@ namespace Metroma
 
         private void Start()
         {
-            _ctrlSpriteRenderer.sprite = _downSprite;
+            _ctrlSpriteRenderer.sprite = _sideSprite;
             _ctrlSpriteRenderer.transform.localScale = Vector3.one;
-            _dynamics = new SecondOrderDynamics<Vector2>(_smoothF, _smoothZ, _smoothR, Vector2.up * _trailDistance + _trailOffset, new Linear2D());
+            _dynamics = new SecondOrderDynamics<Vector2>(_smoothF, _smoothZ, _smoothR, Vector2.right * _trailDistance + _trailOffset, new Linear2D());
         }
 
         private void FixedUpdate() {
