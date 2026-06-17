@@ -4896,7 +4896,7 @@ GameObject:
   - component: {fileID: 368129769}
   - component: {fileID: 368129770}
   m_Layer: 0
-  m_Name: Phone Alarm (06:06) with Cam Switch
+  m_Name: Phone Alarm (07:00) with Cam Switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4931,7 +4931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.PhoneAlarmSequence
   _phoneCamera: {fileID: 489593328}
   _startHour: 6
-  _startMinute: 5
+  _startMinute: 59
   _requirePlayerInteraction: 0
   _totalSequenceDuration: 1
   _ringingTimeRatio: 0.5
@@ -10668,6 +10668,44 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5998799817533820398, guid: 0480b7b732ffb3f42a1fbc054b82a498, type: 3}
   m_PrefabInstance: {fileID: 832332231}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &849279137
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Disc Transparent (instance)
+  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _StencilComp: 2
+    - _StencilID: 0
+    - _StencilOp: 0
+    - _StencilOpPass: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _ZOffsetFactor: 0
+    - _ZOffsetUnits: 0
+    - _ZTest: 4
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &860941159
 GameObject:
   m_ObjectHideFlags: 0
@@ -12220,7 +12258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4130830880613094778, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
       propertyPath: m_Name
-      value: Phone Alarm (06:06) with Cam Switch
+      value: Phone Alarm (07:00) with Cam Switch
       objectReference: {fileID: 0}
     - target: {fileID: 4197107222065682207, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
       propertyPath: _cam
@@ -12354,7 +12392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.PhoneAlarmSequence
   _phoneCamera: {fileID: 489593328}
   _startHour: 6
-  _startMinute: 5
+  _startMinute: 59
   _requirePlayerInteraction: 0
   _totalSequenceDuration: 2
   _ringingTimeRatio: 0.5
@@ -15524,7 +15562,7 @@ GameObject:
   - component: {fileID: 1203309155}
   - component: {fileID: 1203309156}
   m_Layer: 0
-  m_Name: Phone Alarm (06:06) with Cam Switch
+  m_Name: Phone Alarm (07:00) with Cam Switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15559,7 +15597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.PhoneAlarmSequence
   _phoneCamera: {fileID: 489593328}
   _startHour: 6
-  _startMinute: 5
+  _startMinute: 59
   _requirePlayerInteraction: 0
   _totalSequenceDuration: 1
   _ringingTimeRatio: 0.5
@@ -24096,6 +24134,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2057869611879602418, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 849279137}
     - target: {fileID: 3239541809533296463, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_Name
       value: Phase1
