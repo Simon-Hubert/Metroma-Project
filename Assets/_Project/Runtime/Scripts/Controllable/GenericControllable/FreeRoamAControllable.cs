@@ -39,7 +39,7 @@ namespace Metroma
         [Tooltip("0 = no rotation speed")]
         [SerializeField, Min(0)] protected float rotationSpeed = 0f;
         [SerializeField, UnityEngine.Range(0, 1)] protected float smoothRotation = 0.9f;
-        [SerializeField, ReadOnly] protected Vector2 moveDirection = Vector2.up;
+        [SerializeField] protected Vector2 moveDirection = Vector2.up;
         public Vector2 GetDirection { get => moveDirection; }
         #endregion
 

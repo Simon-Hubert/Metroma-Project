@@ -3,6 +3,7 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Numerics;
+using NaughtyAttributes;
 using Vector2 = UnityEngine.Vector2;
 
 namespace Metroma
@@ -21,6 +22,7 @@ namespace Metroma
         private int _nbOut = 0;
 
         private void Start() {
+            PurgeList();
             _nbOut = 0;
         }
 
@@ -29,6 +31,16 @@ namespace Metroma
 
             if (_nbOut >= _childs.Count) {
                 _endCondition.Evaluate();
+            }
+        }
+
+        [Button]
+        private void PurgeList() {
+            for (int i = 0; i < _childs.Count; i++) {
+                if (_childs[i] == null) {
+                    _childs.RemoveAt(i);
+                    i--;
+                }
             }
         }
     }
