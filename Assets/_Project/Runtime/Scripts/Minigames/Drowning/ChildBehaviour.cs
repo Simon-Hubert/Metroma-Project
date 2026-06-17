@@ -19,19 +19,39 @@ namespace Metroma
         [SerializeField] private ChildManager _manager;
         [Space(7)]
         [SerializeField] private Rigidbody2D _rigidbody2D;
-        [SerializeField] private Transform _childVisual;
+        [SerializeField] private SpriteRenderer _childVisual;
         
         [Header("Parameters")]
         [SerializeField] private float _distanceWithShark;
         [SerializeField] private float _fleeForce;
         [SerializeField, ReadOnly] private ChildState _state;
-
-        [FormerlySerializedAs("outAngle")]
+        private ChildState SetChildState {
+            set {
+                if (_state != value) {
+                    _state = value;
+                    StateFeedback(_state);
+                }
+            }
+        }
+        
         [Header("OutAnim")]
         [SerializeField] private float _outAngle = 45f;
         [SerializeField] private float _minDistance = 5f;
         [SerializeField] private float _timeToEscape = 1f;
         [SerializeField] private float _speedToEScape = 100f;
+
+        [Header("Sprites")] 
+        [SerializeField] private Sprite _spriteIdle;
+        [Space(5)]
+        [SerializeField] private Sprite _spriteFear1;
+        [SerializeField] private Sprite _spriteFear2;
+        [SerializeField] private float _spritesLoop = 0.5f;
+        private float _spritesLoopCurrent = 0f;
+        [Space(5)]
+        [SerializeField] private Sprite _spriteRun;
+        
+        [Header("VFX")]
+        [SerializeField] private ParticleSystem _fearVFX;
 
 
         private void OnValidate() {
@@ -43,8 +63,15 @@ namespace Metroma
         private void Update() {
             if (!_manager || _state == ChildState.Out) return;
             
-            if (Vector2.Distance(_manager.GetPlayerPos, transform.position) <= _distanceWithShark) {
-                
+            if (_state == ChildState.Fear) {
+                _spritesLoopCurrent = Mathf.Repeat(_spritesLoopCurrent += Time.deltaTime, _spritesLoop);
+
+                if (_spritesLoopCurrent < _spritesLoop / 2 && _childVisual.sprite != _spriteFear1) {
+                    _childVisual.sprite = _spriteFear1;
+                } 
+                else if (_spritesLoopCurrent >= _spritesLoop / 2 && _childVisual.sprite != _spriteFear2) {
+                    _childVisual.sprite = _spriteFear2;
+                }
             }
         }
         
@@ -52,7 +79,7 @@ namespace Metroma
         {
             if (other.transform.GetInstanceID() != _manager.GetPlayer.GetInstanceID()) return;
 
-            _state = ChildState.Fear;
+            SetChildState = ChildState.Fear;
             Vector2 a = (Vector2)transform.position - _manager.GetPlayerPos;
             
             float angle = -_outAngle;
@@ -82,8 +109,7 @@ namespace Metroma
             Vector3 start = transform.position;
             Vector3 end = transform.position + (Vector3)(dir * (_timeToEscape * _speedToEScape));
 
-            while (time > 0f)
-            {
+            while (time > 0f) {
                 time -= Time.fixedDeltaTime;
                 transform.position = Vector3.Lerp(start, end, 1 - (time / _timeToEscape));
 
@@ -93,6 +119,23 @@ namespace Metroma
             _manager.OutChild();
             gameObject.SetActive(false);
             yield break;
+        }
+
+        private void StateFeedback(ChildState state) {
+            switch (state) {
+                case ChildState.Fear :
+                    _fearVFX.Play();
+                    break;
+                case ChildState.Out :
+                    if (!_fearVFX.isStopped) _fearVFX.Stop();
+                    _childVisual.sprite = _spriteRun;
+                    break;
+                case ChildState.Idle :
+                default:
+                    if (!_fearVFX.isStopped) _fearVFX.Stop();
+                    _childVisual.sprite = _spriteIdle;
+                    break;
+            }
         }
     }
 }
