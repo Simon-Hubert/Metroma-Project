@@ -32,15 +32,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Look",
-                    "type": "Value",
-                    "id": "409733c1-5e37-4abf-a26c-5112509e452d",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -211,6 +202,28 @@
                 },
                 {
                     "name": "",
+                    "id": "6f5ea616-5c70-4fa9-841a-338dc7d678ab",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d8adca2-9e60-4f5e-8603-55fe2835b53f",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f5b8646c-7607-43da-ba96-75b62cf6ae9a",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -233,23 +246,56 @@
                 },
                 {
                     "name": "",
-                    "id": "8d246f0a-f6cc-465a-92e9-cbf6aaa7a7fd",
-                    "path": "<Pointer>/delta",
+                    "id": "3c7954de-ce88-4010-93e2-c4d9eb5cf4fc",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Look",
+                    "groups": ";Keyboard&mouse",
+                    "action": "Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "cdca9507-6ffd-432e-a43e-cdd2b1402062",
-                    "path": "<Gamepad>/rightStick",
+                    "id": "8967287c-cf1b-4b5c-8054-987f1a868737",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Look",
+                    "groups": ";Gamepad",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c378e198-59d5-494a-89d6-5e2fe5fb7833",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "94561f40-675f-43a4-af76-9f8fd966b076",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b5946779-37c0-498c-b5a9-a5e6cc86e8a5",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

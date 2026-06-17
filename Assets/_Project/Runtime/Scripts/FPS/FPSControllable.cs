@@ -11,6 +11,7 @@ namespace Metroma
 
         [Header("Look Settings")]
         [SerializeField] private float _mouseSensitivity = 0.1f;
+        [SerializeField] private float _controllerSensitivity = 0.1f;
         [SerializeField] private float _minVerticalAngle = -80f;
         [SerializeField] private float _maxVerticalAngle = 80f;
         [SerializeField] private float _minHorizontalAngle = -80f;
@@ -25,6 +26,8 @@ namespace Metroma
         private float _yaw;
         private float _roll;
         private float _yawOrigin, _pitchOrigin;
+
+        private PlayerInput _playerInput;
 
         public void Reset() {
             _yaw = 0;
@@ -63,17 +66,25 @@ namespace Metroma
 
         private void OnEnable() {
             Reset();
+            _playerInput = GetComponent<PlayerInput>();
         }
 
         private void Update()
         {
-            RotateCamera();
+            if (Time.timeScale > 0f)
+            {
+                RotateCamera();
+            }
         }
 
         public void Look(InputAction.CallbackContext context)
         {
-            //Debug.Log(context.ReadValue<Vector2>());
-            _lookInput = context.ReadValue<Vector2>();
+            if(_playerInput.currentControlScheme == "Gamepad") {
+                _lookInput = context.ReadValue<Vector2>() * _controllerSensitivity;
+            }
+            else {
+                _lookInput = context.ReadValue<Vector2>() * _mouseSensitivity;
+            }
         }
 
         private void RotateCamera()
@@ -83,8 +94,8 @@ namespace Metroma
                 return;
             }
 
-            float mouseX = _lookInput.x * _mouseSensitivity;
-            float mouseY = _lookInput.y * _mouseSensitivity;
+            float mouseX = _lookInput.x;
+            float mouseY = _lookInput.y;
 
             _yaw += mouseX;
 
