@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
+
 
 namespace Metroma
 {
@@ -10,6 +12,8 @@ namespace Metroma
 
         public GameObject audioSource;
 
+
+        [Button]
         public void SFX_Snooze_Button_Play()
         {
             SFX_Snooze_Button.Post(audioSource);
