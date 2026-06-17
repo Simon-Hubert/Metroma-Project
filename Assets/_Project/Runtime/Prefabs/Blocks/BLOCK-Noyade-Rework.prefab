@@ -242,7 +242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4336214606457004919}
-  - component: {fileID: 4825964385632023617}
+  - component: {fileID: 1035421081807895657}
   - component: {fileID: 8359318305405102077}
   - component: {fileID: 6338282897653586566}
   m_Layer: 0
@@ -272,7 +272,7 @@ Transform:
   - {fileID: 1988345022113130561}
   m_Father: {fileID: 8066018838531851540}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4825964385632023617
+--- !u!114 &1035421081807895657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,9 +281,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4180746499935183185}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bda746703ca68f4998f852dbd94ebf3, type: 3}
+  m_Script: {fileID: 11500000, guid: c074290df0dd6f04eb2cb4cd3b4d05d8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.FreeRoamAControllable
+  m_EditorClassIdentifier: Metroma::Metroma.SharkControllable
   activeAtStart: 0
   showDebugLog: 0
   _isActive: 0
@@ -360,6 +360,8 @@ MonoBehaviour:
   rotateControllable: 0
   accelerationValue: 0
   moveState: 0
+  _dashDistance: 50
+  _dashFriction: 6
 --- !u!50 &8359318305405102077
 Rigidbody2D:
   serializedVersion: 5
@@ -995,7 +997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ba928219d708744b6a7275963cfa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.RotateSprite
-  _ctrl: {fileID: 4825964385632023617}
+  _ctrl: {fileID: 0}
   _ctrlSpriteRenderer: {fileID: 3342508931520350789}
   _upSprite: {fileID: 21300000, guid: a9f1a3997cfdbe64e9468725dbbd5f70, type: 3}
   _upSideSprite: {fileID: 21300000, guid: 76bd6b969ae153943adfcbfe6d8d4e8d, type: 3}
@@ -1243,10 +1245,6 @@ PrefabInstance:
       propertyPath: managedReferences[8618242053378146304]._collider
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 7501940338115044964, guid: 48fc56d369b527842b92071d06081335, type: 3}
-      propertyPath: _controllable
-      value: 
-      objectReference: {fileID: 4825964385632023617}
     - target: {fileID: 8389738913625329069, guid: 48fc56d369b527842b92071d06081335, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
