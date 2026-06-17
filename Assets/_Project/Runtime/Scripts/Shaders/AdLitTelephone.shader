@@ -335,10 +335,11 @@ Shader "Custom/AdLitTelephone" {
 			
 			TEXTURE2D(_Noise);
 			SAMPLER(sampler_Noise);
+			float4 _Noise_ST;
 			
 			// Fragment Shader
 			half4 LitPassFragment(Varyings IN) : SV_Target {
-				half3 noise = SAMPLE_TEXTURE2D(_Noise, sampler_Noise, IN.uv)*2-0.5;
+				half3 noise = SAMPLE_TEXTURE2D(_Noise, sampler_Noise, TRANSFORM_TEX(IN.uv, _Noise))*2-0.5;
 				SurfaceData surfaceData;
 				InitalizeSurfaceData(IN, surfaceData);
 				InputData inputData;
