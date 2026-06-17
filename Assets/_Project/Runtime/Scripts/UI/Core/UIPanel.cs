@@ -44,6 +44,12 @@ namespace Metroma.UI
         {
             gameObject.SetActive(true);
 
+            var juicyEntrances = GetComponentsInChildren<Metroma.UI.Effects.JuicyEntrance>();
+            foreach (var entrance in juicyEntrances)
+            {
+                entrance.Play();
+            }
+
             if (FadeCoroutine != null)
                 StopCoroutine(FadeCoroutine);
     

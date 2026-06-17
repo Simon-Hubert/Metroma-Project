@@ -109,8 +109,7 @@ namespace Metroma
             Vector3 start = transform.position;
             Vector3 end = transform.position + (Vector3)(dir * (_timeToEscape * _speedToEScape));
 
-            while (time > 0f)
-            {
+            while (time > 0f) {
                 time -= Time.fixedDeltaTime;
                 transform.position = Vector3.Lerp(start, end, 1 - (time / _timeToEscape));
 
