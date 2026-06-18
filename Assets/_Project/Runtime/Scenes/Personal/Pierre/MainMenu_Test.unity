@@ -358,7 +358,7 @@ RectTransform:
   m_Father: {fileID: 548097477}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 5.709987, y: 0}
   m_SizeDelta: {x: 8.57, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 78894843}
   m_FillRect: {fileID: 0}
-  m_HandleRect: {fileID: 0}
+  m_HandleRect: {fileID: 78894842}
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
@@ -751,7 +751,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274032064}
   m_Enabled: 1
-  serializedVersion: 13
+  serializedVersion: 12
   m_Type: 2
   m_Color: {r: 0.9960785, g: 0.28627452, b: 0.70980394, a: 1}
   m_Intensity: 10.62
@@ -803,7 +803,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShapeRadius: 0.025
+  m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -2750,7 +2750,7 @@ RectTransform:
   m_Father: {fileID: 1953452660}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 5.7099867, y: 0}
   m_SizeDelta: {x: 8.57, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3148,7 +3148,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 710549861}
   m_Enabled: 1
-  serializedVersion: 13
+  serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
@@ -3200,7 +3200,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShapeRadius: 1
+  m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -4138,6 +4138,7 @@ MonoBehaviour:
   bIsPopup: 0
   FirstSelected: {fileID: 340103947}
   LastSelected: {fileID: 0}
+  GameSceneName: LouMetroAnim
   StartButton: {fileID: 340103947}
   OptionButton: {fileID: 373245958}
   QuitButton: {fileID: 634666206}
@@ -4589,7 +4590,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630501395}
   m_Enabled: 1
-  serializedVersion: 13
+  serializedVersion: 12
   m_Type: 2
   m_Color: {r: 0.77647066, g: 0.21568629, b: 0.54901963, a: 1}
   m_Intensity: 10.62
@@ -4641,7 +4642,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShapeRadius: 0.025
+  m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -4885,7 +4886,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -5124,7 +5124,7 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 628976218}
   m_FillRect: {fileID: 0}
-  m_HandleRect: {fileID: 0}
+  m_HandleRect: {fileID: 628976217}
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
@@ -5463,7 +5463,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051852847}
   m_Enabled: 1
-  serializedVersion: 13
+  serializedVersion: 12
   m_Type: 2
   m_Color: {r: 0.9960785, g: 0.28627452, b: 0.70980394, a: 1}
   m_Intensity: 10.62
@@ -5515,7 +5515,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShapeRadius: 0.025
+  m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -6682,7 +6682,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
