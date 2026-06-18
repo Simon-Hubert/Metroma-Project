@@ -2408,8 +2408,15 @@ MonoBehaviour:
   BackgroundImage: {fileID: 178915363}
   SleepBackgroundSprite: {fileID: 21300000, guid: fce3749c33a16a2458022dab93558096, type: 3}
   AwakeBackgroundSprite: {fileID: 21300000, guid: d299934631f8b004ca1af54024227db6, type: 3}
+  AlarmLights: []
+  DateText: {fileID: 0}
+  IconImage: {fileID: 0}
   SleepTimeColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   AwakeTimeColor: {r: 1, g: 1, b: 1, a: 1}
+  SleepDateColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  AwakeDateColor: {r: 1, g: 1, b: 1, a: 1}
+  SleepIconColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  AwakeIconColor: {r: 1, g: 1, b: 1, a: 1}
   OnSleepModeEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -2770,7 +2777,7 @@ GameObject:
   - component: {fileID: 235824452}
   - component: {fileID: 235824453}
   m_Layer: 0
-  m_Name: Cut to black for 0.2 sec
+  m_Name: Cut to black for 0,2 sec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4883,7 +4890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06887433ba2fc1247a29057828736437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
-  _object: {fileID: 450519780}
+  _object: {fileID: 0}
   _active: 1
 --- !u!1 &368129768
 GameObject:
@@ -5853,11 +5860,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6654932816883191007, guid: fbafa6d1bd7eb3c4fa6eb8c60d4620de, type: 3}
   m_PrefabInstance: {fileID: 448583239}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &450519780 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3935210520684011712, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 1892318346}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &452025193
 GameObject:
   m_ObjectHideFlags: 0
@@ -6562,6 +6564,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 54201549}
   m_LocalEulerAnglesHint: {x: 84.33, y: -28.996, z: 0}
+--- !u!21 &489713403
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Disc Transparent (instance)
+  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _StencilComp: 2
+    - _StencilID: 0
+    - _StencilOp: 0
+    - _StencilOpPass: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _ZOffsetFactor: 0
+    - _ZOffsetUnits: 0
+    - _ZTest: 4
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1001 &503471488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7062,44 +7102,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3776334116097938565, guid: d73d6d3f6e1136f40957685f15938718, type: 3}
   m_PrefabInstance: {fileID: 520052027}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &532272453
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Disc Transparent (instance)
-  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _StencilComp: 2
-    - _StencilID: 0
-    - _StencilOp: 0
-    - _StencilOpPass: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _ZOffsetFactor: 0
-    - _ZOffsetUnits: 0
-    - _ZTest: 4
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &533341998
 GameObject:
   m_ObjectHideFlags: 0
@@ -7161,7 +7163,7 @@ GameObject:
   - component: {fileID: 556076052}
   - component: {fileID: 556076053}
   m_Layer: 0
-  m_Name: Cut to black for 0.2 sec
+  m_Name: Cut to black for 0,2 sec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8177,44 +8179,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4288273222759751306, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
   m_PrefabInstance: {fileID: 1218317696}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &699023641
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Disc Transparent (instance)
-  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _StencilComp: 2
-    - _StencilID: 0
-    - _StencilOp: 0
-    - _StencilOpPass: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _ZOffsetFactor: 0
-    - _ZOffsetUnits: 0
-    - _ZTest: 4
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1001 &703932380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23382,6 +23346,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Core.PauseManager
   MainMenuSceneName: MainMenu_Test
+  AdditionalPauseUIElements: []
+  FadeDuration: 0.25
+  PauseEntranceAnimation: {fileID: 0}
 --- !u!114 &1858343155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23810,7 +23777,7 @@ PrefabInstance:
     - target: {fileID: 2057869611879602418, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 532272453}
+      objectReference: {fileID: 489713403}
     - target: {fileID: 3239541809533296463, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_Name
       value: Phase1
@@ -23891,6 +23858,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6750298520738601138, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 1945481143}
     - target: {fileID: 6978295772623609914, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: _onAdEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -24200,6 +24171,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!20 &1945481143 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8780215506598114258, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1946728605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3776334116097938565, guid: d73d6d3f6e1136f40957685f15938718, type: 3}
