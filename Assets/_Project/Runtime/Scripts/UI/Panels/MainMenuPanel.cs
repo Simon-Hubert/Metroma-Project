@@ -1,11 +1,16 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Metroma.UI
 {
     public class MainMenuPanel : UIPanel
     {
+        [Header("Scene Settings")]
+        [SerializeField]
+        private string GameSceneName = "Gameplay";
+
         [Header("Menu Buttons")]
         [SerializeField] private Button StartButton;
         [SerializeField] private Button OptionButton;
@@ -42,7 +47,8 @@ namespace Metroma.UI
 
         private void OnStartClicked()
         {
-            Debug.Log("[MainMenuPanel] Start Game Clicked!");
+            Debug.Log($"[MainMenuPanel] Start Game Clicked! Loading scene: {GameSceneName}");
+            SceneManager.LoadScene(GameSceneName);
             OnStartGameRequested?.Invoke();
         }
 
