@@ -40,6 +40,10 @@ namespace Metroma
         [SerializeField, Tooltip("Délai (en secondes) à attendre après l'arrêt manuel de l'alarme avant de passer à la suite")]
         private float _delayAfterStop = 1f;
 
+        [Header("Vibration")]
+        [SerializeField, Tooltip("Activer le retour haptique (manette) pendant l'alarme ?")]
+        private bool _enableGamepadVibration = true;
+
         private AwaitableCompletionSource _completionSource;
         private AwaitableCompletionSource _ringSource;
         private Camera _previousActiveCamera;
@@ -66,6 +70,12 @@ namespace Metroma
             if (panel != null)
             {
                 panel.SetSleepMode();
+            }
+
+            PhoneController phone = FindObjectOfType<PhoneController>(true);
+            if (phone != null)
+            {
+                phone.SyncGamepadVibration = _enableGamepadVibration;
             }
 
             AlarmPanel.IsInteractionAllowed = _requirePlayerInteraction;
