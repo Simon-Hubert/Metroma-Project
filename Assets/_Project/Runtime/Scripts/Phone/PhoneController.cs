@@ -43,6 +43,18 @@ namespace Metroma.UI
         [SerializeField, Tooltip("Pause entre chaque secousse (en secondes).")]
         private float PauseBetweenShakes = 0.5f;
 
+        [Space(10)]
+        [SerializeField, Tooltip("Faire vibrer la manette en même temps ?")]
+        public bool SyncGamepadVibration = true;
+
+        [ShowIf("SyncGamepadVibration")]
+        [SerializeField, Range(0f, 1f)]
+        private float GamepadLowFreq = 0.5f;
+
+        [ShowIf("SyncGamepadVibration")]
+        [SerializeField, Range(0f, 1f)]
+        private float GamepadHighFreq = 0.5f;
+
         private Coroutine AnimationCoroutine;
         private Coroutine ShakeCoroutine;
         private bool bIsVisible = false;
@@ -139,6 +151,11 @@ namespace Metroma.UI
                 StopCoroutine(ShakeCoroutine);
                 ShakeCoroutine = null;
 
+                if (SyncGamepadVibration && UnityEngine.InputSystem.Gamepad.current != null)
+                {
+                    UnityEngine.InputSystem.Gamepad.current.SetMotorSpeeds(0f, 0f);
+                }
+
                 if (EnableMovement)
                 {
                     PhoneTransform.localPosition = bIsVisible ? VisibleLocalPosition : HiddenLocalPosition;
@@ -185,6 +202,11 @@ namespace Metroma.UI
                 Vector3 TargetOffset = Vector3.zero;
                 float TargetRotOffset = 0f;
                 
+                if (SyncGamepadVibration && UnityEngine.InputSystem.Gamepad.current != null)
+                {
+                    UnityEngine.InputSystem.Gamepad.current.SetMotorSpeeds(GamepadLowFreq, GamepadHighFreq);
+                }
+                
                 while (Elapsed < ShakeDuration)
                 {
                     Elapsed += Time.unscaledDeltaTime;
@@ -206,6 +228,11 @@ namespace Metroma.UI
                     PhoneTransform.localRotation = BaseRotation * Quaternion.Euler(0f, 0f, TargetRotOffset);
                     
                     yield return null;
+                }
+                
+                if (SyncGamepadVibration && UnityEngine.InputSystem.Gamepad.current != null)
+                {
+                    UnityEngine.InputSystem.Gamepad.current.SetMotorSpeeds(0f, 0f);
                 }
                 
                 PhoneTransform.localPosition = BasePosition;
