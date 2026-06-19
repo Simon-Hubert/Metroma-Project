@@ -124,6 +124,44 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7047540045850981004, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
   m_PrefabInstance: {fileID: 3578187502552184616}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &557125647
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Disc Transparent (instance)
+  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _StencilComp: 2
+    - _StencilID: 0
+    - _StencilOp: 0
+    - _StencilOpPass: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _ZOffsetFactor: 0
+    - _ZOffsetUnits: 0
+    - _ZTest: 4
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &736566043
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,8 +172,9 @@ GameObject:
   m_Component:
   - component: {fileID: 736566044}
   - component: {fileID: 736566045}
+  - component: {fileID: 736566046}
   m_Layer: 0
-  m_Name: SeaDay (1)
+  m_Name: WaterShader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,6 +254,22 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &736566046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736566043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2285be605d72b4388b11b01f62579d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.CustomWaterRuntimeParams
+  _material: {fileID: 2100000, guid: 398899a4d03ad7c419e89964a1ae00f5, type: 2}
+  _startFoamColor: {r: 0.6627451, g: 0.8431373, b: 1, a: 0.5019608}
+  _endFoamColor: {r: 1, g: 0.654902, b: 0, a: 0.5019608}
+  _transitionDuration: 95
 --- !u!1 &861988628
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,45 +397,7 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!21 &1728969256
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Disc Transparent (instance)
-  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _StencilComp: 2
-    - _StencilID: 0
-    - _StencilOp: 0
-    - _StencilOpPass: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _ZOffsetFactor: 0
-    - _ZOffsetUnits: 0
-    - _ZTest: 4
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
---- !u!21 &1971162762
+--- !u!21 &1398325392
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -525,7 +542,7 @@ PrefabInstance:
     - target: {fileID: 2057869611879602418, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 1971162762}
+      objectReference: {fileID: 1398325392}
     - target: {fileID: 2331453334353373936, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_Enabled
       value: 1
