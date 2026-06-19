@@ -37,11 +37,23 @@ namespace Metroma.UI
         [SerializeField, Tooltip("Fréquence du moteur (ex: 50 Hz).")]
         private float ShakeSpeed = 50f;
         
-        [SerializeField, Tooltip("Nombre de répétitions (ex: 2 pour une notification, 10 pour un appel).")]
+        [SerializeField, Tooltip("Nombre de répétitions (ex: 2 pour une notification). Si réglé sur 0, la vibration est infinie jusqu'à StopVibration() !")]
         private int RepeatCount = 3;
         
         [SerializeField, Tooltip("Pause entre chaque secousse (en secondes).")]
         private float PauseBetweenShakes = 0.5f;
+
+        [Space(10)]
+        [SerializeField, Tooltip("Faire vibrer la manette en même temps ?")]
+        public bool SyncGamepadVibration = true;
+
+        [ShowIf("SyncGamepadVibration")]
+        [SerializeField, Range(0f, 1f)]
+        private float GamepadLowFreq = 0.5f;
+
+        [ShowIf("SyncGamepadVibration")]
+        [SerializeField, Range(0f, 1f)]
+        private float GamepadHighFreq = 0.5f;
 
         private Coroutine AnimationCoroutine;
         private Coroutine ShakeCoroutine;
@@ -139,6 +151,11 @@ namespace Metroma.UI
                 StopCoroutine(ShakeCoroutine);
                 ShakeCoroutine = null;
 
+                if (SyncGamepadVibration && UnityEngine.InputSystem.Gamepad.current != null)
+                {
+                    UnityEngine.InputSystem.Gamepad.current.SetMotorSpeeds(0f, 0f);
+                }
+
                 if (EnableMovement)
                 {
                     PhoneTransform.localPosition = bIsVisible ? VisibleLocalPosition : HiddenLocalPosition;
@@ -177,12 +194,18 @@ namespace Metroma.UI
             Vector3 BasePosition = PhoneTransform.localPosition;
             Quaternion BaseRotation = PhoneTransform.localRotation;
             
-            for (int i = 0; i < RepeatCount; i++)
+            int i = 0;
+            while (RepeatCount <= 0 || i < RepeatCount)
             {
                 float Elapsed = 0f;
                 float NextShakeUpdate = 0f;
                 Vector3 TargetOffset = Vector3.zero;
                 float TargetRotOffset = 0f;
+                
+                if (SyncGamepadVibration && UnityEngine.InputSystem.Gamepad.current != null)
+                {
+                    UnityEngine.InputSystem.Gamepad.current.SetMotorSpeeds(GamepadLowFreq, GamepadHighFreq);
+                }
                 
                 while (Elapsed < ShakeDuration)
                 {
@@ -207,13 +230,21 @@ namespace Metroma.UI
                     yield return null;
                 }
                 
+                if (SyncGamepadVibration && UnityEngine.InputSystem.Gamepad.current != null)
+                {
+                    UnityEngine.InputSystem.Gamepad.current.SetMotorSpeeds(0f, 0f);
+                }
+                
                 PhoneTransform.localPosition = BasePosition;
                 PhoneTransform.localRotation = BaseRotation;
                 
-                if (i < RepeatCount - 1)
+                i++;
+                if (RepeatCount > 0 && i >= RepeatCount)
                 {
-                    yield return new WaitForSecondsRealtime(PauseBetweenShakes);
+                    break;
                 }
+                
+                yield return new WaitForSecondsRealtime(PauseBetweenShakes);
             }
 
             if (EnableMovement)

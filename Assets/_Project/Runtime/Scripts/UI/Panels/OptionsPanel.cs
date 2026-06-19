@@ -6,16 +6,18 @@ using TMPro;
 
 namespace Metroma.UI.Panels
 {
-    /**
-     * @brief Page des paramètres permettant de configurer l'audio et les graphismes.
-     * Gère automatiquement la sauvegarde via PlayerPrefs.
-     */
     public class OptionsPanel : UIPanel
     {
         // --- UI Bindings ---
 
         [Header("Menu Buttons")]
         [SerializeField] private Button BackButton;
+        [SerializeField] private Button CreditsButton;
+
+        [Header("Credits Settings")]
+        [SerializeField] private Camera MainMenuCamera;
+        [SerializeField] private Camera CreditsCamera;
+        [SerializeField] private Metroma.Credits CreditsScript;
 
         [Header("Audio Settings")]
         [SerializeField] private AudioMixer MainMixer;
@@ -40,6 +42,9 @@ namespace Metroma.UI.Panels
 
             if (BackButton != null)
                 BackButton.onClick.AddListener(OnBackClicked);
+                
+            if (CreditsButton != null)
+                CreditsButton.onClick.AddListener(OnCreditsClicked);
 
             // --- Configuration Initiale des Graphismes ---
             SetupResolutions();
@@ -48,7 +53,6 @@ namespace Metroma.UI.Panels
             // --- Chargement des PlayerPrefs ---
             LoadSettings();
 
-            // --- Écouteurs d'événements ---
             if (MasterVolumeSlider != null) MasterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
             if (MusicVolumeSlider != null) MusicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
             if (SFXVolumeSlider != null) SFXVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
@@ -62,6 +66,7 @@ namespace Metroma.UI.Panels
         private void OnDestroy()
         {
             if (BackButton != null) BackButton.onClick.RemoveListener(OnBackClicked);
+            if (CreditsButton != null) CreditsButton.onClick.RemoveListener(OnCreditsClicked);
             
             if (MasterVolumeSlider != null) MasterVolumeSlider.onValueChanged.RemoveListener(SetMasterVolume);
             if (MusicVolumeSlider != null) MusicVolumeSlider.onValueChanged.RemoveListener(SetMusicVolume);
@@ -71,6 +76,16 @@ namespace Metroma.UI.Panels
             if (QualityDropdown != null) QualityDropdown.onValueChanged.RemoveListener(SetQuality);
             if (FullscreenToggle != null) FullscreenToggle.onValueChanged.RemoveListener(SetFullscreen);
             if (VSyncToggle != null) VSyncToggle.onValueChanged.RemoveListener(SetVSync);
+        }
+
+        private void OnCreditsClicked()
+        {
+            if (MainMenuCamera != null) MainMenuCamera.gameObject.SetActive(false);
+            if (CreditsCamera != null) CreditsCamera.gameObject.SetActive(true);
+            
+            if (CreditsScript != null) CreditsScript.Play();
+            
+            UIManager.Instance.CloseCurrentPanel();
         }
 
 
@@ -124,7 +139,6 @@ namespace Metroma.UI.Panels
             if (MusicVolumeSlider != null) MusicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVol", 0.75f);
             if (SFXVolumeSlider != null) SFXVolumeSlider.value = PlayerPrefs.GetFloat("SFXVol", 0.75f);
 
-            // Applique le volume chargé au Mixer
             SetMasterVolume(MasterVolumeSlider != null ? MasterVolumeSlider.value : 0.75f);
             SetMusicVolume(MusicVolumeSlider != null ? MusicVolumeSlider.value : 0.75f);
             SetSFXVolume(SFXVolumeSlider != null ? SFXVolumeSlider.value : 0.75f);
