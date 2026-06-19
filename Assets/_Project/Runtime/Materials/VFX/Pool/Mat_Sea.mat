@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MAT_PoolWater
+  m_Name: Mat_Sea
   m_Shader: {fileID: 4800000, guid: a7d604e46e75fe740b1398debde2e117, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -73,7 +73,7 @@ Material:
     - _ObjRingCount: 10
     - _ObjRingSpeed: 1
     - _ObjRingWidth: 1
-    - _ObjectFoamDistance: 1
+    - _ObjectFoamDistance: 0.905
     - _Opacity: 1
     - _OpacityDeep: 0.95
     - _OpacityShallow: 0.828
@@ -100,11 +100,11 @@ Material:
     - _WaveSpeed: 0.6
     m_Colors:
     - _BaseColor: {r: 0, g: 0.8622582, b: 1, a: 1}
-    - _DeepColor: {r: 0, g: 0.45, b: 0.85, a: 1}
-    - _FoamColor: {r: 0.66352195, g: 0.8414939, b: 1, a: 0.9019608}
+    - _DeepColor: {r: 0, g: 0.45, b: 0.85, a: 0}
+    - _FoamColor: {r: 0.66352195, g: 0.8414939, b: 1, a: 0.5019608}
     - _RingColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShallowColor: {r: 0.29999986, g: 0.92, b: 1, a: 1}
-    - _SurfaceScroll: {r: 0, g: 0, b: 0, a: 0}
+    - _ShallowColor: {r: 0.29999992, g: 0.92, b: 1, a: 0}
+    - _SurfaceScroll: {r: 0.2, g: 0, b: 0, a: 0}
     - _WakeColor: {r: 0.72, g: 0.9, b: 1, a: 1}
     - _WaveColor: {r: 0.8349056, g: 1, b: 0.99805766, a: 1}
   m_BuildTextureStacks: []
