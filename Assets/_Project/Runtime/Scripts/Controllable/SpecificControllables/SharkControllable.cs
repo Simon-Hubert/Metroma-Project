@@ -7,6 +7,12 @@ namespace Metroma
     {
         [SerializeField] private float _dashDistance;
         [SerializeField] private float _dashFriction;
+
+        [Header("Water FX")]
+        [SerializeField] private WaterInteraction _waterInteraction;
+        [SerializeField] private float _dashWakeBurst = 1.2f;
+        [SerializeField] private float _dashWakeBurstDuration = 0.3f;
+
         private Vector2 _dashForce;
         private Coroutine dashRoutine;
 
@@ -18,6 +24,7 @@ namespace Metroma
         protected override void InputActionStart(bool action) {
             base.InputActionStart(action);
             Debug.Log("Dashed");
+            if (_waterInteraction != null) _waterInteraction.Burst(_dashWakeBurst, _dashWakeBurstDuration);
             _dashForce += moveDirection * _dashDistance;
             Vector2.ClampMagnitude(_dashForce, _dashDistance);
             if (dashRoutine == null) {
