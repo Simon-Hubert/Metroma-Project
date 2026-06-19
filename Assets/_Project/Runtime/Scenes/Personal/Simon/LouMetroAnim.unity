@@ -597,6 +597,7 @@ Transform:
   - {fileID: 1928929629}
   - {fileID: 1211703258}
   - {fileID: 34439064}
+  - {fileID: 993820823}
   - {fileID: 808263934}
   - {fileID: 761740689}
   - {fileID: 161337185}
@@ -1001,6 +1002,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9145006159481103163, guid: 1e1bf72912305b44abddc1c82feddec5, type: 3}
   m_PrefabInstance: {fileID: 71240199}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &74869070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 74869071}
+  - component: {fileID: 74869072}
+  m_Layer: 0
+  m_Name: Vibrate Gamepad (1,0, 1,0) for 0,5 sec
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &74869071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74869070}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1073.6467, y: 23.990509, z: 578.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 743642479}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &74869072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74869070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3495e9a63a45841bbf6433dab7f762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.GamepadVibrationSequence
+  _duration: 0.5
+  _lowFrequency: 1
+  _highFrequency: 1
+  _waitForCompletion: 0
 --- !u!1001 &80288042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7530,18 +7579,22 @@ Transform:
   m_Children:
   - {fileID: 1266249535}
   - {fileID: 1196718471}
+  - {fileID: 1862560193}
   - {fileID: 1012252173}
   - {fileID: 407562516}
   - {fileID: 1000192903}
   - {fileID: 556076052}
   - {fileID: 1732450273}
   - {fileID: 1143423598}
+  - {fileID: 1151978063}
   - {fileID: 452025194}
   - {fileID: 691753265}
   - {fileID: 1763993886}
+  - {fileID: 74869071}
   - {fileID: 235824452}
   - {fileID: 2084402116}
   - {fileID: 1924590444}
+  - {fileID: 1466932535}
   - {fileID: 1902418354}
   - {fileID: 1392114774}
   - {fileID: 1709701329}
@@ -8444,44 +8497,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7386860459758903836, guid: 17b0b71ee0f177a47a0248456de144ab, type: 3}
   m_PrefabInstance: {fileID: 162103121}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &881099617
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Disc Transparent (instance)
-  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _StencilComp: 2
-    - _StencilID: 0
-    - _StencilOp: 0
-    - _StencilOpPass: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _ZOffsetFactor: 0
-    - _ZOffsetUnits: 0
-    - _ZTest: 4
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &881287185
 GameObject:
   m_ObjectHideFlags: 0
@@ -9529,6 +9544,54 @@ Transform:
   - {fileID: 1031715736}
   m_Father: {fileID: 1114130017}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &993820822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 993820823}
+  - component: {fileID: 993820824}
+  m_Layer: 0
+  m_Name: Vibrate Gamepad (0,1, 0,1) for 20 sec
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &993820823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993820822}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 55654761}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &993820824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993820822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3495e9a63a45841bbf6433dab7f762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.GamepadVibrationSequence
+  _duration: 20
+  _lowFrequency: 0.05
+  _highFrequency: 0.08
+  _waitForCompletion: 0
 --- !u!1 &1000192902
 GameObject:
   m_ObjectHideFlags: 0
@@ -11315,6 +11378,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2126423861657335746, guid: 3ee6cb70f17de6d41a40234b0c6ba3d0, type: 3}
   m_PrefabInstance: {fileID: 1144377600}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1151978062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1151978063}
+  - component: {fileID: 1151978064}
+  m_Layer: 0
+  m_Name: Vibrate Gamepad (0,1, 0,1) for 5 sec
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1151978063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151978062}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1073.6467, y: 23.990509, z: 578.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 743642479}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1151978064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151978062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3495e9a63a45841bbf6433dab7f762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.GamepadVibrationSequence
+  _duration: 5
+  _lowFrequency: 0.05
+  _highFrequency: 0.08
+  _waitForCompletion: 0
 --- !u!1001 &1153787864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13852,6 +13963,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 103893022250367072, guid: 9aba7c4f4c4748343903dcad795919f6, type: 3}
   m_PrefabInstance: {fileID: 1456078784}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1466932534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1466932535}
+  - component: {fileID: 1466932536}
+  m_Layer: 0
+  m_Name: Vibrate Gamepad (0,1, 0,1) for 20 sec
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1466932535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466932534}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1073.6467, y: 23.990509, z: 578.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 743642479}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1466932536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466932534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3495e9a63a45841bbf6433dab7f762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.GamepadVibrationSequence
+  _duration: 20
+  _lowFrequency: 0.05
+  _highFrequency: 0.08
+  _waitForCompletion: 0
 --- !u!1001 &1486007824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14660,6 +14819,44 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!21 &1586016242
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Disc Transparent (instance)
+  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _StencilComp: 2
+    - _StencilID: 0
+    - _StencilOp: 0
+    - _StencilOpPass: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _ZOffsetFactor: 0
+    - _ZOffsetUnits: 0
+    - _ZTest: 4
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1001 &1591209967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17353,6 +17550,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2126423861657335746, guid: 3ee6cb70f17de6d41a40234b0c6ba3d0, type: 3}
   m_PrefabInstance: {fileID: 1861677432}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1862560192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1862560193}
+  - component: {fileID: 1862560194}
+  m_Layer: 0
+  m_Name: Vibrate Gamepad (0,1, 0,1) for 20 sec
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1862560193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862560192}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1073.6467, y: 23.990509, z: 578.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 743642479}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1862560194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862560192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3495e9a63a45841bbf6433dab7f762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.GamepadVibrationSequence
+  _duration: 20
+  _lowFrequency: 0.05
+  _highFrequency: 0.08
+  _waitForCompletion: 0
 --- !u!1 &1882376796
 GameObject:
   m_ObjectHideFlags: 0
@@ -17446,6 +17691,10 @@ PrefabInstance:
     - target: {fileID: 3935210520684011712, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611020670566731298, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _duration
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4684332002908761296, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_Sprite
