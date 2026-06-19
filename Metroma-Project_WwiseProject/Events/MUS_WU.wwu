@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{324E9F05-2873-45AC-A531-E9178BF105C3}" SchemaVersion="133">
+	<Events>
+		<WorkUnit Name="MUS_WU" ID="{324E9F05-2873-45AC-A531-E9178BF105C3}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="1"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="MUS_SW_Play" ID="{77DAE6D2-78B4-40E7-9D57-CEC5FD30B2EC}">
+					<ChildrenList>
+						<Action Name="" ID="{8C785FCD-582C-4975-98A9-8A583B2D6FA8}" ShortID="801598021">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MUS_SW" ID="{4F24A7D9-3CD4-4C6A-9AAE-1255CD2C57F1}" WorkUnitID="{D1606C90-0A36-4784-B148-3C2CF923763C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="MUS_SW_Stop" ID="{F99E9875-A7AB-4D66-8B02-53411DA6AB50}">
+					<ChildrenList>
+						<Action Name="" ID="{E6001333-9EFA-4A22-841C-83CC54A7C1D4}" ShortID="80578791">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MUS_SW" ID="{4F24A7D9-3CD4-4C6A-9AAE-1255CD2C57F1}" WorkUnitID="{D1606C90-0A36-4784-B148-3C2CF923763C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
