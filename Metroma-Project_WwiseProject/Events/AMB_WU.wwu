@@ -122,6 +122,32 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="AMB_MG_Pool_LP_Stop" ID="{38F19059-BA76-4D81-B4AF-DCC71B3CC76D}">
+					<ChildrenList>
+						<Action Name="" ID="{62FD8A68-960E-4FF0-9B0A-84BF8F0F57B2}" ShortID="170799336">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AMB_MG_Pool_LP" ID="{C6973471-74BD-45F0-BA7D-CD0C54AD47BD}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="AMB_MG_Pool_LP_Play" ID="{B9507467-A7CF-4F41-8C07-3A13141E2749}">
+					<ChildrenList>
+						<Action Name="" ID="{47445C5B-1C96-4978-8044-D784C932C4A8}" ShortID="1031574711">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="AMB_MG_Pool_LP" ID="{C6973471-74BD-45F0-BA7D-CD0C54AD47BD}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
