@@ -80,4 +80,5 @@ public struct CameraConfiguration
         Gizmos.matrix = Matrix4x4.TRS(GetPosition(), GetRotation(), Vector3.one);
         Gizmos.DrawFrustum(Vector3.zero, Fov, 10f, 0.8f, Camera.main.aspect);
     }
+    
 }
