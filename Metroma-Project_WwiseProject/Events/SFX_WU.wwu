@@ -40,39 +40,6 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="SFX_Glass_Move_Play" ID="{BA6CAE56-2F07-4A12-91D9-DDB5B5A74561}">
-					<ChildrenList>
-						<Action Name="" ID="{4EB2ABAC-ABE0-424B-A8C6-70EF466FA871}" ShortID="417291306">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="SFX_Glass_Move" ID="{2B8F7D13-F22C-4BCD-B22E-2341C2290FF5}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
-				<Event Name="SFX_MG_Drink_Fizz_LP_Play" ID="{83ABA14A-BD98-4223-B18B-00D55A35BA72}">
-					<ChildrenList>
-						<Action Name="" ID="{2DD51281-EEFC-47A4-9DE7-4C6E7B5AEF3C}" ShortID="687513885">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="SFX_MG_Drink_Fizz_LP" ID="{F3D65F2E-6636-48EE-B7B8-033D4093F616}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
-				<Event Name="SFX_Glass_Cheer_Play" ID="{D1E8B005-45BD-40AE-9F4B-AE73D89273EC}">
-					<ChildrenList>
-						<Action Name="" ID="{2E093452-B303-4CB9-9314-691D5AA3A581}" ShortID="345037218">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="SFX_Glass_Cheer" ID="{921A1FD2-13A7-4377-AD1C-12179CC8E775}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
 				<Event Name="SFX_Ad_Transition_In_Play" ID="{EA87C7D0-8A43-466C-8E9C-B3BB8113A9F0}">
 					<ChildrenList>
 						<Action Name="" ID="{8F9D8DAD-2F86-46AF-9837-4711E249D4F4}" ShortID="114501079">
@@ -84,21 +51,9 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="SFX_MG_Drink_Fizz_LP_Stop" ID="{0138925C-E595-47D5-A132-7FE40188D24C}">
-					<ChildrenList>
-						<Action Name="" ID="{DB24DF99-FAA2-4DB8-A67E-399B68D1665F}" ShortID="501959334">
-							<PropertyList>
-								<Property Name="ActionType" Type="int16" Value="2"/>
-								<Property Name="Scope" Type="int16" Value="1"/>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="SFX_MG_Drink_Fizz_LP" ID="{F3D65F2E-6636-48EE-B7B8-033D4093F616}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
+				<WorkUnit Name="SFX_PLANE_WU" ID="{8D5803B5-2B44-4ED6-97E7-E17A19EAAEA7}" PersistMode="Reference"/>
+				<WorkUnit Name="SFX_NOYADE_WU" ID="{1526559F-8077-422E-B639-6909B5438D81}" PersistMode="Reference"/>
+				<WorkUnit Name="SFX_DRINK_WU" ID="{68B99F18-A909-4F39-AC12-E1D42DADDFC3}" PersistMode="Reference"/>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

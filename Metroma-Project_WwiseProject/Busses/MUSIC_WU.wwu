@@ -7,7 +7,43 @@
 				<Property Name="OverrideColor" Type="bool" Value="True"/>
 			</PropertyList>
 			<ChildrenList>
-				<Bus Name="MUSIC" ID="{74FDD9A4-ED52-4357-A371-0085FE6872C3}"/>
+				<Bus Name="MUSIC" ID="{74FDD9A4-ED52-4357-A371-0085FE6872C3}">
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<RTPC Name="" ID="{0E0C8625-CBC1-4D96-B8FC-1AC9649DAB23}" ShortID="782281232">
+								<PropertyList>
+									<Property Name="PropertyName" Type="string" Value="BusVolume"/>
+								</PropertyList>
+								<ReferenceList>
+									<Reference Name="ControlInput">
+										<ObjectRef Name="MUS_VOL" ID="{8BCABCB5-6560-4983-930D-17513BEA8EDE}" WorkUnitID="{DF0B3CB0-C7FE-4D84-84FC-7A0DD37ADDEC}"/>
+									</Reference>
+									<Reference Name="Curve">
+										<Custom>
+											<Curve Name="" ID="{66BB7937-7ECB-4C4D-8737-D8F6FA86D5C0}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</Custom>
+									</Reference>
+								</ReferenceList>
+							</RTPC>
+						</ObjectList>
+					</ObjectLists>
+				</Bus>
 			</ChildrenList>
 		</WorkUnit>
 	</Busses>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{8D5803B5-2B44-4ED6-97E7-E17A19EAAEA7}" SchemaVersion="133" RootDocumentID="{A6739875-7E5C-41BA-A793-155BC726BE74}" ParentDocumentID="{A6739875-7E5C-41BA-A793-155BC726BE74}">
+	<Events>
+		<WorkUnit Name="SFX_PLANE_WU" ID="{8D5803B5-2B44-4ED6-97E7-E17A19EAAEA7}" OwnerID="{A6739875-7E5C-41BA-A793-155BC726BE74}" PersistMode="Nested">
+			<ChildrenList>
+				<Event Name="SFX_Plane_Land_Play" ID="{CD522E52-87EC-43EB-ABAC-0CFFFA27C744}">
+					<ChildrenList>
+						<Action Name="" ID="{A09C300D-D2FB-47C1-B6B7-63FCE77EE0A0}" ShortID="722288072">
+							<PropertyList>
+								<Property Name="FadeInCurve" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="0.2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Plane_Land" ID="{0B39733A-B47C-430F-86FC-8EFD05EB5C42}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{FE48A8D7-6BD7-4189-8E47-2A8BD98F606F}" ShortID="124023588">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeOutCurve" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="0.2"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Plane_Take_Off" ID="{DF315B42-A3CD-4151-8934-9B30FC9ACF89}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="SFX_Plane_Starting_Play" ID="{2DAFDBF1-8090-4A14-88E6-DBF6B4F6A4C3}">
+					<ChildrenList>
+						<Action Name="" ID="{33B4EEDC-8CB7-4DB9-86DE-B81DAACC0AB6}" ShortID="858769206">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Plane_Starting" ID="{26825480-0979-4926-8A56-4866E4461D26}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="SFX_Plane_Take_Off_Play" ID="{42B246A7-C18D-477E-94D5-FE077AB46AAF}">
+					<ChildrenList>
+						<Action Name="" ID="{2716824A-E27C-4947-A925-756C759A778F}" ShortID="833923385">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Plane_Take_Off" ID="{DF315B42-A3CD-4151-8934-9B30FC9ACF89}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="SFX_Plane_Cloud_Hit_Play" ID="{C559BD3C-1A2B-45A9-82B3-A0A399C6B55A}">
+					<ChildrenList>
+						<Action Name="" ID="{8A0A7091-1FD6-4C62-9BE1-C78E35ED9DD4}" ShortID="1040341497">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Plane_Cloud_Hit" ID="{7943A664-30F5-4181-A89F-860061103A3E}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

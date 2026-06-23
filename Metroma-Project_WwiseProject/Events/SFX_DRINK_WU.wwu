@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{68B99F18-A909-4F39-AC12-E1D42DADDFC3}" SchemaVersion="133" RootDocumentID="{A6739875-7E5C-41BA-A793-155BC726BE74}" ParentDocumentID="{A6739875-7E5C-41BA-A793-155BC726BE74}">
+	<Events>
+		<WorkUnit Name="SFX_DRINK_WU" ID="{68B99F18-A909-4F39-AC12-E1D42DADDFC3}" OwnerID="{A6739875-7E5C-41BA-A793-155BC726BE74}" PersistMode="Nested">
+			<ChildrenList>
+				<Event Name="SFX_MG_Drink_Fizz_LP_Play" ID="{83ABA14A-BD98-4223-B18B-00D55A35BA72}">
+					<ChildrenList>
+						<Action Name="" ID="{2DD51281-EEFC-47A4-9DE7-4C6E7B5AEF3C}" ShortID="687513885">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_MG_Drink_Fizz_LP" ID="{F3D65F2E-6636-48EE-B7B8-033D4093F616}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="SFX_MG_Drink_Glass_Move_Play" ID="{BA6CAE56-2F07-4A12-91D9-DDB5B5A74561}">
+					<ChildrenList>
+						<Action Name="" ID="{4EB2ABAC-ABE0-424B-A8C6-70EF466FA871}" ShortID="417291306">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Glass_Move" ID="{2B8F7D13-F22C-4BCD-B22E-2341C2290FF5}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="SFX_MG_Drink_Glass_Cheer_Play" ID="{D1E8B005-45BD-40AE-9F4B-AE73D89273EC}">
+					<ChildrenList>
+						<Action Name="" ID="{2E093452-B303-4CB9-9314-691D5AA3A581}" ShortID="345037218">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Glass_Cheer" ID="{921A1FD2-13A7-4377-AD1C-12179CC8E775}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="SFX_MG_Drink_Fizz_LP_Stop" ID="{0138925C-E595-47D5-A132-7FE40188D24C}">
+					<ChildrenList>
+						<Action Name="" ID="{DB24DF99-FAA2-4DB8-A67E-399B68D1665F}" ShortID="501959334">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_MG_Drink_Fizz_LP" ID="{F3D65F2E-6636-48EE-B7B8-033D4093F616}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
