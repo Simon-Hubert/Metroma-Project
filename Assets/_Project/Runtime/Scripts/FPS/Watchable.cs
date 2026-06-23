@@ -11,7 +11,7 @@ namespace Metroma
         [Header("Params")] 
         [SerializeField] private float _timeToTrigger;
         [SerializeField] private bool _logs;
-        [SerializeField] private UnityEvent OnStartWatch, OnWatched;
+        [SerializeField] private UnityEvent OnStartWatch, OnStopWatching, OnWatched;
         
         private CancellationTokenSource _watchCancellationTokenSource;
 
@@ -63,8 +63,9 @@ namespace Metroma
             if (_logs) Debug.Log($"[Watchable] CancelWatching on: {name}");
             if (_watchCancellationTokenSource == null)
                 return;
-
+            
             _watchCancellationTokenSource.Cancel();
+            OnStopWatching?.Invoke();
             _watchCancellationTokenSource = null;
         }
 

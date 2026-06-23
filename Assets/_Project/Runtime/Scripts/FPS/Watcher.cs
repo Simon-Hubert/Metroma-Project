@@ -14,6 +14,7 @@ namespace Metroma
         [SerializeField] private float _maxDist;
         [SerializeField] private bool _logs;
         [SerializeField] private UnityEvent UnityOnWatching;
+        [SerializeField] private UnityEvent UnityOnStopWatching;
         
         private Watchable _cachedWatchable;
 
@@ -38,19 +39,35 @@ namespace Metroma
             if (Physics.Raycast(_anchor.position, _anchor.forward, out hit, _maxDist, _layer))
             {
                 //if(_logs) Debug.Log($"[Watcher] Raycast hit: {hit.collider.gameObject.name}");
-                if (hit.collider.gameObject.TryGetComponent<Watchable>(out Watchable watchable) && _cachedWatchable != watchable)
+                if (hit.collider.gameObject.TryGetComponent<Watchable>(out Watchable watchable) )
                 {
+                    if (_cachedWatchable == watchable) {
+                        return;
+                    }
+
                     if (_cachedWatchable != null)
                     {
                         if(_logs) Debug.Log($"[Watcher] Canceling watching on: {_cachedWatchable.name}");
                         _cachedWatchable.CancelWatching();
+                        UnityOnStopWatching?.Invoke();
                     }
                     _cachedWatchable = watchable;
                     if(_logs) Debug.Log($"[Watcher] Watching on: {_cachedWatchable.name}");
                     _cachedWatchable.Watch();
                     UnityOnWatching?.Invoke();
+                    return;
                 }
             }
+
+            if (!_cachedWatchable) {
+                return;
+            }
+            
+            if(_logs) Debug.Log($"[Watcher] Canceling watching on: {_cachedWatchable.name}");
+            _cachedWatchable.CancelWatching();
+            UnityOnStopWatching?.Invoke();
+            _cachedWatchable = null;
+
         }
 
         private void OnDrawGizmos()

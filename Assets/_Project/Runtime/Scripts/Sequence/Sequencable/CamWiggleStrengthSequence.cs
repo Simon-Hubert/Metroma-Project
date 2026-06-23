@@ -17,8 +17,10 @@ namespace Metroma
                 t += Time.deltaTime;
                 float p = _curve.Evaluate(t / _duration);
                 _anchor.Target.PositionWiggleProperties.AmplitudeMax = originalAmplitude * p;
+                _anchor.Target.Initialization();
             }
             _anchor.Target.PositionWiggleProperties.AmplitudeMax = originalAmplitude * _curve.Evaluate(1);
+            _anchor.Target.Initialization();
         }
         
         public override bool RequirementsValidated() {
