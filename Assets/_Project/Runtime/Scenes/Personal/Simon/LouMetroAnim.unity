@@ -2559,6 +2559,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ===== Alarm _ Pause =====
       objectReference: {fileID: 0}
+    - target: {fileID: 1581284497654238476, guid: 638997e3ab677fb428f8aabd111397d6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1776774398953818093, guid: 638997e3ab677fb428f8aabd111397d6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4357,8 +4361,8 @@ MonoBehaviour:
     CurvePingPong: 0
     PauseMin: 0
     PauseMax: 0
-    LimitedTime: 0
-    LimitedTimeTotal: 0
+    LimitedTime: 1
+    LimitedTimeTotal: 2
     LimitedTimeFalloff:
       serializedVersion: 2
       m_Curve:
@@ -4384,7 +4388,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     LimitedTimeResetValue: 1
-    LimitedTimeLeft: 0
+    LimitedTimeLeft: 2
     NoiseFrequencyMin: {x: 0, y: 0, z: 0}
     NoiseFrequencyMax: {x: 25, y: 25, z: 25}
     NoiseShiftMin: {x: 0, y: 0, z: 0}
@@ -9612,7 +9616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6991894068900818094, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -17983,21 +17987,9 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 1058672886062412820, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-      propertyPath: m_SortingOrder
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1941784161522649491, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-      propertyPath: m_SortingOrder
-      value: -26
-      objectReference: {fileID: 0}
     - target: {fileID: 3239541809533296463, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_Name
       value: Phase1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4403032471184547001, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-      propertyPath: m_SortingOrder
-      value: -27
       objectReference: {fileID: 0}
     - target: {fileID: 6569986643040112752, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_LocalPosition.x
