@@ -35,6 +35,9 @@ namespace Metroma
                 }
             }
         }
+        [SerializeField] private UnityEvent OuStateIdle;
+        [SerializeField] private UnityEvent OuStateFear;
+        [SerializeField] private UnityEvent OuStateOut;
         
         [Header("OutAnim")]
         [SerializeField] private float _escapeSpeed = 50f;
@@ -42,7 +45,6 @@ namespace Metroma
         [SerializeField] private float _escapeAnimDuration = 1f;
         [SerializeField] private Animator _animator;
         [SerializeField] private UnityEvent OnEnd;
-        [SerializeField] private UnityEvent OnOut;
 
         [Header("Sprites")] 
         [SerializeField] private Sprite _spriteIdle;
@@ -93,7 +95,7 @@ namespace Metroma
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (_state == ChildState.Out) return;
-            if (other.transform.GetInstanceID() == _manager.GetPlayer.GetInstanceID()) return;
+            if (other.transform.GetInstanceID() != _manager.GetPoolBorder.GetInstanceID()) return;
             
             SetChildState = ChildState.Out;
             StartCoroutine(endAnimationRoutine());
@@ -101,7 +103,6 @@ namespace Metroma
 
         private IEnumerator endAnimationRoutine() {
             _animator.SetBool("Splash", true);
-            OnEnd?.Invoke();
 
             float duration = _escapeAnimDuration;
             while (duration > 0) {
@@ -114,7 +115,7 @@ namespace Metroma
 
             _childVisual.gameObject.SetActive(false);
             _manager.OutChild();
-            OnOut.Invoke();
+            OnEnd.Invoke();
             yield break;
         }
         
@@ -126,6 +127,7 @@ namespace Metroma
                     break;
                 case ChildState.Out :
                     if (!_fearVFX.isStopped) _fearVFX.Stop();
+                    OuStateOut?.Invoke();
                     _childVisual.sprite = _spriteRun;
                     _frontBoeyVisual.gameObject.SetActive(true);
                     break;

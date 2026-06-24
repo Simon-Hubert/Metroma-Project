@@ -1,25 +1,23 @@
-using System;
-using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Numerics;
 using NaughtyAttributes;
-using Vector2 = UnityEngine.Vector2;
+using UnityEngine.Events;
 
 namespace Metroma
 {
     public class ChildManager : MonoBehaviour
     {
         [SerializeField] private Transform _player;
-        [SerializeField] private Transform _poolCenter;
+        [SerializeField] private Transform _poolBorder;
         public Transform GetPlayer => _player;
         public Vector2 GetPlayerPos => _player ? _player.position : Vector2.zero;
-        public Vector2 GetPoolCenter => _poolCenter ? _poolCenter.position : Vector2.zero;
+        public Transform GetPoolBorder => _poolBorder;
         
         [SerializeField] private ConditionalEvent _endCondition;
         [Space(7)]
         [SerializeField] private List<ChildBehaviour> _childs = new List<ChildBehaviour>();
         private int _nbOut = 0;
+        [SerializeField] private UnityEvent OnComplete;
 
         private void Start() {
             PurgeList();
@@ -31,6 +29,7 @@ namespace Metroma
 
             if (_nbOut >= _childs.Count) {
                 _endCondition.Evaluate();
+                OnComplete?.Invoke();
             }
         }
 

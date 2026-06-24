@@ -81,7 +81,6 @@ namespace AK
     {
         static const AkUniqueID MASTER_VOL = 3578718921U;
         static const AkUniqueID MUS_VOL = 1307889788U;
-        static const AkUniqueID PLANE_FLYING = 134457397U;
         static const AkUniqueID SFX_VOL = 42448320U;
     } // namespace GAME_PARAMETERS
 

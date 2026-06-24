@@ -7,43 +7,7 @@
 				<Property Name="OverrideColor" Type="bool" Value="True"/>
 			</PropertyList>
 			<ChildrenList>
-				<Bus Name="UI" ID="{2C3FFA65-8242-4BE9-8E16-C5520E13B51C}">
-					<ObjectLists>
-						<ObjectList Name="RTPC">
-							<RTPC Name="" ID="{32E1F701-1244-4EE0-B94C-034357A7AD0E}" ShortID="645332810">
-								<PropertyList>
-									<Property Name="PropertyName" Type="string" Value="BusVolume"/>
-								</PropertyList>
-								<ReferenceList>
-									<Reference Name="ControlInput">
-										<ObjectRef Name="SFX_VOL" ID="{4D60DD37-66C0-497D-BEC9-18624CB3A73A}" WorkUnitID="{DF0B3CB0-C7FE-4D84-84FC-7A0DD37ADDEC}"/>
-									</Reference>
-									<Reference Name="Curve">
-										<Custom>
-											<Curve Name="" ID="{760C58F8-8441-449E-A627-5EB468E51224}">
-												<PropertyList>
-													<Property Name="Flags" Type="int32" Value="3"/>
-												</PropertyList>
-												<PointList>
-													<Point>
-														<XPos>0</XPos>
-														<YPos>-200</YPos>
-														<Flags>5</Flags>
-													</Point>
-													<Point>
-														<XPos>1</XPos>
-														<YPos>0</YPos>
-														<Flags>37</Flags>
-													</Point>
-												</PointList>
-											</Curve>
-										</Custom>
-									</Reference>
-								</ReferenceList>
-							</RTPC>
-						</ObjectList>
-					</ObjectLists>
-				</Bus>
+				<Bus Name="UI" ID="{2C3FFA65-8242-4BE9-8E16-C5520E13B51C}"/>
 			</ChildrenList>
 		</WorkUnit>
 	</Busses>
