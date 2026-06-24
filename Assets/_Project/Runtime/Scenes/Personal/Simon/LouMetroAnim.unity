@@ -2131,44 +2131,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5998799817533820398, guid: 0480b7b732ffb3f42a1fbc054b82a498, type: 3}
   m_PrefabInstance: {fileID: 200002675}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &209460941
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Disc Transparent (instance)
-  m_Shader: {fileID: 4800000, guid: 0736a017ee88a8741b09e7382339ab99, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _StencilComp: 2
-    - _StencilID: 0
-    - _StencilOp: 0
-    - _StencilOpPass: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _ZOffsetFactor: 0
-    - _ZOffsetUnits: 0
-    - _ZTest: 4
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1001 &218321456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2276,6 +2238,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.CutToBlackSequence
   _duration: 0.2
+  OnStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &253178456
 GameObject:
   m_ObjectHideFlags: 0
@@ -2525,6 +2493,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 103893022250367072, guid: 9aba7c4f4c4748343903dcad795919f6, type: 3}
   m_PrefabInstance: {fileID: 266659156}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &268516998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 268516999}
+  - component: {fileID: 268517000}
+  m_Layer: 0
+  m_Name: IntroCinematic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &268516999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268516998}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 778393705}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &268517000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268516998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+  _playEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 782428b9faa743844b7b4423d7b2c65a, type: 2}
+  _audioSource: {fileID: 0}
 --- !u!1 &270788208
 GameObject:
   m_ObjectHideFlags: 0
@@ -4942,6 +4959,9 @@ MonoBehaviour:
   _durationBeforeAlarm: 3.5
   _delayAfterStop: 1
   _enableGamepadVibration: 0
+  OnVibrating:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &378348465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5687,7 +5707,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1405096075}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &424264995
 GameObject:
@@ -7080,17 +7100,6 @@ MonoBehaviour:
   OnEnd:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &562124903 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2463597331969368879, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
-  m_PrefabInstance: {fileID: 7239010263600326741}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
 --- !u!1001 &565592738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8497,8 +8506,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 562124903}
-        m_TargetAssemblyTypeName: Metroma.Audio.AudioOneShotCall, Metroma
+      - m_Target: {fileID: 1507010059}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
         m_MethodName: PlayAudio
         m_Mode: 1
         m_Arguments:
@@ -8883,6 +8892,11 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!4 &778393705 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4804733407515780877, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &788391486 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6911040323172924881, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
@@ -9021,11 +9035,6 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!4 &801612598 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5159476313846639271, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 1892318346}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &801955692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9925,11 +9934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae343a908da21d8449756570b4dab390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioLoopCall
---- !u!4 &953534900 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 524344112751260311, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 1892318346}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &959658000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10343,6 +10347,10 @@ PrefabInstance:
     - target: {fileID: 1991581124287065448, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
       propertyPath: _duration
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2007783038519210680, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: m_Name
+      value: Invoke Event with 0 binds
       objectReference: {fileID: 0}
     - target: {fileID: 2397397814150198797, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
       propertyPath: _object
@@ -10900,6 +10908,34 @@ PrefabInstance:
       propertyPath: OnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6588743760367368813, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588743760367368813, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588743760367368813, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 268517000}
+    - target: {fileID: 6588743760367368813, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588743760367368813, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588743760367368813, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588743760367368813, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6625039660068304233, guid: eac5dd454b6d8b64a985ed0646dd1265, type: 3}
       propertyPath: _duration
       value: 1
@@ -11153,7 +11189,7 @@ MonoBehaviour:
   OnVibrating:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 743161380}
+      - m_Target: {fileID: 268517000}
         m_TargetAssemblyTypeName: Metroma.Audio.AudioOneShotCall, Metroma
         m_MethodName: PlayAudio
         m_Mode: 1
@@ -11614,11 +11650,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!4 &1022445242 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5128509578983430886, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 1892318346}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1031715735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14558,7 +14589,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 801612598}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1276814122
 MonoBehaviour:
@@ -16378,7 +16409,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1405096075}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1501074171
 PrefabInstance:
@@ -16583,6 +16614,32 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1 &1507010057 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1691659856423070307, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1507010059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507010057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae343a908da21d8449756570b4dab390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioLoopCall
+  _playEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c9204c3b89ee35d458002aca76b9bb83, type: 2}
+  _stopEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: fd6fe7f2dbaf29842a90bf4bbdc20516, type: 2}
+  _audioSource: {fileID: 0}
 --- !u!1001 &1508222776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16683,7 +16740,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 953534900}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1517602742
 MonoBehaviour:
@@ -22259,6 +22316,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 757783446694683087, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+      propertyPath: _playEvent.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: e2a6c3db8f12b384191164ddee41ca88, type: 2}
+    - target: {fileID: 757783446694683087, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+      propertyPath: _stopEvent.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ae4f60f88c79b94d8a174b3d13c625c, type: 2}
+    - target: {fileID: 1691659856423070307, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+      propertyPath: m_Name
+      value: SubwayMovingP2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423211129171526154, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+      propertyPath: m_Name
+      value: SubwayMovingP1
+      objectReference: {fileID: 0}
     - target: {fileID: 5719535757050808713, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -22303,19 +22376,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundIntegration
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2463597331969368879, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5719535757050808713, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 4804733407515780877, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1405096075}
-    m_AddedComponents: []
+      addedObject: {fileID: 268516999}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1691659856423070307, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1507010059}
   m_SourcePrefab: {fileID: 100100000, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
---- !u!4 &7239010263600326742 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5719535757050808713, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
-  m_PrefabInstance: {fileID: 7239010263600326741}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -22335,3 +22407,7 @@ SceneRoots:
   - {fileID: 284537117}
   - {fileID: 450662104}
   - {fileID: 7239010263600326741}
+  - {fileID: 422772492}
+  - {fileID: 1276814121}
+  - {fileID: 1493768441}
+  - {fileID: 1517602741}

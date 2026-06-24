@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="16" SoundBankVersion="172">
+	<SoundBanks>
+		<SoundBank Id="203146416" Type="Event" GUID="{77DAE6D2-78B4-40E7-9D57-CEC5FD30B2EC}" Language="SFX" Hash="{365F9C92-0A01-FD6B-9C4F-B5B97002C5FF}">
+			<ObjectPath>MUS_SW_Play</ObjectPath>
+			<ShortName>MUS_SW_Play</ShortName>
+			<Path>Event/MUS_SW_Play.bnk</Path>
+			<Media>
+				<File Id="102875747" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>MUSIC\base.wav</ShortName>
+					<Path>Media/102875747.wem</Path>
+					<CachePath>47/{473186BF-A17C-7220-EC73-996FA8618C6E}.wem</CachePath>
+				</File>
+				<File Id="316665797" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>MUSIC\loop3.wav</ShortName>
+					<Path>Media/316665797.wem</Path>
+					<CachePath>FF/{FF1A718D-3281-0CC0-4FA0-DD9A01D0EE45}.wem</CachePath>
+				</File>
+				<File Id="683704195" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>MUSIC\loop1.wav</ShortName>
+					<Path>Media/683704195.wem</Path>
+					<CachePath>5D/{5D42577A-0F4F-EF1C-10FE-F12D3E1E76B8}.wem</CachePath>
+				</File>
+				<File Id="879063638" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>MUSIC\loop2.wav</ShortName>
+					<Path>Media/879063638.wem</Path>
+					<CachePath>11/{1150D84F-377D-61F7-FFA9-D311DC0D19F3}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="203146416" Name="MUS_SW_Play" ObjectPath="\Events\MUS_WU\MUS_SW_Play" GUID="{77DAE6D2-78B4-40E7-9D57-CEC5FD30B2EC}" Color="1" DurationType="Infinite">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="1329476215" Id="3987970511" GUID="{673B92E2-E891-4FE1-9124-61DD37565B34}" Color="1"/>
+							<MediaRefs>
+								<MediaRef Id="102875747"/>
+								<MediaRef Id="683704195"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="1329476215" Id="3987970508" GUID="{5908ACA1-DA3E-41D0-B477-4F07B7EC330A}" Color="1"/>
+							<MediaRefs>
+								<MediaRef Id="102875747"/>
+								<MediaRef Id="879063638"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="1329476215" Id="3987970509" GUID="{38FDD6CD-80C4-45AE-A44A-5E39FBABEA83}" Color="1"/>
+							<MediaRefs>
+								<MediaRef Id="102875747"/>
+								<MediaRef Id="316665797"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+			</Events>
+			<StateGroups>
+				<StateGroup Id="1329476215" Name="MUS_SW" ObjectPath="\States\MUSIC_WU\MUS_SW" GUID="{5E2BC404-B80E-4667-BEEE-21F9945CAB0D}" Color="1">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\MUSIC_WU\MUS_SW\None" GUID="{01C0720F-102F-4A98-867B-2069C9C26193}" Color="1"/>
+						<State Id="3987970508" Name="Loop_2" ObjectPath="\States\MUSIC_WU\MUS_SW\Loop_2" GUID="{5908ACA1-DA3E-41D0-B477-4F07B7EC330A}" Color="1"/>
+						<State Id="3987970509" Name="Loop_3" ObjectPath="\States\MUSIC_WU\MUS_SW\Loop_3" GUID="{38FDD6CD-80C4-45AE-A44A-5E39FBABEA83}" Color="1"/>
+						<State Id="3987970511" Name="Loop_1" ObjectPath="\States\MUSIC_WU\MUS_SW\Loop_1" GUID="{673B92E2-E891-4FE1-9124-61DD37565B34}" Color="1"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{AD0D96BF-7740-8171-6F10-8A81A003E580}</FileHash>
+</SoundBanksInfo>

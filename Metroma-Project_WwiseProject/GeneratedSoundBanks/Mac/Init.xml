@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="16" SoundBankVersion="172">
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" GUID="{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}" Language="SFX" Hash="{38B841A6-6209-3E9A-BFC8-F75A48D6AEAE}">
+		<SoundBank Id="1355168291" Type="User" GUID="{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}" Language="SFX" Hash="{3B8D657B-E124-25EF-FB9A-6751F076CAA3}">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -34,7 +34,17 @@
 				<Bus Id="3395330013" Name="AMB_P1_MG_Drink" ObjectPath="\Busses\Default Work Unit\Main Audio Bus\AMB_WU\AMB\AMB_Phase_1\AMB_P1_MG_Drink" GUID="{C99A0DEB-B467-4691-AE2A-5A81BC3FD983}" Color="4"/>
 				<Bus Id="3991942870" Name="MUSIC" ObjectPath="\Busses\Default Work Unit\Main Audio Bus\MUSIC_WU\MUSIC" GUID="{74FDD9A4-ED52-4357-A371-0085FE6872C3}" Color="2"/>
 			</Busses>
+			<StateGroups>
+				<StateGroup Id="1329476215" Name="MUS_SW" ObjectPath="\States\MUSIC_WU\MUS_SW" GUID="{5E2BC404-B80E-4667-BEEE-21F9945CAB0D}" Color="1">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\MUSIC_WU\MUS_SW\None" GUID="{01C0720F-102F-4A98-867B-2069C9C26193}" Color="1"/>
+						<State Id="3987970508" Name="Loop_2" ObjectPath="\States\MUSIC_WU\MUS_SW\Loop_2" GUID="{5908ACA1-DA3E-41D0-B477-4F07B7EC330A}" Color="1"/>
+						<State Id="3987970509" Name="Loop_3" ObjectPath="\States\MUSIC_WU\MUS_SW\Loop_3" GUID="{38FDD6CD-80C4-45AE-A44A-5E39FBABEA83}" Color="1"/>
+						<State Id="3987970511" Name="Loop_1" ObjectPath="\States\MUSIC_WU\MUS_SW\Loop_1" GUID="{673B92E2-E891-4FE1-9124-61DD37565B34}" Color="1"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{EF17DA39-7128-6B3A-2F2F-22E6380C2D7A}</FileHash>
+	<FileHash>{3199D095-BD99-F855-60BF-4ADE4B579B37}</FileHash>
 </SoundBanksInfo>
