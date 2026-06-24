@@ -458,6 +458,7 @@ Transform:
   - {fileID: 5168433675253156432}
   - {fileID: 5263316150715452112}
   - {fileID: 2209064000372958359}
+  - {fileID: 6371605323137518364}
   - {fileID: 6201893171930295670}
   - {fileID: 7973341575206157544}
   m_Father: {fileID: 0}
@@ -477,7 +478,7 @@ MonoBehaviour:
   _blocks:
   - {fileID: 7887691706324019080}
   - {fileID: 7288144633331819200}
-  - {fileID: 5360379846381717183}
+  - {fileID: 4908383332950352085}
   - {fileID: 3290523561235136440}
   - {fileID: 8332265785733346145}
   _activateOnStart: 0
@@ -658,6 +659,100 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &4361004123178275851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7859214360196905199}
+  - component: {fileID: 1048364170143623742}
+  m_Layer: 0
+  m_Name: Activate EndSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7859214360196905199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361004123178275851}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0.00001335144}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2750316296449167593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1048364170143623742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361004123178275851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06887433ba2fc1247a29057828736437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
+  _object: {fileID: 3022879631336920027}
+  _active: 1
+--- !u!1 &5545489205832891128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1363149054095533362}
+  - component: {fileID: 5267923993360115287}
+  m_Layer: 0
+  m_Name: Show Rectangle (Shapes.Rectangle) for 3 sec
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1363149054095533362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5545489205832891128}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.964851, y: -20.37094, z: 67.66872}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2750316296449167593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5267923993360115287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5545489205832891128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8b49384bcffd740a17e9639dd93f22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ShapeColorSequence
+  _shape: {fileID: 3233006576341155726}
+  _duration: 3
+  _StartColor: {r: 0.42745098, g: 0.09803922, b: 0.49019608, a: 1}
+  _EndColor: {r: 0.42745098, g: 0.09803922, b: 0.49019608, a: 0}
 --- !u!1 &5562379291230416511
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,6 +823,52 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &5932665847219929322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6362594052989297364}
+  - component: {fileID: 5791149276518642916}
+  m_Layer: 0
+  m_Name: Deactivate CameraController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6362594052989297364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5932665847219929322}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00001335144}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2750316296449167593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5791149276518642916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5932665847219929322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06887433ba2fc1247a29057828736437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
+  _object: {fileID: 0}
+  _active: 0
 --- !u!1 &5947702607721260589
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,6 +977,52 @@ MonoBehaviour:
   _startFoamColor: {r: 0.6627451, g: 0.8431373, b: 1, a: 0.5019608}
   _endFoamColor: {r: 1, g: 0.654902, b: 0, a: 0.5019608}
   _transitionDuration: 95
+--- !u!1 &6506028156361983326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 238888467103496237}
+  - component: {fileID: 330175425801498293}
+  m_Layer: 0
+  m_Name: Activate CameraController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &238888467103496237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506028156361983326}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0.00001335144}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3327730503818409418}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &330175425801498293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506028156361983326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06887433ba2fc1247a29057828736437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
+  _object: {fileID: 0}
+  _active: 1
 --- !u!1 &6608392159223845988
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +1184,99 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &7320104629618657341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7906017190343192237}
+  - component: {fileID: 9126793822218784872}
+  m_Layer: 0
+  m_Name: Wait for 1 sec
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7906017190343192237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320104629618657341}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0.00001335144}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2750316296449167593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9126793822218784872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320104629618657341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1129c48e53f61f24889a822b21214186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.WaitForDuration
+  _duration: 1
+--- !u!1 &7979840445820976689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7920672546640455993}
+  - component: {fileID: 3073051414382026025}
+  m_Layer: 0
+  m_Name: Show Rectangle (Shapes.Rectangle) for 2 sec
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7920672546640455993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7979840445820976689}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.96489, y: -20.37094, z: 67.66875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3327730503818409418}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3073051414382026025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7979840445820976689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8b49384bcffd740a17e9639dd93f22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ShapeColorSequence
+  _shape: {fileID: 3233006576341155726}
+  _duration: 2
+  _StartColor: {r: 0, g: 0.6, b: 0.8509804, a: 1}
+  _EndColor: {r: 0, g: 0.6, b: 0.8509804, a: 0}
 --- !u!1 &8012770701210787119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,6 +1485,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
   _object: {fileID: 836806542620684262}
   _active: 1
+--- !u!1 &8652606339368058117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4660931420045770887}
+  - component: {fileID: 6329837941078093497}
+  m_Layer: 0
+  m_Name: Deactivate SharkSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4660931420045770887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8652606339368058117}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0.00001335144}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2750316296449167593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6329837941078093497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8652606339368058117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06887433ba2fc1247a29057828736437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
+  _object: {fileID: 5899357130214417796}
+  _active: 0
 --- !u!1 &8701008776258962851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,6 +1788,187 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.ActivateObject
   _object: {fileID: 3687212303850651256}
   _active: 1
+--- !u!1001 &4007143934988209672
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6569986643040112752}
+    m_Modifications:
+    - target: {fileID: 175087394957727490, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_Name
+      value: Apply MainView to Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964077925213254022, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964077925213254022, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: color.b
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964077925213254022, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: color.g
+      value: 0.09803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964077925213254022, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: color.r
+      value: 0.42745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193060809486933459, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3554763454818430248, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 8780215506598114258}
+    - target: {fileID: 3638102020545529732, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_Name
+      value: BLOCK-Noyade-Rework
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828538555973183760, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_Name
+      value: Show Rectangle (Shapes.Rectangle) for 2 sec
+      objectReference: {fileID: 0}
+    - target: {fileID: 5567650857616384997, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: _shape
+      value: 
+      objectReference: {fileID: 3233006576341155726}
+    - target: {fileID: 5567650857616384997, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: _duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5567650857616384997, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: _EndColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5567650857616384997, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: _StartColor.b
+      value: 0.67300004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5567650857616384997, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: _StartColor.g
+      value: 0.67300004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5567650857616384997, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: _StartColor.r
+      value: 0.67300004
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066018838531851540, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.28466
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066018838531851540, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.35517
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066018838531851540, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -24.73158
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066018838531851540, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066018838531851540, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066018838531851540, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066018838531851540, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066018838531851540, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066018838531851540, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066018838531851540, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1851618737774836674, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 238888467103496237}
+    - targetCorrespondingSourceObject: {fileID: 1851618737774836674, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 7920672546640455993}
+    - targetCorrespondingSourceObject: {fileID: 1276535422562295521, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4660931420045770887}
+    - targetCorrespondingSourceObject: {fileID: 1276535422562295521, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7859214360196905199}
+    - targetCorrespondingSourceObject: {fileID: 1276535422562295521, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7906017190343192237}
+    - targetCorrespondingSourceObject: {fileID: 1276535422562295521, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1363149054095533362}
+    - targetCorrespondingSourceObject: {fileID: 1276535422562295521, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6362594052989297364}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+--- !u!4 &2750316296449167593 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1276535422562295521, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+  m_PrefabInstance: {fileID: 4007143934988209672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3022879631336920027 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2193060809486933459, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+  m_PrefabInstance: {fileID: 4007143934988209672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3233006576341155726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1964077925213254022, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+  m_PrefabInstance: {fileID: 4007143934988209672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f210828086c1a4398856e1ba65627c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShapesRuntime::Shapes.Rectangle
+--- !u!4 &3327730503818409418 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1851618737774836674, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+  m_PrefabInstance: {fileID: 4007143934988209672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4908383332950352085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8323259656736698077, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+  m_PrefabInstance: {fileID: 4007143934988209672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7a73bd637a4e4bb9f541ab9877ee53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Block
+--- !u!1 &5899357130214417796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7368599413893917580, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+  m_PrefabInstance: {fileID: 4007143934988209672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6371605323137518364 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8066018838531851540, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
+  m_PrefabInstance: {fileID: 4007143934988209672}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4170840812464089186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1582,17 +2089,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 308891799233104960, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
   m_PrefabInstance: {fileID: 4170840812464089186}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5360379846381717183 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8323259656736698077, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}
-  m_PrefabInstance: {fileID: 4170840812464089186}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836806542620684262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b7a73bd637a4e4bb9f541ab9877ee53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Block
 --- !u!4 &6201893171930295670 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8066018838531851540, guid: 3ec19bbd3eba0574c912f1c8752521d2, type: 3}

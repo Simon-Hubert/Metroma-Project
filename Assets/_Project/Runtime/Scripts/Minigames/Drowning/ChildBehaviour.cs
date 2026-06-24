@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Vector2 = UnityEngine.Vector2;
 
@@ -20,6 +21,7 @@ namespace Metroma
         [Space(7)]
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] private SpriteRenderer _childVisual;
+        [SerializeField] private SpriteRenderer _frontBoeyVisual;
         
         [Header("Parameters")]
         [SerializeField] private float _distanceWithShark;
@@ -35,10 +37,12 @@ namespace Metroma
         }
         
         [Header("OutAnim")]
-        [SerializeField] private float _outAngle = 45f;
-        [SerializeField] private float _minDistance = 5f;
-        [SerializeField] private float _timeToEscape = 1f;
-        [SerializeField] private float _speedToEScape = 100f;
+        [SerializeField] private float _escapeSpeed = 50f;
+        [SerializeField] private float _escapeAnimSpeed = 100f;
+        [SerializeField] private float _escapeAnimDuration = 1f;
+        [SerializeField] private Animator _animator;
+        [SerializeField] private UnityEvent OnEnd;
+        [SerializeField] private UnityEvent OnOut;
 
         [Header("Sprites")] 
         [SerializeField] private Sprite _spriteIdle;
@@ -72,68 +76,64 @@ namespace Metroma
                 else if (_spritesLoopCurrent >= _spritesLoop / 2 && _childVisual.sprite != _spriteFear2) {
                     _childVisual.sprite = _spriteFear2;
                 }
+                
+                Vector2 fleeVector = ((Vector2)transform.position - _manager.GetPlayerPos).normalized;
+                transform.position += (Vector3)fleeVector * (_escapeSpeed * Time.deltaTime);
             }
         }
         
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (_state == ChildState.Out) return;
             if (other.transform.GetInstanceID() != _manager.GetPlayer.GetInstanceID()) return;
-
+            
             SetChildState = ChildState.Fear;
-            Vector2 a = (Vector2)transform.position - _manager.GetPlayerPos;
-            
-            float angle = -_outAngle;
-            Vector2 outDir = Vector2.zero;
-            
-            for (int i = 0; i < 3; i++)
-            {
-                angle += _outAngle * i;
-
-                outDir = new Vector2(
-                    a.x * Mathf.Cos(angle) - a.y * Mathf.Sin(angle),
-                    a.x * Mathf.Sin(angle) + a.y * Mathf.Cos(angle));
-
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, outDir);
-                if (!hit || (hit && hit.distance > _minDistance)) {
-                    break;
-                }
-            }
-
-            StartCoroutine(OnAnimCoroutine(outDir));
         }
 
-        private IEnumerator OnAnimCoroutine(Vector2 dir)
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            float time = _timeToEscape;
+            if (_state == ChildState.Out) return;
+            if (other.transform.GetInstanceID() == _manager.GetPlayer.GetInstanceID()) return;
+            
+            SetChildState = ChildState.Out;
+            StartCoroutine(endAnimationRoutine());
+        }
 
-            Vector3 start = transform.position;
-            Vector3 end = transform.position + (Vector3)(dir * (_timeToEscape * _speedToEScape));
+        private IEnumerator endAnimationRoutine() {
+            _animator.SetBool("Splash", true);
+            OnEnd?.Invoke();
 
-            while (time > 0f) {
-                time -= Time.fixedDeltaTime;
-                transform.position = Vector3.Lerp(start, end, 1 - (time / _timeToEscape));
-
-                yield return new WaitForFixedUpdate();
+            float duration = _escapeAnimDuration;
+            while (duration > 0) {
+                duration -= Time.deltaTime;
+                
+                Vector2 fleeVector = ((Vector2)_childVisual.transform.position - _manager.GetPlayerPos).normalized;
+                _childVisual.transform.position += new Vector3(fleeVector.x, fleeVector.y) * (_escapeAnimSpeed * Time.deltaTime);
+                yield return new WaitForEndOfFrame();
             }
 
+            _childVisual.gameObject.SetActive(false);
             _manager.OutChild();
-            gameObject.SetActive(false);
+            OnOut.Invoke();
             yield break;
         }
-
+        
         private void StateFeedback(ChildState state) {
             switch (state) {
                 case ChildState.Fear :
                     _fearVFX.Play();
+                    _frontBoeyVisual.gameObject.SetActive(true);
                     break;
                 case ChildState.Out :
                     if (!_fearVFX.isStopped) _fearVFX.Stop();
                     _childVisual.sprite = _spriteRun;
+                    _frontBoeyVisual.gameObject.SetActive(true);
                     break;
                 case ChildState.Idle :
                 default:
                     if (!_fearVFX.isStopped) _fearVFX.Stop();
                     _childVisual.sprite = _spriteIdle;
+                    _frontBoeyVisual.gameObject.SetActive(false);
                     break;
             }
         }
