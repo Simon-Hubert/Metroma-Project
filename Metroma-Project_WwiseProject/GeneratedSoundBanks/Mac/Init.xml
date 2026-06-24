@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="16" SoundBankVersion="172">
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" GUID="{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}" Language="SFX" Hash="{3B8D657B-E124-25EF-FB9A-6751F076CAA3}">
+		<SoundBank Id="1355168291" Type="User" GUID="{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}" Language="SFX" Hash="{41E3932B-96B3-4511-443D-BE147106CE73}">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -34,6 +34,11 @@
 				<Bus Id="3395330013" Name="AMB_P1_MG_Drink" ObjectPath="\Busses\Default Work Unit\Main Audio Bus\AMB_WU\AMB\AMB_Phase_1\AMB_P1_MG_Drink" GUID="{C99A0DEB-B467-4691-AE2A-5A81BC3FD983}" Color="4"/>
 				<Bus Id="3991942870" Name="MUSIC" ObjectPath="\Busses\Default Work Unit\Main Audio Bus\MUSIC_WU\MUSIC" GUID="{74FDD9A4-ED52-4357-A371-0085FE6872C3}" Color="2"/>
 			</Busses>
+			<GameParameters>
+				<GameParameter Id="42448320" Name="SFX_VOL" ObjectPath="\Game Parameters\GLOBAL_WU\SFX_VOL" GUID="{4D60DD37-66C0-497D-BEC9-18624CB3A73A}" Color="19"/>
+				<GameParameter Id="1307889788" Name="MUS_VOL" ObjectPath="\Game Parameters\GLOBAL_WU\MUS_VOL" GUID="{8BCABCB5-6560-4983-930D-17513BEA8EDE}" Color="19"/>
+				<GameParameter Id="3578718921" Name="MASTER_VOL" ObjectPath="\Game Parameters\GLOBAL_WU\MASTER_VOL" GUID="{D8BB70E5-4146-4406-BBA5-A7FDB4BD2D32}" Color="19"/>
+			</GameParameters>
 			<StateGroups>
 				<StateGroup Id="1329476215" Name="MUS_SW" ObjectPath="\States\MUSIC_WU\MUS_SW" GUID="{5E2BC404-B80E-4667-BEEE-21F9945CAB0D}" Color="1">
 					<States>
@@ -46,5 +51,5 @@
 			</StateGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{3199D095-BD99-F855-60BF-4ADE4B579B37}</FileHash>
+	<FileHash>{A31CC414-95D8-5CC7-BAEE-6B689AC37F3B}</FileHash>
 </SoundBanksInfo>
