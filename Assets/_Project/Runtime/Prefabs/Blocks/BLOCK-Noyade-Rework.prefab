@@ -4003,7 +4003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.ChildManager
   _player: {fileID: 4336214606457004919}
-  _poolCenter: {fileID: 2164207366952070421}
+  _poolBorder: {fileID: 0}
   _endCondition: {fileID: 2808393991606992064}
   _childs:
   - {fileID: 6076449267200299517}
@@ -4012,6 +4012,9 @@ MonoBehaviour:
   - {fileID: 7138689309584271469}
   - {fileID: 3407716016208935567}
   - {fileID: 3298198967124076284}
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8404818348140484467
 GameObject:
   m_ObjectHideFlags: 0

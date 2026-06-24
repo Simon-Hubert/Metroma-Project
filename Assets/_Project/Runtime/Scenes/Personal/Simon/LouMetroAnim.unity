@@ -119,6 +119,84 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &10686824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 10686825}
+  - component: {fileID: 10686826}
+  m_Layer: 0
+  m_Name: ViewTransi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &10686825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10686824}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.25994, y: -14.117251, z: 50.91528}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1247019426}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &10686826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10686824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800f665955f40604da9ae2bd7ae64d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ViewTransition
+  _callEventIfCancellation: 0
+  _onTransitionStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTransitionEnded:
+    m_PersistentCalls:
+      m_Calls: []
+  _cam: {fileID: 1892318349}
+  _targetView: {fileID: 922978523}
+  _duration: 2
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &20378239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -618,6 +696,22 @@ Animator:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4384977609952780463, guid: 91b25b3f1f105d44ba41b934282649ca, type: 3}
   m_PrefabInstance: {fileID: 456806386}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &47971625 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4226966076436832587, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae343a908da21d8449756570b4dab390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioLoopCall
+--- !u!4 &51892627 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2677511443894416612, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &55654760
 GameObject:
@@ -1403,6 +1497,11 @@ MonoBehaviour:
   _pitch: 0
   _roll: 0
   _fov: 60
+--- !u!4 &106747781 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9218420436820259349, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &120811906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,6 +1551,11 @@ MonoBehaviour:
 --- !u!4 &130979496 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3327730503818409418, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &144681370 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5641177145374012001, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
   m_PrefabInstance: {fileID: 1892318346}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &149048869
@@ -1739,7 +1843,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2813020437262070291, guid: 17b0b71ee0f177a47a0248456de144ab, type: 3}
-      insertIndex: 3
+      insertIndex: 1
+      addedObject: {fileID: 1481450146}
+    - targetCorrespondingSourceObject: {fileID: 2813020437262070291, guid: 17b0b71ee0f177a47a0248456de144ab, type: 3}
+      insertIndex: 4
       addedObject: {fileID: 1780006204}
     - targetCorrespondingSourceObject: {fileID: 7386860459758903836, guid: 17b0b71ee0f177a47a0248456de144ab, type: 3}
       insertIndex: 0
@@ -2193,6 +2300,89 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1316499146073618377, guid: 446affba2cefcb1409eaaa0a3bc1a16d, type: 3}
   m_PrefabInstance: {fileID: 218321456}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &221557274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 221557275}
+  - component: {fileID: 221557276}
+  m_Layer: 0
+  m_Name: Invoke Event with 3 binds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &221557275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221557274}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 653798502}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &221557276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221557274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69bcb5ae2dda1d84585899ae21a338d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UnityEventSequence
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1554850112}
+        m_TargetAssemblyTypeName: Metroma.Audio.MusicCall, Metroma
+        m_MethodName: ChangeState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1861008808}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
+        m_MethodName: StopAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 763165711}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &235824451
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,6 +2434,11 @@ MonoBehaviour:
   OnEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!4 &247535093 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 524344112751260311, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &253178456
 GameObject:
   m_ObjectHideFlags: 0
@@ -2359,7 +2554,7 @@ GameObject:
   - component: {fileID: 261375542}
   - component: {fileID: 261375543}
   m_Layer: 0
-  m_Name: Invoke Event with 3 binds
+  m_Name: Invoke Event with 2 binds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2403,18 +2598,6 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 702848234}
-        m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
-        m_MethodName: PlayAudio
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2493,55 +2676,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 103893022250367072, guid: 9aba7c4f4c4748343903dcad795919f6, type: 3}
   m_PrefabInstance: {fileID: 266659156}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &268516998
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 268516999}
-  - component: {fileID: 268517000}
-  m_Layer: 0
-  m_Name: IntroCinematic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &268516999
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268516998}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 778393705}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &268517000
+--- !u!114 &268517000 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4071557241670900723, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268516998}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
-  _playEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 782428b9faa743844b7b4423d7b2c65a, type: 2}
-  _audioSource: {fileID: 0}
 --- !u!1 &270788208
 GameObject:
   m_ObjectHideFlags: 0
@@ -2836,6 +2981,46 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6155793884948545591, guid: 638997e3ab677fb428f8aabd111397d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155793884948545591, guid: 638997e3ab677fb428f8aabd111397d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155793884948545591, guid: 638997e3ab677fb428f8aabd111397d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155793884948545591, guid: 638997e3ab677fb428f8aabd111397d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7239010263600326745}
+    - target: {fileID: 6155793884948545591, guid: 638997e3ab677fb428f8aabd111397d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155793884948545591, guid: 638997e3ab677fb428f8aabd111397d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155793884948545591, guid: 638997e3ab677fb428f8aabd111397d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155793884948545591, guid: 638997e3ab677fb428f8aabd111397d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155793884948545591, guid: 638997e3ab677fb428f8aabd111397d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155793884948545591, guid: 638997e3ab677fb428f8aabd111397d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6453846938902654223, guid: 638997e3ab677fb428f8aabd111397d6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3012,6 +3197,17 @@ Transform:
   - {fileID: 2097298950}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &309674525 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6075124881985176858, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
 --- !u!1001 &310526539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5169,6 +5365,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 198497283739156494, guid: bb83a8df3da32db4fb2e7c332ccbccf0, type: 3}
   m_PrefabInstance: {fileID: 394236081}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &395138473 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3911895370464236327, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
 --- !u!1001 &396506489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5678,37 +5885,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5819794732455758292, guid: f422bce4b4eb39346a71e0cfabb68e6e, type: 3}
   m_PrefabInstance: {fileID: 421778413}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &422772491
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 422772492}
-  m_Layer: 0
-  m_Name: CocktailGame
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &422772492
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 422772491}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &424264995
 GameObject:
   m_ObjectHideFlags: 0
@@ -5868,12 +6044,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450662102}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -15.88119, y: -4.89975, z: 168.319}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 934917965}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &452025193
 GameObject:
@@ -7224,6 +7400,65 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 103893022250367072, guid: 9aba7c4f4c4748343903dcad795919f6, type: 3}
   m_PrefabInstance: {fileID: 568700395}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &575512819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 575512820}
+  - component: {fileID: 575512821}
+  m_Layer: 0
+  m_Name: Invoke Event with 1 binds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &575512820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575512819}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 28.491829, y: 738.04913, z: 48.37288}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2038471837}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &575512821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575512819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69bcb5ae2dda1d84585899ae21a338d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UnityEventSequence
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 309674525}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioOneShotCall, Metroma
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &585326146
 GameObject:
   m_ObjectHideFlags: 0
@@ -7459,7 +7694,7 @@ GameObject:
   - component: {fileID: 594785916}
   - component: {fileID: 594785917}
   m_Layer: 0
-  m_Name: Invoke Event with 2 binds
+  m_Name: Invoke Event with 1 binds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7498,18 +7733,6 @@ MonoBehaviour:
       - m_Target: {fileID: 936422954}
         m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
         m_MethodName: StopAudio
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 702848234}
-        m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
-        m_MethodName: PlayAudio
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7581,7 +7804,7 @@ GameObject:
   - component: {fileID: 607801810}
   - component: {fileID: 607801811}
   m_Layer: 0
-  m_Name: Invoke Event with 1 binds
+  m_Name: Invoke Event with 4 binds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7624,6 +7847,42 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 387717945}
           m_ObjectArgumentAssemblyTypeName: Metroma.AView, Metroma
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1554850112}
+        m_TargetAssemblyTypeName: Metroma.Audio.MusicCall, Metroma
+        m_MethodName: ChangeState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 864209554}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
+        m_MethodName: StopAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1861008808}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7796,6 +8055,11 @@ Transform:
   - {fileID: 332392724}
   m_Father: {fileID: 1687608749}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &653798502 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5159476313846639271, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &674798942
 GameObject:
   m_ObjectHideFlags: 0
@@ -7843,13 +8107,13 @@ MonoBehaviour:
   _event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1413269381}
-        m_TargetAssemblyTypeName: Metroma.CameraController, Metroma
-        m_MethodName: ChangeView
-        m_Mode: 2
+      - m_Target: {fileID: 1861008808}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
+        m_MethodName: StopAudio
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 922978523}
-          m_ObjectArgumentAssemblyTypeName: Metroma.AView, Metroma
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7973,17 +8237,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4288273222759751306, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
   m_PrefabInstance: {fileID: 1218317696}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &702848234 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9211709327336401513, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
-  m_PrefabInstance: {fileID: 7239010263600326741}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae343a908da21d8449756570b4dab390, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioLoopCall
 --- !u!1001 &703932380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8447,6 +8700,77 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1548222341424853386, guid: 50ec2a31674c60b4cac586f645788e50, type: 3}
   m_PrefabInstance: {fileID: 715511986}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &715604126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 715604127}
+  - component: {fileID: 715604128}
+  m_Layer: 0
+  m_Name: Invoke Event with 2 binds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &715604127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715604126}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10, y: 41.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 247535093}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &715604128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715604126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69bcb5ae2dda1d84585899ae21a338d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UnityEventSequence
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7239010263600326742}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1554850112}
+        m_TargetAssemblyTypeName: Metroma.Audio.MusicCall, Metroma
+        m_MethodName: PlayWithState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &719767827
 GameObject:
   m_ObjectHideFlags: 0
@@ -8458,7 +8782,7 @@ GameObject:
   - component: {fileID: 719767828}
   - component: {fileID: 719767829}
   m_Layer: 0
-  m_Name: Invoke Event with 2 binds
+  m_Name: Invoke Event with 1 binds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8494,18 +8818,6 @@ MonoBehaviour:
   _event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 702848234}
-        m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
-        m_MethodName: StopAudio
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1507010059}
         m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
         m_MethodName: PlayAudio
@@ -8703,6 +9015,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Metroma::Metroma.CamWiggleSequence
   _anchor: {fileID: 11400000, guid: 9f5b3bc3555c12d45bb8b43db1c6708a, type: 2}
   _active: 0
+--- !u!114 &763165711 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6199987824577434248, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae343a908da21d8449756570b4dab390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioLoopCall
 --- !u!1001 &765884078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8892,11 +9215,6 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!4 &778393705 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4804733407515780877, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
-  m_PrefabInstance: {fileID: 7239010263600326741}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &788391486 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6911040323172924881, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
@@ -9497,6 +9815,76 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5998799817533820398, guid: 0480b7b732ffb3f42a1fbc054b82a498, type: 3}
   m_PrefabInstance: {fileID: 832332231}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &861777351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 861777352}
+  - component: {fileID: 861777353}
+  m_Layer: 0
+  m_Name: Invoke Event with 1 binds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &861777352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861777351}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 28.491829, y: 738.04913, z: 48.37288}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 130979496}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &861777353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861777351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69bcb5ae2dda1d84585899ae21a338d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UnityEventSequence
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 395138473}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioOneShotCall, Metroma
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &864209554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4215052934686258235, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae343a908da21d8449756570b4dab390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioLoopCall
 --- !u!1001 &866957566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9559,6 +9947,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6499813164950601848, guid: 2ed72e5cd3782ec43bdd3b2bca1c2a67, type: 3}
   m_PrefabInstance: {fileID: 866957566}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &872341984 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3233006576341155726, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f210828086c1a4398856e1ba65627c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShapesRuntime::Shapes.Rectangle
 --- !u!4 &874083510 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7386860459758903836, guid: 17b0b71ee0f177a47a0248456de144ab, type: 3}
@@ -9923,6 +10322,39 @@ MonoBehaviour:
   _activeB: 1
   _setTargetTexB: 0
   _texB: {fileID: 0}
+--- !u!1 &934917964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 934917965}
+  m_Layer: 0
+  m_Name: SoundDesign
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &934917965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934917964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.88119, y: 4.89975, z: -168.319}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 450662104}
+  - {fileID: 1991126754}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &936422954 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 757783446694683087, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
@@ -12178,6 +12610,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3198006576346093428, guid: 7fd14d483aa19e74f859ed1116a524d5, type: 3}
   m_PrefabInstance: {fileID: 1056848738}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1070390634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1070390635}
+  - component: {fileID: 1070390636}
+  m_Layer: 0
+  m_Name: TransiSequencable (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1070390635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070390634}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.07790051, y: 0.7028026, z: 0.07790049, w: 0.70280266}
+  m_LocalPosition: {x: -1119.9568, y: -734.49725, z: 418.2773}
+  m_LocalScale: {x: 0.29999992, y: 0.3, z: 0.29999995}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1828654788}
+  m_Father: {fileID: 1368622112}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1070390636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070390634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6f79b882e90e64ab56b503ea2b9ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.TransiSequencable
+  _trans: {fileID: 1828654789}
+  _waitForEnd: 1
 --- !u!4 &1077982265 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9049485739679205927, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
@@ -12645,6 +13124,17 @@ MonoBehaviour:
   scalingFactor: 1
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
+--- !u!114 &1117453090 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6445810062980401506, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
 --- !u!1001 &1122754773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12723,6 +13213,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a035a8377dcd84e9cca28bb7b0baa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Sequence
+--- !u!1 &1126871387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1126871388}
+  - component: {fileID: 1126871389}
+  m_Layer: 0
+  m_Name: Show Rectangle (Shapes.Rectangle) for 1 sec
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1126871388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126871387}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2038471837}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1126871389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126871387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8b49384bcffd740a17e9639dd93f22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ShapeColorSequence
+  _shape: {fileID: 872341984}
+  _duration: 1
+  _StartColor: {r: 0.42745098, g: 0.09803922, b: 0.49019608, a: 0}
+  _EndColor: {r: 0.42745098, g: 0.09803922, b: 0.49019608, a: 1}
 --- !u!1001 &1128676564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14010,19 +14548,7 @@ MonoBehaviour:
   _enableGamepadVibration: 0
   OnVibrating:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 743161380}
-        m_TargetAssemblyTypeName: Metroma.Audio.AudioOneShotCall, Metroma
-        m_MethodName: PlayAudio
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1203607049
 GameObject:
   m_ObjectHideFlags: 0
@@ -14116,6 +14642,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.DistantSequence
   _sequence: {fileID: 36595282}
+--- !u!1 &1213239302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1213239303}
+  - component: {fileID: 1213239304}
+  m_Layer: 0
+  m_Name: Invoke Event with 1 binds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1213239303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213239302}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.079926, y: 221.78888, z: -20.099976}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 106747781}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1213239304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213239302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69bcb5ae2dda1d84585899ae21a338d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UnityEventSequence
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1700405619}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioOneShotCall, Metroma
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1218317696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14144,17 +14729,73 @@ PrefabInstance:
       propertyPath: _targetView
       value: 
       objectReference: {fileID: 359976789}
+    - target: {fileID: 1663382880632616530, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: m_Name
+      value: Invoke Event with 3 binds
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1501074172}
     - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1507010059}
+    - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1769240103}
+    - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Execute
       objectReference: {fileID: 0}
     - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StopAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Metroma.Sequence, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioLoopCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463526117260665281, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4148974057555447012, guid: c8213cc00a1b7b34fa7f7d302be3fcfe, type: 3}
       propertyPath: _object
@@ -14439,6 +15080,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8811704052192752930, guid: 75ee9cd437ec1ef4999dc2a597b4b958, type: 3}
   m_PrefabInstance: {fileID: 1241841201}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1247019425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1247019426}
+  - component: {fileID: 1247019427}
+  m_Layer: 0
+  m_Name: TransiSequencable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1247019426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247019425}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.07790051, y: 0.7028026, z: 0.07790049, w: 0.70280266}
+  m_LocalPosition: {x: -1091.465, y: 3.5519474, z: 466.65018}
+  m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 10686825}
+  m_Father: {fileID: 2038471837}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1247019427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247019425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6f79b882e90e64ab56b503ea2b9ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.TransiSequencable
+  _trans: {fileID: 10686826}
+  _waitForEnd: 1
 --- !u!1 &1266249534
 GameObject:
   m_ObjectHideFlags: 0
@@ -14559,65 +15247,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6654932816883191007, guid: fbafa6d1bd7eb3c4fa6eb8c60d4620de, type: 3}
   m_PrefabInstance: {fileID: 1269580241}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1276814120
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1276814121}
-  - component: {fileID: 1276814122}
-  m_Layer: 0
-  m_Name: Invoke Event with 1 binds
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1276814121
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1276814120}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.75649, y: 735.5828, z: 48.509777}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1276814122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1276814120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bcb5ae2dda1d84585899ae21a338d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.UnityEventSequence
-  _event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1554850112}
-        m_TargetAssemblyTypeName: Metroma.Audio.MusicCall, Metroma
-        m_MethodName: ChangeState
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &1287088532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15430,65 +16059,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7386860459758903836, guid: 17b0b71ee0f177a47a0248456de144ab, type: 3}
   m_PrefabInstance: {fileID: 36595280}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1343757617
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1343757618}
-  - component: {fileID: 1343757619}
-  m_Layer: 0
-  m_Name: Invoke Event with 1 binds
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1343757618
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343757617}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1368622112}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1343757619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343757617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bcb5ae2dda1d84585899ae21a338d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.UnityEventSequence
-  _event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1682060185}
-        m_TargetAssemblyTypeName: Metroma.CameraController, Metroma
-        m_MethodName: CutToView
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 546745152}
-          m_ObjectArgumentAssemblyTypeName: Metroma.AView, Metroma
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &1359399268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16143,6 +16713,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 103893022250367072, guid: 9aba7c4f4c4748343903dcad795919f6, type: 3}
   m_PrefabInstance: {fileID: 1456078784}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1460836615 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6002299689548215046, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae343a908da21d8449756570b4dab390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioLoopCall
 --- !u!1 &1466932534
 GameObject:
   m_ObjectHideFlags: 0
@@ -16191,6 +16772,65 @@ MonoBehaviour:
   _lowFrequency: 0.05
   _highFrequency: 0.08
   _waitForCompletion: 0
+--- !u!1 &1481450145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1481450146}
+  - component: {fileID: 1481450147}
+  m_Layer: 0
+  m_Name: Invoke Event with 1 binds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1481450146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481450145}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.07790051, y: -0.7028026, z: 0.07790051, w: 0.7028026}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 162103124}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1481450147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481450145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69bcb5ae2dda1d84585899ae21a338d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UnityEventSequence
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1769240103}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioOneShotCall, Metroma
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1486007824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16380,7 +17020,7 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!1 &1493768440
+--- !u!1 &1500075792
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16388,29 +17028,57 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1493768441}
+  - component: {fileID: 1500075793}
+  - component: {fileID: 1500075794}
   m_Layer: 0
-  m_Name: Pool
+  m_Name: Invoke Event with 1 binds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1493768441
+--- !u!4 &1500075793
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493768440}
+  m_GameObject: {fileID: 1500075792}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.079926, y: 221.78888, z: -20.099976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 51892627}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1500075794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500075792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69bcb5ae2dda1d84585899ae21a338d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UnityEventSequence
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1460836615}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
+        m_MethodName: StopAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1501074171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16614,32 +17282,17 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!1 &1507010057 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1691659856423070307, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+--- !u!114 &1507010059 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8052058117833291776, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
   m_PrefabInstance: {fileID: 7239010263600326741}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1507010059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507010057}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae343a908da21d8449756570b4dab390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioLoopCall
-  _playEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: c9204c3b89ee35d458002aca76b9bb83, type: 2}
-  _stopEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: fd6fe7f2dbaf29842a90bf4bbdc20516, type: 2}
-  _audioSource: {fileID: 0}
 --- !u!1001 &1508222776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16710,65 +17363,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1316499146073618377, guid: 446affba2cefcb1409eaaa0a3bc1a16d, type: 3}
   m_PrefabInstance: {fileID: 1508222776}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1517602740
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1517602741}
-  - component: {fileID: 1517602742}
-  m_Layer: 0
-  m_Name: Invoke Event with 1 binds
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1517602741
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517602740}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: 41.169937, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1517602742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517602740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bcb5ae2dda1d84585899ae21a338d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.UnityEventSequence
-  _event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1554850112}
-        m_TargetAssemblyTypeName: Metroma.Audio.MusicCall, Metroma
-        m_MethodName: PlayWithState
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &1540733826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17507,6 +18101,303 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 103893022250367072, guid: 9aba7c4f4c4748343903dcad795919f6, type: 3}
   m_PrefabInstance: {fileID: 1605211520}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1612516951 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1882582819220713051, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516952 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 773277834369103387, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516953 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 587144781307686379, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516954 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7628762359924668346, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516955 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6269248152527071429, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516956 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 964658869556615677, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516957 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7473229459764095458, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516958 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6172299925123979325, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516959 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6089002352085986518, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516960 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2016223232406336721, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516961 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1850056650390420569, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516962 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4350034431248980889, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516963 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2596798832535100419, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516964 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7735660203854776837, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516965 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8209635582656419141, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516966 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1391629094685185589, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516967 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1113442871561360353, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516968 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3281004033922994044, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516969 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2265258443031988957, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516970 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2099637549021280918, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516971 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2026450182192375028, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516972 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5729894331171531784, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5007175482175944024, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516974 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4313711483075887222, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7115859974831908362, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8583890058948828896, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &1612516977 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7278887121291811458, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+  m_PrefabInstance: {fileID: 1892318346}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
 --- !u!1001 &1619885771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18154,17 +19045,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1897868481535806261, guid: 122b7d38054ea494f8d254b9fb7b5eff, type: 3}
   m_PrefabInstance: {fileID: 1680995438}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1682060185 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6401629817091015932, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-  m_PrefabInstance: {fileID: 1892318346}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b03684ca6bfbab4d8dcf4b21c0380aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Metroma::Metroma.CameraController
 --- !u!4 &1687608749 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3187318578730996884, guid: 91b25b3f1f105d44ba41b934282649ca, type: 3}
@@ -18421,6 +19301,17 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1700405619 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7703979309452419803, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
 --- !u!1 &1701432351
 GameObject:
   m_ObjectHideFlags: 0
@@ -19097,6 +19988,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2126423861657335746, guid: 3ee6cb70f17de6d41a40234b0c6ba3d0, type: 3}
   m_PrefabInstance: {fileID: 1743735746}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1747581405 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 322751347149748958, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
 --- !u!1001 &1754489688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19987,6 +20889,84 @@ MonoBehaviour:
     radialOrigin: {x: 0, y: 0, z: 0}
     radialRadius: 1
   useFill: 0
+--- !u!1 &1828654787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1828654788}
+  - component: {fileID: 1828654789}
+  m_Layer: 0
+  m_Name: ViewTransi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1828654788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828654787}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.25994, y: -14.117251, z: 50.91528}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1070390635}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1828654789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828654787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800f665955f40604da9ae2bd7ae64d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.ViewTransition
+  _callEventIfCancellation: 0
+  _onTransitionStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTransitionEnded:
+    m_PersistentCalls:
+      m_Calls: []
+  _cam: {fileID: 1892318349}
+  _targetView: {fileID: 1892318351}
+  _duration: 1
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1847957442
 GameObject:
   m_ObjectHideFlags: 0
@@ -20035,6 +21015,17 @@ MonoBehaviour:
   _pitch: 0
   _roll: 0
   _fov: 60
+--- !u!114 &1861008808 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 76388199693480661, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae343a908da21d8449756570b4dab390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioLoopCall
 --- !u!1001 &1861677432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20243,6 +21234,274 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 832794903130748354, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 832794903130748354, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 832794903130748354, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516974}
+    - target: {fileID: 832794903130748354, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 832794903130748354, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 832794903130748354, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 832794903130748354, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 868528926493666861, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 868528926493666861, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 868528926493666861, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516962}
+    - target: {fileID: 868528926493666861, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 868528926493666861, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 868528926493666861, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 868528926493666861, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871471993798662995, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 1892318349}
+    - target: {fileID: 871471993798662995, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871471993798662995, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _targetView
+      value: 
+      objectReference: {fileID: 546745152}
+    - target: {fileID: 871471993798662995, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _curve.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871471993798662995, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _curve.m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871471993798662995, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onTransitionStarted.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1747581405}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7239010263600326746}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 864209554}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 864209554}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StopAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioLoopCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioLoopCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioLoopCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011140786471806461, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466592346072770999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466592346072770999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466592346072770999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516963}
+    - target: {fileID: 1466592346072770999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466592346072770999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466592346072770999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466592346072770999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538326725521378410, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onTransitionStarted.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538326725521378410, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onTransitionStarted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538326725521378410, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onTransitionStarted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7239010263600326743}
+    - target: {fileID: 1538326725521378410, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onTransitionStarted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538326725521378410, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onTransitionStarted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538326725521378410, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onTransitionStarted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538326725521378410, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onTransitionStarted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2151516628649818824, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2151516628649818824, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2151516628649818824, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516968}
+    - target: {fileID: 2151516628649818824, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2151516628649818824, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 2151516628649818824, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 2151516628649818824, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300534399132230709, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: KeepPlayModeChanges
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2494998494739831268, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: zTest
       value: 4
@@ -20271,14 +21530,158 @@ PrefabInstance:
       propertyPath: scaleMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2514174614385011193, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: m_Name
+      value: Invoke Event with 3 binds
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523071844870857601, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523071844870857601, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523071844870857601, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516966}
+    - target: {fileID: 2523071844870857601, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523071844870857601, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523071844870857601, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523071844870857601, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3022879631336920027, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026268903891306989, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026268903891306989, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026268903891306989, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516961}
+    - target: {fileID: 3026268903891306989, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026268903891306989, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026268903891306989, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026268903891306989, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058938285624220655, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058938285624220655, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058938285624220655, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516951}
+    - target: {fileID: 3058938285624220655, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058938285624220655, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058938285624220655, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058938285624220655, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3073051414382026025, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: _shape
       value: 
       objectReference: {fileID: 1413156618}
+    - target: {fileID: 3146009979717550437, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146009979717550437, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146009979717550437, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516960}
+    - target: {fileID: 3146009979717550437, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146009979717550437, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146009979717550437, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146009979717550437, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192113720734257472, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192113720734257472, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192113720734257472, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516971}
+    - target: {fileID: 3192113720734257472, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192113720734257472, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192113720734257472, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192113720734257472, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3233006576341155726, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: color.a
       value: 0
@@ -20286,6 +21689,66 @@ PrefabInstance:
     - target: {fileID: 3239541809533296463, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_Name
       value: Phase1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274299489063669538, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274299489063669538, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274299489063669538, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516970}
+    - target: {fileID: 3274299489063669538, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274299489063669538, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274299489063669538, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274299489063669538, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403630315581636457, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403630315581636457, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403630315581636457, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516969}
+    - target: {fileID: 3403630315581636457, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403630315581636457, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403630315581636457, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403630315581636457, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476353417294850409, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: m_Name
+      value: Wait for 3 sec
       objectReference: {fileID: 0}
     - target: {fileID: 3488146474737920420, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: color.a
@@ -20319,9 +21782,301 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 4039155107295589781, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onValidated.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068503227556927583, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068503227556927583, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068503227556927583, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516953}
+    - target: {fileID: 4068503227556927583, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068503227556927583, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068503227556927583, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068503227556927583, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveEndUnity.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveStartUnity.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveEndUnity.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveEndUnity.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 47971625}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveStartUnity.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveStartUnity.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 47971625}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveEndUnity.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveEndUnity.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveStartUnity.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveStartUnity.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveEndUnity.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioLoopCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveStartUnity.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioLoopCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveEndUnity.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162084518842954337, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnMoveStartUnity.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207761653245655199, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1117453090}
+    - target: {fileID: 4207761653245655199, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207761653245655199, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244910000073261999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244910000073261999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244910000073261999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516952}
+    - target: {fileID: 4244910000073261999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244910000073261999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244910000073261999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244910000073261999, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4361004123178275851, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_Name
       value: Activate EndSprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409278099536227401, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409278099536227401, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409278099536227401, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516956}
+    - target: {fileID: 4409278099536227401, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409278099536227401, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409278099536227401, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409278099536227401, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438286602151113087, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438286602151113087, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438286602151113087, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438286602151113087, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7239010263600326746}
+    - target: {fileID: 4438286602151113087, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 7239010263600326742}
+    - target: {fileID: 4438286602151113087, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438286602151113087, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438286602151113087, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438286602151113087, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: StopAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438286602151113087, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioLoopCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438286602151113087, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioLoopCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438286602151113087, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438286602151113087, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548760229277673045, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548760229277673045, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548760229277673045, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516967}
+    - target: {fileID: 4548760229277673045, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548760229277673045, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548760229277673045, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548760229277673045, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737139335906369777, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737139335906369777, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737139335906369777, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516965}
+    - target: {fileID: 4737139335906369777, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737139335906369777, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737139335906369777, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737139335906369777, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148693781192174420, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148693781192174420, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148693781192174420, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516976}
+    - target: {fileID: 5148693781192174420, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148693781192174420, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148693781192174420, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148693781192174420, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5267923993360115287, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: _EndColor.a
@@ -20371,9 +22126,149 @@ PrefabInstance:
       propertyPath: _object
       value: 
       objectReference: {fileID: 1413269379}
+    - target: {fileID: 5950191627000124350, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950191627000124350, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950191627000124350, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516975}
+    - target: {fileID: 5950191627000124350, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950191627000124350, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950191627000124350, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950191627000124350, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6147416197179486006, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6147416197179486006, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6147416197179486006, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516977}
+    - target: {fileID: 6147416197179486006, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6147416197179486006, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 6147416197179486006, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 6147416197179486006, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6185314950888728636, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6333734160152599638, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6333734160152599638, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6333734160152599638, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516957}
+    - target: {fileID: 6333734160152599638, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6333734160152599638, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 6333734160152599638, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 6333734160152599638, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452815778066465294, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452815778066465294, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452815778066465294, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516954}
+    - target: {fileID: 6452815778066465294, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452815778066465294, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452815778066465294, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452815778066465294, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559874148061806513, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559874148061806513, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559874148061806513, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516964}
+    - target: {fileID: 6559874148061806513, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559874148061806513, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559874148061806513, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559874148061806513, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6569986643040112752, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20419,17 +22314,109 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 4c5c07ca7d8914b49b41056dfe1c19f3, type: 2}
+    - target: {fileID: 6899589482258285930, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: m_Name
+      value: Invoke Event with 3 binds
+      objectReference: {fileID: 0}
     - target: {fileID: 6978295772623609914, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: _onAdEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 162103123}
+    - target: {fileID: 7265348882505423202, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7265348882505423202, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7265348882505423202, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516959}
+    - target: {fileID: 7265348882505423202, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7265348882505423202, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 7265348882505423202, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 7265348882505423202, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7320104629618657341, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_Name
       value: Wait for 3 sec
       objectReference: {fileID: 0}
+    - target: {fileID: 7348648791352896905, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348648791352896905, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348648791352896905, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516958}
+    - target: {fileID: 7348648791352896905, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348648791352896905, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348648791352896905, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348648791352896905, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445321868656532849, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445321868656532849, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445321868656532849, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516955}
+    - target: {fileID: 7445321868656532849, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445321868656532849, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445321868656532849, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445321868656532849, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7694404611248128206, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7940353906944886723, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: m_Name
+      value: CollisionPool
       objectReference: {fileID: 0}
     - target: {fileID: 7973341575206157544, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20459,9 +22446,97 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8110796000131205607, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8110796000131205607, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onValueChanged.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8110796000131205607, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onValueChanged.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 7239010263600326744}
+    - target: {fileID: 8110796000131205607, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onValueChanged.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8110796000131205607, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onValueChanged.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 8110796000131205607, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onValueChanged.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 8110796000131205607, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onValueChanged.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8403248609320658712, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: m_Name
       value: Show WaterShape (Shapes.Rectangle) for 2 sec
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443898153664135404, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443898153664135404, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443898153664135404, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516973}
+    - target: {fileID: 8443898153664135404, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443898153664135404, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443898153664135404, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443898153664135404, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777395039646888277, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _poolBorder
+      value: 
+      objectReference: {fileID: 144681370}
+    - target: {fileID: 8777395039646888277, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777395039646888277, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777395039646888277, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 309674525}
+    - target: {fileID: 8777395039646888277, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777395039646888277, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777395039646888277, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777395039646888277, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8851957942229593581, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       propertyPath: _shape
@@ -20483,18 +22558,56 @@ PrefabInstance:
       propertyPath: _duration
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 9166106679765615500, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211941210197776828, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211941210197776828, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211941210197776828, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1612516972}
+    - target: {fileID: 9211941210197776828, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211941210197776828, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211941210197776828, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Metroma.Audio.AudioOneShotCall, Metroma
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211941210197776828, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      propertyPath: _onHit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 836806542620684262, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
     - {fileID: 3887227853985536266, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
     - {fileID: 5545489205832891128, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+    - {fileID: 4727411499594850551, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+    - {fileID: 2338905788794940403, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+    - {fileID: 8792774096886035033, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 524344112751260311, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 715604127}
     - targetCorrespondingSourceObject: {fileID: 9049485739679205927, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       insertIndex: 3
       addedObject: {fileID: 546745153}
     - targetCorrespondingSourceObject: {fileID: 509384312040166140, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-      insertIndex: 10
-      addedObject: {fileID: 1343757618}
+      insertIndex: 3
+      addedObject: {fileID: 1070390635}
     - targetCorrespondingSourceObject: {fileID: 1180693093111080498, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1815540195}
@@ -20504,9 +22617,21 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3327730503818409418, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       insertIndex: 3
       addedObject: {fileID: 607801810}
+    - targetCorrespondingSourceObject: {fileID: 3327730503818409418, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 861777352}
     - targetCorrespondingSourceObject: {fileID: 2750316296449167593, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
-      insertIndex: 3
+      insertIndex: 2
+      addedObject: {fileID: 575512820}
+    - targetCorrespondingSourceObject: {fileID: 2750316296449167593, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: 4
       addedObject: {fileID: 674798943}
+    - targetCorrespondingSourceObject: {fileID: 2750316296449167593, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1247019426}
+    - targetCorrespondingSourceObject: {fileID: 2750316296449167593, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1126871388}
     - targetCorrespondingSourceObject: {fileID: 2750316296449167593, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 333930962}
@@ -20519,6 +22644,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3985644265694970180, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1627287996}
+    - targetCorrespondingSourceObject: {fileID: 5159476313846639271, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 221557275}
+    - targetCorrespondingSourceObject: {fileID: 2677511443894416612, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 2146140568}
+    - targetCorrespondingSourceObject: {fileID: 2677511443894416612, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1500075793}
+    - targetCorrespondingSourceObject: {fileID: 9218420436820259349, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1213239303}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75957b62c14da844187e2bc19cb2db27, type: 3}
 --- !u!4 &1892318347 stripped
@@ -21152,6 +23289,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 103893022250367072, guid: 9aba7c4f4c4748343903dcad795919f6, type: 3}
   m_PrefabInstance: {fileID: 1987823276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1991126754 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5719535757050808713, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1995946666
 GameObject:
@@ -21872,6 +24014,77 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1548222341424853386, guid: 50ec2a31674c60b4cac586f645788e50, type: 3}
   m_PrefabInstance: {fileID: 2124768924}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2146140567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2146140568}
+  - component: {fileID: 2146140569}
+  m_Layer: 0
+  m_Name: Invoke Event with 2 binds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2146140568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146140567}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.079926, y: 221.78888, z: -20.099976}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 51892627}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2146140569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146140567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69bcb5ae2dda1d84585899ae21a338d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.UnityEventSequence
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1460836615}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioLoopCall, Metroma
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1700405619}
+        m_TargetAssemblyTypeName: Metroma.Audio.AudioOneShotCall, Metroma
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &622024582149357287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22314,35 +24527,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 934917965}
     m_Modifications:
-    - target: {fileID: 757783446694683087, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
-      propertyPath: _playEvent.WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: e2a6c3db8f12b384191164ddee41ca88, type: 2}
-    - target: {fileID: 757783446694683087, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
-      propertyPath: _stopEvent.WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: 0ae4f60f88c79b94d8a174b3d13c625c, type: 2}
-    - target: {fileID: 1691659856423070307, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
-      propertyPath: m_Name
-      value: SubwayMovingP2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423211129171526154, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
-      propertyPath: m_Name
-      value: SubwayMovingP1
-      objectReference: {fileID: 0}
     - target: {fileID: 5719535757050808713, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -15.88119
       objectReference: {fileID: 0}
     - target: {fileID: 5719535757050808713, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -4.89975
       objectReference: {fileID: 0}
     - target: {fileID: 5719535757050808713, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 168.319
       objectReference: {fileID: 0}
     - target: {fileID: 5719535757050808713, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22350,15 +24547,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5719535757050808713, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5719535757050808713, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5719535757050808713, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5719535757050808713, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -22376,18 +24573,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundIntegration
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2463597331969368879, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4804733407515780877, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 268516999}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1691659856423070307, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1507010059}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+--- !u!114 &7239010263600326742 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3847875143927394784, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae343a908da21d8449756570b4dab390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioLoopCall
+--- !u!114 &7239010263600326743 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4543399401069783375, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &7239010263600326744 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8128045512228254792, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &7239010263600326745 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1775835453452727558, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d28152dbfaa848b34892c5deba8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioOneShotCall
+--- !u!114 &7239010263600326746 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4622372195943818908, guid: 0a7ec977e55b3634484d2c5ba4d91d6b, type: 3}
+  m_PrefabInstance: {fileID: 7239010263600326741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae343a908da21d8449756570b4dab390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Metroma::Metroma.Audio.AudioLoopCall
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -22405,9 +24650,4 @@ SceneRoots:
   - {fileID: 968366126}
   - {fileID: 1501074171}
   - {fileID: 284537117}
-  - {fileID: 450662104}
-  - {fileID: 7239010263600326741}
-  - {fileID: 422772492}
-  - {fileID: 1276814121}
-  - {fileID: 1493768441}
-  - {fileID: 1517602741}
+  - {fileID: 934917965}
