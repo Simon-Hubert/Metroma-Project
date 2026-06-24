@@ -2,6 +2,8 @@ using UnityEngine;
 using Metroma.Core;
 using Metroma.UI;
 using Metroma.UI.Panels;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 
 namespace Metroma
@@ -26,6 +28,7 @@ namespace Metroma
         [NaughtyAttributes.HideIf("_requirePlayerInteraction")]
         [SerializeField, Tooltip("Durée TOTALE de la séquence en secondes")]
         private float _totalSequenceDuration = 5f;
+        [SerializeField] private UnityEvent OnEnd;
 
         [NaughtyAttributes.HideIf("_requirePlayerInteraction")]
         [SerializeField, Range(0.1f, 0.9f), Tooltip("Pourcentage de la durée totale alloué à la sonnerie (le reste sert à faire tourner l'horloge)")]
@@ -43,6 +46,7 @@ namespace Metroma
         [Header("Vibration")]
         [SerializeField, Tooltip("Activer le retour haptique (manette) pendant l'alarme ?")]
         private bool _enableGamepadVibration = true;
+        [SerializeField] private UnityEvent OnVibrating;
 
         private AwaitableCompletionSource _completionSource;
         private AwaitableCompletionSource _ringSource;
@@ -159,6 +163,7 @@ namespace Metroma
         private void OnAlarmStartedToRing()
         {
             AlarmManager.OnAlarmRinging -= OnAlarmStartedToRing;
+            OnVibrating?.Invoke();
             _ringSource.TrySetResult();
         }
 
@@ -194,6 +199,8 @@ namespace Metroma
             {
                 AlarmManager.Instance.TimeSpeedMultiplier = 0f;
             }
+            
+            OnEnd?.Invoke();
 
             if (_phoneCamera != null)
                 _phoneCamera.enabled = false;
