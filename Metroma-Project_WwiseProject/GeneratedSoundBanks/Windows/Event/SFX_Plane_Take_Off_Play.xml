@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="172">
+	<SoundBanks>
+		<SoundBank Id="1386668108" Type="Event" GUID="{42B246A7-C18D-477E-94D5-FE077AB46AAF}" Language="SFX" Hash="{A0A86914-5F3E-4865-9DBB-9BC59396FD61}">
+			<ObjectPath>SFX_Plane_Take_Off_Play</ObjectPath>
+			<ShortName>SFX_Plane_Take_Off_Play</ShortName>
+			<Path>Event/SFX_Plane_Take_Off_Play.bnk</Path>
+			<Media>
+				<File Id="530377701" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>SFX\SFX_Plane_Take_Off.wav</ShortName>
+					<Path>Media/530377701.wem</Path>
+					<CachePath>DB/{DBDE1BFD-A911-03E8-F944-4EC8AA4C6F78}.wem</CachePath>
+				</File>
+				<File Id="713557852" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>SFX\SFX_Plane_Flying_LP.wav</ShortName>
+					<Path>Media/713557852.wem</Path>
+					<CachePath>0E/{0EA7727E-E3EB-E3B3-0F4D-3B883CDB2BF3}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="1386668108" Name="SFX_Plane_Take_Off_Play" ObjectPath="\Events\SFX_WU\SFX_PLANE_WU\SFX_Plane_Take_Off_Play" GUID="{42B246A7-C18D-477E-94D5-FE077AB46AAF}" Color="10" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="530377701"/>
+						<MediaRef Id="713557852"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+			<GameParameters>
+				<GameParameter Id="134457397" Name="Plane_Flying" ObjectPath="\Game Parameters\SFX_WU\SFX_PLANE_WU\Plane_Flying" GUID="{4FB3C9AB-798B-4C3F-96D0-38752423FE68}" Color="10"/>
+			</GameParameters>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{F8D14278-7619-1311-B3EA-1603467755C6}</FileHash>
+</SoundBanksInfo>

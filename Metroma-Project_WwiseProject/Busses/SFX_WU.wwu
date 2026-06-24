@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{3D477281-2032-40A4-B50A-0613AF201746}" SchemaVersion="133" RootDocumentID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}" ParentDocumentID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}">
+	<Busses>
+		<WorkUnit Name="SFX_WU" ID="{3D477281-2032-40A4-B50A-0613AF201746}" OwnerID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" PersistMode="Nested">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="10"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Bus Name="SFX" ID="{4B823C48-291E-4A7D-B68D-6FC2541272B5}">
+					<ChildrenList>
+						<Bus Name="SFX_Phase_1" ID="{D8FC47B0-2CA2-4E98-8D25-CB2C22E58D88}">
+							<ChildrenList>
+								<Bus Name="SFX_P1_MG_Drink" ID="{C7C614EA-CEDC-4BC9-957B-9C11D485648F}"/>
+								<Bus Name="SFX_P1_MG_Noyade" ID="{584B6A90-BD89-4072-93AA-369FDA380CB7}"/>
+								<Bus Name="SFX_P1_MG_Plane" ID="{9EEAB33D-E2D6-4800-8A62-F9FE41574534}"/>
+								<Bus Name="SFX_P1_Subway" ID="{09CA806E-AB12-48C1-B544-B03A10D30DAB}"/>
+							</ChildrenList>
+						</Bus>
+						<Bus Name="SFX_Phase_2" ID="{4F7E97DC-37B9-4086-BF0F-1F846E42A4B8}">
+							<ChildrenList>
+								<Bus Name="SFX_P2_Subway" ID="{555665E6-3770-4DFA-BAD7-8E3D704DD6FF}"/>
+								<Bus Name="SFX_P2_MG_OpenSpace" ID="{47D6DCD8-B2A5-4B46-AF59-37167ACDA093}"/>
+								<Bus Name="SFX_P2_MG_TrolleyProblem" ID="{D4181CA6-A9C2-4C26-BE55-8371502C6480}"/>
+							</ChildrenList>
+						</Bus>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<RTPC Name="" ID="{6EDD7F9B-F604-4342-AE40-E523DC7D5C30}" ShortID="765230539">
+								<PropertyList>
+									<Property Name="PropertyName" Type="string" Value="BusVolume"/>
+								</PropertyList>
+								<ReferenceList>
+									<Reference Name="ControlInput">
+										<ObjectRef Name="SFX_VOL" ID="{4D60DD37-66C0-497D-BEC9-18624CB3A73A}" WorkUnitID="{DF0B3CB0-C7FE-4D84-84FC-7A0DD37ADDEC}"/>
+									</Reference>
+									<Reference Name="Curve">
+										<Custom>
+											<Curve Name="" ID="{39E83518-C39D-4F4F-B25F-1BB28C85479C}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</Custom>
+									</Reference>
+								</ReferenceList>
+							</RTPC>
+						</ObjectList>
+					</ObjectLists>
+				</Bus>
+			</ChildrenList>
+		</WorkUnit>
+	</Busses>
+</WwiseDocument>

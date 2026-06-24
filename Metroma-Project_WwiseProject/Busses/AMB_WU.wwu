@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}" SchemaVersion="133" RootDocumentID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}" ParentDocumentID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}">
+	<Busses>
+		<WorkUnit Name="AMB_WU" ID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}" OwnerID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" PersistMode="Nested">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="4"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Bus Name="AMB" ID="{133059F5-B25E-4DEE-94F6-DF966A869049}">
+					<ChildrenList>
+						<Bus Name="AMB_Phase_1" ID="{38360061-B56E-4AD1-BA08-A94345F6707F}">
+							<ChildrenList>
+								<Bus Name="AMB_P1_Subway" ID="{326A10E7-9508-4678-982B-CB085239AA07}"/>
+								<Bus Name="AMB_P1_MG_Plane" ID="{776E2134-A2A7-49CB-AE1B-CEF962E26F99}"/>
+								<Bus Name="AMB_P1_MG_Noyade" ID="{D35DCA72-ABF5-4A8A-B963-9A8E7489DEAA}"/>
+								<Bus Name="AMB_P1_MG_Drink" ID="{C99A0DEB-B467-4691-AE2A-5A81BC3FD983}"/>
+							</ChildrenList>
+						</Bus>
+						<Bus Name="AMB_Phase_2" ID="{98F58F20-4B10-4FAF-A932-6F78E0A827C8}">
+							<ChildrenList>
+								<Bus Name="AMB_P2_Subway" ID="{182341C3-0D96-4BC1-96D1-A2CBF6DCFEFC}"/>
+							</ChildrenList>
+						</Bus>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<RTPC Name="" ID="{87B73693-1B4B-4B8E-A4D8-C100FE12EBDB}" ShortID="744546787">
+								<PropertyList>
+									<Property Name="PropertyName" Type="string" Value="BusVolume"/>
+								</PropertyList>
+								<ReferenceList>
+									<Reference Name="ControlInput">
+										<ObjectRef Name="SFX_VOL" ID="{4D60DD37-66C0-497D-BEC9-18624CB3A73A}" WorkUnitID="{DF0B3CB0-C7FE-4D84-84FC-7A0DD37ADDEC}"/>
+									</Reference>
+									<Reference Name="Curve">
+										<Custom>
+											<Curve Name="" ID="{8F2DCFB4-BBA4-4C97-8E72-B6966B5BEE82}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</Custom>
+									</Reference>
+								</ReferenceList>
+							</RTPC>
+						</ObjectList>
+					</ObjectLists>
+				</Bus>
+			</ChildrenList>
+		</WorkUnit>
+	</Busses>
+</WwiseDocument>

@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}" SchemaVersion="133">
+	<Containers>
+		<WorkUnit Name="AMB_WU" ID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="4"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<PropertyContainer Name="AMB_AM" ID="{E0E3C23D-7962-44D8-AF71-0BA03C743AEB}" ShortID="913097823">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="AMB" ID="{133059F5-B25E-4DEE-94F6-DF966A869049}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<PropertyContainer Name="AMB_Phase_1_AM" ID="{EB90F2F4-1EC1-4B73-B238-A00220240220}" ShortID="171356168">
+							<PropertyList>
+								<Property Name="OverrideOutput" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="AMB_Phase_1" ID="{38360061-B56E-4AD1-BA08-A94345F6707F}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<PropertyContainer Name="AMB_P1_Subway" ID="{FE4C4CED-5A53-43BF-924D-2504F9575BBE}" ShortID="361861180">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="AMB_P1_Subway" ID="{326A10E7-9508-4678-982B-CB085239AA07}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<RandomSequenceContainer Name="AMB_Subway_P1" ID="{EAFB9F81-6DDB-4FDB-B1B4-FE794F2264FC}" ShortID="150778280">
+											<PropertyList>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.2"/>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="AMB_Subway_Stop_LP" ID="{06656080-D309-4266-8E2E-CF015FB2DF06}" ShortID="817046066">
+													<PropertyList>
+														<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="AMB_P1_Subway" ID="{326A10E7-9508-4678-982B-CB085239AA07}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Subway_Stop_LP" ID="{2B116A87-270E-4DDA-8ABD-7BFE282FAC6C}">
+															<Language>SFX</Language>
+															<AudioFile>AMB\AMB_Subway_Stop_LP.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="2842928"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Subway_Stop_LP" ID="{2B116A87-270E-4DDA-8ABD-7BFE282FAC6C}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Subway_1" ID="{F5869949-A9FE-46EB-829C-830D1A4B2D5C}" ShortID="611521479">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="AMB_P1_Subway" ID="{326A10E7-9508-4678-982B-CB085239AA07}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Subway_1" ID="{26129E3F-791C-4CEF-96B8-FAA15D3A3938}">
+															<Language>SFX</Language>
+															<AudioFile>AMB\AMB_Subway_1.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="814748793"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Subway_1" ID="{26129E3F-791C-4CEF-96B8-FAA15D3A3938}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Playlist">
+													<PluginInnerObject Name="" ID="{BA898D98-45C0-4CAD-9748-50E229EA2263}" PluginName="PlaylistSlot" CompanyID="0" PluginID="86">
+														<ReferenceList>
+															<Reference Name="PlaylistObject">
+																<ObjectRef Name="AMB_Subway_1" ID="{F5869949-A9FE-46EB-829C-830D1A4B2D5C}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+															</Reference>
+														</ReferenceList>
+													</PluginInnerObject>
+													<PluginInnerObject Name="" ID="{99A8ADC6-4073-454F-A7A0-E4FB42F8FE80}" PluginName="PlaylistSlot" CompanyID="0" PluginID="86">
+														<ReferenceList>
+															<Reference Name="PlaylistObject">
+																<ObjectRef Name="AMB_Subway_Stop_LP" ID="{06656080-D309-4266-8E2E-CF015FB2DF06}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+															</Reference>
+														</ReferenceList>
+													</PluginInnerObject>
+												</ObjectList>
+											</ObjectLists>
+										</RandomSequenceContainer>
+									</ChildrenList>
+								</PropertyContainer>
+								<PropertyContainer Name="AMB_P1_MG_Drink" ID="{7D86D33E-AF04-4F9C-BCFC-4C384A934F91}" ShortID="113202971">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="AMB_P1_MG_Drink" ID="{C99A0DEB-B467-4691-AE2A-5A81BC3FD983}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="AMB_MG_Drink_LP" ID="{AC6B4CAD-29B1-413E-96C2-096721D738DA}" ShortID="34091845">
+											<PropertyList>
+												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="AMB_MG_Drink_LP" ID="{F307D5A1-52EF-4039-9875-D8BC13D0C1D4}">
+													<Language>SFX</Language>
+													<AudioFile>AMB\AMB_MG_Drink_LP.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="77295460"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="AMB_MG_Drink_LP" ID="{F307D5A1-52EF-4039-9875-D8BC13D0C1D4}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</PropertyContainer>
+								<PropertyContainer Name="AMB_P1_MG_Noyade" ID="{CC0AEC72-0085-4E7F-9ED7-7E7676BA27FE}" ShortID="45492476">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="AMB_P1_MG_Noyade" ID="{D35DCA72-ABF5-4A8A-B963-9A8E7489DEAA}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="AMB_MG_Pool_LP" ID="{C6973471-74BD-45F0-BA7D-CD0C54AD47BD}" ShortID="717599499">
+											<PropertyList>
+												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-3</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="AMB_MG_Pool_LP" ID="{6D97DD80-6E87-4CDC-988D-DDEFA72BCA9F}">
+													<Language>SFX</Language>
+													<AudioFile>AMB\AMB_MG_Pool_LP.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="255939715"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="AMB_MG_Pool_LP" ID="{6D97DD80-6E87-4CDC-988D-DDEFA72BCA9F}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</PropertyContainer>
+								<PropertyContainer Name="AMB_P1_MG_Plane" ID="{A843DE9B-BE75-418E-BD0D-BC425EEC44DA}" ShortID="110909513">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="AMB_MG_Plane_Air_LP" ID="{0C2FBC3C-E043-4E80-A7C0-9C9277EDAB4D}" ShortID="997782883">
+											<PropertyList>
+												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="AMB_MG_Plane_Air_LP" ID="{CE3F1EF6-7BD0-4456-B71B-1E837C48EC45}">
+													<Language>SFX</Language>
+													<AudioFile>AMB\AMB_MG_Plane_Air_LP.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="401051070"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="AMB_MG_Plane_Air_LP" ID="{CE3F1EF6-7BD0-4456-B71B-1E837C48EC45}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="AMB_MG_Plane_Island_LP" ID="{45A91846-4C1C-44D0-BEE0-3EE91EBA054B}" ShortID="771092855">
+											<PropertyList>
+												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="AMB_MG_Plane_Island_LP" ID="{DF83EBD9-D2D2-455D-866D-E49F57192572}">
+													<Language>SFX</Language>
+													<AudioFile>AMB\AMB_MG_Plane_Island_LP.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1050145682"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="AMB_MG_Plane_Island_LP" ID="{DF83EBD9-D2D2-455D-866D-E49F57192572}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<RandomSequenceContainer Name="AMB_MG_Plane_City" ID="{EB138C92-7960-4649-8210-E4D3F23E6199}" ShortID="675691980">
+											<PropertyList>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="2"/>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="AMB_MG_Plane_City_LP" ID="{C0D29D9B-19C2-4B02-87D1-673F0C065535}" ShortID="207467895">
+													<PropertyList>
+														<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>-8.4</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_MG_Plane_City_LP" ID="{804B9314-4892-48E3-BB05-3E47CECBAD72}">
+															<Language>SFX</Language>
+															<AudioFile>AMB\AMB_MG_Plane_City_LP.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1002292711"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_MG_Plane_City_LP" ID="{804B9314-4892-48E3-BB05-3E47CECBAD72}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="CIN_Intro_Plane" ID="{40F66605-3F6F-43EC-B16C-7BB860441551}" ShortID="794374840">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="CIN_Intro_Plane" ID="{816B324B-3B20-423E-A51E-E2C397DEC3A9}">
+															<Language>SFX</Language>
+															<AudioFile>CIN\CIN_Intro_Plane.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1007526848"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="CIN_Intro_Plane" ID="{816B324B-3B20-423E-A51E-E2C397DEC3A9}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Playlist">
+													<PluginInnerObject Name="" ID="{9B6AAD59-4873-45F3-85FF-27BA792F6981}" PluginName="PlaylistSlot" CompanyID="0" PluginID="86">
+														<ReferenceList>
+															<Reference Name="PlaylistObject">
+																<ObjectRef Name="CIN_Intro_Plane" ID="{40F66605-3F6F-43EC-B16C-7BB860441551}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+															</Reference>
+														</ReferenceList>
+													</PluginInnerObject>
+													<PluginInnerObject Name="" ID="{ECAE5BF1-102A-4DEB-AD1F-7ACC365FE125}" PluginName="PlaylistSlot" CompanyID="0" PluginID="86">
+														<ReferenceList>
+															<Reference Name="PlaylistObject">
+																<ObjectRef Name="AMB_MG_Plane_City_LP" ID="{C0D29D9B-19C2-4B02-87D1-673F0C065535}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+															</Reference>
+														</ReferenceList>
+													</PluginInnerObject>
+												</ObjectList>
+											</ObjectLists>
+										</RandomSequenceContainer>
+									</ChildrenList>
+								</PropertyContainer>
+								<PropertyContainer Name="AMB_P1_Intro" ID="{B309FB14-CB08-41BD-BD46-3C5EA9C7C8F4}" ShortID="316677133">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="AMB_Intro_Int_Appart_LP" ID="{B718D9F4-8DEF-4801-A827-516293E7AA12}" ShortID="490537187">
+											<PropertyList>
+												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="AMB_Intro_Int_Appart_LP" ID="{C93A9162-C977-4BE8-9FA7-9442AB208184}">
+													<Language>SFX</Language>
+													<AudioFile>AMB\AMB_Intro_Int_Appart_LP.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="632526868"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="AMB_Intro_Int_Appart_LP" ID="{C93A9162-C977-4BE8-9FA7-9442AB208184}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</PropertyContainer>
+							</ChildrenList>
+						</PropertyContainer>
+						<PropertyContainer Name="AMB_Phase_2_AM" ID="{D96F85B0-B89C-468E-8089-CC78CEC13C02}" ShortID="302027546">
+							<PropertyList>
+								<Property Name="OverrideOutput" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="AMB_Phase_2" ID="{98F58F20-4B10-4FAF-A932-6F78E0A827C8}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<PropertyContainer Name="AMB_P2_Subway" ID="{BA82317E-A4CB-4C70-8068-5AB327E23541}" ShortID="772262961">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="AMB_P2_Subway" ID="{182341C3-0D96-4BC1-96D1-A2CBF6DCFEFC}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<RandomSequenceContainer Name="AMB_Subway_P2" ID="{7AC45F44-DAC6-4421-9221-6147E9256791}" ShortID="351132302">
+											<PropertyList>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.2"/>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8C2CC0C2-948E-4024-B3AF-DB6EED8CB300}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="AMB_Subway_2" ID="{8CAB74BD-0782-4915-9626-F2AC2C9B4F20}" ShortID="518796096">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="AMB_P2_Subway" ID="{182341C3-0D96-4BC1-96D1-A2CBF6DCFEFC}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Subway_2" ID="{AE16ED60-E7DC-4CE5-B266-9F94720D0C03}">
+															<Language>SFX</Language>
+															<AudioFile>AMB\AMB_Subway_2.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="804279239"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Subway_2" ID="{AE16ED60-E7DC-4CE5-B266-9F94720D0C03}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="AMB_Subway_Stop_LP" ID="{34F7CAFC-0E21-4F85-A034-FC02031B1C35}" ShortID="379957479">
+													<PropertyList>
+														<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0B0D02E4-73E8-4C3D-BBDF-883A93F198AF}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="AMB_P2_Subway" ID="{182341C3-0D96-4BC1-96D1-A2CBF6DCFEFC}" WorkUnitID="{8215FD12-8C63-44E5-820F-E9B1E7039DD0}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="AMB_Subway_Stop_LP" ID="{3598E6FC-960D-4914-BDFF-C96BA73D14C6}">
+															<Language>SFX</Language>
+															<AudioFile>AMB\AMB_Subway_Stop_LP.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="2842928"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="AMB_Subway_Stop_LP" ID="{3598E6FC-960D-4914-BDFF-C96BA73D14C6}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Playlist">
+													<PluginInnerObject Name="" ID="{EF87A25A-503F-428F-8890-7E03ADFEF563}" PluginName="PlaylistSlot" CompanyID="0" PluginID="86">
+														<ReferenceList>
+															<Reference Name="PlaylistObject">
+																<ObjectRef Name="AMB_Subway_2" ID="{8CAB74BD-0782-4915-9626-F2AC2C9B4F20}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+															</Reference>
+														</ReferenceList>
+													</PluginInnerObject>
+													<PluginInnerObject Name="" ID="{66C8AD9D-180D-4BDB-9C9F-D616766E5087}" PluginName="PlaylistSlot" CompanyID="0" PluginID="86">
+														<ReferenceList>
+															<Reference Name="PlaylistObject">
+																<ObjectRef Name="AMB_Subway_Stop_LP" ID="{34F7CAFC-0E21-4F85-A034-FC02031B1C35}" WorkUnitID="{CF1D58A4-6FD7-46A9-A2FC-2437DD348390}"/>
+															</Reference>
+														</ReferenceList>
+													</PluginInnerObject>
+												</ObjectList>
+											</ObjectLists>
+										</RandomSequenceContainer>
+									</ChildrenList>
+								</PropertyContainer>
+							</ChildrenList>
+						</PropertyContainer>
+					</ChildrenList>
+				</PropertyContainer>
+			</ChildrenList>
+		</WorkUnit>
+	</Containers>
+</WwiseDocument>

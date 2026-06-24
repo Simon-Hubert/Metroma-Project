@@ -1160,8 +1160,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1360449368}
   - component: {fileID: 1360449367}
-  - component: {fileID: 1360449366}
   - component: {fileID: 1360449369}
+  - component: {fileID: 1360449371}
+  - component: {fileID: 1360449370}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1169,14 +1170,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1360449366
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360449365}
-  m_Enabled: 1
 --- !u!20 &1360449367
 Camera:
   m_ObjectHideFlags: 0
@@ -1287,6 +1280,46 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1360449370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360449365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63901699de04def44bb886e4adbc365c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AK.Wwise.Unity.MonoBehaviour::AkAudioListener
+  isDefaultListener: 1
+  bOverrideScalingFactor: 0
+  scalingFactor: -1
+  listenerId: 0
+--- !u!114 &1360449371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360449365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dbb943855320634aa20f9642a25bc54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AK.Wwise.Unity.MonoBehaviour::AkGameObj
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  usePositionOffsetData: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  scalingFactor: 1
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!1 &1479889891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,6 +1510,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bda746703ca68f4998f852dbd94ebf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.FreeRoamControllable
+  activeAtStart: 0
+  showDebugLog: 0
   _isActive: 0
   OnMoveStartUnity:
     m_PersistentCalls:
@@ -1491,6 +1526,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   rb2D: {fileID: 1479889898}
+  constantSpeed: 0
   accelerationTime: 0.5
   accelerationCurve:
     serializedVersion: 2
@@ -1541,9 +1577,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  keepLastInputAsDirection: 0
   maxSpeed: 10
-  angleSpeed: 0
+  "T\xEAteQuiSerpente": 0
+  rotationSpeed: 0
+  smoothRotation: 0.9
   moveDirection: {x: 0, y: 0}
+  rotateControllable: 1
   accelerationValue: 0
   moveState: 0
 --- !u!50 &1479889898
@@ -1573,6 +1613,77 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &1528864401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1528864404}
+  - component: {fileID: 1528864403}
+  - component: {fileID: 1528864402}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1528864402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528864401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed39f2b237e573f4f85990bb5d1440ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AK.Wwise.Unity.Addressables::AK.Wwise.Unity.WwiseAddressables.InitBankHolder
+  InitBank: {fileID: 11400000, guid: 49bcf8bfcd03cbd4592901d66c8a938b, type: 2}
+--- !u!114 &1528864403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528864401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1255887dbae24a24b869de9654a0532c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AK.Wwise.Unity.MonoBehaviour::AkInitializer
+  InitializationSettings: {fileID: 11400000, guid: f231b2c06e00c2c409f7e93498690be5, type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  engineLogging: 0
+--- !u!4 &1528864404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528864401}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1554950354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,6 +1889,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1ce5b783b560a438fe24536e28d1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Metroma::Metroma.PlatformerControllable
+  activeAtStart: 0
+  showDebugLog: 0
   _isActive: 0
   OnMoveStartUnity:
     m_PersistentCalls:
@@ -2040,3 +2153,4 @@ SceneRoots:
   - {fileID: 54896151}
   - {fileID: 893491414}
   - {fileID: 645867877}
+  - {fileID: 1528864404}

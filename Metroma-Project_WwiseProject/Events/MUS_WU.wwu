@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{324E9F05-2873-45AC-A531-E9178BF105C3}" SchemaVersion="133">
+	<Events>
+		<WorkUnit Name="MUS_WU" ID="{324E9F05-2873-45AC-A531-E9178BF105C3}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="1"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="MUS_SW_Play" ID="{77DAE6D2-78B4-40E7-9D57-CEC5FD30B2EC}">
+					<ChildrenList>
+						<Action Name="" ID="{8C785FCD-582C-4975-98A9-8A583B2D6FA8}" ShortID="801598021">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MUS_SW" ID="{4F24A7D9-3CD4-4C6A-9AAE-1255CD2C57F1}" WorkUnitID="{D1606C90-0A36-4784-B148-3C2CF923763C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="MUS_SW_Stop" ID="{F99E9875-A7AB-4D66-8B02-53411DA6AB50}">
+					<ChildrenList>
+						<Action Name="" ID="{E6001333-9EFA-4A22-841C-83CC54A7C1D4}" ShortID="80578791">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MUS_SW" ID="{4F24A7D9-3CD4-4C6A-9AAE-1255CD2C57F1}" WorkUnitID="{D1606C90-0A36-4784-B148-3C2CF923763C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="MUS_Set_State_Loop_1" ID="{00B07912-818C-47F9-A227-811CD95F7A59}">
+					<ChildrenList>
+						<Action Name="" ID="{AB299CC9-CF99-408E-B8EB-30704EFA8C7C}" ShortID="322117935">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Loop_1" ID="{673B92E2-E891-4FE1-9124-61DD37565B34}" WorkUnitID="{A0835D40-6B98-48FF-90F0-C9BB7F32C0D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="MUS_Set_State_Loop_3" ID="{D37A0481-C860-43AF-8C7C-6711E9983C95}">
+					<ChildrenList>
+						<Action Name="" ID="{F4E2A2D8-8C52-42D3-8557-717482A04BC0}" ShortID="392576892">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Loop_3" ID="{38FDD6CD-80C4-45AE-A44A-5E39FBABEA83}" WorkUnitID="{A0835D40-6B98-48FF-90F0-C9BB7F32C0D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="MUS_Set_State_Loop_2" ID="{3BA5C62D-B716-4BE2-803E-972A0479286E}">
+					<ChildrenList>
+						<Action Name="" ID="{CCFBA998-801E-44B9-BB59-0BAC3312A3D5}" ShortID="1055366005">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Loop_2" ID="{5908ACA1-DA3E-41D0-B477-4F07B7EC330A}" WorkUnitID="{A0835D40-6B98-48FF-90F0-C9BB7F32C0D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

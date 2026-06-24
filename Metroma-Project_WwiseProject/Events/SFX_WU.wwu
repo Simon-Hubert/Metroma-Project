@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{A6739875-7E5C-41BA-A793-155BC726BE74}" SchemaVersion="133">
+	<Events>
+		<WorkUnit Name="SFX_WU" ID="{A6739875-7E5C-41BA-A793-155BC726BE74}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="10"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="SFX_Alarm_Clock_Play" ID="{F87A74DE-6E2F-41F6-B9A7-748EB3D89155}">
+					<ChildrenList>
+						<Action Name="" ID="{65F29423-6383-4406-9AC3-B909880196B4}" ShortID="368369777">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Alarm_Clock" ID="{9D859DE5-814C-4360-ABF6-7748A965D681}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="SFX_Snooze_Button_Play" ID="{353DDE08-5FC4-461A-B3ED-FCEBE8CBA6A9}">
+					<ChildrenList>
+						<Action Name="" ID="{6AD4EF58-3D9A-41BE-B0D8-9541D39EA4D0}" ShortID="70479808">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Snooze_Button" ID="{265034F6-082B-4763-B4E2-71143451E84C}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{EB881DF4-E72F-4DB3-B0A2-4530CDC1BFDB}" ShortID="130335615">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Alarm_Clock" ID="{9D859DE5-814C-4360-ABF6-7748A965D681}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="SFX_Ad_Transition_In_Play" ID="{EA87C7D0-8A43-466C-8E9C-B3BB8113A9F0}">
+					<ChildrenList>
+						<Action Name="" ID="{8F9D8DAD-2F86-46AF-9837-4711E249D4F4}" ShortID="114501079">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Ad_Transition_In" ID="{62E291E1-F312-4C67-8D52-810619C6B8F6}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<WorkUnit Name="SFX_PLANE_WU" ID="{8D5803B5-2B44-4ED6-97E7-E17A19EAAEA7}" PersistMode="Reference"/>
+				<WorkUnit Name="SFX_NOYADE_WU" ID="{1526559F-8077-422E-B639-6909B5438D81}" PersistMode="Reference"/>
+				<WorkUnit Name="SFX_DRINK_WU" ID="{68B99F18-A909-4F39-AC12-E1D42DADDFC3}" PersistMode="Reference"/>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

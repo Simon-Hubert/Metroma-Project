@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{1526559F-8077-422E-B639-6909B5438D81}" SchemaVersion="133" RootDocumentID="{A6739875-7E5C-41BA-A793-155BC726BE74}" ParentDocumentID="{A6739875-7E5C-41BA-A793-155BC726BE74}">
+	<Events>
+		<WorkUnit Name="SFX_NOYADE_WU" ID="{1526559F-8077-422E-B639-6909B5438D81}" OwnerID="{A6739875-7E5C-41BA-A793-155BC726BE74}" PersistMode="Nested">
+			<ChildrenList>
+				<Event Name="VOC_Pool_Child_Scream_Play" ID="{D4646224-0155-44CD-A797-19128E565762}">
+					<ChildrenList>
+						<Action Name="" ID="{2382BD8F-6DF6-4D6E-AB6E-1FC171B1E3C5}" ShortID="92137370">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="VOC_Pool_Child_Scream" ID="{54251501-A255-4151-8E9B-87199C2B8E90}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="SFX_MG_Pool_Swim_LP_Stop" ID="{65CA55D7-DDD2-487B-8071-1A41AD21D3A9}">
+					<ChildrenList>
+						<Action Name="" ID="{A8592FBA-E60E-4313-9923-008E504FD9BF}" ShortID="567889837">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="0.3"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_MG_Pool_Swim_LP" ID="{46DEA60A-4FF1-41F7-AEC0-3387414B68DB}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="SFX_MG_Pool_Swim_LP_Play" ID="{0D17C3F5-CB9A-4B11-BE97-06EA34E27BA8}">
+					<ChildrenList>
+						<Action Name="" ID="{9695CA0A-30A3-4FE3-9D22-0DA2ECFEA1D2}" ShortID="234981671">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_MG_Pool_Swim_LP" ID="{46DEA60A-4FF1-41F7-AEC0-3387414B68DB}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="SFX_Pool_Shark_Appear_Play" ID="{4BAC0D05-393F-4A72-A513-8C4E420C715F}">
+					<ChildrenList>
+						<Action Name="" ID="{9EB8DDC6-CC8D-42E7-AFB1-9F419640C286}" ShortID="47363802">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_Pool_Shark_Appear" ID="{2C8C5E17-5D6B-4375-A21A-9DBF994128D3}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="SFX_MG_Pool_Kid_Play" ID="{7A20FEA2-E5EE-4ADA-8DB7-594D2451A609}">
+					<ChildrenList>
+						<Action Name="" ID="{81792C06-3788-4982-A98E-CFBD2A00F539}" ShortID="474177480">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_MG_Pool_Kid" ID="{C40385CA-93F8-4120-A040-7B730F5699F3}" WorkUnitID="{BD419662-B33B-49A1-904E-C5B8B0460435}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
