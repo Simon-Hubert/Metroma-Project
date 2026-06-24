@@ -15,41 +15,6 @@
 						<WorkUnit Name="SFX_WU" ID="{3D477281-2032-40A4-B50A-0613AF201746}" PersistMode="Reference"/>
 						<WorkUnit Name="UI_WU" ID="{550BC489-BE0A-4262-ADF6-6EDC3D181B31}" PersistMode="Reference"/>
 					</ChildrenList>
-					<ObjectLists>
-						<ObjectList Name="RTPC">
-							<RTPC Name="" ID="{5B7F2C19-5647-4888-81BD-199D8568520B}" ShortID="918336018">
-								<PropertyList>
-									<Property Name="PropertyName" Type="string" Value="BusVolume"/>
-								</PropertyList>
-								<ReferenceList>
-									<Reference Name="ControlInput">
-										<ObjectRef Name="MASTER_VOL" ID="{D8BB70E5-4146-4406-BBA5-A7FDB4BD2D32}" WorkUnitID="{DF0B3CB0-C7FE-4D84-84FC-7A0DD37ADDEC}"/>
-									</Reference>
-									<Reference Name="Curve">
-										<Custom>
-											<Curve Name="" ID="{E597E36B-C53B-473E-A23C-2B5E0A9B2454}">
-												<PropertyList>
-													<Property Name="Flags" Type="int32" Value="3"/>
-												</PropertyList>
-												<PointList>
-													<Point>
-														<XPos>0</XPos>
-														<YPos>-200</YPos>
-														<Flags>5</Flags>
-													</Point>
-													<Point>
-														<XPos>1</XPos>
-														<YPos>0</YPos>
-														<Flags>37</Flags>
-													</Point>
-												</PointList>
-											</Curve>
-										</Custom>
-									</Reference>
-								</ReferenceList>
-							</RTPC>
-						</ObjectList>
-					</ObjectLists>
 				</Bus>
 			</ChildrenList>
 		</WorkUnit>
